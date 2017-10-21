@@ -4,3 +4,4 @@ The Polya Contagion Model, developed by Dr. Fady Alajaji and Mikhail Hayhoe (M.A
 ## Group Members:
 Simon Gladstone
 Chris Ko
+Adan MacDonald
