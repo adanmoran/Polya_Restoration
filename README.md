@@ -2,5 +2,8 @@
 The Polya Contagion Model, developed by Dr. Fady Alajaji and Mikhail Hayhoe (M.A.Sc), will be used to perform image restoration.
 
 ## Group Members:
-Simon Gladstone
+Adan MacDonald
 Alfred Chen
+Chris Ko
+Simon Gladstone
+
