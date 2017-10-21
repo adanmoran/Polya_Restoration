@@ -1,6 +1,6 @@
 %% Load Lena
 lena = imread('..\images\lena512.bmp');
-% Conver to black and white
+% Convert to black and white
 BW = im2bw(lena, 0.52);
 
 % % Change logical to 255-range to allow for noise
