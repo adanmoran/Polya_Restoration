@@ -1,7 +1,10 @@
 %% Load Lena
 lena = imread('..\images\lena512.bmp');
 % Convert to black and white
-BW = im2bw(lena, 0.52);
+%BW = im2bw(lena, 0.52);
+
+% im2bw is not recommended by MATLAB - using imbinarize instead
+BW = imbinarize(lena, 0.52);
 
 % % Change logical to 255-range to allow for noise
 % B = uint8(BW);
