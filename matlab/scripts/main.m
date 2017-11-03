@@ -23,11 +23,11 @@ adjacency = get_sparse_adj(size(lena_bw), 1, 1);
 %adjacency = remove_edge_connections(adjacency, edges);
 
 %% Setup Polya Model
-num_iterations = 1000;
+num_iterations = 2;
 
 % Initialize urns
 % urns = initialize_poly_urns(adjacency);
-urns = ones(length(lena_bw), 2);
+urns = ones(length(lena_bw) ^ 2, 2);
 Delta = eye(size(urns,2)) * 2;
 
 for n = 1:num_iterations+1
