@@ -77,8 +77,9 @@ for n = 1:polya_iterations
         % Show the probability of error
         Pe(n+1) = compute_error(image_bw, output);
         fprintf('n = %d | Pe = %.6f\n', n, Pe(n+1));
+    else % Display the runtime so we know it's working
+        toc
     end
-    toc
 end
 
 if verbose
