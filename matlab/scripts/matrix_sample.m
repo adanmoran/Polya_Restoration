@@ -18,10 +18,10 @@
 % index: 
 %     [  0       1
 %        1       0 ]
-% indicates that the first row picked a "Black" ball and the second row
-% picked a "Red" ball.
+% indicates that the first row picked a "Red" ball and the second row
+% picked a "Black" ball.
 %
-% Source: 
+% Source: https://www.mathworks.com/matlabcentral/answers/257508-looking-for-something-like-a-matrix-version-of-randsample-vectorization
 
 function index = matrix_sample(W)
     % Flip weighting matrix and normalize it column-wise
