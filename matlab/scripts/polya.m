@@ -11,10 +11,10 @@
 % of type j that will be added when a ball of type i is drawn.
 function newV = polya(V, A, Delta)
     % How many types of balls we have
-    NUM_TYPES = size(Delta,1);
+    k = size(Delta,1);
     
     % Compute the superurn of each pixel. As a matrix, this is A*V
-    superurn = A * V;
+    S = A * V;
     
     % Pull a ball from the superurn and create a matrix, the same size as
     % V, which has row i equal to the row of Delta for the ball we pulled.
@@ -22,17 +22,24 @@ function newV = polya(V, A, Delta)
     % new matrix is row j of Delta.
     balls_to_add = zeros(size(V));
     
-    for i = 1:size(superurn, 1)
-        % Compute total number of balls in this vertex
-        total_balls = sum(superurn(i, :));
-        % Decide the probability that you will draw each type of ball.
-        weightings = superurn(i, :) / total_balls;
-        % Randomly draw a ball from the superurn
-        ball_type_drawn = randsample(NUM_TYPES, 1, true, weightings);
-        % Add the number of balls according to the type we pulled
-        balls_to_add(i, :) = Delta(ball_type_drawn, :);
-    end
+    % Vector containing the total number of balls for each superurn row
+    T = S * ones(k, 1);
+    
+    % nxk matrix of weightings for each row of the superurn matrix
+    W = S ./ T;
+    
+    % Compute the balls to add by randomly sampling from the superurn
+%     for i = 1:size(S, 1)
+%         % Randomly draw a ball from the superurn
+%         ball_type_drawn = randsample(k, 1, true, W(i,:));
+%         % Add the number of balls according to the type we pulled
+%         balls_to_add(i, :) = Delta(ball_type_drawn, :);
+%     end
+    
+    % Sample from the superurn using the weighting matrix to get the balls
+    % to add
+    B = matrix_sample(W)*Delta;
     
     % Add the balls to the original graph
-    newV = V + balls_to_add;
+    newV = V + B;
 end

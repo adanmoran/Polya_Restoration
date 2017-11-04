@@ -2,6 +2,9 @@
 clear; close all; clc;
 
 %% Declare Variables/Parameters
+% Verbosity flags
+verbose = true;
+
 % Image Things
 image_location = '..\images\lena512.bmp';
 image_binarize_thresh = 0.52;
@@ -24,7 +27,7 @@ adj_norm = 1;                   % can be 1, 2, or 'inf'
 starting_balls = 10; % the initial number of balls at time -1 of each urn
 
 % Polya Parameters
-polya_iterations = 25;
+polya_iterations = 500;
 delta_black = 5;
 delta_white = delta_black;
 
@@ -51,9 +54,7 @@ adjacency = get_sparse_adj(size(image_bw), adj_radius, adj_norm);
 
 % Remove adjacency connections based on edge graph
 %adjacency = remove_edge_connections(adjacency, edges);
-tic
 adjacency = adjacency_minus_edge_1(adjacency, edges);
-toc
 
 %% Setup Polya Model
 % Initialize urns
@@ -66,25 +67,34 @@ Delta = [delta_black      0      ;
 Pe = zeros(polya_iterations + 1, 1);
 Pe(1) = compute_error(image_bw, image_bw_noise);
 
+tic
 % Iterate the polya contagion over the urns
 for n = 1:polya_iterations
     urns = polya(urns, adjacency, Delta);
     % Compute the image from the resulting urns
-    output = image_from_urns(size(image_bw_noise), urns);
-    % Show the probability of error
-    Pe(n+1) = compute_error(image_bw, output);
-	fprintf('n = %d | Pe = %.6f\n', n, Pe(n+1));
+    if verbose
+        output = image_from_urns(size(image_bw_noise), urns);
+        % Show the probability of error
+        Pe(n+1) = compute_error(image_bw, output);
+        fprintf('n = %d | Pe = %.6f\n', n, Pe(n+1));
+    end
+    toc
 end
 
-% Plot of errors
-figure;
-plot(0:length(Pe)-1, Pe);
-title('Pe vs N');
-xlabel('N');
-ylabel('Pe (%)');
+if verbose
+    % Plot of errors
+    figure;
+    plot(0:length(Pe)-1, Pe);
+    title('Pe vs N');
+    xlabel('N');
+    ylabel('Pe (%)');
+end
 
 % Display the images
+output = image_from_urns(size(image_bw_noise), urns);
+
 figure;
 imshowpair(image_bw_noise, output, 'montage');
+
 figure;
 imshowpair(image_bw, output, 'montage');
