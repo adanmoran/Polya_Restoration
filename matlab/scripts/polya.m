@@ -3,19 +3,19 @@
 % V = vertices; A nxk matrix where n is the number of vertices, and k is
 % the number of balls
 %
-% E = superurn edge map; a binary nxn matrix where a 1 represents 
+% A = superurn edge map; a binary nxn matrix where a 1 represents 
 % a connection between the vertices (i,j). Note that E must contain the
 % 1's along the diagonal so that the superurn can be correctly retrieved
 % from it.
 %
 % Delta = a kxk matrix where the (i,j)th entry denotes the number of balls 
 % of type j that will be added when a ball of type i is drawn.
-function newV = polya(V, E, Delta)
+function newV = polya(V, A, Delta)
     % How many types of balls we have
     NUM_TYPES = size(Delta,1);
     
     % Compute the superurn of each pixel. As a matrix, this is E*V
-    superurn = E*V;
+    superurn = A*V;
     
     % Pull a ball from the superurn and create a matrix, the same size as
     % V, which has row i equal to the row of Delta for the ball we pulled.

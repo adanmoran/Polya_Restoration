@@ -38,4 +38,14 @@ for i = 1:size(C,1)
     end
 end
 
+figure;
 imshowpair(BW, C, 'montage');
+%% Take the Edge Map of Lena
+
+% The variance of Canny's gaussian filter. Default is sqrt(2)
+sigma = 2.7;
+% Threshold for the Canny method
+thresh = 0.4;
+edges = edge(C, 'canny', thresh, sigma);
+figure;
+imshowpair(C, edges, 'montage');
