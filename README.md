@@ -6,4 +6,5 @@ Adan MacDonald
 Alfred Chen
 Chris Ko
 Simon Gladstone
+James Szoke
 
