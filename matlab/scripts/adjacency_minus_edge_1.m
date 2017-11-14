@@ -7,14 +7,12 @@
 % Returns a new sparse adjacency matrix
 function adj = adjacency_minus_edge_1(adjacency, edges)
 
-    adj = adjacency;
-
     % Compute the indices of the ones in a sparse matrix
     [ii, jj] = find(edges);
     
     % Determine which pixel index in the adjacency matrix must be removed
     values = ones(size(ii));
-    pixel_numbers = (ii - values) .* size(edges,2) + jj;
+    pixel_numbers = pixel_number(ii, jj, size(edges,2));
     
     edge_identity = sparse(                 ...
                         pixel_numbers,      ...
