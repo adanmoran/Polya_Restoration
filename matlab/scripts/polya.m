@@ -9,7 +9,20 @@
 %
 % Delta = a kxk matrix where the (i,j)th entry denotes the number of balls 
 % of type j that will be added when a ball of type i is drawn.
-function newV = polya(V, A, Delta)
+%
+% SampleType (optional) = a string telling the polya model how to sample
+% from the urns. Options are 'random' (for random urn draws) or 'median'
+% (for drawing the median urn). Default is 'random'.
+function newV = polya(V, A, Delta, sampleType)
+    switch(nargin)
+        case 3
+            sampleType = 'random';
+        case 4
+            if ~strcmp(sampleType,'random') ...
+                && ~strcmp(sampleType,'median')
+                error('Can only remove edges vertically or horizontally.');
+            end
+    end
     % How many types of balls we have
     k = size(Delta,1);
     
@@ -24,7 +37,13 @@ function newV = polya(V, A, Delta)
     
     % Sample from the superurn using the weighting matrix to get the balls
     % to add
-    B = matrix_sample(W)*Delta;
+    if strcmp(sampleType, 'median')
+        % Pick out the median, which is equivalent to the max value.
+        % If the urns are zero, we pick black.
+        B = ((S >= flip(S,2) & [1 0]) | (S > flip(S,2)))*Delta;
+    else
+        B = matrix_sample(W)*Delta;
+    end
     
     % Add the balls to the original graph
     newV = V + B;
