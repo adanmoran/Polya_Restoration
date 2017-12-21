@@ -16,18 +16,27 @@
 % related to pixel i.
 function urns = initialize_polya_urns(image, adjacency, initial_balls)
 
-    % Initially create the urns
-    urns = zeros(length(adjacency), 2);
+    % Default number of balls for a polya process is 2
+    numBallTypes = 2;
+    
+    if ~islogical(image)
+        % Create as many ball types as can fit in the numerical type of
+        % this image (e.g. 255 for 'uint8').
+        
+        % Get the numerical type of the image
+        classname = class(image); 
+        % Get the max size of that type, plus one for zero
+        numBallTypes = uint64(intmax(classname)) + 1; 
+    end
+    % Create the urns
+    urns = zeros(length(adjacency), numBallTypes);
     
     for i = 1:size(image, 1)
        for j = 1:size(image, 2)
           row = size(image,1)*(i-1) + j;
-          % if it's black, add initial_balls to the black column
-          if image(i,j) == 0
-              urns(row, 1) = initial_balls;
-          else % If it's white, add initial_balls to the white column
-             urns(row, 2) = initial_balls; 
-          end
+          % Add initial_balls to the correct column (offset by one because
+          % of MATLAB's indexing system)
+          urns(row, image(i,j) + 1) = initial_balls;
        end
     end
     
