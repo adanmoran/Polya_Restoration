@@ -4,3 +4,6 @@
 # Temporary files created by Vim
 *.un
 *.*~
+
+# Images should not be tracked
+matlab/images/*

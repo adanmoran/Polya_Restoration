@@ -17,7 +17,7 @@ function image = add_gaussian_noise(image, sigma, mean, confidence_interval)
 
     for i = 1:size(image,1)
         for j = 1:size(image,2)
-            % If you are outside the 95% confidence interval, flip the pixel.
+            % If you are outside the confidence interval, flip the pixel.
             if (sigma*randn(1,1) + mean) > confidence_interval
                 if image(i,j) > 0
                     image(i,j) = 0;

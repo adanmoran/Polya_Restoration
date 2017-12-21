@@ -24,21 +24,7 @@ function adj = adjacency_minus_edge_1(adjacency, edges)
     % Create a sparse identity matrix which has zeros wherever there are
     % edges
     quasi_identity = speye(size(adjacency)) - edge_identity;
-%     I = speye(size(adjacency));
-%     
-%     for k = 1:length(ii)
-%         % pixel (i,j) of an nxn image has adjacency row (i-1)*n + j
-%         pixel_number = (ii(k)-1) * size(edges,2) + jj(k);
-%         
-%         I(pixel_number, pixel_number) = 0;
-% 
-% %         % Remove the edge from its neighbours' super urns
-% %         adj(:, pixel_number) = zeros(length(adj), 1);
-% % 
-% %         % cut out the connections to the edge, but keep a connection to itself
-% %         adj(pixel_number, :) = zeros(1, length(adj));
-% %         adj(pixel_number, pixel_number) = 1;
-%     end
     
-    adj = (quasi_identity * adjacency' * quasi_identity) + edge_identity;
+    % We can use adjacency instead of adjacency' because it's symmetric
+    adj = (quasi_identity * adjacency * quasi_identity) + edge_identity;
 end
