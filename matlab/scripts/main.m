@@ -1,5 +1,5 @@
 %% Reset workspace
-clear; 
+%clear; 
 close all; 
 clc;
 
@@ -8,12 +8,13 @@ clc;
 verbose = true;
 
 % Image Things
-% image_location = '..\images\resolution_chart.tiff';
+%image_location = '..\images\resolution_chart.tiff';
 image_location = '..\images\lena512.bmp';
+
 image_binarize_thresh = 0.52;
 
 % Choose the noise type:
-% 'gaussian', 'none'.
+% Options are 'gaussian' or 'none' or 'burst'.
 noise_type = 'gaussian';
 
 % Gaussian Noise Parameters
@@ -21,10 +22,15 @@ gaussian_std_dev = 1;
 gaussian_mean = 0;
 gaussian_confidence_interval = 0.8; % Error rate is 1 - this
 
+% Burst Noise parameters
+burst_correlation = 0.98;
+burst_error = 0.1;
+
 % Edge Detection Parameters
 edge_type = 'canny';
 edge_thresh = 0.4;
 edge_sigma = 2.7;
+use_edges = false;
 
 % Adjacency Matrix Parameters
 adj_radius = 2;
@@ -34,15 +40,25 @@ adj_norm = 1;                   % can be 1, 2, or 'inf'
 starting_balls = 10; % the initial number of balls at time -1 of each urn
 
 % Polya Parameters
-polya_iterations = 100;
+polya_iterations = 50;
 delta_black = 5;
 delta_white = delta_black;
 
+% Choose how to sample
+% Options are: 'median' or 'random'
+sample_type = 'random';
+
 % Median Filter parameters
-median_iterations = 4; % Don't need much, generally after 4 it converges
+median_iterations = 3; % Don't need much, generally after 4 it converges
 
 %% Load Binary Image
 image = imread(image_location);
+
+% If it's an rgb image, convert it to grayscale
+% i.e. if the image is "3D" we convert it to grayscale
+if size(size(image),2) > 2
+    image = rgb2gray(image);
+end
 image_bw = imbinarize(image, image_binarize_thresh); % binarize image
 
 %% Precomputation before Polya Model
@@ -53,6 +69,10 @@ image_bw_noise = add_gaussian_noise(image_bw,            ...
                                    gaussian_confidence_interval);
 if strcmp(noise_type, 'none') || strcmp(noise_type, '')
    image_bw_noise = image_bw;
+elseif strcmp(noise_type, 'burst')
+    image_bw_noise = add_bursty_noise(image_bw,          ...
+                                      burst_correlation, ...
+                                      burst_error);
 end
 
 figure;
@@ -74,7 +94,9 @@ urns = initialize_polya_urns(image_bw_noise, adjacency, starting_balls);
 
 % Remove adjacency connections based on edge graph
 %adjacency = remove_edge_connections(adjacency, edges);
-adjacency = adjacency_minus_edge_d(adjacency, edges, adj_radius);
+if use_edges
+    adjacency = adjacency_minus_edge_d(adjacency, edges, adj_radius);
+end
 
 % Initialize Delta for the polya urns
 Delta = [delta_black      0      ;
@@ -87,7 +109,7 @@ Pe(1) = compute_error(image_bw, image_bw_noise);
 tic
 % Iterate the polya contagion over the urns
 for n = 1:polya_iterations
-    urns = polya(urns, adjacency, Delta);
+    urns = polya(urns, adjacency, Delta, sample_type);
     % Compute the image from the resulting urns
     if verbose
         output = image_from_urns(size(image_bw_noise), urns);
