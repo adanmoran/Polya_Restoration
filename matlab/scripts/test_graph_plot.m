@@ -18,7 +18,7 @@ E = E + E' + eye(5);
 Delta = eye(size(V,2))*2;
 
 % Number of Polya iterations
-N = 50;
+N = 10;
 
 % Create a graph which we can see with plotting
 G = graph(E, 'OmitSelfLoops');
