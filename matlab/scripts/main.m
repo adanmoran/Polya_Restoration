@@ -40,13 +40,13 @@ adj_norm = 1;                   % can be 1, 2, or 'inf'
 starting_balls = 10; % the initial number of balls at time -1 of each urn
 
 % Polya Parameters
-polya_iterations = 50;
+polya_iterations = 20;
 delta_black = 5;
 delta_white = delta_black;
 
 % Choose how to sample
 % Options are: 'median' or 'random'
-sample_type = 'random';
+sample_type = 'median';
 
 % Median Filter parameters
 median_iterations = 3; % Don't need much, generally after 4 it converges
@@ -106,16 +106,18 @@ Delta = [delta_black      0      ;
 Pe = zeros(polya_iterations + 1, 1);
 Pe(1) = compute_error(image_bw, image_bw_noise);
 
-tic
+
 % Iterate the polya contagion over the urns
 for n = 1:polya_iterations
+    tic
     urns = polya(urns, adjacency, Delta, sample_type);
+    duration = toc;
     % Compute the image from the resulting urns
     if verbose
         output = image_from_urns(size(image_bw_noise), urns);
         % Show the probability of error
         Pe(n+1) = compute_error(image_bw, output);
-        fprintf('n = %d | Pe = %.6f\n', n, Pe(n+1));
+        fprintf('n = %d | Pe = %.6f | Duration: %.2f\n', n, Pe(n+1), duration);
     else % Display the runtime so we know it's working
         toc
     end

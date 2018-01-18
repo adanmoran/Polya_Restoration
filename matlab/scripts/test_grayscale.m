@@ -8,7 +8,7 @@ lena = imread('..\images\lena512.bmp');
 rng(0, 'twister');
 
 % Gaussian noise values
-sigma = 0.02;
+sigma = 0.01;
 mean = 0;
 noisy_lena = imnoise(lena, 'gaussian', mean, sigma);
 figure, imshowpair(lena, noisy_lena, 'montage');
@@ -23,26 +23,50 @@ figure;
 imshowpair(noisy_lena, edges, 'montage');
 
 %% Build Adjacency Matrix
-adj_radius = 1;
-adj_norm = 1;
+adj_radius = 3;
+adj_norm = 2;
 
 % Get image initial adjacency matrix
 adjacency = get_sparse_adj(size(lena), adj_radius, adj_norm);
-% Remove adjacency connections based on edge map
-adjacency = adjacency_minus_edge_d(adjacency, edges, adj_radius);
 
 %% Setup Polya Model
 starting_balls = 10;
 % Initialize urns with standard adjacency matrix
 urns = initialize_polya_urns(noisy_lena, adjacency, starting_balls);
 
+% Initialize the image for the median filter comparison
+medianed = noisy_lena;
+
 %% Iterate the polya model
 N = 10;
 
+Delta = 5 * eye(256);
+
+sample_type = 'median';
+
 for i = 1:N
+    tic
     %TODO: create the polya model for grayscale
-    % urns = polya(urns, adjacency, Delta, sample_type);
+    fprintf('Iteration %d of %d | Duration: ',i,N);
+    urns = polya(urns, adjacency, Delta, sample_type);
+    fprintf('%.3f', toc);
+    medianed = medfilt2(medianed);
 end
 
 %% Build the final image
-output = image_from_urns(size(noisy_lena), urns);
+tic
+output = uint8(image_from_urns(size(noisy_lena), urns));
+toc
+figure;
+imshowpair(noisy_lena, output, 'montage');
+title ('Noise vs Polya');
+fprintf('Polya vs Original MSE: %.3f\n', immse(output, lena));
+fprintf(' ---- ssim: %.3f\n', ssim(output, lena));
+figure;
+imshowpair(noisy_lena, medianed, 'montage');
+title('Noise vs Median');
+fprintf('Median vs Original MSE: %.3f\n', immse(medianed, lena));
+fprintf(' ---- ssim: %.3f\n', ssim(medianed, lena));
+figure;
+imshowpair(output, medianed, 'montage');
+title('Polya vs Median');
