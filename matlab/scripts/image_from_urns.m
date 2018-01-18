@@ -23,7 +23,7 @@ function image = image_from_urns(image_size, urns)
 %         
         for i = 1:image_size(1)
            for j = 1:image_size(2)
-              row = size(image,1)*(i-1) + j;
+              row = image_size(2)*(i-1) + j;
               % Find the colours that have the most balls in the urn. There may
               % be more than one colour that tie for first place.
               thisRow = urns(row,:);

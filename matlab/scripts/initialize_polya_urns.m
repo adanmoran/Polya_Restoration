@@ -44,5 +44,5 @@ function urns = initialize_polya_urns(image, adjacency, initial_balls)
     urns = sparse(rows, urnCols, balls, numCols, numBallTypes);
     
     % The state at time 0 is the initial superurn
-    urns = adjacency * urns;
+    %urns = adjacency * urns;
 end

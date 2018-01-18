@@ -2,7 +2,9 @@ clear all
 close all
 clc
 %% Load Lena in Grayscale
-lena = imread('..\images\lena512.bmp');
+lena = rgb2gray(imread('..\images\oil_spill.jpg'));
+%lena(343:500, :) = lena(343);
+%lena = imread('..\images\lena512.bmp');
 
 %% Add Gaussian Noise
 rng(0, 'twister');
@@ -10,27 +12,34 @@ rng(0, 'twister');
 % Gaussian noise values
 sigma = 0.01;
 mean = 0;
-noisy_lena = imnoise(lena, 'gaussian', mean, sigma);
+noisy_lena = lena; %imnoise(lena, 'gaussian', mean, sigma);
 figure, imshowpair(lena, noisy_lena, 'montage');
 
 %% Take the Edge Map
 % The variance of Canny's gaussian filter. Default is sqrt(2)
 sigma = 3;
 % Threshold for the Canny method
-thresh = 0.2;
+thresh = 0.4;
 edges = edge(noisy_lena, 'canny', thresh, sigma);
 figure;
 imshowpair(noisy_lena, edges, 'montage');
 
 %% Build Adjacency Matrix
-adj_radius = 3;
-adj_norm = 2;
+adj_radius = 2;
+adj_norm = 1;
 
 % Get image initial adjacency matrix
 adjacency = get_sparse_adj(size(lena), adj_radius, adj_norm);
 
 %% Setup Polya Model
-starting_balls = 10;
+% Sample Type (random, median)
+sample_type = 'median';
+%Starting balls in each urn
+starting_balls = 100;
+% Number of balls to add to the urn after each polya step
+balls_to_add = 75;
+% Matrix of ball addition
+Delta = balls_to_add * eye(256);
 % Initialize urns with standard adjacency matrix
 urns = initialize_polya_urns(noisy_lena, adjacency, starting_balls);
 
@@ -38,11 +47,7 @@ urns = initialize_polya_urns(noisy_lena, adjacency, starting_balls);
 medianed = noisy_lena;
 
 %% Iterate the polya model
-N = 10;
-
-Delta = 5 * eye(256);
-
-sample_type = 'median';
+N = 6;
 
 for i = 1:N
     tic
