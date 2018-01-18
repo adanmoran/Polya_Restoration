@@ -57,7 +57,7 @@ function newV = polya(V, A, Delta, sampleType)
                             length(medians),...
                             size(Delta,2))*Delta;
     else
-        %B = matrix_sample(W)*Delta;
+        B = matrix_sample(W)*Delta;
     end
     
     % Add the balls to the original graph
