@@ -49,7 +49,7 @@ for i = 1:N
     %TODO: create the polya model for grayscale
     fprintf('Iteration %d of %d | Duration: ',i,N);
     urns = polya(urns, adjacency, Delta, sample_type);
-    fprintf('%.3f', toc);
+    fprintf('%.3f\n', toc);
     medianed = medfilt2(medianed);
 end
 
