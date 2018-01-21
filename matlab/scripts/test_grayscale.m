@@ -1,10 +1,14 @@
-clear all
+clear
 close all
 clc
 %% Load Lena in Grayscale
-lena = rgb2gray(imread('..\images\oil_spill.jpg'));
-lena(343:500, :) = lena(343);
+lena = rgb2gray(imread('../images/oil_spill.jpg'));
+%lena(343:500, :) = lena(343);
 %lena = imread('..\images\lena512.bmp');
+
+%% Quantize Image
+numBallTypes = 256;
+lena = quantize_image(lena, numBallTypes);
 
 %% Add Gaussian Noise
 rng(0, 'twister');
@@ -42,9 +46,10 @@ starting_balls = 100;
 % Number of balls to add to the urn after each polya step
 balls_to_add = 75;
 % Matrix of ball addition
-Delta = balls_to_add * eye(256);
+Delta = balls_to_add * eye(numBallTypes);
 % Initialize urns with standard adjacency matrix
-urns = initialize_polya_urns(noisy_lena, adjacency, starting_balls);
+%urns = initialize_polya_urns(noisy_lena, adjacency, starting_balls);
+urns = initialize_polya_urns(noisy_lena, starting_balls, numBallTypes);
 
 % Initialize the image for the median filter comparison
 medianed = noisy_lena;

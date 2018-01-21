@@ -6,7 +6,6 @@
 % Inputs:
 % image - the black-and-white image for which you're determining the vector
 % of vertices.
-% adjacency - the adjacency matrix for the image
 % initial_balls - the number of balls to start with at time -1 (before the
 % superurn is calculated)
 %
@@ -14,20 +13,20 @@
 % urns - a length(adjacency)x2 vector where (i,1) is the number of
 % black balls and (i,2) is the number of white balls in the urn
 % related to pixel i.
-function urns = initialize_polya_urns(image, adjacency, initial_balls)
+function urns = initialize_polya_urns(image, initial_balls, numBallTypes)
 
     % Default number of balls for a polya process is 2
-    numBallTypes = 2;
+    % numBallTypes = 2;
     
-    if ~islogical(image)
-        % Create as many ball types as can fit in the numerical type of
-        % this image (e.g. 255 for 'uint8').
-        
-        % Get the numerical type of the image
-        classname = class(image); 
-        % Get the max size of that type, plus one for zero
-        numBallTypes = double(intmax(classname)) + 1; 
-    end
+%     if ~islogical(image)
+%         % Create as many ball types as can fit in the numerical type of
+%         % this image (e.g. 255 for 'uint8').
+%         
+%         % Get the numerical type of the image
+%         classname = class(image); 
+%         % Get the max size of that type, plus one for zero
+%         numBallTypes = double(intmax(classname)) + 1; 
+%     end
 
     % Convert the image into a column vector along its rows. 
     % This should match the length of the adjacency matrix.
