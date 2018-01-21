@@ -3,7 +3,7 @@ close all
 clc
 %% Load Lena in Grayscale
 lena = rgb2gray(imread('..\images\oil_spill.jpg'));
-%lena(343:500, :) = lena(343);
+lena(343:500, :) = lena(343);
 %lena = imread('..\images\lena512.bmp');
 
 %% Add Gaussian Noise
@@ -19,6 +19,9 @@ figure, imshowpair(lena, noisy_lena, 'montage');
 % The variance of Canny's gaussian filter. Default is sqrt(2)
 sigma = 3;
 % Threshold for the Canny method
+% Oil Spill: 0.4
+% Lena: 0.2
+% Two ships: 0.5
 thresh = 0.4;
 edges = edge(noisy_lena, 'canny', thresh, sigma);
 figure;
