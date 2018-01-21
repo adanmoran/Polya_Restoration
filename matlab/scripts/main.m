@@ -9,9 +9,12 @@ verbose = true;
 
 % Image Things
 %image_location = '..\images\resolution_chart.tiff';
-image_location = '..\images\lena512.bmp';
+% image_location = '..\images\lena512.bmp';
+image_location = '..\images\oil_spill.jpg';
 
-image_binarize_thresh = 0.52;
+% Lena threshold: 0.52
+% oil_spill threshold: 0.18
+image_binarize_thresh = 0.18;
 
 % Choose the noise type:
 % Options are 'gaussian' or 'none' or 'burst'.
