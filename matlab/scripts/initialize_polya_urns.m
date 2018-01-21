@@ -26,20 +26,23 @@ function urns = initialize_polya_urns(image, adjacency, initial_balls)
         % Get the numerical type of the image
         classname = class(image); 
         % Get the max size of that type, plus one for zero
-        numBallTypes = uint64(intmax(classname)) + 1; 
+        numBallTypes = double(intmax(classname)) + 1; 
     end
-    % Create the urns
-    urns = zeros(length(adjacency), numBallTypes);
-    
-    for i = 1:size(image, 1)
-       for j = 1:size(image, 2)
-          row = size(image,1)*(i-1) + j;
-          % Add initial_balls to the correct column (offset by one because
-          % of MATLAB's indexing system)
-          urns(row, image(i,j) + 1) = initial_balls;
-       end
-    end
+
+    % Convert the image into a column vector along its rows. 
+    % This should match the length of the adjacency matrix.
+    imageCols = reshape(image', [], 1);
+    % Convert the image columns into a list of indices for urn columns
+    urnCols = double(imageCols) + 1;
+    % Get the number of elements
+    numCols = length(imageCols);
+    % Now get the row elements
+    rows = 1:numCols;
+    % Create the list of initial balls
+    balls = initial_balls * ones(numCols,1);
+    % Now build the urn matrix as a sparse matrix
+    urns = sparse(rows, urnCols, balls, numCols, numBallTypes);
     
     % The state at time 0 is the initial superurn
-    urns = adjacency * urns;
+    %urns = adjacency * urns;
 end

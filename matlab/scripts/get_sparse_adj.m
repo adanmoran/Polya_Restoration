@@ -16,6 +16,9 @@
 %   adj - a sparse matrix of the adjacency representation
 %       - can open up the sparse matrix using full(adj)
 function adj = get_sparse_adj(rc, radius, p_norm)
+    % sparse_adj_matrix takes [numCols, numRows] which is nonstandard, so
+    % we swap the order of rc
+    rc = flip(rc,2);
     [ii, jj] = sparse_adj_matrix(rc, radius, p_norm);
     adj = sparse(ii, jj, ones(1,numel(ii)), prod(rc), prod(rc));
 end

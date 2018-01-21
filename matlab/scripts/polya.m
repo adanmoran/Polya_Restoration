@@ -37,10 +37,25 @@ function newV = polya(V, A, Delta, sampleType)
     
     % Sample from the superurn using the weighting matrix to get the balls
     % to add
-    if strcmp(sampleType, 'median')
+    if strcmp(sampleType, 'median') 
         % Pick out the median, which is equivalent to the max value.
         % If the urns are zero, we pick black.
-        B = ((S >= flip(S,2) & [1 0]) | (S > flip(S,2)))*Delta;
+        %S_flip = flip(S,2);
+        %B = ((S >= S_flip & [1 0]) | (S > S_flip))*Delta;
+        
+        % Find the median ball location and make a matrix with a one where
+        % it is
+        C = cumsum(S,2); % Tally up the rows
+        % Locate the median value along those rows by finding the first
+        % location where the cumulative sum is greater than the total / 2.
+        % This max function returns a list of the columns
+        [~, medians] = max(C > (T./2), [], 2);
+        % Build the matrix out of these cumulative sum indices
+        B = sparse(1:length(medians), ...
+                            medians, ...
+                            ones(size(medians)),...
+                            length(medians),...
+                            size(Delta,2))*Delta;
     else
         B = matrix_sample(W)*Delta;
     end
