@@ -6,10 +6,6 @@ lena = rgb2gray(imread('../images/oil_spill.jpg'));
 %lena(343:500, :) = lena(343);
 %lena = imread('..\images\lena512.bmp');
 
-%% Quantize Image
-numBallTypes = 256;
-lena = quantize_image(lena, numBallTypes);
-
 %% Add Gaussian Noise
 rng(0, 'twister');
 
@@ -31,6 +27,11 @@ edges = edge(noisy_lena, 'canny', thresh, sigma);
 figure;
 imshowpair(noisy_lena, edges, 'montage');
 
+%% Quantization Parameters
+numBallTypes = 50;
+quantization_type = 'uniform';
+% lena = quantize_image(lena, numBallTypes);
+
 %% Build Adjacency Matrix
 adj_radius = 2;
 adj_norm = 1;
@@ -49,7 +50,7 @@ balls_to_add = 75;
 Delta = balls_to_add * eye(numBallTypes);
 % Initialize urns with standard adjacency matrix
 %urns = initialize_polya_urns(noisy_lena, adjacency, starting_balls);
-urns = initialize_polya_urns(noisy_lena, starting_balls, numBallTypes);
+urns = initialize_polya_urns(noisy_lena, starting_balls, numBallTypes, quantization_type);
 
 % Initialize the image for the median filter comparison
 medianed = noisy_lena;
@@ -65,6 +66,9 @@ for i = 1:N
     fprintf('%.3f\n', toc);
     medianed = medfilt2(medianed);
 end
+
+%% Inverse Quantize Image
+
 
 %% Build the final image
 tic

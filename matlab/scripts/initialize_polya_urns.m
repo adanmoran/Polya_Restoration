@@ -13,7 +13,7 @@
 % urns - a length(adjacency)x2 vector where (i,1) is the number of
 % black balls and (i,2) is the number of white balls in the urn
 % related to pixel i.
-function urns = initialize_polya_urns(image, initial_balls, numBallTypes)
+function urns = initialize_polya_urns(image, initial_balls, numBallTypes, q_type)
 
     % Default number of balls for a polya process is 2
     % numBallTypes = 2;
@@ -28,19 +28,21 @@ function urns = initialize_polya_urns(image, initial_balls, numBallTypes)
 %         numBallTypes = double(intmax(classname)) + 1; 
 %     end
 
+    image = quantize_image(image, numBallTypes, 'uniform');
+
     % Convert the image into a column vector along its rows. 
     % This should match the length of the adjacency matrix.
     imageCols = reshape(image', [], 1);
     % Convert the image columns into a list of indices for urn columns
     urnCols = double(imageCols) + 1;
     % Get the number of elements
-    numCols = length(imageCols);
+    numRows = length(imageCols);
     % Now get the row elements
-    rows = 1:numCols;
+    rows = 1:numRows;
     % Create the list of initial balls
-    balls = initial_balls * ones(numCols,1);
+    balls = initial_balls * ones(numRows,1);
     % Now build the urn matrix as a sparse matrix
-    urns = sparse(rows, urnCols, balls, numCols, numBallTypes);
+    urns = sparse(rows, urnCols, balls, numRows, numBallTypes);
     
     % The state at time 0 is the initial superurn
     %urns = adjacency * urns;
