@@ -8,12 +8,16 @@ class PUPFilter {
   
   public PUPFilter( Image source, int colorSet, int iterations, int distance ) {
     this.source = source;
-    this.result = source.clone();
     this.colorSet = colorSet;
     this.iterations = iterations;
     this.distance = distance;
+    result = source.clone();
   }
   
-  private 
+  public void reset() {
+    this.result = source.clone();
+  }
+  
+  public void setParams(){}
     
 }

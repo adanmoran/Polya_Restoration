@@ -8,6 +8,7 @@ import javax.imageio.ImageIO;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
+import java.io.File;
 
 class Image {
   
@@ -33,12 +34,16 @@ class Image {
   
   public Image( int colorSet, String path ) {
     
-    imageFile = new File( path );
-    source = ImageIO.read(file);
-    width = image.getWidth();
-    height = image.getHeight();
-    pixelGrid = new Map<Integer, Map<Integer, Pixel>>();
-    for ( i=0; i < height; i++ ) {
+    File imageFile = new File( path );
+    try {
+      source = ImageIO.read( imageFile );
+    } catch ( IOException e ) {
+      System.out.println( e );
+    }
+    width = source.getWidth();
+    height = source.getHeight();
+    pixelGrid = new HashMap<Integer, Map<Integer, Pixel>>();
+    for ( int i=0; i < height; i++ ) {
       pixelGrid.put( i, new HashMap<Integer, Pixel>() );
     }
     convertToPixelObjects( source );
@@ -54,15 +59,15 @@ class Image {
   }
   
   public int[] getDimensions() {
-    return new int{ height, width };
+    return new int[]{ height, width };
   }
   
   public int[] getLevels( int row, int col ) {
-    pixelGrid.get(row).get(col).getLevels();
+    return pixelGrid.get(row).get(col).getLevels();
   }
   
   public int[][] getSuperLevels( int distance, int row, int col ) {
-    pixelGrid.get(row).get(col).getSuperLevels( distance, Pixel.CENTER );
+    return pixelGrid.get(row).get(col).getSuperLevels( distance, Pixel.CENTER );
   }
   
   // This method was borrowed and modified from a solution found here:  
@@ -80,13 +85,13 @@ class Image {
       for (int pixel = 0, row = 0, col = 0; pixel < pixels.length; pixel += pixelLength) {
         int alpha = 0, red = 0, green = 0, blue = 0;
         //argb += (((int) pixels[pixel] & 0xff) << 24); // alpha
-        alpha += (((int) pixels[pixel] & 0xff) << 24); // alpha
+        alpha += ((int) pixels[pixel] & 0xff ); // alpha
         //argb += (((int) pixels[pixel + 3] & 0xff) << 16); // red
         red += ((int) pixels[pixel + 3] & 0xff ); // red
         //argb += (((int) pixels[pixel + 2] & 0xff) << 8); // green
-        green += ((int) pixels[pixel + 2] & 0xff) ; // green
+        green += ((int) pixels[pixel + 2] & 0xff ) ; // green
         //argb += ((int) pixels[pixel + 1] & 0xff); // blue
-        blue += ((int) pixels[pixel + 1] & 0xff); // blue
+        blue += ((int) pixels[pixel + 1] & 0xff ); // blue
         
         //result[row][col] = argb;
         pixelGrid.get(row).put( col, new Pixel( colorSet, red, green, blue, alpha ) );
@@ -120,8 +125,9 @@ class Image {
   }
   
   public Image clone() {
-    cloneGrid = new Map<Integer, Map<Integer, Pixel>>();
-    for ( i=0; i < height; i++ ) {
+    
+    Map<Integer, Map<Integer, Pixel>> cloneGrid = new HashMap<Integer, Map<Integer, Pixel>>();
+    for ( int i=0; i < height; i++ ) {
       cloneGrid.put( i, new HashMap<Integer, Pixel>() );
     }
     for ( int row=0; row < height; row++ ) {
@@ -136,7 +142,7 @@ class Image {
     pixelGrid.get(row).get(col).modifyLevel( level, value );
   }
   
-  public boolean applyMask( int[][] mask, int maskType ) {
+  public void applyMask( int[][] mask, int maskType ) {
     
     boolean result = false;
     Pixel pixel = null;
@@ -150,11 +156,11 @@ class Image {
               currentPixel.removeAllNeighbours( true ); // mutual 'unfriending'
             }
             if ( maskType == MASK_ISOBLOB ) {
-              for ( rOffset = -1; rOffset < 2; rOffset++ ) {
-                for ( cOffset = -1; cOffset < 2; cOffset++ ) {
+              for ( int rOffset = -1; rOffset < 2; rOffset++ ) {
+                for ( int cOffset = -1; cOffset < 2; cOffset++ ) {
                   if ( ( row - rOffset ) != 0 && ( col - cOffset ) != 0 ) { // i.e. not on the 'centered' pixel
                     pixel = pixelGrid.get( row - rOffset ).get( col - cOffset );
-                    if ( mask[ row - rOffset ][ col - cOffset] == 0 && pixel )
+                    if ( mask[ row - rOffset ][ col - cOffset] == 0 && pixel != null )
                       // mutually remove all pixels not part of the mask
                       // and ask that they do the same in return.
                       currentPixel.removeNeighbour( pixel, true ); 
@@ -163,11 +169,11 @@ class Image {
               }
             }
             if ( maskType == MASK_OWMOUTWARD ) {
-              for ( rOffset = -1; rOffset < 2; rOffset++ ) {
-                for ( cOffset = -1; cOffset < 2; cOffset++ ) {
+              for ( int rOffset = -1; rOffset < 2; rOffset++ ) {
+                for ( int cOffset = -1; cOffset < 2; cOffset++ ) {
                   if ( ( row - rOffset ) != 0 && ( col - cOffset ) != 0 ) { // i.e. not on the 'centered' pixel
                     pixel = pixelGrid.get( row - rOffset ).get( col - cOffset );
-                    if ( mask[ row - rOffset ][ col - cOffset] == 0 && pixel )
+                    if ( mask[ row - rOffset ][ col - cOffset] == 0 && pixel != null )
                       // ask all pixels not part of the mask that see this pixel as a neighbour
                       // remove this pixel from their list.
                       pixel.removeNeighbour( currentPixel, false );
@@ -176,11 +182,11 @@ class Image {
               }
             }
             if ( maskType == MASK_OWMINWARD ) {
-              for ( rOffset = -1; rOffset < 2; rOffset++ ) {
-                for ( cOffset = -1; cOffset < 2; cOffset++ ) {
+              for ( int rOffset = -1; rOffset < 2; rOffset++ ) {
+                for ( int cOffset = -1; cOffset < 2; cOffset++ ) {
                   if ( ( row - rOffset ) != 0 && ( col - cOffset ) != 0 ) { // i.e. not on the 'centered' pixel
                     pixel = pixelGrid.get( row - rOffset ).get( col - cOffset );
-                    if ( mask[ row - rOffset ][ col - cOffset] == 0 && pixel )
+                    if ( mask[ row - rOffset ][ col - cOffset] == 0 && pixel != null )
                       // remove all pixels not part of the mask from this pixels list
                       // but allow them to see this pixel as a neighbour.
                       currentPixel.removeNeighbour( pixel, false );
@@ -192,10 +198,6 @@ class Image {
         }
       }
     }
-  }
-}
-    
-    return result;
   }
   
   private void initializeNeighbourhood() {

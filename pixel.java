@@ -1,6 +1,7 @@
 import java.util.List;
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.Arrays;
 
 class Pixel {
   
@@ -25,11 +26,15 @@ class Pixel {
   private int[] colorLevels;
   private List<Pixel> neighbours; // Array list containing no more than 8 entries of immediate neighbours.
   
-  public Pixel( int colorSet, int redWhite, int green, int blue, int alpha = 0 ) {
+  public Pixel( int colorSet, int redWhite, int green, int blue ) {
+    this( colorSet, redWhite, green, blue, 255 );
+  }
+  
+  public Pixel( int colorSet, int redWhite, int green, int blue, int alpha ) {
     this.colorSet = colorSet;
     switch ( colorSet ) {
       case Image.CS_BW:
-      case Image.CS_BW:
+      case Image.CS_GS:
         colorLevels = new int[1];
         colorLevels[ WHITE ] = redWhite;
         break;
@@ -56,21 +61,20 @@ class Pixel {
   }
   
   public Pixel clone() {
-    return new Pixel( colorSet, colorLevels );
+    return new Pixel( colorSet, getLevels() );
   }
   
   public int[] getLevels() {
-    return Arrays.copyOf( colorLevels );
+    return Arrays.copyOf( colorLevels, colorLevels.length );
   }
 
   public int[][] getSuperLevels( int distance, int direction ) {
-    getSuperLevels( distance, direction, norm = 2 ); // if no norm is specified, default to 2 norm
+    return getSuperLevels( distance, direction, 2 ); // if no norm is specified, default to 2 norm
   }
   
   public int[][] getSuperLevels( int distance, int direction, int norm ) {
     
     Pixel pixel = null;
-    int[] level = null;
     Iterator<Pixel> it = neighbours.iterator();
     int[][] superLevels = new int[2][1];
     
@@ -78,25 +82,26 @@ class Pixel {
       if ( distance == 0 ) { // this is an 'edge' pixel in our distance
         if ( colorSet > Image.CS_BW ) {
           superLevels = new int[2][4];
-          level = this.getLevels;
+          int [] level = this.getLevels();
           superLevels[0][RED] = level[RED];
           superLevels[0][GREEN] = level[GREEN];
           superLevels[0][BLUE] = level[BLUE];
           superLevels[0][ALPHA] = level[ALPHA];
           superLevels[1][0] = 1; // How many pixels were queried
         } else {
-          pixel = it.Next();
-          level = this.getLevels;
+          pixel = it.next();
+          int[] level = this.getLevels();
           superLevels[0][0] = level[0];
           superLevels[1][0] = 1; // How many pixels were queried
         }
       } else {
         if ( direction == CENTER ) { // this is the central pixel from which we radiate outwards
           if ( colorSet > Image.CS_BW ) {
+            int[][] level;
             superLevels = new int[2][4];
             while ( it.hasNext() ) {
               pixel = it.next();
-              if ( pixel ) {
+              if ( pixel != null ) {
                 level = pixel.getSuperLevels( ( distance - 1 ), neighbours.indexOf( pixel ) );
                 superLevels[0][RED] += level[0][RED];
                 superLevels[0][GREEN] += level[0][GREEN];
@@ -112,9 +117,10 @@ class Pixel {
             superLevels[0][ALPHA] += getLevels()[ALPHA];
             superLevels[1][0] ++;
           } else {
+            int[][] level;
             while ( it.hasNext() ) {
               pixel = it.next();
-              pixel.getSuperLevels( ( distance - 1 ), neighbours.indexOf( pixel ) );
+              level = pixel.getSuperLevels( ( distance - 1 ), neighbours.indexOf( pixel ) );
               superLevels[0][WHITE] += level[0][WHITE];
               superLevels[1][0] += level[1][0]; // accumulation of number of pixels queried
             }
@@ -131,8 +137,8 @@ class Pixel {
               if ( colorSet > Image.CS_BW ) {
               superLevels = new int[2][4];
               pixel = neighbours.get( direction );
-              if ( pixel ) {
-                level = pixel.getSuperLevels( ( distance - 1 ), neighbours.indexOf( pixel ) );
+              if ( pixel != null ) {
+                int[][] level = pixel.getSuperLevels( ( distance - 1 ), neighbours.indexOf( pixel ) );
                 superLevels[0][RED] += level[0][RED];
                 superLevels[0][GREEN] += level[0][GREEN];
                 superLevels[0][BLUE] += level[0][BLUE];
@@ -141,7 +147,7 @@ class Pixel {
               }
             } else {
               pixel = neighbours.get( direction );
-              pixel.getSuperLevels( ( distance - 1 ), neighbours.indexOf( pixel ) );
+              int[][] level = pixel.getSuperLevels( ( distance - 1 ), neighbours.indexOf( pixel ) );
               superLevels[0][WHITE] += level[0][WHITE];
               superLevels[1][0] += level[1][0]; // accumulation of number of pixels queried
             }
@@ -151,10 +157,11 @@ class Pixel {
             case LOWERRIGHT:
             case LOWERLEFT:
               if ( colorSet > Image.CS_BW ) {
+              int[][] level;
               for ( int i=-1; i < 2; i++ ) {   // This construct along with mod 8 arithmetic gets the three pixels
                 superLevels = new int[2][4]; // adjacent to any corner in a general way
                 pixel = neighbours.get( ( direction + i ) % 8 );
-                if ( pixel ) {
+                if ( pixel != null ) {
                   level = pixel.getSuperLevels( ( distance - 1 ), neighbours.indexOf( pixel ) );
                   superLevels[0][RED] += level[0][RED];
                   superLevels[0][GREEN] += level[0][GREEN];
@@ -164,9 +171,10 @@ class Pixel {
                 }
               }
             } else {
+              int[][] level;
               for ( int i=-1; i < 2; i++ ) {   // This construct along with mod 8 arithmetic gets the three pixels
                 pixel = neighbours.get( ( direction + i ) % 8 );
-                pixel.getSuperLevels( ( distance - 1 ), neighbours.indexOf( pixel ) );
+                level = pixel.getSuperLevels( ( distance - 1 ), neighbours.indexOf( pixel ) );
                 superLevels[0][WHITE] += level[0][WHITE];
                 superLevels[1][0] += level[1][0]; // accumulation of number of pixels queried
               }
@@ -200,7 +208,11 @@ class Pixel {
     return superLevels;
   }
   
-  public void removeNeighbour( Pixel pixel, boolean mutual = false ) {
+  public void removeNeighbour( Pixel pixel ) {
+    removeNeighbour( pixel, false );
+  }
+  
+  public void removeNeighbour( Pixel pixel, boolean mutual ) {
     if ( mutual ) {
       pixel.removeNeighbour( this );
       neighbours.remove( pixel );
@@ -209,7 +221,11 @@ class Pixel {
     }
   }
   
-  public void removeAllNeighbours( boolean mutual = false ) {
+  public void removeAllNeighbours() {
+    removeAllNeighbours( false );
+  }
+  
+  public void removeAllNeighbours( boolean mutual ) {
     Iterator<Pixel> it = neighbours.iterator();
     Pixel pixel;
     while ( it.hasNext() ) {
