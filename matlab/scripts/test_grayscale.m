@@ -29,8 +29,8 @@ imshowpair(noisy_lena, edges, 'montage');
 
 %% Quantization Parameters
 numBallTypes = 50;
-quantization_type = 'uniform';
-% lena = quantize_image(lena, numBallTypes);
+quantization = 'uniform';
+inverse_quantization = 'mid';
 
 %% Build Adjacency Matrix
 adj_radius = 2;
@@ -50,7 +50,7 @@ balls_to_add = 75;
 Delta = balls_to_add * eye(numBallTypes);
 % Initialize urns with standard adjacency matrix
 %urns = initialize_polya_urns(noisy_lena, adjacency, starting_balls);
-urns = initialize_polya_urns(noisy_lena, starting_balls, numBallTypes, quantization_type);
+urns = initialize_polya_urns(noisy_lena, starting_balls, numBallTypes, quantization);
 
 % Initialize the image for the median filter comparison
 medianed = noisy_lena;
@@ -67,12 +67,9 @@ for i = 1:N
     medianed = medfilt2(medianed);
 end
 
-%% Inverse Quantize Image
-
-
 %% Build the final image
 tic
-output = uint8(image_from_urns(size(noisy_lena), urns));
+output = image_from_urns(size(noisy_lena), urns, inverse_quantization);
 toc
 figure;
 imshowpair(noisy_lena, output, 'montage');

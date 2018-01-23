@@ -9,7 +9,7 @@
 %
 % Returns:
 % image - an image representing the urn state
-function image = image_from_urns(image_size, urns)
+function image = image_from_urns(image_size, urns, i_quantization)
     image = zeros(image_size);
 
 %     % Find the first maximum value along each row and get its index
@@ -21,26 +21,29 @@ function image = image_from_urns(image_size, urns)
     
     % Multiple colours:
 %         
-        for i = 1:image_size(1)
-           for j = 1:image_size(2)
-              row = image_size(2)*(i-1) + j;
-              % Find the colours that have the most balls in the urn. There may
-              % be more than one colour that tie for first place.
-              thisRow = urns(row,:);
-              mostBallLocations = find(thisRow == max(thisRow));
-              % Subtract ones to make it into a 0-255 range (instead of 1-256)
-              mostBallLocations = mostBallLocations - 1;
+    for i = 1:image_size(1)
+       for j = 1:image_size(2)
+          row = image_size(2)*(i-1) + j;
+          % Find the colours that have the most balls in the urn. There may
+          % be more than one colour that tie for first place.
+          thisRow = urns(row,:);
+          mostBallLocations = find(thisRow == max(thisRow));
+          % Subtract ones to make it into a 0-255 range (instead of 1-256)
+          mostBallLocations = mostBallLocations - 1;
 
-              % If there is only one colour, this pixel becomes that colour
-              if length(mostBallLocations) == 1
-                  image(i,j) = mostBallLocations;
-              % If theres a tie, take the darkest colour as default. This may
-              % be changed later
-              else
-                  image(i,j) = ceil(median(mostBallLocations));
-              end
-           end
-        end
+          % If there is only one colour, this pixel becomes that colour
+          if length(mostBallLocations) == 1
+              image(i,j) = mostBallLocations;
+          % If theres a tie, take the darkest colour as default. This may
+          % be changed later
+          else
+              image(i,j) = ceil(median(mostBallLocations));
+          end
+       end
+    end
+    
+    image = uint8(image);
+    image = inverse_quantize_image(image, size(urns, 2), i_quantization);
 end
 
 %% Old Versions:
