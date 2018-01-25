@@ -1,8 +1,14 @@
-function [q_image, partition] = quantize_image(image, num_ball_types, q_type)
+function [q_image, partition] = quantize_image(image, num_ball_types, q_type)    
     % Get the numerical type of the image
     classname = class(image); 
     % Get the max size of that type
     num_colours = double(intmax(classname));
+    
+    if (num_ball_types == num_colours + 1)
+        q_image = image;
+        partition = 0:num_colours;
+        return
+    end
     
     if strcmp(q_type, 'unif') || strcmp(q_type, 'uniform')
         % Uniform Quantization
