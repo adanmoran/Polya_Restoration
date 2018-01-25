@@ -1,0 +1,12 @@
+//////////////////////////////////////////
+// Copyright Adan Moran-MacDonald, 2018 //
+//////////////////////////////////////////
+
+#include <Eigen/Dense>
+
+int main()
+{
+	return 0;
+}
+
+/* vim: set ts=4 sw=4 et :*/
