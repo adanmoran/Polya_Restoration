@@ -16,6 +16,9 @@ noisy_lena = imnoise(lena, 'gaussian', mean, sigma);
 
 figure, imshowpair(lena, noisy_lena, 'montage');
 
+% Initialize the image for the median filter comparison
+medianed = noisy_lena;
+
 %% Take the Edge Map
 % The variance of Canny's gaussian filter. Default is sqrt(2)
 sigma = 3;
@@ -29,9 +32,11 @@ figure;
 imshowpair(noisy_lena, edges, 'montage');
 
 %% Quantization Parameters
-numBallTypes = 30;
+numBallTypes = 30; % [2 - 255]
 quantization = 'lloyd';
 inverse_quantization = 'low';
+
+[noisy_lena, partition] = quantize_image(noisy_lena, numBallTypes, quantization);
 
 %% Build Adjacency Matrix
 adj_radius = 2;
@@ -50,11 +55,7 @@ balls_to_add = 75;
 % Matrix of ball addition
 Delta = balls_to_add * eye(numBallTypes);
 % Initialize urns with standard adjacency matrix
-%urns = initialize_polya_urns(noisy_lena, adjacency, starting_balls);
-urns = initialize_polya_urns(noisy_lena, starting_balls, numBallTypes, quantization);
-
-% Initialize the image for the median filter comparison
-medianed = noisy_lena;
+urns = initialize_polya_urns(noisy_lena, starting_balls, numBallTypes);
 
 %% Iterate the polya model
 N = 6;
@@ -70,7 +71,8 @@ end
 
 %% Build the final image
 tic
-output = image_from_urns(size(noisy_lena), urns, inverse_quantization);
+output = image_from_urns(size(noisy_lena), urns);
+output = inverse_quantize_image(output, numBallTypes, i_quantization, partition);
 toc
 figure;
 imshowpair(noisy_lena, output, 'montage');
