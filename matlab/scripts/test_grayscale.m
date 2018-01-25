@@ -2,9 +2,9 @@ clear all
 close all
 clc
 %% Load Lena in Grayscale
-lena = rgb2gray(imread('..\images\oil_spill.jpg'));
-lena(343:500, :) = lena(343);
-%lena = imread('..\images\lena512.bmp');
+%lena = rgb2gray(imread('..\images\oil_spill.jpg'));
+%lena(343:500, :) = lena(343);
+lena = imread('..\images\lena512.bmp');
 
 %% Add Gaussian Noise
 rng(0, 'twister');
@@ -12,7 +12,7 @@ rng(0, 'twister');
 % Gaussian noise values
 sigma = 0.01;
 mean = 0;
-noisy_lena = lena; %imnoise(lena, 'gaussian', mean, sigma);
+noisy_lena = imnoise(lena, 'gaussian', mean, sigma);
 figure, imshowpair(lena, noisy_lena, 'montage');
 
 %% Take the Edge Map
@@ -22,13 +22,13 @@ sigma = 3;
 % Oil Spill: 0.4
 % Lena: 0.2
 % Two ships: 0.5
-thresh = 0.4;
+thresh = 0.2;
 edges = edge(noisy_lena, 'canny', thresh, sigma);
 figure;
 imshowpair(noisy_lena, edges, 'montage');
 
 %% Build Adjacency Matrix
-adj_radius = 2;
+adj_radius = 1;
 adj_norm = 1;
 
 % Get image initial adjacency matrix
@@ -40,30 +40,31 @@ sample_type = 'median';
 %Starting balls in each urn
 starting_balls = 100;
 % Number of balls to add to the urn after each polya step
-balls_to_add = 75;
+balls_to_add = 25;
 % Matrix of ball addition
-Delta = balls_to_add * eye(256);
+Delta = balls_to_add * eye(2);
 % Initialize urns with standard adjacency matrix
-urns = initialize_polya_urns(noisy_lena, adjacency, starting_balls);
-
+%urns = initialize_polya_urns(noisy_lena, adjacency, starting_balls);
+urns = initialize_polya_urns_proportional(noisy_lena);
 % Initialize the image for the median filter comparison
 medianed = noisy_lena;
 
 %% Iterate the polya model
-N = 6;
-
+N = 150;
 for i = 1:N
     tic
     %TODO: create the polya model for grayscale
     fprintf('Iteration %d of %d | Duration: ',i,N);
     urns = polya(urns, adjacency, Delta, sample_type);
+    
     fprintf('%.3f\n', toc);
     medianed = medfilt2(medianed);
 end
 
 %% Build the final image
 tic
-output = uint8(image_from_urns(size(noisy_lena), urns));
+%output = uint8(image_from_urns(size(noisy_lena), urns));
+output = uint8(image_from_urns_proportional(size(noisy_lena), urns));
 toc
 figure;
 imshowpair(noisy_lena, output, 'montage');
