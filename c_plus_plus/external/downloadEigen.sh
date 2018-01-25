@@ -6,20 +6,22 @@
 # The Eigen directory should end up with the header files under "<pwd>/eigen/Eigen"
 #    and the FindEigen3.cmake file under "<pwd>/eigen/cmake"
 
-CDIR=${PWD}
-
-echo "Downloading Eigen"
 
 VERSION=3.2.10
 
+CDIR=${PWD}
 TARBALL=$VERSION.tar.gz
 
-wget http://bitbucket.org/eigen/eigen/get/$TARBALL
-
-if [ $? != 0 ]; then
-    echo "Failed to download Eigen version $VERSION"
-    exit
+if [ ! -e $TARBALL ]; then
+    echo "Downloading Eigen $VERSION"
+    wget http://bitbucket.org/eigen/eigen/get/$TARBALL
+    if [ $? != 0 ]; then
+        echo "Failed to download Eigen version $VERSION"
+        exit
+    fi
 fi
+
+
 echo "Unpacking to this directory."
 
 # Check that ./eigen/ exists, and if it doesn't create it.

@@ -46,5 +46,7 @@ target_link_libraries(Main
     Eigen
 )
 
+add_subdirectory(src)
+
 # vim: set ts=4 sw=4 et :
 
