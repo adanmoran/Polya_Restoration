@@ -32,9 +32,9 @@ figure;
 imshowpair(noisy_lena, edges, 'montage');
 
 %% Quantization Parameters
-numBallTypes = 30; % [2 - 255]
+numBallTypes = 50; % [2 - 256]
 quantization = 'lloyd';
-inverse_quantization = 'low';
+inverse_quantization = 'high';
 
 [noisy_lena, partition] = quantize_image(noisy_lena, numBallTypes, quantization);
 
@@ -72,7 +72,7 @@ end
 %% Build the final image
 tic
 output = image_from_urns(size(noisy_lena), urns);
-output = inverse_quantize_image(output, numBallTypes, i_quantization, partition);
+output = inverse_quantize_image(output, inverse_quantization, partition);
 toc
 figure;
 imshowpair(noisy_lena, output, 'montage');
