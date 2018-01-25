@@ -2,9 +2,8 @@ clear
 close all
 clc
 %% Load Lena in Grayscale
-lena = rgb2gray(imread('../images/oil_spill.jpg'));
-%lena(343:500, :) = lena(343);
-%lena = imread('..\images\lena512.bmp');
+% lena = rgb2gray(imread('../images/oil_spill.jpg'));
+lena = imread('../images/lena512.bmp');
 
 %% Add Gaussian Noise
 rng(0, 'twister');
@@ -12,7 +11,9 @@ rng(0, 'twister');
 % Gaussian noise values
 sigma = 0.01;
 mean = 0;
-noisy_lena = lena; %imnoise(lena, 'gaussian', mean, sigma);
+% noisy_lena = lena; %imnoise(lena, 'gaussian', mean, sigma);
+noisy_lena = imnoise(lena, 'gaussian', mean, sigma);
+
 figure, imshowpair(lena, noisy_lena, 'montage');
 
 %% Take the Edge Map
@@ -22,15 +23,15 @@ sigma = 3;
 % Oil Spill: 0.4
 % Lena: 0.2
 % Two ships: 0.5
-thresh = 0.4;
+thresh = 0.2;
 edges = edge(noisy_lena, 'canny', thresh, sigma);
 figure;
 imshowpair(noisy_lena, edges, 'montage');
 
 %% Quantization Parameters
-numBallTypes = 50;
-quantization = 'uniform';
-inverse_quantization = 'mid';
+numBallTypes = 30;
+quantization = 'lloyd';
+inverse_quantization = 'low';
 
 %% Build Adjacency Matrix
 adj_radius = 2;
