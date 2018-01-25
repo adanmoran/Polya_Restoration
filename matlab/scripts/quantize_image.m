@@ -18,5 +18,6 @@ function [q_image, partition] = quantize_image(image, num_ball_types, q_type)
         [partition, ~] = lloyds(Y, num_ball_types);
     end
     
+    partition = round(partition);
     q_image = imquantize(image, partition, 0:num_ball_types - 1);
 end
