@@ -9,7 +9,8 @@ project(PolyaRestoration)
 #########################
 # C++-Oriented Commands #
 #########################
-set(CMAKE_CXX_FLAGS "-std=c++11")
+# Set the compiler to use C++14
+set(CMAKE_CXX_STANDARD 14)
 
 #########
 # Eigen #
@@ -35,7 +36,21 @@ target_include_directories(Eigen INTERFACE
 ######
 # Qt #
 ######
+# Define where we can find the Qt installation for this OS
+if(UNIX)
+    set(QT_COMPILER gcc_64)
+endif()
 
+# Append to CMake Modules to find Qt in the downloaded directory
+set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} ${PROJECT_SOURCE_DIR}/external/Qt5.10.0/5.10.0/${QT_COMPILER}/lib/cmake)
+
+# Find includes in corresponding build directories
+set(CMAKE_INCLUDE_CURRENT_DIR ON)
+# Instruct CMake to run moc automatically when needed.
+set(CMAKE_AUTOMOC ON)
+
+# Find the QtWidgets library
+find_package(Qt5Widgets)
 
 ##############
 # Polya Code #
@@ -44,6 +59,7 @@ target_include_directories(Eigen INTERFACE
 add_executable(Main main.cpp)
 target_link_libraries(Main
     Eigen
+    Qt5::Widgets
 )
 
 add_subdirectory(src)
