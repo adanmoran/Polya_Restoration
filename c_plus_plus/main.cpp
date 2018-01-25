@@ -7,9 +7,10 @@
 #include <vector>
 #include <iostream>
 
-typedef Eigen::SparseMatrix<int> SparseMatrix; // declares a column-major sparse matrix type of double
-typedef Eigen::Triplet<int> Triplet; // declarse a triplet type for doubles
-typedef std::vector<Triplet> Triplets;
+using SparseMatrix = Eigen::SparseMatrix<int>; // declares a column-major sparse matrix type of double
+using Triplet = Eigen::Triplet<int>; // declarse a triplet type for doubles
+using Triplets = std::vector<Triplet>;
+
 int main()
 {
     // build a nxm sparse matrix
