@@ -9,7 +9,7 @@
 %
 % Returns:
 % image - an image representing the urn state
-function image = image_from_urns(image_size, urns, i_quantization)
+function image = image_from_urns(image_size, urns)
     image = zeros(image_size);
 
 %     % Find the first maximum value along each row and get its index
@@ -29,7 +29,7 @@ function image = image_from_urns(image_size, urns, i_quantization)
           thisRow = urns(row,:);
           mostBallLocations = find(thisRow == max(thisRow));
           % Subtract ones to make it into a 0-255 range (instead of 1-256)
-          mostBallLocations = mostBallLocations - 1;
+%           mostBallLocations = mostBallLocations - 1;
 
           % If there is only one colour, this pixel becomes that colour
           if length(mostBallLocations) == 1
@@ -41,9 +41,7 @@ function image = image_from_urns(image_size, urns, i_quantization)
           end
        end
     end
-    
     image = uint8(image);
-    image = inverse_quantize_image(image, size(urns, 2), i_quantization);
 end
 
 %% Old Versions:
