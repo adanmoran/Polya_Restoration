@@ -1,0 +1,246 @@
+Performing C++ SOURCE FILE Test COMPILER_SUPPORT_Wlogicalop failed with the following output:
+Change Dir: /Users/alfred/Downloads/eigen-eigen-5a0156e40feb/build/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTC_e7323/fast"
+/Library/Developer/CommandLineTools/usr/bin/make -f CMakeFiles/cmTC_e7323.dir/build.make CMakeFiles/cmTC_e7323.dir/build
+Building CXX object CMakeFiles/cmTC_e7323.dir/src.cxx.o
+/Library/Developer/CommandLineTools/usr/bin/c++    -pedantic -Wall -Wextra -Wundef -Wcast-align -Wchar-subscripts -Wnon-virtual-dtor -Wunused-local-typedefs -Wpointer-arith -Wwrite-strings -Wformat-security -Wshorten-64-to-32 -DCOMPILER_SUPPORT_Wlogicalop -Werror   -Wlogical-op -o CMakeFiles/cmTC_e7323.dir/src.cxx.o -c /Users/alfred/Downloads/eigen-eigen-5a0156e40feb/build/CMakeFiles/CMakeTmp/src.cxx
+error: unknown warning option '-Wlogical-op'; did you mean '-Wlong-long'? [-Werror,-Wunknown-warning-option]
+make[1]: *** [CMakeFiles/cmTC_e7323.dir/src.cxx.o] Error 1
+make: *** [cmTC_e7323/fast] Error 2
+
+Source file was:
+int main() { return 0; }
+Performing C++ SOURCE FILE Test COMPILER_SUPPORT_Wdoublepromotion failed with the following output:
+Change Dir: /Users/alfred/Downloads/eigen-eigen-5a0156e40feb/build/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTC_85a93/fast"
+/Library/Developer/CommandLineTools/usr/bin/make -f CMakeFiles/cmTC_85a93.dir/build.make CMakeFiles/cmTC_85a93.dir/build
+Building CXX object CMakeFiles/cmTC_85a93.dir/src.cxx.o
+/Library/Developer/CommandLineTools/usr/bin/c++    -pedantic -Wall -Wextra -Wundef -Wcast-align -Wchar-subscripts -Wnon-virtual-dtor -Wunused-local-typedefs -Wpointer-arith -Wwrite-strings -Wformat-security -Wshorten-64-to-32 -Wenum-conversion -Wc++11-extensions -DCOMPILER_SUPPORT_Wdoublepromotion -Werror   -Wdouble-promotion -o CMakeFiles/cmTC_85a93.dir/src.cxx.o -c /Users/alfred/Downloads/eigen-eigen-5a0156e40feb/build/CMakeFiles/CMakeTmp/src.cxx
+error: unknown warning option '-Wdouble-promotion'; did you mean '-Wdocumentation'? [-Werror,-Wunknown-warning-option]
+make[1]: *** [CMakeFiles/cmTC_85a93.dir/src.cxx.o] Error 1
+make: *** [cmTC_85a93/fast] Error 2
+
+Source file was:
+int main() { return 0; }
+Performing C++ SOURCE FILE Test COMPILER_SUPPORT_Wnopsabi failed with the following output:
+Change Dir: /Users/alfred/Downloads/eigen-eigen-5a0156e40feb/build/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTC_21944/fast"
+/Library/Developer/CommandLineTools/usr/bin/make -f CMakeFiles/cmTC_21944.dir/build.make CMakeFiles/cmTC_21944.dir/build
+Building CXX object CMakeFiles/cmTC_21944.dir/src.cxx.o
+/Library/Developer/CommandLineTools/usr/bin/c++    -pedantic -Wall -Wextra -Wundef -Wcast-align -Wchar-subscripts -Wnon-virtual-dtor -Wunused-local-typedefs -Wpointer-arith -Wwrite-strings -Wformat-security -Wshorten-64-to-32 -Wenum-conversion -Wc++11-extensions -Wshadow -DCOMPILER_SUPPORT_Wnopsabi -Werror   -Wno-psabi -o CMakeFiles/cmTC_21944.dir/src.cxx.o -c /Users/alfred/Downloads/eigen-eigen-5a0156e40feb/build/CMakeFiles/CMakeTmp/src.cxx
+error: unknown warning option '-Wno-psabi' [-Werror,-Wunknown-warning-option]
+make[1]: *** [CMakeFiles/cmTC_21944.dir/src.cxx.o] Error 1
+make: *** [cmTC_21944/fast] Error 2
+
+Source file was:
+int main() { return 0; }
+Performing C++ SOURCE FILE Test COMPILER_SUPPORT_wd981 failed with the following output:
+Change Dir: /Users/alfred/Downloads/eigen-eigen-5a0156e40feb/build/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTC_7e83f/fast"
+/Library/Developer/CommandLineTools/usr/bin/make -f CMakeFiles/cmTC_7e83f.dir/build.make CMakeFiles/cmTC_7e83f.dir/build
+Building CXX object CMakeFiles/cmTC_7e83f.dir/src.cxx.o
+/Library/Developer/CommandLineTools/usr/bin/c++    -pedantic -Wall -Wextra -Wundef -Wcast-align -Wchar-subscripts -Wnon-virtual-dtor -Wunused-local-typedefs -Wpointer-arith -Wwrite-strings -Wformat-security -Wshorten-64-to-32 -Wenum-conversion -Wc++11-extensions -Wshadow -Wno-variadic-macros -Wno-long-long -fno-check-new -fno-common -fstrict-aliasing -DCOMPILER_SUPPORT_wd981 -Werror   -wd981 -o CMakeFiles/cmTC_7e83f.dir/src.cxx.o -c /Users/alfred/Downloads/eigen-eigen-5a0156e40feb/build/CMakeFiles/CMakeTmp/src.cxx
+clang: error: unknown argument: '-wd981'
+make[1]: *** [CMakeFiles/cmTC_7e83f.dir/src.cxx.o] Error 1
+make: *** [cmTC_7e83f/fast] Error 2
+
+Source file was:
+int main() { return 0; }
+Performing C++ SOURCE FILE Test COMPILER_SUPPORT_wd2304 failed with the following output:
+Change Dir: /Users/alfred/Downloads/eigen-eigen-5a0156e40feb/build/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTC_bf9aa/fast"
+/Library/Developer/CommandLineTools/usr/bin/make -f CMakeFiles/cmTC_bf9aa.dir/build.make CMakeFiles/cmTC_bf9aa.dir/build
+Building CXX object CMakeFiles/cmTC_bf9aa.dir/src.cxx.o
+/Library/Developer/CommandLineTools/usr/bin/c++    -pedantic -Wall -Wextra -Wundef -Wcast-align -Wchar-subscripts -Wnon-virtual-dtor -Wunused-local-typedefs -Wpointer-arith -Wwrite-strings -Wformat-security -Wshorten-64-to-32 -Wenum-conversion -Wc++11-extensions -Wshadow -Wno-variadic-macros -Wno-long-long -fno-check-new -fno-common -fstrict-aliasing -DCOMPILER_SUPPORT_wd2304 -Werror   -wd2304 -o CMakeFiles/cmTC_bf9aa.dir/src.cxx.o -c /Users/alfred/Downloads/eigen-eigen-5a0156e40feb/build/CMakeFiles/CMakeTmp/src.cxx
+clang: error: unknown argument: '-wd2304'
+make[1]: *** [CMakeFiles/cmTC_bf9aa.dir/src.cxx.o] Error 1
+make: *** [cmTC_bf9aa/fast] Error 2
+
+Source file was:
+int main() { return 0; }
+Performing C++ SOURCE FILE Test COMPILER_SUPPORT_STRICTANSI failed with the following output:
+Change Dir: /Users/alfred/Downloads/eigen-eigen-5a0156e40feb/build/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTC_15f8c/fast"
+/Library/Developer/CommandLineTools/usr/bin/make -f CMakeFiles/cmTC_15f8c.dir/build.make CMakeFiles/cmTC_15f8c.dir/build
+Building CXX object CMakeFiles/cmTC_15f8c.dir/src.cxx.o
+/Library/Developer/CommandLineTools/usr/bin/c++    -pedantic -Wall -Wextra -Wundef -Wcast-align -Wchar-subscripts -Wnon-virtual-dtor -Wunused-local-typedefs -Wpointer-arith -Wwrite-strings -Wformat-security -Wshorten-64-to-32 -Wenum-conversion -Wc++11-extensions -Wshadow -Wno-variadic-macros -Wno-long-long -fno-check-new -fno-common -fstrict-aliasing -DCOMPILER_SUPPORT_STRICTANSI -Werror   -strict-ansi -o CMakeFiles/cmTC_15f8c.dir/src.cxx.o -c /Users/alfred/Downloads/eigen-eigen-5a0156e40feb/build/CMakeFiles/CMakeTmp/src.cxx
+clang: error: unknown argument: '-strict-ansi'
+make[1]: *** [CMakeFiles/cmTC_15f8c.dir/src.cxx.o] Error 1
+make: *** [cmTC_15f8c/fast] Error 2
+
+Source file was:
+int main() { return 0; }
+Compiling the Fortran compiler identification source file "CMakeFortranCompilerId.F" failed.
+Compiler: CMAKE_Fortran_COMPILER-NOTFOUND 
+Build flags: 
+Id flags: -v 
+
+The output was:
+No such file or directory
+
+
+Compiling the Fortran compiler identification source file "CMakeFortranCompilerId.F" failed.
+Compiler: CMAKE_Fortran_COMPILER-NOTFOUND 
+Build flags: 
+Id flags:  
+
+The output was:
+No such file or directory
+
+
+Compiling the Fortran compiler identification source file "CMakeFortranCompilerId.F" failed.
+Compiler: CMAKE_Fortran_COMPILER-NOTFOUND 
+Build flags: 
+Id flags: -c 
+
+The output was:
+No such file or directory
+
+
+Compiling the Fortran compiler identification source file "CMakeFortranCompilerId.F" failed.
+Compiler: CMAKE_Fortran_COMPILER-NOTFOUND 
+Build flags: 
+Id flags: -fpp 
+
+The output was:
+No such file or directory
+
+
+Compiling the Fortran compiler identification source file "CMakeFortranCompilerId.F" failed.
+Compiler: CMAKE_Fortran_COMPILER-NOTFOUND 
+Build flags: 
+Id flags: -v 
+
+The output was:
+No such file or directory
+
+
+Compiling the Fortran compiler identification source file "CMakeFortranCompilerId.F" failed.
+Compiler: CMAKE_Fortran_COMPILER-NOTFOUND 
+Build flags: 
+Id flags:  
+
+The output was:
+No such file or directory
+
+
+Compiling the Fortran compiler identification source file "CMakeFortranCompilerId.F" failed.
+Compiler: CMAKE_Fortran_COMPILER-NOTFOUND 
+Build flags: 
+Id flags: -c 
+
+The output was:
+No such file or directory
+
+
+Compiling the Fortran compiler identification source file "CMakeFortranCompilerId.F" failed.
+Compiler: CMAKE_Fortran_COMPILER-NOTFOUND 
+Build flags: 
+Id flags: -fpp 
+
+The output was:
+No such file or directory
+
+
+Determining if the Fortran sgemm exists failed with the following output:
+Change Dir: /Users/alfred/Downloads/eigen-eigen-5a0156e40feb/build/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTC_b99d0/fast"
+/Library/Developer/CommandLineTools/usr/bin/make -f CMakeFiles/cmTC_b99d0.dir/build.make CMakeFiles/cmTC_b99d0.dir/build
+Building Fortran object CMakeFiles/cmTC_b99d0.dir/testFortranCompiler.f.o
+CMAKE_Fortran_COMPILER-NOTFOUND    -c /Users/alfred/Downloads/eigen-eigen-5a0156e40feb/build/CMakeFiles/CMakeTmp/testFortranCompiler.f -o CMakeFiles/cmTC_b99d0.dir/testFortranCompiler.f.o
+make[1]: CMAKE_Fortran_COMPILER-NOTFOUND: No such file or directory
+make[1]: *** [CMakeFiles/cmTC_b99d0.dir/testFortranCompiler.f.o] Error 1
+make: *** [cmTC_b99d0/fast] Error 2
+
+
+Compiling the Fortran compiler identification source file "CMakeFortranCompilerId.F" failed.
+Compiler: CMAKE_Fortran_COMPILER-NOTFOUND 
+Build flags: 
+Id flags: -v 
+
+The output was:
+No such file or directory
+
+
+Compiling the Fortran compiler identification source file "CMakeFortranCompilerId.F" failed.
+Compiler: CMAKE_Fortran_COMPILER-NOTFOUND 
+Build flags: 
+Id flags:  
+
+The output was:
+No such file or directory
+
+
+Compiling the Fortran compiler identification source file "CMakeFortranCompilerId.F" failed.
+Compiler: CMAKE_Fortran_COMPILER-NOTFOUND 
+Build flags: 
+Id flags: -c 
+
+The output was:
+No such file or directory
+
+
+Compiling the Fortran compiler identification source file "CMakeFortranCompilerId.F" failed.
+Compiler: CMAKE_Fortran_COMPILER-NOTFOUND 
+Build flags: 
+Id flags: -fpp 
+
+The output was:
+No such file or directory
+
+
+Compiling the Fortran compiler identification source file "CMakeFortranCompilerId.F" failed.
+Compiler: CMAKE_Fortran_COMPILER-NOTFOUND 
+Build flags: 
+Id flags: -v 
+
+The output was:
+No such file or directory
+
+
+Compiling the Fortran compiler identification source file "CMakeFortranCompilerId.F" failed.
+Compiler: CMAKE_Fortran_COMPILER-NOTFOUND 
+Build flags: 
+Id flags:  
+
+The output was:
+No such file or directory
+
+
+Compiling the Fortran compiler identification source file "CMakeFortranCompilerId.F" failed.
+Compiler: CMAKE_Fortran_COMPILER-NOTFOUND 
+Build flags: 
+Id flags: -c 
+
+The output was:
+No such file or directory
+
+
+Compiling the Fortran compiler identification source file "CMakeFortranCompilerId.F" failed.
+Compiler: CMAKE_Fortran_COMPILER-NOTFOUND 
+Build flags: 
+Id flags: -fpp 
+
+The output was:
+No such file or directory
+
+
+Determining if the Fortran sgemm exists failed with the following output:
+Change Dir: /Users/alfred/Downloads/eigen-eigen-5a0156e40feb/build/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTC_42ffd/fast"
+/Library/Developer/CommandLineTools/usr/bin/make -f CMakeFiles/cmTC_42ffd.dir/build.make CMakeFiles/cmTC_42ffd.dir/build
+Building Fortran object CMakeFiles/cmTC_42ffd.dir/testFortranCompiler.f.o
+CMAKE_Fortran_COMPILER-NOTFOUND    -c /Users/alfred/Downloads/eigen-eigen-5a0156e40feb/build/CMakeFiles/CMakeTmp/testFortranCompiler.f -o CMakeFiles/cmTC_42ffd.dir/testFortranCompiler.f.o
+make[1]: CMAKE_Fortran_COMPILER-NOTFOUND: No such file or directory
+make[1]: *** [CMakeFiles/cmTC_42ffd.dir/testFortranCompiler.f.o] Error 1
+make: *** [cmTC_42ffd/fast] Error 2
+
+

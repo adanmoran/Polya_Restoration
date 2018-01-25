@@ -1,0 +1,918 @@
+The system is: Darwin - 14.5.0 - x86_64
+Compiling the C compiler identification source file "CMakeCCompilerId.c" succeeded.
+Compiler: /Library/Developer/CommandLineTools/usr/bin/cc 
+Build flags: 
+Id flags:  
+
+The output was:
+0
+
+
+Compilation of the C compiler identification source "CMakeCCompilerId.c" produced "a.out"
+
+The C compiler identification is AppleClang, found in "/Users/alfred/Downloads/eigen-eigen-5a0156e40feb/build/CMakeFiles/3.10.2/CompilerIdC/a.out"
+
+Compiling the CXX compiler identification source file "CMakeCXXCompilerId.cpp" succeeded.
+Compiler: /Library/Developer/CommandLineTools/usr/bin/c++ 
+Build flags: 
+Id flags:  
+
+The output was:
+0
+
+
+Compilation of the CXX compiler identification source "CMakeCXXCompilerId.cpp" produced "a.out"
+
+The CXX compiler identification is AppleClang, found in "/Users/alfred/Downloads/eigen-eigen-5a0156e40feb/build/CMakeFiles/3.10.2/CompilerIdCXX/a.out"
+
+Determining if the C compiler works passed with the following output:
+Change Dir: /Users/alfred/Downloads/eigen-eigen-5a0156e40feb/build/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTC_3878f/fast"
+/Library/Developer/CommandLineTools/usr/bin/make -f CMakeFiles/cmTC_3878f.dir/build.make CMakeFiles/cmTC_3878f.dir/build
+Building C object CMakeFiles/cmTC_3878f.dir/testCCompiler.c.o
+/Library/Developer/CommandLineTools/usr/bin/cc    -o CMakeFiles/cmTC_3878f.dir/testCCompiler.c.o   -c /Users/alfred/Downloads/eigen-eigen-5a0156e40feb/build/CMakeFiles/CMakeTmp/testCCompiler.c
+Linking C executable cmTC_3878f
+/usr/local/Cellar/cmake/3.10.2/bin/cmake -E cmake_link_script CMakeFiles/cmTC_3878f.dir/link.txt --verbose=1
+/Library/Developer/CommandLineTools/usr/bin/cc   -Wl,-search_paths_first -Wl,-headerpad_max_install_names   CMakeFiles/cmTC_3878f.dir/testCCompiler.c.o  -o cmTC_3878f 
+
+
+Detecting C compiler ABI info compiled with the following output:
+Change Dir: /Users/alfred/Downloads/eigen-eigen-5a0156e40feb/build/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTC_f78dd/fast"
+/Library/Developer/CommandLineTools/usr/bin/make -f CMakeFiles/cmTC_f78dd.dir/build.make CMakeFiles/cmTC_f78dd.dir/build
+Building C object CMakeFiles/cmTC_f78dd.dir/CMakeCCompilerABI.c.o
+/Library/Developer/CommandLineTools/usr/bin/cc    -o CMakeFiles/cmTC_f78dd.dir/CMakeCCompilerABI.c.o   -c /usr/local/Cellar/cmake/3.10.2/share/cmake/Modules/CMakeCCompilerABI.c
+Linking C executable cmTC_f78dd
+/usr/local/Cellar/cmake/3.10.2/bin/cmake -E cmake_link_script CMakeFiles/cmTC_f78dd.dir/link.txt --verbose=1
+/Library/Developer/CommandLineTools/usr/bin/cc   -Wl,-search_paths_first -Wl,-headerpad_max_install_names  -v -Wl,-v CMakeFiles/cmTC_f78dd.dir/CMakeCCompilerABI.c.o  -o cmTC_f78dd 
+Apple LLVM version 7.0.2 (clang-700.1.81)
+Target: x86_64-apple-darwin14.5.0
+Thread model: posix
+ "/Library/Developer/CommandLineTools/usr/bin/ld" -demangle -dynamic -arch x86_64 -macosx_version_min 10.10.0 -o cmTC_f78dd -search_paths_first -headerpad_max_install_names -v CMakeFiles/cmTC_f78dd.dir/CMakeCCompilerABI.c.o -lSystem /Library/Developer/CommandLineTools/usr/bin/../lib/clang/7.0.2/lib/darwin/libclang_rt.osx.a
+@(#)PROGRAM:ld  PROJECT:ld64-253.9
+configured to support archs: armv6 armv7 armv7s arm64 i386 x86_64 x86_64h armv6m armv7k armv7m armv7em (tvOS)
+Library search paths:
+	/usr/lib
+	/usr/local/lib
+Framework search paths:
+	/Library/Frameworks/
+	/System/Library/Frameworks/
+
+
+Parsed C implicit link information from above output:
+  link line regex: [^( *|.*[/\])(ld|CMAKE_LINK_STARTFILE-NOTFOUND|([^/\]+-)?ld|collect2)[^/\]*( |$)]
+  ignore line: [Change Dir: /Users/alfred/Downloads/eigen-eigen-5a0156e40feb/build/CMakeFiles/CMakeTmp]
+  ignore line: []
+  ignore line: [Run Build Command:"/usr/bin/make" "cmTC_f78dd/fast"]
+  ignore line: [/Library/Developer/CommandLineTools/usr/bin/make -f CMakeFiles/cmTC_f78dd.dir/build.make CMakeFiles/cmTC_f78dd.dir/build]
+  ignore line: [Building C object CMakeFiles/cmTC_f78dd.dir/CMakeCCompilerABI.c.o]
+  ignore line: [/Library/Developer/CommandLineTools/usr/bin/cc    -o CMakeFiles/cmTC_f78dd.dir/CMakeCCompilerABI.c.o   -c /usr/local/Cellar/cmake/3.10.2/share/cmake/Modules/CMakeCCompilerABI.c]
+  ignore line: [Linking C executable cmTC_f78dd]
+  ignore line: [/usr/local/Cellar/cmake/3.10.2/bin/cmake -E cmake_link_script CMakeFiles/cmTC_f78dd.dir/link.txt --verbose=1]
+  ignore line: [/Library/Developer/CommandLineTools/usr/bin/cc   -Wl,-search_paths_first -Wl,-headerpad_max_install_names  -v -Wl,-v CMakeFiles/cmTC_f78dd.dir/CMakeCCompilerABI.c.o  -o cmTC_f78dd ]
+  ignore line: [Apple LLVM version 7.0.2 (clang-700.1.81)]
+  ignore line: [Target: x86_64-apple-darwin14.5.0]
+  ignore line: [Thread model: posix]
+  link line: [ "/Library/Developer/CommandLineTools/usr/bin/ld" -demangle -dynamic -arch x86_64 -macosx_version_min 10.10.0 -o cmTC_f78dd -search_paths_first -headerpad_max_install_names -v CMakeFiles/cmTC_f78dd.dir/CMakeCCompilerABI.c.o -lSystem /Library/Developer/CommandLineTools/usr/bin/../lib/clang/7.0.2/lib/darwin/libclang_rt.osx.a]
+    arg [/Library/Developer/CommandLineTools/usr/bin/ld] ==> ignore
+    arg [-demangle] ==> ignore
+    arg [-dynamic] ==> ignore
+    arg [-arch] ==> ignore
+    arg [x86_64] ==> ignore
+    arg [-macosx_version_min] ==> ignore
+    arg [10.10.0] ==> ignore
+    arg [-o] ==> ignore
+    arg [cmTC_f78dd] ==> ignore
+    arg [-search_paths_first] ==> ignore
+    arg [-headerpad_max_install_names] ==> ignore
+    arg [-v] ==> ignore
+    arg [CMakeFiles/cmTC_f78dd.dir/CMakeCCompilerABI.c.o] ==> ignore
+    arg [-lSystem] ==> lib [System]
+    arg [/Library/Developer/CommandLineTools/usr/bin/../lib/clang/7.0.2/lib/darwin/libclang_rt.osx.a] ==> lib [/Library/Developer/CommandLineTools/usr/bin/../lib/clang/7.0.2/lib/darwin/libclang_rt.osx.a]
+  Library search paths: [;/usr/lib;/usr/local/lib]
+  Framework search paths: [;/Library/Frameworks/;/System/Library/Frameworks/]
+  remove lib [System]
+  remove lib [/Library/Developer/CommandLineTools/usr/bin/../lib/clang/7.0.2/lib/darwin/libclang_rt.osx.a]
+  collapse library dir [/usr/lib] ==> [/usr/lib]
+  collapse library dir [/usr/local/lib] ==> [/usr/local/lib]
+  collapse framework dir [/Library/Frameworks/] ==> [/Library/Frameworks]
+  collapse framework dir [/System/Library/Frameworks/] ==> [/System/Library/Frameworks]
+  implicit libs: []
+  implicit dirs: [/usr/lib;/usr/local/lib]
+  implicit fwks: [/Library/Frameworks;/System/Library/Frameworks]
+
+
+
+
+Detecting C [-std=c11] compiler features compiled with the following output:
+Change Dir: /Users/alfred/Downloads/eigen-eigen-5a0156e40feb/build/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTC_b2535/fast"
+/Library/Developer/CommandLineTools/usr/bin/make -f CMakeFiles/cmTC_b2535.dir/build.make CMakeFiles/cmTC_b2535.dir/build
+Building C object CMakeFiles/cmTC_b2535.dir/feature_tests.c.o
+/Library/Developer/CommandLineTools/usr/bin/cc   -std=c11 -o CMakeFiles/cmTC_b2535.dir/feature_tests.c.o   -c /Users/alfred/Downloads/eigen-eigen-5a0156e40feb/build/CMakeFiles/feature_tests.c
+Linking C executable cmTC_b2535
+/usr/local/Cellar/cmake/3.10.2/bin/cmake -E cmake_link_script CMakeFiles/cmTC_b2535.dir/link.txt --verbose=1
+/Library/Developer/CommandLineTools/usr/bin/cc   -Wl,-search_paths_first -Wl,-headerpad_max_install_names   CMakeFiles/cmTC_b2535.dir/feature_tests.c.o  -o cmTC_b2535 
+
+
+    Feature record: C_FEATURE:1c_function_prototypes
+    Feature record: C_FEATURE:1c_restrict
+    Feature record: C_FEATURE:1c_static_assert
+    Feature record: C_FEATURE:1c_variadic_macros
+
+
+Detecting C [-std=c99] compiler features compiled with the following output:
+Change Dir: /Users/alfred/Downloads/eigen-eigen-5a0156e40feb/build/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTC_6deaf/fast"
+/Library/Developer/CommandLineTools/usr/bin/make -f CMakeFiles/cmTC_6deaf.dir/build.make CMakeFiles/cmTC_6deaf.dir/build
+Building C object CMakeFiles/cmTC_6deaf.dir/feature_tests.c.o
+/Library/Developer/CommandLineTools/usr/bin/cc   -std=c99 -o CMakeFiles/cmTC_6deaf.dir/feature_tests.c.o   -c /Users/alfred/Downloads/eigen-eigen-5a0156e40feb/build/CMakeFiles/feature_tests.c
+Linking C executable cmTC_6deaf
+/usr/local/Cellar/cmake/3.10.2/bin/cmake -E cmake_link_script CMakeFiles/cmTC_6deaf.dir/link.txt --verbose=1
+/Library/Developer/CommandLineTools/usr/bin/cc   -Wl,-search_paths_first -Wl,-headerpad_max_install_names   CMakeFiles/cmTC_6deaf.dir/feature_tests.c.o  -o cmTC_6deaf 
+
+
+    Feature record: C_FEATURE:1c_function_prototypes
+    Feature record: C_FEATURE:1c_restrict
+    Feature record: C_FEATURE:0c_static_assert
+    Feature record: C_FEATURE:1c_variadic_macros
+
+
+Detecting C [-std=c90] compiler features compiled with the following output:
+Change Dir: /Users/alfred/Downloads/eigen-eigen-5a0156e40feb/build/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTC_7ea00/fast"
+/Library/Developer/CommandLineTools/usr/bin/make -f CMakeFiles/cmTC_7ea00.dir/build.make CMakeFiles/cmTC_7ea00.dir/build
+Building C object CMakeFiles/cmTC_7ea00.dir/feature_tests.c.o
+/Library/Developer/CommandLineTools/usr/bin/cc   -std=c90 -o CMakeFiles/cmTC_7ea00.dir/feature_tests.c.o   -c /Users/alfred/Downloads/eigen-eigen-5a0156e40feb/build/CMakeFiles/feature_tests.c
+Linking C executable cmTC_7ea00
+/usr/local/Cellar/cmake/3.10.2/bin/cmake -E cmake_link_script CMakeFiles/cmTC_7ea00.dir/link.txt --verbose=1
+/Library/Developer/CommandLineTools/usr/bin/cc   -Wl,-search_paths_first -Wl,-headerpad_max_install_names   CMakeFiles/cmTC_7ea00.dir/feature_tests.c.o  -o cmTC_7ea00 
+
+
+    Feature record: C_FEATURE:1c_function_prototypes
+    Feature record: C_FEATURE:0c_restrict
+    Feature record: C_FEATURE:0c_static_assert
+    Feature record: C_FEATURE:0c_variadic_macros
+Determining if the CXX compiler works passed with the following output:
+Change Dir: /Users/alfred/Downloads/eigen-eigen-5a0156e40feb/build/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTC_d56cd/fast"
+/Library/Developer/CommandLineTools/usr/bin/make -f CMakeFiles/cmTC_d56cd.dir/build.make CMakeFiles/cmTC_d56cd.dir/build
+Building CXX object CMakeFiles/cmTC_d56cd.dir/testCXXCompiler.cxx.o
+/Library/Developer/CommandLineTools/usr/bin/c++     -o CMakeFiles/cmTC_d56cd.dir/testCXXCompiler.cxx.o -c /Users/alfred/Downloads/eigen-eigen-5a0156e40feb/build/CMakeFiles/CMakeTmp/testCXXCompiler.cxx
+Linking CXX executable cmTC_d56cd
+/usr/local/Cellar/cmake/3.10.2/bin/cmake -E cmake_link_script CMakeFiles/cmTC_d56cd.dir/link.txt --verbose=1
+/Library/Developer/CommandLineTools/usr/bin/c++    -Wl,-search_paths_first -Wl,-headerpad_max_install_names   CMakeFiles/cmTC_d56cd.dir/testCXXCompiler.cxx.o  -o cmTC_d56cd 
+
+
+Detecting CXX compiler ABI info compiled with the following output:
+Change Dir: /Users/alfred/Downloads/eigen-eigen-5a0156e40feb/build/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTC_f1bba/fast"
+/Library/Developer/CommandLineTools/usr/bin/make -f CMakeFiles/cmTC_f1bba.dir/build.make CMakeFiles/cmTC_f1bba.dir/build
+Building CXX object CMakeFiles/cmTC_f1bba.dir/CMakeCXXCompilerABI.cpp.o
+/Library/Developer/CommandLineTools/usr/bin/c++     -o CMakeFiles/cmTC_f1bba.dir/CMakeCXXCompilerABI.cpp.o -c /usr/local/Cellar/cmake/3.10.2/share/cmake/Modules/CMakeCXXCompilerABI.cpp
+Linking CXX executable cmTC_f1bba
+/usr/local/Cellar/cmake/3.10.2/bin/cmake -E cmake_link_script CMakeFiles/cmTC_f1bba.dir/link.txt --verbose=1
+/Library/Developer/CommandLineTools/usr/bin/c++    -Wl,-search_paths_first -Wl,-headerpad_max_install_names  -v -Wl,-v CMakeFiles/cmTC_f1bba.dir/CMakeCXXCompilerABI.cpp.o  -o cmTC_f1bba 
+Apple LLVM version 7.0.2 (clang-700.1.81)
+Target: x86_64-apple-darwin14.5.0
+Thread model: posix
+ "/Library/Developer/CommandLineTools/usr/bin/ld" -demangle -dynamic -arch x86_64 -macosx_version_min 10.10.0 -o cmTC_f1bba -search_paths_first -headerpad_max_install_names -v CMakeFiles/cmTC_f1bba.dir/CMakeCXXCompilerABI.cpp.o -lc++ -lSystem /Library/Developer/CommandLineTools/usr/bin/../lib/clang/7.0.2/lib/darwin/libclang_rt.osx.a
+@(#)PROGRAM:ld  PROJECT:ld64-253.9
+configured to support archs: armv6 armv7 armv7s arm64 i386 x86_64 x86_64h armv6m armv7k armv7m armv7em (tvOS)
+Library search paths:
+	/usr/lib
+	/usr/local/lib
+Framework search paths:
+	/Library/Frameworks/
+	/System/Library/Frameworks/
+
+
+Parsed CXX implicit link information from above output:
+  link line regex: [^( *|.*[/\])(ld|CMAKE_LINK_STARTFILE-NOTFOUND|([^/\]+-)?ld|collect2)[^/\]*( |$)]
+  ignore line: [Change Dir: /Users/alfred/Downloads/eigen-eigen-5a0156e40feb/build/CMakeFiles/CMakeTmp]
+  ignore line: []
+  ignore line: [Run Build Command:"/usr/bin/make" "cmTC_f1bba/fast"]
+  ignore line: [/Library/Developer/CommandLineTools/usr/bin/make -f CMakeFiles/cmTC_f1bba.dir/build.make CMakeFiles/cmTC_f1bba.dir/build]
+  ignore line: [Building CXX object CMakeFiles/cmTC_f1bba.dir/CMakeCXXCompilerABI.cpp.o]
+  ignore line: [/Library/Developer/CommandLineTools/usr/bin/c++     -o CMakeFiles/cmTC_f1bba.dir/CMakeCXXCompilerABI.cpp.o -c /usr/local/Cellar/cmake/3.10.2/share/cmake/Modules/CMakeCXXCompilerABI.cpp]
+  ignore line: [Linking CXX executable cmTC_f1bba]
+  ignore line: [/usr/local/Cellar/cmake/3.10.2/bin/cmake -E cmake_link_script CMakeFiles/cmTC_f1bba.dir/link.txt --verbose=1]
+  ignore line: [/Library/Developer/CommandLineTools/usr/bin/c++    -Wl,-search_paths_first -Wl,-headerpad_max_install_names  -v -Wl,-v CMakeFiles/cmTC_f1bba.dir/CMakeCXXCompilerABI.cpp.o  -o cmTC_f1bba ]
+  ignore line: [Apple LLVM version 7.0.2 (clang-700.1.81)]
+  ignore line: [Target: x86_64-apple-darwin14.5.0]
+  ignore line: [Thread model: posix]
+  link line: [ "/Library/Developer/CommandLineTools/usr/bin/ld" -demangle -dynamic -arch x86_64 -macosx_version_min 10.10.0 -o cmTC_f1bba -search_paths_first -headerpad_max_install_names -v CMakeFiles/cmTC_f1bba.dir/CMakeCXXCompilerABI.cpp.o -lc++ -lSystem /Library/Developer/CommandLineTools/usr/bin/../lib/clang/7.0.2/lib/darwin/libclang_rt.osx.a]
+    arg [/Library/Developer/CommandLineTools/usr/bin/ld] ==> ignore
+    arg [-demangle] ==> ignore
+    arg [-dynamic] ==> ignore
+    arg [-arch] ==> ignore
+    arg [x86_64] ==> ignore
+    arg [-macosx_version_min] ==> ignore
+    arg [10.10.0] ==> ignore
+    arg [-o] ==> ignore
+    arg [cmTC_f1bba] ==> ignore
+    arg [-search_paths_first] ==> ignore
+    arg [-headerpad_max_install_names] ==> ignore
+    arg [-v] ==> ignore
+    arg [CMakeFiles/cmTC_f1bba.dir/CMakeCXXCompilerABI.cpp.o] ==> ignore
+    arg [-lc++] ==> lib [c++]
+    arg [-lSystem] ==> lib [System]
+    arg [/Library/Developer/CommandLineTools/usr/bin/../lib/clang/7.0.2/lib/darwin/libclang_rt.osx.a] ==> lib [/Library/Developer/CommandLineTools/usr/bin/../lib/clang/7.0.2/lib/darwin/libclang_rt.osx.a]
+  Library search paths: [;/usr/lib;/usr/local/lib]
+  Framework search paths: [;/Library/Frameworks/;/System/Library/Frameworks/]
+  remove lib [System]
+  remove lib [/Library/Developer/CommandLineTools/usr/bin/../lib/clang/7.0.2/lib/darwin/libclang_rt.osx.a]
+  collapse library dir [/usr/lib] ==> [/usr/lib]
+  collapse library dir [/usr/local/lib] ==> [/usr/local/lib]
+  collapse framework dir [/Library/Frameworks/] ==> [/Library/Frameworks]
+  collapse framework dir [/System/Library/Frameworks/] ==> [/System/Library/Frameworks]
+  implicit libs: [c++]
+  implicit dirs: [/usr/lib;/usr/local/lib]
+  implicit fwks: [/Library/Frameworks;/System/Library/Frameworks]
+
+
+
+
+Detecting CXX [-std=c++1z] compiler features compiled with the following output:
+Change Dir: /Users/alfred/Downloads/eigen-eigen-5a0156e40feb/build/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTC_8e1ed/fast"
+/Library/Developer/CommandLineTools/usr/bin/make -f CMakeFiles/cmTC_8e1ed.dir/build.make CMakeFiles/cmTC_8e1ed.dir/build
+Building CXX object CMakeFiles/cmTC_8e1ed.dir/feature_tests.cxx.o
+/Library/Developer/CommandLineTools/usr/bin/c++    -std=c++1z -o CMakeFiles/cmTC_8e1ed.dir/feature_tests.cxx.o -c /Users/alfred/Downloads/eigen-eigen-5a0156e40feb/build/CMakeFiles/feature_tests.cxx
+Linking CXX executable cmTC_8e1ed
+/usr/local/Cellar/cmake/3.10.2/bin/cmake -E cmake_link_script CMakeFiles/cmTC_8e1ed.dir/link.txt --verbose=1
+/Library/Developer/CommandLineTools/usr/bin/c++    -Wl,-search_paths_first -Wl,-headerpad_max_install_names   CMakeFiles/cmTC_8e1ed.dir/feature_tests.cxx.o  -o cmTC_8e1ed 
+
+
+    Feature record: CXX_FEATURE:1cxx_aggregate_default_initializers
+    Feature record: CXX_FEATURE:1cxx_alias_templates
+    Feature record: CXX_FEATURE:1cxx_alignas
+    Feature record: CXX_FEATURE:1cxx_alignof
+    Feature record: CXX_FEATURE:1cxx_attributes
+    Feature record: CXX_FEATURE:1cxx_attribute_deprecated
+    Feature record: CXX_FEATURE:1cxx_auto_type
+    Feature record: CXX_FEATURE:1cxx_binary_literals
+    Feature record: CXX_FEATURE:1cxx_constexpr
+    Feature record: CXX_FEATURE:1cxx_contextual_conversions
+    Feature record: CXX_FEATURE:1cxx_decltype
+    Feature record: CXX_FEATURE:1cxx_decltype_auto
+    Feature record: CXX_FEATURE:1cxx_decltype_incomplete_return_types
+    Feature record: CXX_FEATURE:1cxx_default_function_template_args
+    Feature record: CXX_FEATURE:1cxx_defaulted_functions
+    Feature record: CXX_FEATURE:1cxx_defaulted_move_initializers
+    Feature record: CXX_FEATURE:1cxx_delegating_constructors
+    Feature record: CXX_FEATURE:1cxx_deleted_functions
+    Feature record: CXX_FEATURE:1cxx_digit_separators
+    Feature record: CXX_FEATURE:1cxx_enum_forward_declarations
+    Feature record: CXX_FEATURE:1cxx_explicit_conversions
+    Feature record: CXX_FEATURE:1cxx_extended_friend_declarations
+    Feature record: CXX_FEATURE:1cxx_extern_templates
+    Feature record: CXX_FEATURE:1cxx_final
+    Feature record: CXX_FEATURE:1cxx_func_identifier
+    Feature record: CXX_FEATURE:1cxx_generalized_initializers
+    Feature record: CXX_FEATURE:1cxx_generic_lambdas
+    Feature record: CXX_FEATURE:1cxx_inheriting_constructors
+    Feature record: CXX_FEATURE:1cxx_inline_namespaces
+    Feature record: CXX_FEATURE:1cxx_lambdas
+    Feature record: CXX_FEATURE:1cxx_lambda_init_captures
+    Feature record: CXX_FEATURE:1cxx_local_type_template_args
+    Feature record: CXX_FEATURE:1cxx_long_long_type
+    Feature record: CXX_FEATURE:1cxx_noexcept
+    Feature record: CXX_FEATURE:1cxx_nonstatic_member_init
+    Feature record: CXX_FEATURE:1cxx_nullptr
+    Feature record: CXX_FEATURE:1cxx_override
+    Feature record: CXX_FEATURE:1cxx_range_for
+    Feature record: CXX_FEATURE:1cxx_raw_string_literals
+    Feature record: CXX_FEATURE:1cxx_reference_qualified_functions
+    Feature record: CXX_FEATURE:1cxx_relaxed_constexpr
+    Feature record: CXX_FEATURE:1cxx_return_type_deduction
+    Feature record: CXX_FEATURE:1cxx_right_angle_brackets
+    Feature record: CXX_FEATURE:1cxx_rvalue_references
+    Feature record: CXX_FEATURE:1cxx_sizeof_member
+    Feature record: CXX_FEATURE:1cxx_static_assert
+    Feature record: CXX_FEATURE:1cxx_strong_enums
+    Feature record: CXX_FEATURE:1cxx_template_template_parameters
+    Feature record: CXX_FEATURE:0cxx_thread_local
+    Feature record: CXX_FEATURE:1cxx_trailing_return_types
+    Feature record: CXX_FEATURE:1cxx_unicode_literals
+    Feature record: CXX_FEATURE:1cxx_uniform_initialization
+    Feature record: CXX_FEATURE:1cxx_unrestricted_unions
+    Feature record: CXX_FEATURE:1cxx_user_literals
+    Feature record: CXX_FEATURE:1cxx_variable_templates
+    Feature record: CXX_FEATURE:1cxx_variadic_macros
+    Feature record: CXX_FEATURE:1cxx_variadic_templates
+
+
+Detecting CXX [-std=c++14] compiler features compiled with the following output:
+Change Dir: /Users/alfred/Downloads/eigen-eigen-5a0156e40feb/build/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTC_b845f/fast"
+/Library/Developer/CommandLineTools/usr/bin/make -f CMakeFiles/cmTC_b845f.dir/build.make CMakeFiles/cmTC_b845f.dir/build
+Building CXX object CMakeFiles/cmTC_b845f.dir/feature_tests.cxx.o
+/Library/Developer/CommandLineTools/usr/bin/c++    -std=c++14 -o CMakeFiles/cmTC_b845f.dir/feature_tests.cxx.o -c /Users/alfred/Downloads/eigen-eigen-5a0156e40feb/build/CMakeFiles/feature_tests.cxx
+Linking CXX executable cmTC_b845f
+/usr/local/Cellar/cmake/3.10.2/bin/cmake -E cmake_link_script CMakeFiles/cmTC_b845f.dir/link.txt --verbose=1
+/Library/Developer/CommandLineTools/usr/bin/c++    -Wl,-search_paths_first -Wl,-headerpad_max_install_names   CMakeFiles/cmTC_b845f.dir/feature_tests.cxx.o  -o cmTC_b845f 
+
+
+    Feature record: CXX_FEATURE:1cxx_aggregate_default_initializers
+    Feature record: CXX_FEATURE:1cxx_alias_templates
+    Feature record: CXX_FEATURE:1cxx_alignas
+    Feature record: CXX_FEATURE:1cxx_alignof
+    Feature record: CXX_FEATURE:1cxx_attributes
+    Feature record: CXX_FEATURE:1cxx_attribute_deprecated
+    Feature record: CXX_FEATURE:1cxx_auto_type
+    Feature record: CXX_FEATURE:1cxx_binary_literals
+    Feature record: CXX_FEATURE:1cxx_constexpr
+    Feature record: CXX_FEATURE:1cxx_contextual_conversions
+    Feature record: CXX_FEATURE:1cxx_decltype
+    Feature record: CXX_FEATURE:1cxx_decltype_auto
+    Feature record: CXX_FEATURE:1cxx_decltype_incomplete_return_types
+    Feature record: CXX_FEATURE:1cxx_default_function_template_args
+    Feature record: CXX_FEATURE:1cxx_defaulted_functions
+    Feature record: CXX_FEATURE:1cxx_defaulted_move_initializers
+    Feature record: CXX_FEATURE:1cxx_delegating_constructors
+    Feature record: CXX_FEATURE:1cxx_deleted_functions
+    Feature record: CXX_FEATURE:1cxx_digit_separators
+    Feature record: CXX_FEATURE:1cxx_enum_forward_declarations
+    Feature record: CXX_FEATURE:1cxx_explicit_conversions
+    Feature record: CXX_FEATURE:1cxx_extended_friend_declarations
+    Feature record: CXX_FEATURE:1cxx_extern_templates
+    Feature record: CXX_FEATURE:1cxx_final
+    Feature record: CXX_FEATURE:1cxx_func_identifier
+    Feature record: CXX_FEATURE:1cxx_generalized_initializers
+    Feature record: CXX_FEATURE:1cxx_generic_lambdas
+    Feature record: CXX_FEATURE:1cxx_inheriting_constructors
+    Feature record: CXX_FEATURE:1cxx_inline_namespaces
+    Feature record: CXX_FEATURE:1cxx_lambdas
+    Feature record: CXX_FEATURE:1cxx_lambda_init_captures
+    Feature record: CXX_FEATURE:1cxx_local_type_template_args
+    Feature record: CXX_FEATURE:1cxx_long_long_type
+    Feature record: CXX_FEATURE:1cxx_noexcept
+    Feature record: CXX_FEATURE:1cxx_nonstatic_member_init
+    Feature record: CXX_FEATURE:1cxx_nullptr
+    Feature record: CXX_FEATURE:1cxx_override
+    Feature record: CXX_FEATURE:1cxx_range_for
+    Feature record: CXX_FEATURE:1cxx_raw_string_literals
+    Feature record: CXX_FEATURE:1cxx_reference_qualified_functions
+    Feature record: CXX_FEATURE:1cxx_relaxed_constexpr
+    Feature record: CXX_FEATURE:1cxx_return_type_deduction
+    Feature record: CXX_FEATURE:1cxx_right_angle_brackets
+    Feature record: CXX_FEATURE:1cxx_rvalue_references
+    Feature record: CXX_FEATURE:1cxx_sizeof_member
+    Feature record: CXX_FEATURE:1cxx_static_assert
+    Feature record: CXX_FEATURE:1cxx_strong_enums
+    Feature record: CXX_FEATURE:1cxx_template_template_parameters
+    Feature record: CXX_FEATURE:0cxx_thread_local
+    Feature record: CXX_FEATURE:1cxx_trailing_return_types
+    Feature record: CXX_FEATURE:1cxx_unicode_literals
+    Feature record: CXX_FEATURE:1cxx_uniform_initialization
+    Feature record: CXX_FEATURE:1cxx_unrestricted_unions
+    Feature record: CXX_FEATURE:1cxx_user_literals
+    Feature record: CXX_FEATURE:1cxx_variable_templates
+    Feature record: CXX_FEATURE:1cxx_variadic_macros
+    Feature record: CXX_FEATURE:1cxx_variadic_templates
+
+
+Detecting CXX [-std=c++11] compiler features compiled with the following output:
+Change Dir: /Users/alfred/Downloads/eigen-eigen-5a0156e40feb/build/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTC_6bfe7/fast"
+/Library/Developer/CommandLineTools/usr/bin/make -f CMakeFiles/cmTC_6bfe7.dir/build.make CMakeFiles/cmTC_6bfe7.dir/build
+Building CXX object CMakeFiles/cmTC_6bfe7.dir/feature_tests.cxx.o
+/Library/Developer/CommandLineTools/usr/bin/c++    -std=c++11 -o CMakeFiles/cmTC_6bfe7.dir/feature_tests.cxx.o -c /Users/alfred/Downloads/eigen-eigen-5a0156e40feb/build/CMakeFiles/feature_tests.cxx
+Linking CXX executable cmTC_6bfe7
+/usr/local/Cellar/cmake/3.10.2/bin/cmake -E cmake_link_script CMakeFiles/cmTC_6bfe7.dir/link.txt --verbose=1
+/Library/Developer/CommandLineTools/usr/bin/c++    -Wl,-search_paths_first -Wl,-headerpad_max_install_names   CMakeFiles/cmTC_6bfe7.dir/feature_tests.cxx.o  -o cmTC_6bfe7 
+
+
+    Feature record: CXX_FEATURE:0cxx_aggregate_default_initializers
+    Feature record: CXX_FEATURE:1cxx_alias_templates
+    Feature record: CXX_FEATURE:1cxx_alignas
+    Feature record: CXX_FEATURE:1cxx_alignof
+    Feature record: CXX_FEATURE:1cxx_attributes
+    Feature record: CXX_FEATURE:0cxx_attribute_deprecated
+    Feature record: CXX_FEATURE:1cxx_auto_type
+    Feature record: CXX_FEATURE:0cxx_binary_literals
+    Feature record: CXX_FEATURE:1cxx_constexpr
+    Feature record: CXX_FEATURE:0cxx_contextual_conversions
+    Feature record: CXX_FEATURE:1cxx_decltype
+    Feature record: CXX_FEATURE:0cxx_decltype_auto
+    Feature record: CXX_FEATURE:1cxx_decltype_incomplete_return_types
+    Feature record: CXX_FEATURE:1cxx_default_function_template_args
+    Feature record: CXX_FEATURE:1cxx_defaulted_functions
+    Feature record: CXX_FEATURE:1cxx_defaulted_move_initializers
+    Feature record: CXX_FEATURE:1cxx_delegating_constructors
+    Feature record: CXX_FEATURE:1cxx_deleted_functions
+    Feature record: CXX_FEATURE:0cxx_digit_separators
+    Feature record: CXX_FEATURE:1cxx_enum_forward_declarations
+    Feature record: CXX_FEATURE:1cxx_explicit_conversions
+    Feature record: CXX_FEATURE:1cxx_extended_friend_declarations
+    Feature record: CXX_FEATURE:1cxx_extern_templates
+    Feature record: CXX_FEATURE:1cxx_final
+    Feature record: CXX_FEATURE:1cxx_func_identifier
+    Feature record: CXX_FEATURE:1cxx_generalized_initializers
+    Feature record: CXX_FEATURE:0cxx_generic_lambdas
+    Feature record: CXX_FEATURE:1cxx_inheriting_constructors
+    Feature record: CXX_FEATURE:1cxx_inline_namespaces
+    Feature record: CXX_FEATURE:1cxx_lambdas
+    Feature record: CXX_FEATURE:0cxx_lambda_init_captures
+    Feature record: CXX_FEATURE:1cxx_local_type_template_args
+    Feature record: CXX_FEATURE:1cxx_long_long_type
+    Feature record: CXX_FEATURE:1cxx_noexcept
+    Feature record: CXX_FEATURE:1cxx_nonstatic_member_init
+    Feature record: CXX_FEATURE:1cxx_nullptr
+    Feature record: CXX_FEATURE:1cxx_override
+    Feature record: CXX_FEATURE:1cxx_range_for
+    Feature record: CXX_FEATURE:1cxx_raw_string_literals
+    Feature record: CXX_FEATURE:1cxx_reference_qualified_functions
+    Feature record: CXX_FEATURE:0cxx_relaxed_constexpr
+    Feature record: CXX_FEATURE:0cxx_return_type_deduction
+    Feature record: CXX_FEATURE:1cxx_right_angle_brackets
+    Feature record: CXX_FEATURE:1cxx_rvalue_references
+    Feature record: CXX_FEATURE:1cxx_sizeof_member
+    Feature record: CXX_FEATURE:1cxx_static_assert
+    Feature record: CXX_FEATURE:1cxx_strong_enums
+    Feature record: CXX_FEATURE:1cxx_template_template_parameters
+    Feature record: CXX_FEATURE:0cxx_thread_local
+    Feature record: CXX_FEATURE:1cxx_trailing_return_types
+    Feature record: CXX_FEATURE:1cxx_unicode_literals
+    Feature record: CXX_FEATURE:1cxx_uniform_initialization
+    Feature record: CXX_FEATURE:1cxx_unrestricted_unions
+    Feature record: CXX_FEATURE:1cxx_user_literals
+    Feature record: CXX_FEATURE:0cxx_variable_templates
+    Feature record: CXX_FEATURE:1cxx_variadic_macros
+    Feature record: CXX_FEATURE:1cxx_variadic_templates
+
+
+Detecting CXX [-std=c++98] compiler features compiled with the following output:
+Change Dir: /Users/alfred/Downloads/eigen-eigen-5a0156e40feb/build/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTC_fa583/fast"
+/Library/Developer/CommandLineTools/usr/bin/make -f CMakeFiles/cmTC_fa583.dir/build.make CMakeFiles/cmTC_fa583.dir/build
+Building CXX object CMakeFiles/cmTC_fa583.dir/feature_tests.cxx.o
+/Library/Developer/CommandLineTools/usr/bin/c++    -std=c++98 -o CMakeFiles/cmTC_fa583.dir/feature_tests.cxx.o -c /Users/alfred/Downloads/eigen-eigen-5a0156e40feb/build/CMakeFiles/feature_tests.cxx
+Linking CXX executable cmTC_fa583
+/usr/local/Cellar/cmake/3.10.2/bin/cmake -E cmake_link_script CMakeFiles/cmTC_fa583.dir/link.txt --verbose=1
+/Library/Developer/CommandLineTools/usr/bin/c++    -Wl,-search_paths_first -Wl,-headerpad_max_install_names   CMakeFiles/cmTC_fa583.dir/feature_tests.cxx.o  -o cmTC_fa583 
+
+
+    Feature record: CXX_FEATURE:0cxx_aggregate_default_initializers
+    Feature record: CXX_FEATURE:0cxx_alias_templates
+    Feature record: CXX_FEATURE:0cxx_alignas
+    Feature record: CXX_FEATURE:0cxx_alignof
+    Feature record: CXX_FEATURE:0cxx_attributes
+    Feature record: CXX_FEATURE:0cxx_attribute_deprecated
+    Feature record: CXX_FEATURE:0cxx_auto_type
+    Feature record: CXX_FEATURE:0cxx_binary_literals
+    Feature record: CXX_FEATURE:0cxx_constexpr
+    Feature record: CXX_FEATURE:0cxx_contextual_conversions
+    Feature record: CXX_FEATURE:0cxx_decltype
+    Feature record: CXX_FEATURE:0cxx_decltype_auto
+    Feature record: CXX_FEATURE:0cxx_decltype_incomplete_return_types
+    Feature record: CXX_FEATURE:0cxx_default_function_template_args
+    Feature record: CXX_FEATURE:0cxx_defaulted_functions
+    Feature record: CXX_FEATURE:0cxx_defaulted_move_initializers
+    Feature record: CXX_FEATURE:0cxx_delegating_constructors
+    Feature record: CXX_FEATURE:0cxx_deleted_functions
+    Feature record: CXX_FEATURE:0cxx_digit_separators
+    Feature record: CXX_FEATURE:0cxx_enum_forward_declarations
+    Feature record: CXX_FEATURE:0cxx_explicit_conversions
+    Feature record: CXX_FEATURE:0cxx_extended_friend_declarations
+    Feature record: CXX_FEATURE:0cxx_extern_templates
+    Feature record: CXX_FEATURE:0cxx_final
+    Feature record: CXX_FEATURE:0cxx_func_identifier
+    Feature record: CXX_FEATURE:0cxx_generalized_initializers
+    Feature record: CXX_FEATURE:0cxx_generic_lambdas
+    Feature record: CXX_FEATURE:0cxx_inheriting_constructors
+    Feature record: CXX_FEATURE:0cxx_inline_namespaces
+    Feature record: CXX_FEATURE:0cxx_lambdas
+    Feature record: CXX_FEATURE:0cxx_lambda_init_captures
+    Feature record: CXX_FEATURE:0cxx_local_type_template_args
+    Feature record: CXX_FEATURE:0cxx_long_long_type
+    Feature record: CXX_FEATURE:0cxx_noexcept
+    Feature record: CXX_FEATURE:0cxx_nonstatic_member_init
+    Feature record: CXX_FEATURE:0cxx_nullptr
+    Feature record: CXX_FEATURE:0cxx_override
+    Feature record: CXX_FEATURE:0cxx_range_for
+    Feature record: CXX_FEATURE:0cxx_raw_string_literals
+    Feature record: CXX_FEATURE:0cxx_reference_qualified_functions
+    Feature record: CXX_FEATURE:0cxx_relaxed_constexpr
+    Feature record: CXX_FEATURE:0cxx_return_type_deduction
+    Feature record: CXX_FEATURE:0cxx_right_angle_brackets
+    Feature record: CXX_FEATURE:0cxx_rvalue_references
+    Feature record: CXX_FEATURE:0cxx_sizeof_member
+    Feature record: CXX_FEATURE:0cxx_static_assert
+    Feature record: CXX_FEATURE:0cxx_strong_enums
+    Feature record: CXX_FEATURE:1cxx_template_template_parameters
+    Feature record: CXX_FEATURE:0cxx_thread_local
+    Feature record: CXX_FEATURE:0cxx_trailing_return_types
+    Feature record: CXX_FEATURE:0cxx_unicode_literals
+    Feature record: CXX_FEATURE:0cxx_uniform_initialization
+    Feature record: CXX_FEATURE:0cxx_unrestricted_unions
+    Feature record: CXX_FEATURE:0cxx_user_literals
+    Feature record: CXX_FEATURE:0cxx_variable_templates
+    Feature record: CXX_FEATURE:0cxx_variadic_macros
+    Feature record: CXX_FEATURE:0cxx_variadic_templates
+Performing C++ SOURCE FILE Test standard_math_library_linked_to_automatically succeeded with the following output:
+Change Dir: /Users/alfred/Downloads/eigen-eigen-5a0156e40feb/build/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTC_81770/fast"
+/Library/Developer/CommandLineTools/usr/bin/make -f CMakeFiles/cmTC_81770.dir/build.make CMakeFiles/cmTC_81770.dir/build
+Building CXX object CMakeFiles/cmTC_81770.dir/src.cxx.o
+/Library/Developer/CommandLineTools/usr/bin/c++    -Dstandard_math_library_linked_to_automatically   -o CMakeFiles/cmTC_81770.dir/src.cxx.o -c /Users/alfred/Downloads/eigen-eigen-5a0156e40feb/build/CMakeFiles/CMakeTmp/src.cxx
+/Users/alfred/Downloads/eigen-eigen-5a0156e40feb/build/CMakeFiles/CMakeTmp/src.cxx:2:14: warning: ignoring return value of function declared with const attribute [-Wunused-value]
+int main() { std::sin(0.0); std::log(0.0f); }
+             ^~~~~~~~ ~~~
+1 warning generated.
+Linking CXX executable cmTC_81770
+/usr/local/Cellar/cmake/3.10.2/bin/cmake -E cmake_link_script CMakeFiles/cmTC_81770.dir/link.txt --verbose=1
+/Library/Developer/CommandLineTools/usr/bin/c++   -Dstandard_math_library_linked_to_automatically -Wl,-search_paths_first -Wl,-headerpad_max_install_names   CMakeFiles/cmTC_81770.dir/src.cxx.o  -o cmTC_81770 
+
+Source file was:
+#include<cmath>
+int main() { std::sin(0.0); std::log(0.0f); }
+Performing C++ SOURCE FILE Test COMPILER_SUPPORT_WERROR succeeded with the following output:
+Change Dir: /Users/alfred/Downloads/eigen-eigen-5a0156e40feb/build/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTC_77b6c/fast"
+/Library/Developer/CommandLineTools/usr/bin/make -f CMakeFiles/cmTC_77b6c.dir/build.make CMakeFiles/cmTC_77b6c.dir/build
+Building CXX object CMakeFiles/cmTC_77b6c.dir/src.cxx.o
+/Library/Developer/CommandLineTools/usr/bin/c++    -DCOMPILER_SUPPORT_WERROR   -Werror -o CMakeFiles/cmTC_77b6c.dir/src.cxx.o -c /Users/alfred/Downloads/eigen-eigen-5a0156e40feb/build/CMakeFiles/CMakeTmp/src.cxx
+Linking CXX executable cmTC_77b6c
+/usr/local/Cellar/cmake/3.10.2/bin/cmake -E cmake_link_script CMakeFiles/cmTC_77b6c.dir/link.txt --verbose=1
+/Library/Developer/CommandLineTools/usr/bin/c++   -DCOMPILER_SUPPORT_WERROR -Wl,-search_paths_first -Wl,-headerpad_max_install_names   CMakeFiles/cmTC_77b6c.dir/src.cxx.o  -o cmTC_77b6c 
+
+Source file was:
+int main() { return 0; }
+Performing C++ SOURCE FILE Test COMPILER_SUPPORT_pedantic succeeded with the following output:
+Change Dir: /Users/alfred/Downloads/eigen-eigen-5a0156e40feb/build/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTC_eec7c/fast"
+/Library/Developer/CommandLineTools/usr/bin/make -f CMakeFiles/cmTC_eec7c.dir/build.make CMakeFiles/cmTC_eec7c.dir/build
+Building CXX object CMakeFiles/cmTC_eec7c.dir/src.cxx.o
+/Library/Developer/CommandLineTools/usr/bin/c++    -DCOMPILER_SUPPORT_pedantic -Werror   -pedantic -o CMakeFiles/cmTC_eec7c.dir/src.cxx.o -c /Users/alfred/Downloads/eigen-eigen-5a0156e40feb/build/CMakeFiles/CMakeTmp/src.cxx
+Linking CXX executable cmTC_eec7c
+/usr/local/Cellar/cmake/3.10.2/bin/cmake -E cmake_link_script CMakeFiles/cmTC_eec7c.dir/link.txt --verbose=1
+/Library/Developer/CommandLineTools/usr/bin/c++   -DCOMPILER_SUPPORT_pedantic -Werror -Wl,-search_paths_first -Wl,-headerpad_max_install_names   CMakeFiles/cmTC_eec7c.dir/src.cxx.o  -o cmTC_eec7c 
+
+Source file was:
+int main() { return 0; }
+Performing C++ SOURCE FILE Test COMPILER_SUPPORT_Wall succeeded with the following output:
+Change Dir: /Users/alfred/Downloads/eigen-eigen-5a0156e40feb/build/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTC_cf1cf/fast"
+/Library/Developer/CommandLineTools/usr/bin/make -f CMakeFiles/cmTC_cf1cf.dir/build.make CMakeFiles/cmTC_cf1cf.dir/build
+Building CXX object CMakeFiles/cmTC_cf1cf.dir/src.cxx.o
+/Library/Developer/CommandLineTools/usr/bin/c++    -pedantic -DCOMPILER_SUPPORT_Wall -Werror   -Wall -o CMakeFiles/cmTC_cf1cf.dir/src.cxx.o -c /Users/alfred/Downloads/eigen-eigen-5a0156e40feb/build/CMakeFiles/CMakeTmp/src.cxx
+Linking CXX executable cmTC_cf1cf
+/usr/local/Cellar/cmake/3.10.2/bin/cmake -E cmake_link_script CMakeFiles/cmTC_cf1cf.dir/link.txt --verbose=1
+/Library/Developer/CommandLineTools/usr/bin/c++   -pedantic -DCOMPILER_SUPPORT_Wall -Werror -Wl,-search_paths_first -Wl,-headerpad_max_install_names   CMakeFiles/cmTC_cf1cf.dir/src.cxx.o  -o cmTC_cf1cf 
+
+Source file was:
+int main() { return 0; }
+Performing C++ SOURCE FILE Test COMPILER_SUPPORT_Wextra succeeded with the following output:
+Change Dir: /Users/alfred/Downloads/eigen-eigen-5a0156e40feb/build/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTC_c0dd1/fast"
+/Library/Developer/CommandLineTools/usr/bin/make -f CMakeFiles/cmTC_c0dd1.dir/build.make CMakeFiles/cmTC_c0dd1.dir/build
+Building CXX object CMakeFiles/cmTC_c0dd1.dir/src.cxx.o
+/Library/Developer/CommandLineTools/usr/bin/c++    -pedantic -Wall -DCOMPILER_SUPPORT_Wextra -Werror   -Wextra -o CMakeFiles/cmTC_c0dd1.dir/src.cxx.o -c /Users/alfred/Downloads/eigen-eigen-5a0156e40feb/build/CMakeFiles/CMakeTmp/src.cxx
+Linking CXX executable cmTC_c0dd1
+/usr/local/Cellar/cmake/3.10.2/bin/cmake -E cmake_link_script CMakeFiles/cmTC_c0dd1.dir/link.txt --verbose=1
+/Library/Developer/CommandLineTools/usr/bin/c++   -pedantic -Wall -DCOMPILER_SUPPORT_Wextra -Werror -Wl,-search_paths_first -Wl,-headerpad_max_install_names   CMakeFiles/cmTC_c0dd1.dir/src.cxx.o  -o cmTC_c0dd1 
+
+Source file was:
+int main() { return 0; }
+Performing C++ SOURCE FILE Test COMPILER_SUPPORT_Wundef succeeded with the following output:
+Change Dir: /Users/alfred/Downloads/eigen-eigen-5a0156e40feb/build/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTC_ea406/fast"
+/Library/Developer/CommandLineTools/usr/bin/make -f CMakeFiles/cmTC_ea406.dir/build.make CMakeFiles/cmTC_ea406.dir/build
+Building CXX object CMakeFiles/cmTC_ea406.dir/src.cxx.o
+/Library/Developer/CommandLineTools/usr/bin/c++    -pedantic -Wall -Wextra -DCOMPILER_SUPPORT_Wundef -Werror   -Wundef -o CMakeFiles/cmTC_ea406.dir/src.cxx.o -c /Users/alfred/Downloads/eigen-eigen-5a0156e40feb/build/CMakeFiles/CMakeTmp/src.cxx
+Linking CXX executable cmTC_ea406
+/usr/local/Cellar/cmake/3.10.2/bin/cmake -E cmake_link_script CMakeFiles/cmTC_ea406.dir/link.txt --verbose=1
+/Library/Developer/CommandLineTools/usr/bin/c++   -pedantic -Wall -Wextra -DCOMPILER_SUPPORT_Wundef -Werror -Wl,-search_paths_first -Wl,-headerpad_max_install_names   CMakeFiles/cmTC_ea406.dir/src.cxx.o  -o cmTC_ea406 
+
+Source file was:
+int main() { return 0; }
+Performing C++ SOURCE FILE Test COMPILER_SUPPORT_Wcastalign succeeded with the following output:
+Change Dir: /Users/alfred/Downloads/eigen-eigen-5a0156e40feb/build/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTC_cdafd/fast"
+/Library/Developer/CommandLineTools/usr/bin/make -f CMakeFiles/cmTC_cdafd.dir/build.make CMakeFiles/cmTC_cdafd.dir/build
+Building CXX object CMakeFiles/cmTC_cdafd.dir/src.cxx.o
+/Library/Developer/CommandLineTools/usr/bin/c++    -pedantic -Wall -Wextra -Wundef -DCOMPILER_SUPPORT_Wcastalign -Werror   -Wcast-align -o CMakeFiles/cmTC_cdafd.dir/src.cxx.o -c /Users/alfred/Downloads/eigen-eigen-5a0156e40feb/build/CMakeFiles/CMakeTmp/src.cxx
+Linking CXX executable cmTC_cdafd
+/usr/local/Cellar/cmake/3.10.2/bin/cmake -E cmake_link_script CMakeFiles/cmTC_cdafd.dir/link.txt --verbose=1
+/Library/Developer/CommandLineTools/usr/bin/c++   -pedantic -Wall -Wextra -Wundef -DCOMPILER_SUPPORT_Wcastalign -Werror -Wl,-search_paths_first -Wl,-headerpad_max_install_names   CMakeFiles/cmTC_cdafd.dir/src.cxx.o  -o cmTC_cdafd 
+
+Source file was:
+int main() { return 0; }
+Performing C++ SOURCE FILE Test COMPILER_SUPPORT_Wcharsubscripts succeeded with the following output:
+Change Dir: /Users/alfred/Downloads/eigen-eigen-5a0156e40feb/build/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTC_01ea9/fast"
+/Library/Developer/CommandLineTools/usr/bin/make -f CMakeFiles/cmTC_01ea9.dir/build.make CMakeFiles/cmTC_01ea9.dir/build
+Building CXX object CMakeFiles/cmTC_01ea9.dir/src.cxx.o
+/Library/Developer/CommandLineTools/usr/bin/c++    -pedantic -Wall -Wextra -Wundef -Wcast-align -DCOMPILER_SUPPORT_Wcharsubscripts -Werror   -Wchar-subscripts -o CMakeFiles/cmTC_01ea9.dir/src.cxx.o -c /Users/alfred/Downloads/eigen-eigen-5a0156e40feb/build/CMakeFiles/CMakeTmp/src.cxx
+Linking CXX executable cmTC_01ea9
+/usr/local/Cellar/cmake/3.10.2/bin/cmake -E cmake_link_script CMakeFiles/cmTC_01ea9.dir/link.txt --verbose=1
+/Library/Developer/CommandLineTools/usr/bin/c++   -pedantic -Wall -Wextra -Wundef -Wcast-align -DCOMPILER_SUPPORT_Wcharsubscripts -Werror -Wl,-search_paths_first -Wl,-headerpad_max_install_names   CMakeFiles/cmTC_01ea9.dir/src.cxx.o  -o cmTC_01ea9 
+
+Source file was:
+int main() { return 0; }
+Performing C++ SOURCE FILE Test COMPILER_SUPPORT_Wnonvirtualdtor succeeded with the following output:
+Change Dir: /Users/alfred/Downloads/eigen-eigen-5a0156e40feb/build/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTC_1b7e5/fast"
+/Library/Developer/CommandLineTools/usr/bin/make -f CMakeFiles/cmTC_1b7e5.dir/build.make CMakeFiles/cmTC_1b7e5.dir/build
+Building CXX object CMakeFiles/cmTC_1b7e5.dir/src.cxx.o
+/Library/Developer/CommandLineTools/usr/bin/c++    -pedantic -Wall -Wextra -Wundef -Wcast-align -Wchar-subscripts -DCOMPILER_SUPPORT_Wnonvirtualdtor -Werror   -Wnon-virtual-dtor -o CMakeFiles/cmTC_1b7e5.dir/src.cxx.o -c /Users/alfred/Downloads/eigen-eigen-5a0156e40feb/build/CMakeFiles/CMakeTmp/src.cxx
+Linking CXX executable cmTC_1b7e5
+/usr/local/Cellar/cmake/3.10.2/bin/cmake -E cmake_link_script CMakeFiles/cmTC_1b7e5.dir/link.txt --verbose=1
+/Library/Developer/CommandLineTools/usr/bin/c++   -pedantic -Wall -Wextra -Wundef -Wcast-align -Wchar-subscripts -DCOMPILER_SUPPORT_Wnonvirtualdtor -Werror -Wl,-search_paths_first -Wl,-headerpad_max_install_names   CMakeFiles/cmTC_1b7e5.dir/src.cxx.o  -o cmTC_1b7e5 
+
+Source file was:
+int main() { return 0; }
+Performing C++ SOURCE FILE Test COMPILER_SUPPORT_Wunusedlocaltypedefs succeeded with the following output:
+Change Dir: /Users/alfred/Downloads/eigen-eigen-5a0156e40feb/build/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTC_314af/fast"
+/Library/Developer/CommandLineTools/usr/bin/make -f CMakeFiles/cmTC_314af.dir/build.make CMakeFiles/cmTC_314af.dir/build
+Building CXX object CMakeFiles/cmTC_314af.dir/src.cxx.o
+/Library/Developer/CommandLineTools/usr/bin/c++    -pedantic -Wall -Wextra -Wundef -Wcast-align -Wchar-subscripts -Wnon-virtual-dtor -DCOMPILER_SUPPORT_Wunusedlocaltypedefs -Werror   -Wunused-local-typedefs -o CMakeFiles/cmTC_314af.dir/src.cxx.o -c /Users/alfred/Downloads/eigen-eigen-5a0156e40feb/build/CMakeFiles/CMakeTmp/src.cxx
+Linking CXX executable cmTC_314af
+/usr/local/Cellar/cmake/3.10.2/bin/cmake -E cmake_link_script CMakeFiles/cmTC_314af.dir/link.txt --verbose=1
+/Library/Developer/CommandLineTools/usr/bin/c++   -pedantic -Wall -Wextra -Wundef -Wcast-align -Wchar-subscripts -Wnon-virtual-dtor -DCOMPILER_SUPPORT_Wunusedlocaltypedefs -Werror -Wl,-search_paths_first -Wl,-headerpad_max_install_names   CMakeFiles/cmTC_314af.dir/src.cxx.o  -o cmTC_314af 
+
+Source file was:
+int main() { return 0; }
+Performing C++ SOURCE FILE Test COMPILER_SUPPORT_Wpointerarith succeeded with the following output:
+Change Dir: /Users/alfred/Downloads/eigen-eigen-5a0156e40feb/build/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTC_9fc10/fast"
+/Library/Developer/CommandLineTools/usr/bin/make -f CMakeFiles/cmTC_9fc10.dir/build.make CMakeFiles/cmTC_9fc10.dir/build
+Building CXX object CMakeFiles/cmTC_9fc10.dir/src.cxx.o
+/Library/Developer/CommandLineTools/usr/bin/c++    -pedantic -Wall -Wextra -Wundef -Wcast-align -Wchar-subscripts -Wnon-virtual-dtor -Wunused-local-typedefs -DCOMPILER_SUPPORT_Wpointerarith -Werror   -Wpointer-arith -o CMakeFiles/cmTC_9fc10.dir/src.cxx.o -c /Users/alfred/Downloads/eigen-eigen-5a0156e40feb/build/CMakeFiles/CMakeTmp/src.cxx
+Linking CXX executable cmTC_9fc10
+/usr/local/Cellar/cmake/3.10.2/bin/cmake -E cmake_link_script CMakeFiles/cmTC_9fc10.dir/link.txt --verbose=1
+/Library/Developer/CommandLineTools/usr/bin/c++   -pedantic -Wall -Wextra -Wundef -Wcast-align -Wchar-subscripts -Wnon-virtual-dtor -Wunused-local-typedefs -DCOMPILER_SUPPORT_Wpointerarith -Werror -Wl,-search_paths_first -Wl,-headerpad_max_install_names   CMakeFiles/cmTC_9fc10.dir/src.cxx.o  -o cmTC_9fc10 
+
+Source file was:
+int main() { return 0; }
+Performing C++ SOURCE FILE Test COMPILER_SUPPORT_Wwritestrings succeeded with the following output:
+Change Dir: /Users/alfred/Downloads/eigen-eigen-5a0156e40feb/build/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTC_0cfff/fast"
+/Library/Developer/CommandLineTools/usr/bin/make -f CMakeFiles/cmTC_0cfff.dir/build.make CMakeFiles/cmTC_0cfff.dir/build
+Building CXX object CMakeFiles/cmTC_0cfff.dir/src.cxx.o
+/Library/Developer/CommandLineTools/usr/bin/c++    -pedantic -Wall -Wextra -Wundef -Wcast-align -Wchar-subscripts -Wnon-virtual-dtor -Wunused-local-typedefs -Wpointer-arith -DCOMPILER_SUPPORT_Wwritestrings -Werror   -Wwrite-strings -o CMakeFiles/cmTC_0cfff.dir/src.cxx.o -c /Users/alfred/Downloads/eigen-eigen-5a0156e40feb/build/CMakeFiles/CMakeTmp/src.cxx
+Linking CXX executable cmTC_0cfff
+/usr/local/Cellar/cmake/3.10.2/bin/cmake -E cmake_link_script CMakeFiles/cmTC_0cfff.dir/link.txt --verbose=1
+/Library/Developer/CommandLineTools/usr/bin/c++   -pedantic -Wall -Wextra -Wundef -Wcast-align -Wchar-subscripts -Wnon-virtual-dtor -Wunused-local-typedefs -Wpointer-arith -DCOMPILER_SUPPORT_Wwritestrings -Werror -Wl,-search_paths_first -Wl,-headerpad_max_install_names   CMakeFiles/cmTC_0cfff.dir/src.cxx.o  -o cmTC_0cfff 
+
+Source file was:
+int main() { return 0; }
+Performing C++ SOURCE FILE Test COMPILER_SUPPORT_Wformatsecurity succeeded with the following output:
+Change Dir: /Users/alfred/Downloads/eigen-eigen-5a0156e40feb/build/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTC_0d5fc/fast"
+/Library/Developer/CommandLineTools/usr/bin/make -f CMakeFiles/cmTC_0d5fc.dir/build.make CMakeFiles/cmTC_0d5fc.dir/build
+Building CXX object CMakeFiles/cmTC_0d5fc.dir/src.cxx.o
+/Library/Developer/CommandLineTools/usr/bin/c++    -pedantic -Wall -Wextra -Wundef -Wcast-align -Wchar-subscripts -Wnon-virtual-dtor -Wunused-local-typedefs -Wpointer-arith -Wwrite-strings -DCOMPILER_SUPPORT_Wformatsecurity -Werror   -Wformat-security -o CMakeFiles/cmTC_0d5fc.dir/src.cxx.o -c /Users/alfred/Downloads/eigen-eigen-5a0156e40feb/build/CMakeFiles/CMakeTmp/src.cxx
+Linking CXX executable cmTC_0d5fc
+/usr/local/Cellar/cmake/3.10.2/bin/cmake -E cmake_link_script CMakeFiles/cmTC_0d5fc.dir/link.txt --verbose=1
+/Library/Developer/CommandLineTools/usr/bin/c++   -pedantic -Wall -Wextra -Wundef -Wcast-align -Wchar-subscripts -Wnon-virtual-dtor -Wunused-local-typedefs -Wpointer-arith -Wwrite-strings -DCOMPILER_SUPPORT_Wformatsecurity -Werror -Wl,-search_paths_first -Wl,-headerpad_max_install_names   CMakeFiles/cmTC_0d5fc.dir/src.cxx.o  -o cmTC_0d5fc 
+
+Source file was:
+int main() { return 0; }
+Performing C++ SOURCE FILE Test COMPILER_SUPPORT_Wshorten64to32 succeeded with the following output:
+Change Dir: /Users/alfred/Downloads/eigen-eigen-5a0156e40feb/build/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTC_3cc4b/fast"
+/Library/Developer/CommandLineTools/usr/bin/make -f CMakeFiles/cmTC_3cc4b.dir/build.make CMakeFiles/cmTC_3cc4b.dir/build
+Building CXX object CMakeFiles/cmTC_3cc4b.dir/src.cxx.o
+/Library/Developer/CommandLineTools/usr/bin/c++    -pedantic -Wall -Wextra -Wundef -Wcast-align -Wchar-subscripts -Wnon-virtual-dtor -Wunused-local-typedefs -Wpointer-arith -Wwrite-strings -Wformat-security -DCOMPILER_SUPPORT_Wshorten64to32 -Werror   -Wshorten-64-to-32 -o CMakeFiles/cmTC_3cc4b.dir/src.cxx.o -c /Users/alfred/Downloads/eigen-eigen-5a0156e40feb/build/CMakeFiles/CMakeTmp/src.cxx
+Linking CXX executable cmTC_3cc4b
+/usr/local/Cellar/cmake/3.10.2/bin/cmake -E cmake_link_script CMakeFiles/cmTC_3cc4b.dir/link.txt --verbose=1
+/Library/Developer/CommandLineTools/usr/bin/c++   -pedantic -Wall -Wextra -Wundef -Wcast-align -Wchar-subscripts -Wnon-virtual-dtor -Wunused-local-typedefs -Wpointer-arith -Wwrite-strings -Wformat-security -DCOMPILER_SUPPORT_Wshorten64to32 -Werror -Wl,-search_paths_first -Wl,-headerpad_max_install_names   CMakeFiles/cmTC_3cc4b.dir/src.cxx.o  -o cmTC_3cc4b 
+
+Source file was:
+int main() { return 0; }
+Performing C++ SOURCE FILE Test COMPILER_SUPPORT_Wenumconversion succeeded with the following output:
+Change Dir: /Users/alfred/Downloads/eigen-eigen-5a0156e40feb/build/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTC_686ca/fast"
+/Library/Developer/CommandLineTools/usr/bin/make -f CMakeFiles/cmTC_686ca.dir/build.make CMakeFiles/cmTC_686ca.dir/build
+Building CXX object CMakeFiles/cmTC_686ca.dir/src.cxx.o
+/Library/Developer/CommandLineTools/usr/bin/c++    -pedantic -Wall -Wextra -Wundef -Wcast-align -Wchar-subscripts -Wnon-virtual-dtor -Wunused-local-typedefs -Wpointer-arith -Wwrite-strings -Wformat-security -Wshorten-64-to-32 -DCOMPILER_SUPPORT_Wenumconversion -Werror   -Wenum-conversion -o CMakeFiles/cmTC_686ca.dir/src.cxx.o -c /Users/alfred/Downloads/eigen-eigen-5a0156e40feb/build/CMakeFiles/CMakeTmp/src.cxx
+Linking CXX executable cmTC_686ca
+/usr/local/Cellar/cmake/3.10.2/bin/cmake -E cmake_link_script CMakeFiles/cmTC_686ca.dir/link.txt --verbose=1
+/Library/Developer/CommandLineTools/usr/bin/c++   -pedantic -Wall -Wextra -Wundef -Wcast-align -Wchar-subscripts -Wnon-virtual-dtor -Wunused-local-typedefs -Wpointer-arith -Wwrite-strings -Wformat-security -Wshorten-64-to-32 -DCOMPILER_SUPPORT_Wenumconversion -Werror -Wl,-search_paths_first -Wl,-headerpad_max_install_names   CMakeFiles/cmTC_686ca.dir/src.cxx.o  -o cmTC_686ca 
+
+Source file was:
+int main() { return 0; }
+Performing C++ SOURCE FILE Test COMPILER_SUPPORT_Wcpp11extensions succeeded with the following output:
+Change Dir: /Users/alfred/Downloads/eigen-eigen-5a0156e40feb/build/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTC_1f31b/fast"
+/Library/Developer/CommandLineTools/usr/bin/make -f CMakeFiles/cmTC_1f31b.dir/build.make CMakeFiles/cmTC_1f31b.dir/build
+Building CXX object CMakeFiles/cmTC_1f31b.dir/src.cxx.o
+/Library/Developer/CommandLineTools/usr/bin/c++    -pedantic -Wall -Wextra -Wundef -Wcast-align -Wchar-subscripts -Wnon-virtual-dtor -Wunused-local-typedefs -Wpointer-arith -Wwrite-strings -Wformat-security -Wshorten-64-to-32 -Wenum-conversion -DCOMPILER_SUPPORT_Wcpp11extensions -Werror   -Wc++11-extensions -o CMakeFiles/cmTC_1f31b.dir/src.cxx.o -c /Users/alfred/Downloads/eigen-eigen-5a0156e40feb/build/CMakeFiles/CMakeTmp/src.cxx
+Linking CXX executable cmTC_1f31b
+/usr/local/Cellar/cmake/3.10.2/bin/cmake -E cmake_link_script CMakeFiles/cmTC_1f31b.dir/link.txt --verbose=1
+/Library/Developer/CommandLineTools/usr/bin/c++   -pedantic -Wall -Wextra -Wundef -Wcast-align -Wchar-subscripts -Wnon-virtual-dtor -Wunused-local-typedefs -Wpointer-arith -Wwrite-strings -Wformat-security -Wshorten-64-to-32 -Wenum-conversion -DCOMPILER_SUPPORT_Wcpp11extensions -Werror -Wl,-search_paths_first -Wl,-headerpad_max_install_names   CMakeFiles/cmTC_1f31b.dir/src.cxx.o  -o cmTC_1f31b 
+
+Source file was:
+int main() { return 0; }
+Performing C++ SOURCE FILE Test COMPILER_SUPPORT_Wshadow succeeded with the following output:
+Change Dir: /Users/alfred/Downloads/eigen-eigen-5a0156e40feb/build/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTC_5b75d/fast"
+/Library/Developer/CommandLineTools/usr/bin/make -f CMakeFiles/cmTC_5b75d.dir/build.make CMakeFiles/cmTC_5b75d.dir/build
+Building CXX object CMakeFiles/cmTC_5b75d.dir/src.cxx.o
+/Library/Developer/CommandLineTools/usr/bin/c++    -pedantic -Wall -Wextra -Wundef -Wcast-align -Wchar-subscripts -Wnon-virtual-dtor -Wunused-local-typedefs -Wpointer-arith -Wwrite-strings -Wformat-security -Wshorten-64-to-32 -Wenum-conversion -Wc++11-extensions -DCOMPILER_SUPPORT_Wshadow -Werror   -Wshadow -o CMakeFiles/cmTC_5b75d.dir/src.cxx.o -c /Users/alfred/Downloads/eigen-eigen-5a0156e40feb/build/CMakeFiles/CMakeTmp/src.cxx
+Linking CXX executable cmTC_5b75d
+/usr/local/Cellar/cmake/3.10.2/bin/cmake -E cmake_link_script CMakeFiles/cmTC_5b75d.dir/link.txt --verbose=1
+/Library/Developer/CommandLineTools/usr/bin/c++   -pedantic -Wall -Wextra -Wundef -Wcast-align -Wchar-subscripts -Wnon-virtual-dtor -Wunused-local-typedefs -Wpointer-arith -Wwrite-strings -Wformat-security -Wshorten-64-to-32 -Wenum-conversion -Wc++11-extensions -DCOMPILER_SUPPORT_Wshadow -Werror -Wl,-search_paths_first -Wl,-headerpad_max_install_names   CMakeFiles/cmTC_5b75d.dir/src.cxx.o  -o cmTC_5b75d 
+
+Source file was:
+int main() { return 0; }
+Performing C++ SOURCE FILE Test COMPILER_SUPPORT_Wnovariadicmacros succeeded with the following output:
+Change Dir: /Users/alfred/Downloads/eigen-eigen-5a0156e40feb/build/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTC_d9256/fast"
+/Library/Developer/CommandLineTools/usr/bin/make -f CMakeFiles/cmTC_d9256.dir/build.make CMakeFiles/cmTC_d9256.dir/build
+Building CXX object CMakeFiles/cmTC_d9256.dir/src.cxx.o
+/Library/Developer/CommandLineTools/usr/bin/c++    -pedantic -Wall -Wextra -Wundef -Wcast-align -Wchar-subscripts -Wnon-virtual-dtor -Wunused-local-typedefs -Wpointer-arith -Wwrite-strings -Wformat-security -Wshorten-64-to-32 -Wenum-conversion -Wc++11-extensions -Wshadow -DCOMPILER_SUPPORT_Wnovariadicmacros -Werror   -Wno-variadic-macros -o CMakeFiles/cmTC_d9256.dir/src.cxx.o -c /Users/alfred/Downloads/eigen-eigen-5a0156e40feb/build/CMakeFiles/CMakeTmp/src.cxx
+Linking CXX executable cmTC_d9256
+/usr/local/Cellar/cmake/3.10.2/bin/cmake -E cmake_link_script CMakeFiles/cmTC_d9256.dir/link.txt --verbose=1
+/Library/Developer/CommandLineTools/usr/bin/c++   -pedantic -Wall -Wextra -Wundef -Wcast-align -Wchar-subscripts -Wnon-virtual-dtor -Wunused-local-typedefs -Wpointer-arith -Wwrite-strings -Wformat-security -Wshorten-64-to-32 -Wenum-conversion -Wc++11-extensions -Wshadow -DCOMPILER_SUPPORT_Wnovariadicmacros -Werror -Wl,-search_paths_first -Wl,-headerpad_max_install_names   CMakeFiles/cmTC_d9256.dir/src.cxx.o  -o cmTC_d9256 
+
+Source file was:
+int main() { return 0; }
+Performing C++ SOURCE FILE Test COMPILER_SUPPORT_Wnolonglong succeeded with the following output:
+Change Dir: /Users/alfred/Downloads/eigen-eigen-5a0156e40feb/build/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTC_0a0ff/fast"
+/Library/Developer/CommandLineTools/usr/bin/make -f CMakeFiles/cmTC_0a0ff.dir/build.make CMakeFiles/cmTC_0a0ff.dir/build
+Building CXX object CMakeFiles/cmTC_0a0ff.dir/src.cxx.o
+/Library/Developer/CommandLineTools/usr/bin/c++    -pedantic -Wall -Wextra -Wundef -Wcast-align -Wchar-subscripts -Wnon-virtual-dtor -Wunused-local-typedefs -Wpointer-arith -Wwrite-strings -Wformat-security -Wshorten-64-to-32 -Wenum-conversion -Wc++11-extensions -Wshadow -Wno-variadic-macros -DCOMPILER_SUPPORT_Wnolonglong -Werror   -Wno-long-long -o CMakeFiles/cmTC_0a0ff.dir/src.cxx.o -c /Users/alfred/Downloads/eigen-eigen-5a0156e40feb/build/CMakeFiles/CMakeTmp/src.cxx
+Linking CXX executable cmTC_0a0ff
+/usr/local/Cellar/cmake/3.10.2/bin/cmake -E cmake_link_script CMakeFiles/cmTC_0a0ff.dir/link.txt --verbose=1
+/Library/Developer/CommandLineTools/usr/bin/c++   -pedantic -Wall -Wextra -Wundef -Wcast-align -Wchar-subscripts -Wnon-virtual-dtor -Wunused-local-typedefs -Wpointer-arith -Wwrite-strings -Wformat-security -Wshorten-64-to-32 -Wenum-conversion -Wc++11-extensions -Wshadow -Wno-variadic-macros -DCOMPILER_SUPPORT_Wnolonglong -Werror -Wl,-search_paths_first -Wl,-headerpad_max_install_names   CMakeFiles/cmTC_0a0ff.dir/src.cxx.o  -o cmTC_0a0ff 
+
+Source file was:
+int main() { return 0; }
+Performing C++ SOURCE FILE Test COMPILER_SUPPORT_fnochecknew succeeded with the following output:
+Change Dir: /Users/alfred/Downloads/eigen-eigen-5a0156e40feb/build/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTC_01d84/fast"
+/Library/Developer/CommandLineTools/usr/bin/make -f CMakeFiles/cmTC_01d84.dir/build.make CMakeFiles/cmTC_01d84.dir/build
+Building CXX object CMakeFiles/cmTC_01d84.dir/src.cxx.o
+/Library/Developer/CommandLineTools/usr/bin/c++    -pedantic -Wall -Wextra -Wundef -Wcast-align -Wchar-subscripts -Wnon-virtual-dtor -Wunused-local-typedefs -Wpointer-arith -Wwrite-strings -Wformat-security -Wshorten-64-to-32 -Wenum-conversion -Wc++11-extensions -Wshadow -Wno-variadic-macros -Wno-long-long -DCOMPILER_SUPPORT_fnochecknew -Werror   -fno-check-new -o CMakeFiles/cmTC_01d84.dir/src.cxx.o -c /Users/alfred/Downloads/eigen-eigen-5a0156e40feb/build/CMakeFiles/CMakeTmp/src.cxx
+Linking CXX executable cmTC_01d84
+/usr/local/Cellar/cmake/3.10.2/bin/cmake -E cmake_link_script CMakeFiles/cmTC_01d84.dir/link.txt --verbose=1
+/Library/Developer/CommandLineTools/usr/bin/c++   -pedantic -Wall -Wextra -Wundef -Wcast-align -Wchar-subscripts -Wnon-virtual-dtor -Wunused-local-typedefs -Wpointer-arith -Wwrite-strings -Wformat-security -Wshorten-64-to-32 -Wenum-conversion -Wc++11-extensions -Wshadow -Wno-variadic-macros -Wno-long-long -DCOMPILER_SUPPORT_fnochecknew -Werror -Wl,-search_paths_first -Wl,-headerpad_max_install_names   CMakeFiles/cmTC_01d84.dir/src.cxx.o  -o cmTC_01d84 
+
+Source file was:
+int main() { return 0; }
+Performing C++ SOURCE FILE Test COMPILER_SUPPORT_fnocommon succeeded with the following output:
+Change Dir: /Users/alfred/Downloads/eigen-eigen-5a0156e40feb/build/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTC_c7ed8/fast"
+/Library/Developer/CommandLineTools/usr/bin/make -f CMakeFiles/cmTC_c7ed8.dir/build.make CMakeFiles/cmTC_c7ed8.dir/build
+Building CXX object CMakeFiles/cmTC_c7ed8.dir/src.cxx.o
+/Library/Developer/CommandLineTools/usr/bin/c++    -pedantic -Wall -Wextra -Wundef -Wcast-align -Wchar-subscripts -Wnon-virtual-dtor -Wunused-local-typedefs -Wpointer-arith -Wwrite-strings -Wformat-security -Wshorten-64-to-32 -Wenum-conversion -Wc++11-extensions -Wshadow -Wno-variadic-macros -Wno-long-long -fno-check-new -DCOMPILER_SUPPORT_fnocommon -Werror   -fno-common -o CMakeFiles/cmTC_c7ed8.dir/src.cxx.o -c /Users/alfred/Downloads/eigen-eigen-5a0156e40feb/build/CMakeFiles/CMakeTmp/src.cxx
+Linking CXX executable cmTC_c7ed8
+/usr/local/Cellar/cmake/3.10.2/bin/cmake -E cmake_link_script CMakeFiles/cmTC_c7ed8.dir/link.txt --verbose=1
+/Library/Developer/CommandLineTools/usr/bin/c++   -pedantic -Wall -Wextra -Wundef -Wcast-align -Wchar-subscripts -Wnon-virtual-dtor -Wunused-local-typedefs -Wpointer-arith -Wwrite-strings -Wformat-security -Wshorten-64-to-32 -Wenum-conversion -Wc++11-extensions -Wshadow -Wno-variadic-macros -Wno-long-long -fno-check-new -DCOMPILER_SUPPORT_fnocommon -Werror -Wl,-search_paths_first -Wl,-headerpad_max_install_names   CMakeFiles/cmTC_c7ed8.dir/src.cxx.o  -o cmTC_c7ed8 
+
+Source file was:
+int main() { return 0; }
+Performing C++ SOURCE FILE Test COMPILER_SUPPORT_fstrictaliasing succeeded with the following output:
+Change Dir: /Users/alfred/Downloads/eigen-eigen-5a0156e40feb/build/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTC_2bca1/fast"
+/Library/Developer/CommandLineTools/usr/bin/make -f CMakeFiles/cmTC_2bca1.dir/build.make CMakeFiles/cmTC_2bca1.dir/build
+Building CXX object CMakeFiles/cmTC_2bca1.dir/src.cxx.o
+/Library/Developer/CommandLineTools/usr/bin/c++    -pedantic -Wall -Wextra -Wundef -Wcast-align -Wchar-subscripts -Wnon-virtual-dtor -Wunused-local-typedefs -Wpointer-arith -Wwrite-strings -Wformat-security -Wshorten-64-to-32 -Wenum-conversion -Wc++11-extensions -Wshadow -Wno-variadic-macros -Wno-long-long -fno-check-new -fno-common -DCOMPILER_SUPPORT_fstrictaliasing -Werror   -fstrict-aliasing -o CMakeFiles/cmTC_2bca1.dir/src.cxx.o -c /Users/alfred/Downloads/eigen-eigen-5a0156e40feb/build/CMakeFiles/CMakeTmp/src.cxx
+Linking CXX executable cmTC_2bca1
+/usr/local/Cellar/cmake/3.10.2/bin/cmake -E cmake_link_script CMakeFiles/cmTC_2bca1.dir/link.txt --verbose=1
+/Library/Developer/CommandLineTools/usr/bin/c++   -pedantic -Wall -Wextra -Wundef -Wcast-align -Wchar-subscripts -Wnon-virtual-dtor -Wunused-local-typedefs -Wpointer-arith -Wwrite-strings -Wformat-security -Wshorten-64-to-32 -Wenum-conversion -Wc++11-extensions -Wshadow -Wno-variadic-macros -Wno-long-long -fno-check-new -fno-common -DCOMPILER_SUPPORT_fstrictaliasing -Werror -Wl,-search_paths_first -Wl,-headerpad_max_install_names   CMakeFiles/cmTC_2bca1.dir/src.cxx.o  -o cmTC_2bca1 
+
+Source file was:
+int main() { return 0; }
+Performing C++ SOURCE FILE Test COMPILER_SUPPORT_Qunusedarguments succeeded with the following output:
+Change Dir: /Users/alfred/Downloads/eigen-eigen-5a0156e40feb/build/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTC_f90c7/fast"
+/Library/Developer/CommandLineTools/usr/bin/make -f CMakeFiles/cmTC_f90c7.dir/build.make CMakeFiles/cmTC_f90c7.dir/build
+Building CXX object CMakeFiles/cmTC_f90c7.dir/src.cxx.o
+/Library/Developer/CommandLineTools/usr/bin/c++    -pedantic -Wall -Wextra -Wundef -Wcast-align -Wchar-subscripts -Wnon-virtual-dtor -Wunused-local-typedefs -Wpointer-arith -Wwrite-strings -Wformat-security -Wshorten-64-to-32 -Wenum-conversion -Wc++11-extensions -Wshadow -Wno-variadic-macros -Wno-long-long -fno-check-new -fno-common -fstrict-aliasing -DCOMPILER_SUPPORT_Qunusedarguments -Werror   -Qunused-arguments -o CMakeFiles/cmTC_f90c7.dir/src.cxx.o -c /Users/alfred/Downloads/eigen-eigen-5a0156e40feb/build/CMakeFiles/CMakeTmp/src.cxx
+Linking CXX executable cmTC_f90c7
+/usr/local/Cellar/cmake/3.10.2/bin/cmake -E cmake_link_script CMakeFiles/cmTC_f90c7.dir/link.txt --verbose=1
+/Library/Developer/CommandLineTools/usr/bin/c++   -pedantic -Wall -Wextra -Wundef -Wcast-align -Wchar-subscripts -Wnon-virtual-dtor -Wunused-local-typedefs -Wpointer-arith -Wwrite-strings -Wformat-security -Wshorten-64-to-32 -Wenum-conversion -Wc++11-extensions -Wshadow -Wno-variadic-macros -Wno-long-long -fno-check-new -fno-common -fstrict-aliasing -DCOMPILER_SUPPORT_Qunusedarguments -Werror -Wl,-search_paths_first -Wl,-headerpad_max_install_names   CMakeFiles/cmTC_f90c7.dir/src.cxx.o  -o cmTC_f90c7 
+
+Source file was:
+int main() { return 0; }
+Performing C++ SOURCE FILE Test COMPILER_SUPPORT_ansi succeeded with the following output:
+Change Dir: /Users/alfred/Downloads/eigen-eigen-5a0156e40feb/build/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTC_b3de0/fast"
+/Library/Developer/CommandLineTools/usr/bin/make -f CMakeFiles/cmTC_b3de0.dir/build.make CMakeFiles/cmTC_b3de0.dir/build
+Building CXX object CMakeFiles/cmTC_b3de0.dir/src.cxx.o
+/Library/Developer/CommandLineTools/usr/bin/c++    -pedantic -Wall -Wextra -Wundef -Wcast-align -Wchar-subscripts -Wnon-virtual-dtor -Wunused-local-typedefs -Wpointer-arith -Wwrite-strings -Wformat-security -Wshorten-64-to-32 -Wenum-conversion -Wc++11-extensions -Wshadow -Wno-variadic-macros -Wno-long-long -fno-check-new -fno-common -fstrict-aliasing -Qunused-arguments -DCOMPILER_SUPPORT_ansi -Werror   -ansi -o CMakeFiles/cmTC_b3de0.dir/src.cxx.o -c /Users/alfred/Downloads/eigen-eigen-5a0156e40feb/build/CMakeFiles/CMakeTmp/src.cxx
+Linking CXX executable cmTC_b3de0
+/usr/local/Cellar/cmake/3.10.2/bin/cmake -E cmake_link_script CMakeFiles/cmTC_b3de0.dir/link.txt --verbose=1
+/Library/Developer/CommandLineTools/usr/bin/c++   -pedantic -Wall -Wextra -Wundef -Wcast-align -Wchar-subscripts -Wnon-virtual-dtor -Wunused-local-typedefs -Wpointer-arith -Wwrite-strings -Wformat-security -Wshorten-64-to-32 -Wenum-conversion -Wc++11-extensions -Wshadow -Wno-variadic-macros -Wno-long-long -fno-check-new -fno-common -fstrict-aliasing -Qunused-arguments -DCOMPILER_SUPPORT_ansi -Werror -Wl,-search_paths_first -Wl,-headerpad_max_install_names   CMakeFiles/cmTC_b3de0.dir/src.cxx.o  -o cmTC_b3de0 
+
+Source file was:
+int main() { return 0; }
+Performing C++ SOURCE FILE Test COMPILER_SUPPORT_OPENMP succeeded with the following output:
+Change Dir: /Users/alfred/Downloads/eigen-eigen-5a0156e40feb/build/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTC_d6359/fast"
+/Library/Developer/CommandLineTools/usr/bin/make -f CMakeFiles/cmTC_d6359.dir/build.make CMakeFiles/cmTC_d6359.dir/build
+Building CXX object CMakeFiles/cmTC_d6359.dir/src.cxx.o
+/Library/Developer/CommandLineTools/usr/bin/c++    -pedantic -Wall -Wextra -Wundef -Wcast-align -Wchar-subscripts -Wnon-virtual-dtor -Wunused-local-typedefs -Wpointer-arith -Wwrite-strings -Wformat-security -Wshorten-64-to-32 -Wenum-conversion -Wc++11-extensions -Wshadow -Wno-variadic-macros -Wno-long-long -fno-check-new -fno-common -fstrict-aliasing -Qunused-arguments -ansi -DCOMPILER_SUPPORT_OPENMP   -fopenmp -o CMakeFiles/cmTC_d6359.dir/src.cxx.o -c /Users/alfred/Downloads/eigen-eigen-5a0156e40feb/build/CMakeFiles/CMakeTmp/src.cxx
+Linking CXX executable cmTC_d6359
+/usr/local/Cellar/cmake/3.10.2/bin/cmake -E cmake_link_script CMakeFiles/cmTC_d6359.dir/link.txt --verbose=1
+/Library/Developer/CommandLineTools/usr/bin/c++   -pedantic -Wall -Wextra -Wundef -Wcast-align -Wchar-subscripts -Wnon-virtual-dtor -Wunused-local-typedefs -Wpointer-arith -Wwrite-strings -Wformat-security -Wshorten-64-to-32 -Wenum-conversion -Wc++11-extensions -Wshadow -Wno-variadic-macros -Wno-long-long -fno-check-new -fno-common -fstrict-aliasing -Qunused-arguments -ansi -DCOMPILER_SUPPORT_OPENMP -Wl,-search_paths_first -Wl,-headerpad_max_install_names   CMakeFiles/cmTC_d6359.dir/src.cxx.o  -o cmTC_d6359 
+
+Source file was:
+int main() { return 0; }
+Performing C++ SOURCE FILE Test EIGEN_COMPILER_SUPPORT_CPP11 succeeded with the following output:
+Change Dir: /Users/alfred/Downloads/eigen-eigen-5a0156e40feb/build/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTC_a3fb0/fast"
+/Library/Developer/CommandLineTools/usr/bin/make -f CMakeFiles/cmTC_a3fb0.dir/build.make CMakeFiles/cmTC_a3fb0.dir/build
+Building CXX object CMakeFiles/cmTC_a3fb0.dir/src.cxx.o
+/Library/Developer/CommandLineTools/usr/bin/c++    -pedantic -Wall -Wextra -Wundef -Wcast-align -Wchar-subscripts -Wnon-virtual-dtor -Wunused-local-typedefs -Wpointer-arith -Wwrite-strings -Wformat-security -Wshorten-64-to-32 -Wenum-conversion -Wc++11-extensions -Wshadow -Wno-variadic-macros -Wno-long-long -fno-check-new -fno-common -fstrict-aliasing -Qunused-arguments -ansi -DEIGEN_COMPILER_SUPPORT_CPP11   -std=c++11 -o CMakeFiles/cmTC_a3fb0.dir/src.cxx.o -c /Users/alfred/Downloads/eigen-eigen-5a0156e40feb/build/CMakeFiles/CMakeTmp/src.cxx
+Linking CXX executable cmTC_a3fb0
+/usr/local/Cellar/cmake/3.10.2/bin/cmake -E cmake_link_script CMakeFiles/cmTC_a3fb0.dir/link.txt --verbose=1
+/Library/Developer/CommandLineTools/usr/bin/c++   -pedantic -Wall -Wextra -Wundef -Wcast-align -Wchar-subscripts -Wnon-virtual-dtor -Wunused-local-typedefs -Wpointer-arith -Wwrite-strings -Wformat-security -Wshorten-64-to-32 -Wenum-conversion -Wc++11-extensions -Wshadow -Wno-variadic-macros -Wno-long-long -fno-check-new -fno-common -fstrict-aliasing -Qunused-arguments -ansi -DEIGEN_COMPILER_SUPPORT_CPP11 -Wl,-search_paths_first -Wl,-headerpad_max_install_names   CMakeFiles/cmTC_a3fb0.dir/src.cxx.o  -o cmTC_a3fb0 
+
+Source file was:
+int main() { return 0; }
+Performing C++ SOURCE FILE Test EIGEN_COMPILER_SUPPORT_CXX11 succeeded with the following output:
+Change Dir: /Users/alfred/Downloads/eigen-eigen-5a0156e40feb/build/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTC_e3129/fast"
+/Library/Developer/CommandLineTools/usr/bin/make -f CMakeFiles/cmTC_e3129.dir/build.make CMakeFiles/cmTC_e3129.dir/build
+Building CXX object CMakeFiles/cmTC_e3129.dir/src.cxx.o
+/Library/Developer/CommandLineTools/usr/bin/c++    -pedantic -Wall -Wextra -Wundef -Wcast-align -Wchar-subscripts -Wnon-virtual-dtor -Wunused-local-typedefs -Wpointer-arith -Wwrite-strings -Wformat-security -Wshorten-64-to-32 -Wenum-conversion -Wc++11-extensions -Wshadow -Wno-variadic-macros -Wno-long-long -fno-check-new -fno-common -fstrict-aliasing -Qunused-arguments -ansi -DEIGEN_COMPILER_SUPPORT_CXX11   -std=c++11 -o CMakeFiles/cmTC_e3129.dir/src.cxx.o -c /Users/alfred/Downloads/eigen-eigen-5a0156e40feb/build/CMakeFiles/CMakeTmp/src.cxx
+Linking CXX executable cmTC_e3129
+/usr/local/Cellar/cmake/3.10.2/bin/cmake -E cmake_link_script CMakeFiles/cmTC_e3129.dir/link.txt --verbose=1
+/Library/Developer/CommandLineTools/usr/bin/c++   -pedantic -Wall -Wextra -Wundef -Wcast-align -Wchar-subscripts -Wnon-virtual-dtor -Wunused-local-typedefs -Wpointer-arith -Wwrite-strings -Wformat-security -Wshorten-64-to-32 -Wenum-conversion -Wc++11-extensions -Wshadow -Wno-variadic-macros -Wno-long-long -fno-check-new -fno-common -fstrict-aliasing -Qunused-arguments -ansi -DEIGEN_COMPILER_SUPPORT_CXX11 -Wl,-search_paths_first -Wl,-headerpad_max_install_names   CMakeFiles/cmTC_e3129.dir/src.cxx.o  -o cmTC_e3129 
+
+Source file was:
+int main() { return 0; }
+Determining if the include file pthread.h exists passed with the following output:
+Change Dir: /Users/alfred/Downloads/eigen-eigen-5a0156e40feb/build/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTC_ade8c/fast"
+/Library/Developer/CommandLineTools/usr/bin/make -f CMakeFiles/cmTC_ade8c.dir/build.make CMakeFiles/cmTC_ade8c.dir/build
+Building C object CMakeFiles/cmTC_ade8c.dir/CheckIncludeFile.c.o
+/Library/Developer/CommandLineTools/usr/bin/cc    -o CMakeFiles/cmTC_ade8c.dir/CheckIncludeFile.c.o   -c /Users/alfred/Downloads/eigen-eigen-5a0156e40feb/build/CMakeFiles/CMakeTmp/CheckIncludeFile.c
+Linking C executable cmTC_ade8c
+/usr/local/Cellar/cmake/3.10.2/bin/cmake -E cmake_link_script CMakeFiles/cmTC_ade8c.dir/link.txt --verbose=1
+/Library/Developer/CommandLineTools/usr/bin/cc   -Wl,-search_paths_first -Wl,-headerpad_max_install_names   CMakeFiles/cmTC_ade8c.dir/CheckIncludeFile.c.o  -o cmTC_ade8c 
+
+
+Determining if the pthread_create exist passed with the following output:
+Change Dir: /Users/alfred/Downloads/eigen-eigen-5a0156e40feb/build/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTC_b1c72/fast"
+/Library/Developer/CommandLineTools/usr/bin/make -f CMakeFiles/cmTC_b1c72.dir/build.make CMakeFiles/cmTC_b1c72.dir/build
+Building C object CMakeFiles/cmTC_b1c72.dir/CheckSymbolExists.c.o
+/Library/Developer/CommandLineTools/usr/bin/cc    -o CMakeFiles/cmTC_b1c72.dir/CheckSymbolExists.c.o   -c /Users/alfred/Downloads/eigen-eigen-5a0156e40feb/build/CMakeFiles/CMakeTmp/CheckSymbolExists.c
+Linking C executable cmTC_b1c72
+/usr/local/Cellar/cmake/3.10.2/bin/cmake -E cmake_link_script CMakeFiles/cmTC_b1c72.dir/link.txt --verbose=1
+/Library/Developer/CommandLineTools/usr/bin/cc   -Wl,-search_paths_first -Wl,-headerpad_max_install_names   CMakeFiles/cmTC_b1c72.dir/CheckSymbolExists.c.o  -o cmTC_b1c72 
+
+File /Users/alfred/Downloads/eigen-eigen-5a0156e40feb/build/CMakeFiles/CMakeTmp/CheckSymbolExists.c:
+/* */
+#include <pthread.h>
+
+int main(int argc, char** argv)
+{
+  (void)argv;
+#ifndef pthread_create
+  return ((int*)(&pthread_create))[argc];
+#else
+  (void)argc;
+  return 0;
+#endif
+}
+
