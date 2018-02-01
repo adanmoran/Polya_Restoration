@@ -1,9 +1,26 @@
+%% Inverse Quantize Image
+% Maps the input quantized image based on the partitions of the
+% quantization. Can be mapped to the floor, ceiling, or mid point of the
+% partition.
+%
+% Inputs:
+% q_image = the quantized image
+% inverse_quantization = the type of inverse quantization to be performed
+%   can be 'low' or 'lower', 'high' or 'upper', or 'mid' or 'middle'
+% partition = the bands where the values are partitioned into
+% codebook = the "average" values within the bands based on the
+%   quantization type/distribution
+%
+% Outputs:
+% image = the quantized image mapped back to its partitioned space
+
 function image = inverse_quantize_image(q_image, inverse_quantization, partition, codebook)
     % Get the numerical type of the image
     classname = class(q_image); 
     % Get the max size of that type
     num_colours = double(intmax(classname));
     
+    % If the number of balls corresponds to no quantization, exit
     if (length(partition) == num_colours + 1)
         image = uint8(partition(q_image));
         return
