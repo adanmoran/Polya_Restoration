@@ -12,7 +12,7 @@
 #include <QCoreApplication>
 #include <QDebug>
 // Ours
-#include "common/Types.h"
+#include "common/EigenTypes.h"
 
 using SparseMatrix = Eigen::SparseMatrix<int>; // declares a column-major sparse matrix type of double
 using Triplet = Eigen::Triplet<int>; // declarse a triplet type for doubles

@@ -5,7 +5,7 @@
 #ifndef POLYA_H_
 #define POLYA_H_
 
-#include "common/Types.h"
+#include "common/EigenTypes.h"
 // May need regular matrices too, which are in <Eigen/Dense>
 #include <Eigen/Sparse>
 
