@@ -1,9 +1,9 @@
-clear all
+clear
 close all
 clc
 %% Load Image in Grayscale
-image = imread('..\images\lena512.bmp');
-% image = rgb2gray(imread('..\images\oil_spill.jpg'));
+image = imread('../images/lena512.bmp');
+% image = rgb2gray(imread('../images/oil_spill.jpg'));
 
 %% Add Gaussian Noise
 rng(0, 'twister');
@@ -11,6 +11,7 @@ rng(0, 'twister');
 % Gaussian noise values
 sigma = 0.01;
 mean = 0;
+
 % Bursty noise values
 burstType = 'binary'; % 'gaussian' or 'binary'
 correlation = 0.98;
@@ -42,6 +43,9 @@ end
 
 figure, imshowpair(image, noisy_image, 'montage');
 
+% Initialize the image for the median filter comparison
+medianed = noisy_image;
+
 %% Take the Edge Map
 % The variance of Canny's gaussian filter. Default is sqrt(2)
 sigma = 3;
@@ -49,10 +53,19 @@ sigma = 3;
 % Oil Spill: 0.4
 % Lena: with gauss = 0.2, with burst = 0.38
 % Two ships: 0.5
+
 thresh = 0.38;
 edges = edge(noisy_image, 'canny', thresh, sigma);
+
 figure;
 imshowpair(noisy_image, edges, 'montage');
+
+%% Quantization Parameters
+numBallTypes = 50; % [2 - 256]
+quantization = 'exp'; % unif, norm, exp
+inverse_quantization = 'mid'; % low, high, mid
+
+[noisy_image, partition, codebook] = quantize_image(noisy_image, numBallTypes, quantization);
 
 %% Build Adjacency Matrix
 adj_radius = 3;
@@ -69,12 +82,9 @@ starting_balls = 100;
 % Number of balls to add to the urn after each polya step
 balls_to_add = 75;
 % Matrix of ball addition
-Delta = balls_to_add * eye(256);
+Delta = balls_to_add * eye(numBallTypes);
 % Initialize urns with standard adjacency matrix
-urns = initialize_polya_urns(noisy_image, adjacency, starting_balls);
-
-% Initialize the image for the median filter comparison
-medianed = noisy_image;
+urns = initialize_polya_urns(noisy_image, starting_balls, numBallTypes);
 
 %% Iterate the polya model
 N = 8;
@@ -90,18 +100,21 @@ end
 
 %% Build the final image
 tic
-output = uint8(image_from_urns(size(noisy_image), urns));
+output = image_from_urns(size(noisy_image), urns);
+output = inverse_quantize_image(output, inverse_quantization, partition, codebook);
 toc
 figure;
 imshowpair(noisy_image, output, 'montage');
 title ('Noise vs Polya');
 fprintf('Polya vs Original MSE: %.3f\n', immse(output, image));
 fprintf(' ---- ssim: %.3f\n', ssim(output, image));
+fprintf(' ---- psnr: %.3f\n', psnr(output, image));
 figure;
 imshowpair(noisy_image, medianed, 'montage');
 title('Noise vs Median');
 fprintf('Median vs Original MSE: %.3f\n', immse(medianed, image));
 fprintf(' ---- ssim: %.3f\n', ssim(medianed, image));
+fprintf(' ---- psnr: %.3f\n', psnr(medianed, image));
 figure;
 imshowpair(output, medianed, 'montage');
 title('Polya vs Median');
