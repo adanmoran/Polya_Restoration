@@ -33,8 +33,8 @@ imshowpair(noisy_lena, edges, 'montage');
 
 %% Quantization Parameters
 numBallTypes = 50; % [2 - 256]
-quantization = 'unif';
-inverse_quantization = 'mid';
+quantization = 'exp'; % unif, norm, exp
+inverse_quantization = 'mid'; % low, high, mid
 
 [noisy_lena, partition, codebook] = quantize_image(noisy_lena, numBallTypes, quantization);
 
