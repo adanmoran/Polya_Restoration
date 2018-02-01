@@ -33,10 +33,10 @@ imshowpair(noisy_lena, edges, 'montage');
 
 %% Quantization Parameters
 numBallTypes = 50; % [2 - 256]
-quantization = 'lloyd';
-inverse_quantization = 'high';
+quantization = 'unif';
+inverse_quantization = 'mid';
 
-[noisy_lena, partition] = quantize_image(noisy_lena, numBallTypes, quantization);
+[noisy_lena, partition, codebook] = quantize_image(noisy_lena, numBallTypes, quantization);
 
 %% Build Adjacency Matrix
 adj_radius = 2;
@@ -72,7 +72,7 @@ end
 %% Build the final image
 tic
 output = image_from_urns(size(noisy_lena), urns);
-output = inverse_quantize_image(output, inverse_quantization, partition);
+output = inverse_quantize_image(output, inverse_quantization, partition, codebook);
 toc
 figure;
 imshowpair(noisy_lena, output, 'montage');

@@ -1,4 +1,4 @@
-function [q_image, partition] = quantize_image(image, num_ball_types, q_type)    
+function [q_image, partition, codebook] = quantize_image(image, num_ball_types, q_type)    
     % Get the numerical type of the image
     classname = class(image); 
     % Get the max size of that type
@@ -16,14 +16,19 @@ function [q_image, partition] = quantize_image(image, num_ball_types, q_type)
         p = num_colours / num_ball_types;
         partition = p:p:num_colours - p;
         
+        domain = 0:p:num_colours;
+        % Get average between two points
+        codebook = mean([domain(1:end-1); domain(2:end)]);
+        
     elseif strcmp(q_type, 'lloyd') || strcmp(q_type, 'non-unif')
         % Lloyd-Max Quantization
         % Sampling a Normal distribution with mean 0, variance 1/sqrt(2pi)
         % and scaled to the number of colours
         Y = normpdf(-3:.1:3, 0, 1 / sqrt(2 * pi)) * num_colours;
-        [partition, ~] = lloyds(Y, num_ball_types);
+        [partition, codebook] = lloyds(Y, num_ball_types);
     end
     
     partition = round(partition);
+    codebook = round(codebook);
     q_image = imquantize(image, partition, 0:num_ball_types - 1);
 end
