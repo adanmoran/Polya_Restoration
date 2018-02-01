@@ -2,8 +2,10 @@ clear
 close all
 clc
 %% Load Image in Grayscale
-image = imread('../images/lena512.bmp');
+%image = imread('../images/lena512.bmp');
 % image = rgb2gray(imread('../images/oil_spill.jpg'));
+%image = imread('../images/aerial1.tiff');
+image = imread('../images/pentagon.tiff');
 
 %% Add Gaussian Noise
 rng(0, 'twister');
@@ -54,22 +56,27 @@ sigma = 3;
 % Lena: with gauss = 0.2, with burst = 0.38
 % Two ships: 0.5
 
-thresh = 0.38;
+thresh = 0.2;
 edges = edge(noisy_image, 'canny', thresh, sigma);
 
-figure;
-imshowpair(noisy_image, edges, 'montage');
+use_edges = false;
+
+if use_edges
+    figure;
+    imshowpair(noisy_image, edges, 'montage');
+end
+
 
 %% Quantization Parameters
-numBallTypes = 50; % [2 - 256]
-quantization = 'exp'; % unif, norm, exp
-inverse_quantization = 'mid'; % low, high, mid
+numBallTypes = 30; % [2 - 256]
+quantization = 'norm'; % unif, norm, exp
+inverse_quantization = 'high'; % low, high, mid
 
 [noisy_image, partition, codebook] = quantize_image(noisy_image, numBallTypes, quantization);
 
 %% Build Adjacency Matrix
 adj_radius = 3;
-adj_norm = 1;
+adj_norm = 2;
 
 % Get image initial adjacency matrix
 adjacency = get_sparse_adj(size(image), adj_radius, adj_norm);
@@ -80,12 +87,17 @@ sample_type = 'median';
 %Starting balls in each urn
 starting_balls = 100;
 % Number of balls to add to the urn after each polya step
-balls_to_add = 75;
+balls_to_add = 60;
 % Matrix of ball addition
 Delta = balls_to_add * eye(numBallTypes);
 % Initialize urns with standard adjacency matrix
 urns = initialize_polya_urns(noisy_image, starting_balls, numBallTypes);
 
+% Remove adjacency connections based on edge graph
+%adjacency = remove_edge_connections(adjacency, edges);
+if use_edges
+    adjacency = adjacency_minus_edge_d(adjacency, edges, adj_radius);
+end
 %% Iterate the polya model
 N = 8;
 
