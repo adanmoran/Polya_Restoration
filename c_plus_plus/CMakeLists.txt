@@ -61,6 +61,9 @@ find_package(Qt5Widgets)
 ##############
 
 add_executable(Main main.cpp)
+target_include_directories(Main PUBLIC
+    ${CMAKE_SOURCE_DIR}/include
+)
 target_link_libraries(Main
     Eigen
     Qt5::Widgets

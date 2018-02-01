@@ -11,6 +11,8 @@
 // Qt
 #include <QCoreApplication>
 #include <QDebug>
+// Ours
+#include "common/Types.h"
 
 using SparseMatrix = Eigen::SparseMatrix<int>; // declares a column-major sparse matrix type of double
 using Triplet = Eigen::Triplet<int>; // declarse a triplet type for doubles
@@ -45,6 +47,8 @@ auto helloEigen() -> void
     std::cout << x << std::endl;
     std::cout << v << std::endl;
     std::cout << A * v << std::endl;
+    SquareSparseMatrix<int> d(3);
+    std::cout << Eigen::MatrixXi(d) << std::endl;
 }
 
 auto helloQt(int argc, char** argv) -> int

@@ -5,6 +5,7 @@
 #ifndef POLYA_H_
 #define POLYA_H_
 
+#include "common/Types.h"
 // May need regular matrices too, which are in <Eigen/Dense>
 #include <Eigen/Sparse>
 
@@ -21,10 +22,10 @@ enum class SamplingType : int
  * Documentation here please
  */
 auto polya(
-    Eigen::SparseMatrix<int> V,
-    Eigen::SparseMatrix<int> A,
-    Eigen::SparseMatrix<int> Delta,
-    SamplingType type) -> Eigen::SparseMatrix<int>;
+    const UrnMatrix& V,
+    const AdjacencyMatrix& A,
+    const DeltaMatrix& Delta,
+    SamplingType type) -> UrnMatrix;
 
 #endif
 
