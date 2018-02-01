@@ -15,6 +15,7 @@
 using SparseMatrix = Eigen::SparseMatrix<int>; // declares a column-major sparse matrix type of double
 using Triplet = Eigen::Triplet<int>; // declarse a triplet type for doubles
 using Triplets = std::vector<Triplet>;
+using Dynamic1D = Eigen::VectorXf;
 
 auto helloEigen() -> void
 {
@@ -34,6 +35,7 @@ auto helloEigen() -> void
     A.setFromTriplets(elements.begin(), elements.end());
 
     std::cout << Eigen::MatrixXi(A) << std::endl;
+    std::cout << x << std::endl;
 }
 
 auto helloQt(int argc, char** argv) -> int
