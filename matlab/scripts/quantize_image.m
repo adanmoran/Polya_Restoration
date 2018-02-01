@@ -7,6 +7,7 @@ function [q_image, partition, codebook] = quantize_image(image, num_ball_types, 
     if (num_ball_types == num_colours + 1)
         q_image = image;
         partition = 0:num_colours;
+        codebook = [];
         return
     end
     
