@@ -37,15 +37,17 @@ target_include_directories(Eigen INTERFACE
 # Qt #
 ######
 # Define where we can find the Qt installation for this OS
-if(UNIX)
-    set(QT_COMPILER gcc_64)
-elseif(APPLE)
+if(APPLE)
     set(QT_COMPILER clang_64)
+    set(CMAKE_PREFIX_PATH ${CMAKE_PREFIX_PATH} ${PROJECT_SOURCE_DIR}/external/Qt5.10/5.10.0/${QT_COMPILER})
+elseif(UNIX)
+    set(QT_COMPILER gcc_64)
 endif()
 
 # Append to CMake Modules to find Qt in the downloaded directory
-set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} ${PROJECT_SOURCE_DIR}/external/Qt5.10.0/5.10.0/${QT_COMPILER}/lib/cmake)
+set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} ${PROJECT_SOURCE_DIR}/external/Qt5.10/5.10.0/${QT_COMPILER}/lib/cmake)
 
+message("CMAKE_MODULE_PATH is now ${CMAKE_MODULE_PATH}")
 # Find includes in corresponding build directories
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
 # Instruct CMake to run moc automatically when needed.

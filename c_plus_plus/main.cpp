@@ -29,13 +29,22 @@ auto helloEigen() -> void
     elements.reserve(n);
     for (int i = 0; i < n; ++i)
     {
-        elements.push_back(Triplet(i,i,1));
+        elements.push_back(Triplet(i,i,2));
     }
 
     A.setFromTriplets(elements.begin(), elements.end());
 
+    Eigen::VectorXi v(n);
+    for (int i = 0; i < n; ++i)
+    {
+        v(i) = i * n;
+    }
+
     std::cout << Eigen::MatrixXi(A) << std::endl;
+    Dynamic1D x = Dynamic1D::Ones(A.rows());
     std::cout << x << std::endl;
+    std::cout << v << std::endl;
+    std::cout << A * v << std::endl;
 }
 
 auto helloQt(int argc, char** argv) -> int
