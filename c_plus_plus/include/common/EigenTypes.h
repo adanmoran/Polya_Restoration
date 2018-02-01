@@ -25,9 +25,22 @@ public:
     {}
 };
 
+template<class T>
+auto createSquareMatrix(int size, const std::vector<Eigen::Triplet<T>>& ijk) -> SquareSparseMatrix<T>
+{
+    SquareSparseMatrix<T> a(size);
+    a.setFromTriplets(ijk.begin(), ijk.end());
+
+    return a;
+}
+
 using AdjacencyMatrix = SquareSparseMatrix<int>;
 using UrnMatrix = Eigen::SparseMatrix<int>;
 using DeltaMatrix = SquareSparseMatrix<int>;
+
+// Dynamic matrix sizes
+using Dynamic2D_d = Eigen::MatrixXd;
+using Dynamic2D_i = Eigen::MatrixXi;
 
 #endif
 

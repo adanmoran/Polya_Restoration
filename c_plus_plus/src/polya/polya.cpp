@@ -2,13 +2,17 @@
 // Copyright MTHE 493, 2018 //
 //////////////////////////////
 
+#include "common/EigenTypes.h"
 #include "polya/polya.h"
 
 auto polya(
-    Eigen::SparseMatrix<int> V, 
-    Eigen::SparseMatrix<int> A, 
-    Eigen::SparseMatrix<int> Delta, 
-    SamplingType type) -> Eigen::SparseMatrix<int>
+    const UrnMatrix& V, 
+    const AdjacencyMatrix& A, 
+    const DeltaMatrix& Delta, 
+    SamplingType type) -> UrnMatrix
 {
     /* Polya code here */
+    return UrnMatrix(V.rows(), V.cols());
 }
+
+/* vim: set ts=4 sw=4 et :*/

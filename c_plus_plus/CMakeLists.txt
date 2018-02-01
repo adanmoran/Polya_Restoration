@@ -6,11 +6,18 @@ cmake_minimum_required(VERSION 3.5)
 
 project(PolyaRestoration)
 
+include(CTest)
+
 #########################
 # C++-Oriented Commands #
 #########################
 # Set the compiler to use C++14
 set(CMAKE_CXX_STANDARD 14)
+
+#########
+# GTest #
+#########
+include(${CMAKE_SOURCE_DIR}/cmake/DownloadGTest.cmake)
 
 #########
 # Eigen #
@@ -39,11 +46,12 @@ target_include_directories(Eigen INTERFACE
 # Define where we can find the Qt installation for this OS
 if(APPLE)
     set(QT_COMPILER clang_64)
-    set(CMAKE_PREFIX_PATH ${CMAKE_PREFIX_PATH} ${PROJECT_SOURCE_DIR}/external/Qt5.10/5.10.0/${QT_COMPILER})
 elseif(UNIX)
     set(QT_COMPILER gcc_64)
 endif()
 
+# Append to CMAKE_PREFIX_PATH to find the correct find_scripts
+set(CMAKE_PREFIX_PATH ${CMAKE_PREFIX_PATH} ${PROJECT_SOURCE_DIR}/external/Qt5.10/5.10.0/${QT_COMPILER})
 # Append to CMake Modules to find Qt in the downloaded directory
 set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} ${PROJECT_SOURCE_DIR}/external/Qt5.10/5.10.0/${QT_COMPILER}/lib/cmake)
 
@@ -69,7 +77,10 @@ target_link_libraries(Main
     Qt5::Widgets
 )
 
+# Source Code
 add_subdirectory(src)
+# Google Test Scripts
+add_subdirectory(test)
 
 # vim: set ts=4 sw=4 et :
 
