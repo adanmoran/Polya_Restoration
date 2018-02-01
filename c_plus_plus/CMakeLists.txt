@@ -39,6 +39,8 @@ target_include_directories(Eigen INTERFACE
 # Define where we can find the Qt installation for this OS
 if(UNIX)
     set(QT_COMPILER gcc_64)
+elseif(APPLE)
+    set(QT_COMPILER clang_64)
 endif()
 
 # Append to CMake Modules to find Qt in the downloaded directory
