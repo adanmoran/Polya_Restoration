@@ -5,6 +5,7 @@
 // Std
 #include <vector>
 #include <iostream>
+#include <chrono>
 // Eigen
 #include <Eigen/Sparse>
 #include <Eigen/Dense>
@@ -16,7 +17,6 @@
 
 using SparseMatrix = Eigen::SparseMatrix<int>; // declares a column-major sparse matrix type of double
 using Triplet = Eigen::Triplet<int>; // declarse a triplet type for doubles
-using Triplets = std::vector<Triplet>;
 using Dynamic1D = Eigen::VectorXf;
 
 auto helloEigen() -> void
@@ -27,7 +27,7 @@ auto helloEigen() -> void
     SparseMatrix A(n, m);
 
     // build a set of triplets
-    Triplets elements;
+    Triplets<int> elements;
     elements.reserve(n);
     for (int i = 0; i < n; ++i)
     {
@@ -63,10 +63,48 @@ auto helloQt(int argc, char** argv) -> int
 int main( int argc, char **argv )
 {
     std::cout << "Eigen:::::" << std::endl;
+    /*
     helloEigen();
     std::cout << "::::::::::::::" << std::endl;
     std::cout << "Qt------------" << std::endl;
     return helloQt(argc, argv);
+    */
+    using namespace std::chrono;
+
+    high_resolution_clock::time_point t1 = high_resolution_clock::now();
+
+    int n = 1048576;
+    SparseMatrix A(n,n);
+    Eigen::MatrixXi V(n,256);
+
+    Triplets<int> ints;
+    ints.reserve(n);
+    for(int i =0; i < n; ++i)
+    {
+        ints.push_back(Triplet(i,i,1));
+        for (int j = 0; j < 256; ++j)
+        {
+            V(i,j) = j;
+        }
+    }
+    A.setFromTriplets(ints.begin(), ints.end());
+
+    high_resolution_clock::time_point t2 = high_resolution_clock::now();
+    duration<double, std::milli> time_span = t2 - t1;
+    std::cout << "Creation Time: " << time_span.count() << std::endl;
+
+    double average;
+    for(int i = 0; i < 10; ++i)
+    {
+        t2 = high_resolution_clock::now();
+        auto B = A * V;
+        t1 = high_resolution_clock::now();
+        time_span = t1 - t2;
+        average += time_span.count() ;
+    }
+    average = average / 10.0;
+    std::cout << "Multiplication Time: " << average << std::endl;
+
 }
 
 /* vim: set ts=4 sw=4 et :*/

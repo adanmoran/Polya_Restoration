@@ -1,3 +1,7 @@
+########################################
+# Copyright Adan Moran-MacDonald, 2018 #
+########################################
+
 add_library(Polya
     polya.cpp
 )
@@ -8,3 +12,5 @@ target_include_directories(Polya PUBLIC
 target_link_libraries(Polya
     Eigen
 )
+
+# vim: set ts=4 sw=4 et :

@@ -1,3 +1,4 @@
+
 # We need thread support
 find_package(Threads REQUIRED)
 
@@ -43,3 +44,6 @@ set_target_properties(GMock PROPERTIES
 # I couldn't make it work with INTERFACE_INCLUDE_DIRECTORIES
 include_directories("${source_dir}/googletest/include"
                     "${source_dir}/googlemock/include")
+
+
+# vim: set ts=4 sw=4 et :
