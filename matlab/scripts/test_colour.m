@@ -2,11 +2,11 @@ clear
 close all
 clc
 %% Load Image in Grayscale or Colour
-% image = imread('../images/lena512.bmp');
+image = imread('../images/lena512.bmp');
 % image = rgb2gray(imread('../images/oil_spill.jpg'));
 % image = imread('../images/aerial1.tiff');
 % image = imread('../images/pentagon.tiff');
-image = imread('../images/goldengate.tiff');
+% image = imread('../images/goldengate.tiff');
 
 %% Preferences
 prefs.edges.use_edges = false;
@@ -20,8 +20,8 @@ prefs.edges.sigma = 3;
 prefs.edges.thresh = 0.2;
 
 prefs.quant.num_ball_types = 30; % [2 - 256]
-prefs.quant.type = 'norm'; % unif, norm, exp
-prefs.quant.inverse = 'high'; % low, high, mid
+prefs.quant.type = 'lloyd'; % unif, lloyd
+prefs.quant.inverse = 'mid'; % low, high, mid
 
 prefs.adj.radius = 3;
 prefs.adj.norm = 2;

@@ -6,7 +6,7 @@
 % Inputs:
 % q_image = the quantized image
 % inverse_quantization = the type of inverse quantization to be performed
-%   can be 'low' or 'lower', 'high' or 'upper', or 'mid' or 'middle'
+%   can be 'low', 'high', or 'mid'
 % partition = the bands where the values are partitioned into
 % codebook = the "average" values within the bands based on the
 %   quantization type/distribution
@@ -14,7 +14,10 @@
 % Outputs:
 % image = the quantized image mapped back to its partitioned space
 
-function image = inverse_quantize_image(q_image, inverse_quantization, partition, codebook)
+function image = inverse_quantize_image(q_image, ...
+                                        inverse_quantization, ...
+                                        partition, ...
+                                        codebook)
     % Get the numerical type of the image
     classname = class(q_image); 
     % Get the max size of that type
@@ -26,13 +29,13 @@ function image = inverse_quantize_image(q_image, inverse_quantization, partition
         return
     end
 
-    if strcmp(inverse_quantization, 'low') || strcmp(inverse_quantization, 'lower')
+    if strcmp(inverse_quantization, 'low')
         assigned_values = [0 partition];
     
-    elseif strcmp(inverse_quantization, 'high') || strcmp(inverse_quantization, 'upper')
+    elseif strcmp(inverse_quantization, 'high')
         assigned_values = [partition num_colours];
         
-    elseif strcmp(inverse_quantization, 'mid') || strcmp(inverse_quantization, 'middle')
+    elseif strcmp(inverse_quantization, 'mid')
         assigned_values = codebook;
         
     end
