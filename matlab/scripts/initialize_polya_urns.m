@@ -30,7 +30,4 @@ function urns = initialize_polya_urns(image, initial_balls, num_ball_types)
     balls = initial_balls * ones(numRows,1);
     % Now build the urn matrix as a sparse matrix
     urns = sparse(rows, urnCols, balls, numRows, num_ball_types);
-    
-    % The state at time 0 is the initial superurn
-    %urns = adjacency * urns;
 end

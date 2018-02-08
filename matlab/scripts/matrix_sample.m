@@ -38,5 +38,4 @@ function index = matrix_sample(W)
     index = [C(1,:); xor(C(2:end,:),C(1:end-1,:))];
     % Get the actual index matrix in nxk format.
     index = index';
-
 end
