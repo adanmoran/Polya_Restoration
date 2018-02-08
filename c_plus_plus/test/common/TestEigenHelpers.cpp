@@ -156,29 +156,74 @@ TEST_F(EigenTest, eyeOnlyDiagonalsAreOne)
 
 TEST_F(EigenTest, RowCumSumBasics)
 {
-	// Returned vector should be of the same number of rows as square matrix
-	ASSERT_EQ(cumsum(mat_).size(), mat_.rows());
+	// Returned matrix should be of the same number of rows as square matrix
+	ASSERT_EQ(cumsum(mat_).rows(), mat_.rows());
+	ASSERT_EQ(cumsum(mat_).cols(), mat_.cols());
 		
 	// Returned vector should be number of rows as non-square matrix
-	ASSERT_EQ(cumsum(SparseMatrix<int>(3,4)).size(), 3);
+	ASSERT_EQ(cumsum(SparseMatrix<int>(3,4)).rows(), 3);
+	ASSERT_EQ(cumsum(SparseMatrix<int>(3,4)).cols(), 4);
 	
 	// Returned vector of empty sparse matrix should be zero
-	auto vect = cumsum(mat_);
-	for(int i = 0; i < vect.size(); ++i)
+	auto c = cumsum(mat_);
+	for(int i = 0; i < c.rows(); ++i)
 	{
-		EXPECT_EQ(vect(i),0);
+		for(int j = 0; j < c.cols(); ++j)
+		{
+			EXPECT_EQ(c.coeff(i,j),0);
+		}
 	}
 }
 
 TEST_F(EigenTest, RowCumSumContents)
 {
-	//TODO: Test cumsum for square identity matrix
-	
-	//TODO: Test cumsum for square non-identity matrix
+
+	// Test cumsum for square identity matrix
+	auto c_eye = cumsum(eye(3));
+	ASSERT_EQ(c_eye.rows(), 3);
+	ASSERT_EQ(c_eye.cols(), 3);
+
+	EXPECT_EQ(MatrixXi(c_eye), MatrixXi(eye(3)));
+
+	// Test cumsum for square non-identity matrix
+	MatrixXi nonId(3,3);
+	nonId << 
+		1,2,3,
+		4,5,6,
+		7,8,9;
+
+	MatrixXi nonIdSum(3,3);
+	nonIdSum << 
+		1,3,6,
+		4,9,15,
+		7,15,24;
+
+	Eigen::SparseMatrix<int> spNonId = nonId.sparseView();
+	auto cNonId = MatrixXi(cumsum(spNonId));
+	EXPECT_EQ(cNonId,nonIdSum) <<
+		"cumsum:\n" << cNonId << "\n actual: \n" << nonIdSum;
 	
 	//TODO: Test cumsum for non-square matrix
+	MatrixXi nonSquare(4,2);
+	nonSquare << 
+		1,2,
+		3,4,
+		5,6,
+		7,8;
+	MatrixXi nonSquareSum(4,2);
+	nonSquareSum <<
+		1,3,
+		3,7,
+		5,11,
+		7,15;
+	
+	Eigen::SparseMatrix<int> spNonSquare = nonSquare.sparseView();
+	auto cNonSquare = MatrixXi(cumsum(spNonSquare));
+	EXPECT_EQ(cNonSquare,nonSquareSum) <<
+		"cumsum:\n" << cNonSquare << "\n actual: \n" << nonSquareSum;
 	
 }
+
 
 int main(int argc, char** argv)
 {

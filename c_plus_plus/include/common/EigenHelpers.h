@@ -34,13 +34,36 @@ auto createSquareMatrix(int size, const Triplets<T>& ijk) -> Eigen::SparseMatrix
 }
 
 /**
- * Helper function for doing a row-wise cumsum along sparse matrices (like MATLAB)
+ * Helper function for doing a row-wise cumsum along sparse matrices (like MATLAB) for column-major matrices
  */
 template<class T>
-auto cumsum(const Eigen::SparseMatrix<T>& matrix) -> Eigen::Matrix<T, Eigen::Dynamic, 1>
+auto cumsum(const Eigen::SparseMatrix<T>& matrix) -> Eigen::SparseMatrix<T>
 {
-    // Cumulatively sum by multiplying by a vector of all ones
-    return matrix * VectorX<T>::Ones(matrix.cols());
+    Eigen::SparseMatrix<T> Y(matrix.rows(), matrix.cols());
+    Y.reserve(matrix.nonZeros());
+
+    Triplets<T> values;
+    values.reserve(matrix.nonZeros());
+
+    for(int o = 0 ; o < matrix.outerSize(); o++)
+    {
+        for (typename Eigen::SparseMatrix<T>::InnerIterator it(matrix,o); it; ++it)
+        {
+            auto i = it.index();
+
+            if (o == 0)
+            {
+
+                Y.insert(i,o) = it.value();
+            }
+            else
+            {
+
+                Y.insert(i,o) = Y.coeff(i,o-1) + it.value();
+            }
+        }
+    }
+    return Y;
 }
 
 /**
