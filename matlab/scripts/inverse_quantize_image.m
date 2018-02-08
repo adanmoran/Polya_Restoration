@@ -18,10 +18,14 @@ function image = inverse_quantize_image(q_image, ...
                                         inverse_quantization, ...
                                         partition, ...
                                         codebook)
-    % Get the numerical type of the image
-    classname = class(q_image); 
-    % Get the max size of that type
-    num_colours = double(intmax(classname));
+    if islogical(q_image)
+        num_colours = 2;
+    else
+        % Get the numerical type of the image
+        classname = class(q_image); 
+        % Get the max size of that type
+        num_colours = double(intmax(classname));
+    end
     
     % If the number of balls corresponds to no quantization, exit
     if (length(partition) == num_colours + 1)

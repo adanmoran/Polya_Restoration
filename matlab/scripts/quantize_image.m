@@ -19,10 +19,14 @@ function [q_image, partition, codebook] = quantize_image(...
                                                         image, ...
                                                         num_ball_types, ...
                                                         q_type)    
-    % Get the numerical type of the image
-    classname = class(image); 
-    % Get the max size of that type
-    num_colours = double(intmax(classname));
+    if islogical(image)
+        num_colours = 2;
+    else
+        % Get the numerical type of the image
+        classname = class(image); 
+        % Get the max size of that type
+        num_colours = double(intmax(classname));
+    end
     
     % If the number of balls corresponds to no quantization, exit
     if (num_ball_types == num_colours + 1)

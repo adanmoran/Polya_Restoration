@@ -1,3 +1,4 @@
+%% Reset workspace
 clear
 close all
 clc
@@ -6,10 +7,15 @@ clc
 % image = rgb2gray(imread('../images/oil_spill.jpg'));
 % image = imread('../images/aerial1.tiff');
 % image = imread('../images/pentagon.tiff');
- image = imread('../images/goldengate.tiff');
+image = imread('../images/goldengate.tiff');
 
 %% Preferences
-prefs.image.type = 'ycbcr'; % 'bw', 'grey', 'rgb', 'ycbcr'
+prefs.image.type = 'rgb'; % 'bw', 'grey', 'rgb', 'ycbcr'
+
+% Lena threshold: 0.52
+% oil_spill threshold: 0.18
+prefs.image.binarize_thresh = 0.52;
+
 prefs.edges.use_edges = false;
 prefs.edges.filter = 'canny';
 % The variance of Canny's gaussian filter. Default is sqrt(2)
@@ -36,6 +42,12 @@ prefs.polya.iterations = 8;
 prefs.median.iterations = 8;
 
 % Noise parameters
+% BW Gaussian Noise Parameters
+noise.bw.gaussian_std_dev = 1;
+noise.bw.gaussian_mean = 0;
+noise.bw.gaussian_confidence_interval = 0.8; % Error rate is 1 - this
+
+% Colour & Greyscale Noise Parameters
 noise.gaussian.sigma = 0.01;
 noise.gaussian.mean = 0;
 
@@ -50,7 +62,16 @@ noise.type = 'both'; % 'gaussian' or 'burst' or 'both' or 'none'
 
 %% Add Gaussian or Bursty Noise
 rng(0, 'twister');
-noisy_image = add_noise(image, noise);
+
+if strcmp(prefs.image.type, 'bw')
+    % If it's an rgb image, convert it to grayscale
+    if size(size(image),2) > 2
+        image = rgb2gray(image);
+    end
+    image = imbinarize(image, prefs.image.binarize_thresh);
+end
+
+noisy_image = add_noise(image, prefs, noise);
 
 figure;
 imshowpair(image, noisy_image, 'montage');
@@ -59,7 +80,7 @@ imshowpair(image, noisy_image, 'montage');
 medianed = noisy_image;
 
 %% Run Colour or Greyscale Polya Filter
-if length(size(image)) > 2   % is a colour image
+if strcmp(prefs.image.type, 'rgb') || strcmp(prefs.image.type, 'ycbcr')
     if strcmp(prefs.image.type, 'ycbcr')
         noisy_image = rgb2ycbcr(noisy_image);
     end
@@ -83,12 +104,27 @@ if length(size(image)) > 2   % is a colour image
     for i = 1:prefs.median.iterations
         medianed = medfilt3(medianed);
     end
-else
+    
+elseif strcmp(prefs.image.type, 'grey')
     % Run the greyscale polya filter
     output = polyafilt(noisy_image, prefs);
     for i = 1:prefs.median.iterations
         medianed = medfilt2(medianed);
     end
+    
+elseif strcmp(prefs.image.type, 'bw')
+    prefs.quant.num_ball_types = 3;
+    
+    % Run the black and white polya filter
+    output = polyafilt(noisy_image, prefs);
+    for i = 1:prefs.median.iterations
+        medianed = medfilt2(medianed);
+    end
+    
+    % Convert to numeric type for metric functions
+    output = uint8(output);
+    image = uint8(image);
+    medianed = uint8(medianed);
 end
 
 %% Display Results
@@ -107,53 +143,3 @@ fprintf(' ---- psnr: %.3f\n', psnr(medianed, image));
 figure;
 imshowpair(output, medianed, 'montage');
 title('Polya vs Median');
-
-
-%% add_noise
-% Add Gaussian or bursty noise to input image.
-
-function noisy_image = add_noise(image, noise)
-    if strcmp(noise.type, 'gaussian')
-        noisy_image = imnoise(image, ...
-                              'gaussian', ...
-                              noise.gaussian.mean, ...
-                              noise.gaussian.sigma);
-                          
-    elseif strcmp(noise.type, 'burst')
-        if strcmp(noise.bursty.type,'binary')
-            noisy_image = add_bursty_noise(image, ...
-                                           noise.bursty.correlation, ...
-                                           noise.bursty.error, ...
-                                           'binary');
-        else
-            noisy_image = add_bursty_noise(image, ...
-                                           noise.bursty.correlation, ...
-                                           noise.bursty.error, ...
-                                           'gaussian', ...
-                                           noise.bursty.mean, ...
-                                           noise.bursty.sigma);
-        end
-        
-    elseif strcmp(noise.type, 'both')
-        noisy_image = imnoise(image, ...
-                              'gaussian', ...
-                              noise.gaussian.mean, ...
-                              noise.gaussian.sigma);
-        if strcmp(noise.bursty.type,'binary')
-            noisy_image = add_bursty_noise(noisy_image, ...
-                                           noise.bursty.correlation, ...
-                                           noise.bursty.error, ...
-                                           'binary');
-        else
-            noisy_image = add_bursty_noise(noisy_image, ...
-                                           noise.bursty.correlation, ...
-                                           noise.bursty.error, ...
-                                           'gaussian', ...
-                                           noise.bursty.mean, ...
-                                           noise.bursty.sigma);
-        end
-        
-    else % no noise
-        noisy_image = image;
-    end
-end
