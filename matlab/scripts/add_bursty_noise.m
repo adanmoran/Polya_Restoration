@@ -79,14 +79,23 @@ function image = add_bursty_noise( ...
             
             % If we drew a 1 we add noise (flip pixel or add gauss noise)
             if val == 1
+                newColour = 0;
                 if strcmp(noise, 'binary')
-                    if image(i,j) > 0
-                        image(i,j) = 0;
-                    else
-                        image(i,j) = 1;
+                    if image(i,j) == 0
+                        newColour = 1;
                     end
                 else
-                    image(i,j) = image(i,j) + sigma*randn(1,1) + mean;
+                    newColour = image(i,j) + sigma*randn(1,1) + mean;
+                end
+                % If our image is 3D (i.e. layered grayscales), assign the
+                % new colour to each
+                
+                if length(size(image)) == 3
+                    for n = 1 : size(image,3)
+                        image(i,j,n) = newColour;
+                    end
+                else
+                    image(i,j) = newColour;
                 end
             end
             % Keep track of this current value in order to check whether we
