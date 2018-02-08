@@ -48,6 +48,8 @@ if(APPLE)
     set(QT_COMPILER clang_64)
 elseif(UNIX)
     set(QT_COMPILER gcc_64)
+else()
+    set(QT_COMPILER msvc2017_64)
 endif()
 
 # Append to CMAKE_PREFIX_PATH to find the correct find_scripts
