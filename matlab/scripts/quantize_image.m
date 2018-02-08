@@ -32,26 +32,29 @@ function [q_image, partition, codebook] = quantize_image(...
         return
     end
     
+    % convert image to vector for codebook calculation
+    Y = double(reshape(image, numel(image), 1));
+    
     if strcmp(q_type, 'unif')
         % Uniform Quantization
         % Divide the space into equal partitions
         p = num_colours / num_ball_types;
         partition = p:p:num_colours - p;
         
-        domain = 0:p:num_colours;
-        % Get average between two points, used for 'mid' inverse
-        % quantization
-        codebook = mean([domain(1:end-1); domain(2:end)]);
-        
     else 
-        % Lloyd-Max Quantization        
-        % convert image to vector for lloyd-max algorithm
-        Y = double(reshape(image, numel(image), 1));
+        % Lloyd-Max Quantization
         [partition, codebook] = lloyds(Y, num_ball_types);
         
     end
     
     partition = round(partition);
-    codebook = round(codebook);
     q_image = imquantize(image, partition, 0:num_ball_types - 1);
+    
+    if strcmp(q_type, 'unif')
+        Y_q = double(reshape(q_image, numel(q_image), 1));
+        % For 'mid' inverse quant, use the mean of each bin
+        codebook = accumarray(Y_q + 1, Y, [], @mean)';
+    end
+    
+    codebook = round(codebook);
 end
