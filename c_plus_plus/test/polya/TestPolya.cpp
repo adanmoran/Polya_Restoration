@@ -6,7 +6,7 @@
 #include "common/EigenTypes.h"
 #include "polya/polya.h"
 
-using Triplet = Eigen::Triplet<int>;
+using Tripleti = Triplet<int>;
 
 class PolyaTest : public ::testing::Test
 {
@@ -27,7 +27,7 @@ TEST(PolyaTest, Identity)
      1  0
      0  1
     */
-    std::vector<Triplet> deltaOnes=
+    std::vector<Tripleti> deltaOnes=
     {
         {0, 0, 1},
         {1, 1, 1}
@@ -52,7 +52,7 @@ TEST(PolyaTest, Identity)
      connections.
      */
 
-    std::vector<Triplet> adjOnes =
+    std::vector<Tripleti> adjOnes =
     {
         {0, 0, 1},
         {1, 1, 1},
@@ -80,7 +80,7 @@ TEST(PolyaTest, Identity)
       1 0
     */
 
-    std::vector<Triplet> urnOnes =
+    std::vector<Tripleti> urnOnes =
     {
         {0,0,1},
         {1,1,1},

@@ -15,10 +15,8 @@
 // Ours
 #include "common/EigenTypes.h"
 
-using SparseMatrix = Eigen::SparseMatrix<int>; // declares a column-major sparse matrix type of double
-using Triplet = Eigen::Triplet<int>; // declarse a triplet type for doubles
+using SparseMatrix = Eigen::SparseMatrix<int>;
 using Dynamic1D = Eigen::VectorXf;
-
 auto helloEigen() -> void
 {
     // build a nxm sparse matrix
@@ -31,7 +29,7 @@ auto helloEigen() -> void
     elements.reserve(n);
     for (int i = 0; i < n; ++i)
     {
-        elements.push_back(Triplet(i,i,2));
+        elements.push_back(Triplet<int>(i,i,2));
     }
 
     A.setFromTriplets(elements.begin(), elements.end());
@@ -81,7 +79,7 @@ int main( int argc, char **argv )
     ints.reserve(n);
     for(int i =0; i < n; ++i)
     {
-        ints.push_back(Triplet(i,i,1));
+        ints.push_back(Triplet<int>(i,i,1));
         for (int j = 0; j < 256; ++j)
         {
             V(i,j) = j;

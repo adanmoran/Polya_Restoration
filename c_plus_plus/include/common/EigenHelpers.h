@@ -10,6 +10,19 @@
 #include <Eigen/Sparse>
 #include <Eigen/Dense>
 
+/**
+ * Helper function to generate regular matrices from a set of triplets
+ */
+template<class T>
+auto createSparseMatrix(
+    int rows, 
+    int cols, 
+    const Triplets<T>& ijk) -> Eigen::SparseMatrix<T>
+{
+    Eigen::SparseMatrix<T> a(rows, cols);
+    a.setFromTriplets(ijk.begin(), ijk.end());
+    return a;
+}
 
 /**
  * Helper function to generate square matrices from a set of triplets
@@ -17,10 +30,7 @@
 template<class T>
 auto createSquareMatrix(int size, const Triplets<T>& ijk) -> Eigen::SparseMatrix<T>
 {
-    Eigen::SparseMatrix<T> a(size,size);
-    a.setFromTriplets(ijk.begin(), ijk.end());
-
-    return a;
+    return createSparseMatrix(size, size, ijk);
 }
 
 /**
