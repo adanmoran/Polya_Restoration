@@ -1,166 +1,145 @@
 %% Reset workspace
-%clear; 
-close all; 
-clc;
+clear
+close all
+clc
+%% Load Image in Grayscale or Colour
+% image = imread('../images/lena512.bmp');
+% image = rgb2gray(imread('../images/oil_spill.jpg'));
+% image = imread('../images/aerial1.tiff');
+% image = imread('../images/pentagon.tiff');
+image = imread('../images/goldengate.tiff');
 
-%% Declare Variables/Parameters
-% Verbosity flags
-verbose = true;
-
-% Image Things
-%image_location = '..\images\resolution_chart.tiff';
-% image_location = '..\images\lena512.bmp';
-image_location = '..\images\oil_spill.jpg';
+%% Preferences
+prefs.image.type = 'rgb'; % 'bw', 'grey', 'rgb', 'ycbcr'
 
 % Lena threshold: 0.52
 % oil_spill threshold: 0.18
-image_binarize_thresh = 0.18;
+prefs.image.binarize_thresh = 0.52;
 
-% Choose the noise type:
-% Options are 'gaussian' or 'none' or 'burst'.
-noise_type = 'gaussian';
+prefs.edges.use_edges = false;
+prefs.edges.filter = 'canny';
+% The variance of Canny's gaussian filter. Default is sqrt(2)
+prefs.edges.sigma = 3; 
+% Threshold for the Canny method
+% Oil Spill: 0.4
+% Lena: with gauss = 0.2, with burst = 0.38
+% Two ships: 0.5
+prefs.edges.thresh = 0.2;
 
-% Gaussian Noise Parameters
-gaussian_std_dev = 1;
-gaussian_mean = 0;
-gaussian_confidence_interval = 0.8; % Error rate is 1 - this
+prefs.quant.num_ball_types = 30; % [2 - 256]
+prefs.quant.type = 'unif'; % unif, lloyd
+prefs.quant.inverse = 'mid'; % low, high, mid
 
-% Burst Noise parameters
-burst_correlation = 0.98;
-burst_error = 0.1;
+prefs.adj.radius = 3;
+prefs.adj.norm = 2;
 
-% Edge Detection Parameters
-edge_type = 'canny';
-edge_thresh = 0.4;
-edge_sigma = 2.7;
-use_edges = false;
+prefs.polya.sample_type = 'median'; % 'median', 'random'
+prefs.polya.starting_balls = 100; % Starting balls in each urn
+% Number of balls to add to the urn after each polya step
+prefs.polya.balls_to_add = 60;
+prefs.polya.iterations = 8;
 
-% Adjacency Matrix Parameters
-adj_radius = 2;
-adj_norm = 1;                   % can be 1, 2, or 'inf'
+prefs.median.iterations = 8;
 
-% Urn parameters
-starting_balls = 10; % the initial number of balls at time -1 of each urn
+% Noise parameters
+% BW Gaussian Noise Parameters
+noise.bw.gaussian_std_dev = 1;
+noise.bw.gaussian_mean = 0;
+noise.bw.gaussian_confidence_interval = 0.8; % Error rate is 1 - this
 
-% Polya Parameters
-polya_iterations = 20;
-delta_black = 5;
-delta_white = delta_black;
+% Colour & Greyscale Noise Parameters
+noise.gaussian.sigma = 0.01;
+noise.gaussian.mean = 0;
 
-% Choose how to sample
-% Options are: 'median' or 'random'
-sample_type = 'median';
+noise.bursty.type = 'binary'; % 'gaussian' or 'binary'
+noise.bursty.correlation = 0.98;
+noise.bursty.error = 0.1; % 0.2 for gaussian, 0.1 for binary
+noise.bursty.mean = 0;
+noise.bursty.sigma = 100;
 
-% Median Filter parameters
-median_iterations = 3; % Don't need much, generally after 4 it converges
-
-%% Load Binary Image
-image = imread(image_location);
-
-% If it's an rgb image, convert it to grayscale
-% i.e. if the image is "3D" we convert it to grayscale
-if size(size(image),2) > 2
-    image = rgb2gray(image);
-end
-image_bw = imbinarize(image, image_binarize_thresh); % binarize image
-
-%% Precomputation before Polya Model
-% Add Gaussian noise to binarized image
-image_bw_noise = add_gaussian_noise(image_bw,            ... 
-                                   gaussian_std_dev,    ... 
-                                   gaussian_mean,       ...
-                                   gaussian_confidence_interval);
-if strcmp(noise_type, 'none') || strcmp(noise_type, '')
-   image_bw_noise = image_bw;
-elseif strcmp(noise_type, 'burst')
-    image_bw_noise = add_bursty_noise(image_bw,          ...
-                                      burst_correlation, ...
-                                      burst_error);
-end
-
-figure;
-imshowpair(image_bw, image_bw_noise, 'montage');
-title('Noise added to Original');
-
-% Find edges in noisy image
-edges = edge(image_bw_noise, edge_type, edge_thresh, edge_sigma);
-figure;
-imshowpair(image_bw_noise, edges, 'montage');
-title('Edge Map');
-
-% Get image initial adjacency matrix with R = 1, Norm = 1
-adjacency = get_sparse_adj(size(image_bw), adj_radius, adj_norm);
-
-%% Setup Polya Model
-% Initialize urns with standard adjacency matrix
-urns = initialize_polya_urns(image_bw_noise, adjacency, starting_balls);
-
-% Remove adjacency connections based on edge graph
-%adjacency = remove_edge_connections(adjacency, edges);
-if use_edges
-    adjacency = adjacency_minus_edge_d(adjacency, edges, adj_radius);
-end
-
-% Initialize Delta for the polya urns
-Delta = [delta_black      0      ;
-              0      delta_white ];
-
-% Vector of errors
-Pe = zeros(polya_iterations + 1, 1);
-Pe(1) = compute_error(image_bw, image_bw_noise);
+noise.type = 'both'; % 'gaussian' or 'burst' or 'both' or 'none'
 
 
-% Iterate the polya contagion over the urns
-for n = 1:polya_iterations
-    tic
-    urns = polya(urns, adjacency, Delta, sample_type);
-    duration = toc;
-    % Compute the image from the resulting urns
-    if verbose
-        output = image_from_urns(size(image_bw_noise), urns);
-        % Show the probability of error
-        Pe(n+1) = compute_error(image_bw, output);
-        fprintf('n = %d | Pe = %.6f | Duration: %.2f\n', n, Pe(n+1), duration);
-    else % Display the runtime so we know it's working
-        toc
+%% Add Gaussian or Bursty Noise
+rng(0, 'twister');
+
+if strcmp(prefs.image.type, 'bw')
+    % If it's an rgb image, convert it to grayscale
+    if size(size(image),2) > 2
+        image = rgb2gray(image);
     end
+    image = imbinarize(image, prefs.image.binarize_thresh);
 end
 
-if verbose
-    % Plot of errors
-    figure;
-    plot(0:length(Pe)-1, Pe);
-    title('Pe vs N');
-    xlabel('N');
-    ylabel('Pe (%)');
+noisy_image = add_noise(image, prefs, noise);
+
+figure;
+imshowpair(image, noisy_image, 'montage');
+
+% Initialize the image for the median filter comparison
+medianed = noisy_image;
+
+%% Run Colour or Greyscale Polya Filter
+if strcmp(prefs.image.type, 'rgb') || strcmp(prefs.image.type, 'ycbcr')
+    if strcmp(prefs.image.type, 'ycbcr')
+        noisy_image = rgb2ycbcr(noisy_image);
+    end
+    channel_1 = noisy_image(:, :, 1);
+    channel_2 = noisy_image(:, :, 2);
+    channel_3 = noisy_image(:, :, 3);
+    
+    % Run the greyscale polya filter on each channel individually
+    channel_1_p = polyafilt(channel_1, prefs);
+    channel_2_p = polyafilt(channel_2, prefs);
+    channel_3_p = polyafilt(channel_3, prefs);
+    
+    % Reconstruct the RGB image
+    output = cat(3, channel_1_p, channel_2_p, channel_3_p);
+
+    if strcmp(prefs.image.type, 'ycbcr')
+        output = ycbcr2rgb(output);
+        noisy_image = ycbcr2rgb(noisy_image);
+    end
+    
+    for i = 1:prefs.median.iterations
+        medianed = medfilt3(medianed);
+    end
+    
+elseif strcmp(prefs.image.type, 'grey')
+    % Run the greyscale polya filter
+    output = polyafilt(noisy_image, prefs);
+    for i = 1:prefs.median.iterations
+        medianed = medfilt2(medianed);
+    end
+    
+elseif strcmp(prefs.image.type, 'bw')
+    prefs.quant.num_ball_types = 3;
+    
+    % Run the black and white polya filter
+    output = polyafilt(noisy_image, prefs);
+    for i = 1:prefs.median.iterations
+        medianed = medfilt2(medianed);
+    end
+    
+    % Convert to numeric type for metric functions
+    output = uint8(output);
+    image = uint8(image);
+    medianed = uint8(medianed);
 end
 
-% Display the images
-output = image_from_urns(size(image_bw_noise), urns);
-
+%% Display Results
 figure;
-imshowpair(image_bw_noise, output, 'montage');
-title('Noise vs NPCM');
-
+imshowpair(noisy_image, output, 'montage');
+title ('Noise vs Polya');
+fprintf('Polya vs Original MSE: %.3f\n', immse(output, image));
+fprintf(' ---- ssim: %.3f\n', ssim(output, image));
+fprintf(' ---- psnr: %.3f\n', psnr(output, image));
 figure;
-imshowpair(image_bw, output, 'montage');
-title('Original vs NPCM');
-
-%% Median Filter Comparison
-
-medianed = image_bw_noise;
-for i = 1:median_iterations
-   medianed = medfilt2(medianed); 
-end
-
-% Show the pictures
+imshowpair(noisy_image, medianed, 'montage');
+title('Noise vs Median');
+fprintf('Median vs Original MSE: %.3f\n', immse(medianed, image));
+fprintf(' ---- ssim: %.3f\n', ssim(medianed, image));
+fprintf(' ---- psnr: %.3f\n', psnr(medianed, image));
 figure;
-imshowpair(image_bw, medianed, 'montage');
-title('Original vs Median');
-
-% Error compared to image
-fprintf('Median Error for %d iterations: %f\n', median_iterations, ...
-    compute_error(image_bw, output));
-
-fprintf('Difference between Polya and Median: %f\n', ...
-    compute_error(output, medianed));
+imshowpair(output, medianed, 'montage');
+title('Polya vs Median');

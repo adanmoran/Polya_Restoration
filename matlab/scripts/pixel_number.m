@@ -13,4 +13,3 @@
 function pixels = pixel_number(ii, jj, m)
     pixels = (ii - ones(size(ii))) .* m + jj;
 end
-
