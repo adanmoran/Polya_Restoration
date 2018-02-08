@@ -16,4 +16,19 @@ target_link_libraries(TestEigenHelpers
 
 add_test(NAME TestEigenHelpers COMMAND TestEigenHelpers)
 
+add_executable(TestEigenOperators
+    TestEigenOperators.cpp
+)
+target_include_directories(TestEigenOperators PUBLIC
+    ${CMAKE_SOURCE_DIR}/include
+)
+target_link_libraries(TestEigenOperators
+    Polya
+    GTest
+    GMock
+)
+
+add_test(NAME TestEigenOperators COMMAND TestEigenOperators)
+
+
 # vim: set ts=4 sw=4 et :
