@@ -2,13 +2,14 @@ clear
 close all
 clc
 %% Load Image in Grayscale or Colour
-image = imread('../images/lena512.bmp');
+% image = imread('../images/lena512.bmp');
 % image = rgb2gray(imread('../images/oil_spill.jpg'));
 % image = imread('../images/aerial1.tiff');
 % image = imread('../images/pentagon.tiff');
-% image = imread('../images/goldengate.tiff');
+ image = imread('../images/goldengate.tiff');
 
 %% Preferences
+prefs.image.type = 'ycbcr'; % 'bw', 'grey', 'rgb', 'ycbcr'
 prefs.edges.use_edges = false;
 prefs.edges.filter = 'canny';
 % The variance of Canny's gaussian filter. Default is sqrt(2)
@@ -20,7 +21,7 @@ prefs.edges.sigma = 3;
 prefs.edges.thresh = 0.2;
 
 prefs.quant.num_ball_types = 30; % [2 - 256]
-prefs.quant.type = 'lloyd'; % unif, lloyd
+prefs.quant.type = 'unif'; % unif, lloyd
 prefs.quant.inverse = 'mid'; % low, high, mid
 
 prefs.adj.radius = 3;
@@ -32,6 +33,7 @@ prefs.polya.starting_balls = 100; % Starting balls in each urn
 prefs.polya.balls_to_add = 60;
 prefs.polya.iterations = 8;
 
+prefs.median.iterations = 8;
 
 % Noise parameters
 noise.gaussian.sigma = 0.01;
@@ -45,6 +47,7 @@ noise.bursty.sigma = 100;
 
 noise.type = 'both'; % 'gaussian' or 'burst' or 'both' or 'none'
 
+
 %% Add Gaussian or Bursty Noise
 rng(0, 'twister');
 noisy_image = add_noise(image, noise);
@@ -57,22 +60,35 @@ medianed = noisy_image;
 
 %% Run Colour or Greyscale Polya Filter
 if length(size(image)) > 2   % is a colour image
-    red_channel = noisy_image(:, :, 1);
-    green_channel = noisy_image(:, :, 2);
-    blue_channel = noisy_image(:, :, 3);
+    if strcmp(prefs.image.type, 'ycbcr')
+        noisy_image = rgb2ycbcr(noisy_image);
+    end
+    channel_1 = noisy_image(:, :, 1);
+    channel_2 = noisy_image(:, :, 2);
+    channel_3 = noisy_image(:, :, 3);
     
     % Run the greyscale polya filter on each channel individually
-    red_channel_p = polyafilt(red_channel, prefs);
-    green_channel_p = polyafilt(green_channel, prefs);
-    blue_channel_p = polyafilt(blue_channel, prefs);
+    channel_1_p = polyafilt(channel_1, prefs);
+    channel_2_p = polyafilt(channel_2, prefs);
+    channel_3_p = polyafilt(channel_3, prefs);
     
     % Reconstruct the RGB image
-    output = cat(3, red_channel_p, green_channel_p, blue_channel_p);
-    medianed = medfilt3(medianed);
+    output = cat(3, channel_1_p, channel_2_p, channel_3_p);
+
+    if strcmp(prefs.image.type, 'ycbcr')
+        output = ycbcr2rgb(output);
+        noisy_image = ycbcr2rgb(noisy_image);
+    end
+    
+    for i = 1:prefs.median.iterations
+        medianed = medfilt3(medianed);
+    end
 else
     % Run the greyscale polya filter
     output = polyafilt(noisy_image, prefs);
-    medianed = medfilt2(medianed);
+    for i = 1:prefs.median.iterations
+        medianed = medfilt2(medianed);
+    end
 end
 
 %% Display Results
