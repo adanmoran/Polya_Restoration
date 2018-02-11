@@ -48,17 +48,17 @@ function [q_image, partition, codebook] = quantize_image(...
     else 
         % Lloyd-Max Quantization
         [partition, codebook] = lloyds(Y, num_ball_types);
-        
     end
     
-    partition = round(partition);
-    q_image = imquantize(image, partition, 0:num_ball_types - 1);
+    q_image = imquantize(image, partition, 0:(num_ball_types - 1));
     
     if strcmp(q_type, 'unif')
         Y_q = double(reshape(q_image, numel(q_image), 1));
         % For 'mid' inverse quant, use the mean of each bin
         codebook = accumarray(Y_q + 1, Y, [], @mean)';
     end
-    
+    % Floor the partition because rounding gives the wrong bounds
+    partition = floor(partition);
+    % Round the codebook - a ball type of "12.9" should be colour 13
     codebook = round(codebook);
 end
