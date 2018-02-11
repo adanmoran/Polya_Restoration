@@ -13,6 +13,7 @@ include(CTest)
 #########################
 # Set the compiler to use C++14
 set(CMAKE_CXX_STANDARD 14)
+set(CMAKE_BUILD_TYPE "Release")
 
 #########
 # GTest #
@@ -27,7 +28,7 @@ include(${CMAKE_SOURCE_DIR}/cmake/DownloadGTest.cmake)
 set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} ${PROJECT_SOURCE_DIR}/external/eigen/cmake)
 
 # Get Eigen as a package (from its installed location)
-if(APPLE)
+if(APPLE OR WIN32)
     # This is so Alfred can find eigen, since his Mac can't do find_package
     set(EIGEN3_INCLUDE_DIR ${CMAKE_SOURCE_DIR}/external/eigen)
 else()
@@ -81,8 +82,10 @@ target_link_libraries(Main
 
 # Source Code
 add_subdirectory(src)
+if(NOT WIN32)
 # Google Test Scripts
 add_subdirectory(test)
+endif()
 
 # vim: set ts=4 sw=4 et :
 
