@@ -3,14 +3,27 @@ clear
 close all
 clc
 %% Load Image in Grayscale or Colour
-% image = imread('../images/lena512.bmp');
-% image = rgb2gray(imread('../images/oil_spill.jpg'));
-% image = imread('../images/aerial1.tiff');
-% image = imread('../images/pentagon.tiff');
-image = imread('../images/goldengate.tiff');
+% imagepath = '../images/lena512.bmp';
+% imagepath = '../images/oil_spill.jpg';
+% imagepath = '../images/aerial1.tiff';
+% imagepath = '../images/pentagon.tiff';
+imagepath = '../images/goldengate.tiff';
+
+image = imread(imagepath);
 
 %% Preferences
-prefs.image.type = 'rgb'; % 'bw', 'grey', 'rgb', 'ycbcr'
+im_info = imfinfo(imagepath);
+switch(im_info.ColorType)
+    case('truecolor')
+        prefs.image.type = 'rgb';
+    case('grayscale')
+        prefs.image.type = 'gray';
+    case('indexed')
+        prefs.image.type = 'bw';
+    otherwise
+        disp("Can't detect image type. Need to override prefs.image.type");
+end
+% prefs.image.type = 'rgb'; % 'bw', 'gray', 'rgb', 'ycbcr'
 
 % Lena threshold: 0.52
 % oil_spill threshold: 0.18
@@ -105,8 +118,8 @@ if strcmp(prefs.image.type, 'rgb') || strcmp(prefs.image.type, 'ycbcr')
         medianed = medfilt3(medianed);
     end
     
-elseif strcmp(prefs.image.type, 'grey')
-    % Run the greyscale polya filter
+elseif strcmp(prefs.image.type, 'gray')
+    % Run the grayscale polya filter
     output = polyafilt(noisy_image, prefs);
     for i = 1:prefs.median.iterations
         medianed = medfilt2(medianed);
