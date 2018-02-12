@@ -18,7 +18,9 @@ set(CMAKE_BUILD_TYPE "Release")
 #########
 # GTest #
 #########
+if(NOT WIN32)
 include(${CMAKE_SOURCE_DIR}/cmake/DownloadGTest.cmake)
+endif()
 
 #########
 # Eigen #
@@ -58,7 +60,7 @@ set(CMAKE_PREFIX_PATH ${CMAKE_PREFIX_PATH} ${PROJECT_SOURCE_DIR}/external/Qt5.10
 # Append to CMake Modules to find Qt in the downloaded directory
 set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} ${PROJECT_SOURCE_DIR}/external/Qt5.10/5.10.0/${QT_COMPILER}/lib/cmake)
 
-message("CMAKE_MODULE_PATH is now ${CMAKE_MODULE_PATH}")
+message(STATUS "CMAKE_MODULE_PATH is now ${CMAKE_MODULE_PATH}")
 # Find includes in corresponding build directories
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
 # Instruct CMake to run moc automatically when needed.
@@ -66,18 +68,26 @@ set(CMAKE_AUTOMOC ON)
 
 # Find the QtWidgets library
 find_package(Qt5Widgets)
+find_package(Qt5Gui)
+find_package(Qt5Core)
 
 ##############
 # Polya Code #
 ##############
 
-add_executable(Main main.cpp)
+# notice that you need to pass the *header* here, not the source file
+file(GLOB QT_HEADERS ${CMAKE_SOURCE_DIR}/include/qt/*.h)
+QT5_WRAP_CPP(MY_MOCED_FILES ${QT_HEADERS})
+
+add_executable(Main WIN32 main.cpp ${MY_MOCED_FILES})
 target_include_directories(Main PUBLIC
     ${CMAKE_SOURCE_DIR}/include
 )
 target_link_libraries(Main
     Eigen
     Qt5::Widgets
+    ImageViewer
+    Qt5::Gui
 )
 
 # Source Code

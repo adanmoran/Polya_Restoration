@@ -49,24 +49,67 @@
 ****************************************************************************/
 
 
-#include <QApplication>
-#include <QCommandLineParser>
+#ifndef IMAGEVIEWER_H
+#define IMAGEVIEWER_H
 
-#include "qt/imageviewer.h"
+#include <QMainWindow>
+#include <QImage>
+#include <QObject>
+/*#ifndef QT_NO_PRINTER
+#include <QPrinter>
+#endif*/
 
-int main(int argc, char *argv[])
+class QAction;
+class QLabel;
+class QMenu;
+class QScrollArea;
+class QScrollBar;
+
+class ImageViewer : public QMainWindow
 {
-	QApplication app(argc, argv);
-	QGuiApplication::setApplicationDisplayName(ImageViewer::tr("Image Viewer"));
-	QCommandLineParser commandLineParser;
-	commandLineParser.addHelpOption();
-	commandLineParser.addPositionalArgument(ImageViewer::tr("[file]"), ImageViewer::tr("Image file to open."));
-	commandLineParser.process(QCoreApplication::arguments());
-	ImageViewer imageViewer;
-	if (!commandLineParser.positionalArguments().isEmpty()
-		&& !imageViewer.loadFile(commandLineParser.positionalArguments().front())) {
-		return -1;
-	}
-	imageViewer.show();
-	return app.exec();
-}
+	Q_OBJECT
+
+public:
+	ImageViewer();
+	bool loadFile(const QString &);
+
+	private slots:
+	void open();
+	void saveAs();
+	void print();
+	void copy();
+	void paste();
+	void zoomIn();
+	void zoomOut();
+	void normalSize();
+	void fitToWindow();
+	void about();
+
+private:
+	void createActions();
+	void createMenus() {}
+	void updateActions();
+	bool saveFile(const QString &fileName);
+	void setImage(const QImage &newImage);
+	void scaleImage(double factor);
+	void adjustScrollBar(QScrollBar *scrollBar, double factor);
+
+	QImage image;
+	QLabel *imageLabel;
+	QScrollArea *scrollArea;
+	double scaleFactor;
+
+/*#ifndef QT_NO_PRINTER
+	QPrinter printer;
+#endif*/
+
+	QAction *saveAsAct;
+	QAction *printAct;
+	QAction *copyAct;
+	QAction *zoomInAct;
+	QAction *zoomOutAct;
+	QAction *normalSizeAct;
+	QAction *fitToWindowAct;
+};
+
+#endif
