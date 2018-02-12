@@ -52,7 +52,7 @@ noise.gaussian.sigma = 0.01;
 noise.gaussian.mean = 0;
 
 noise.bursty.type = 'binary'; % 'gaussian' or 'binary'
-noise.bursty.correlation = 0.98;
+noise.bursty.transition_prob = 0.98;
 noise.bursty.error = 0.1; % 0.2 for gaussian, 0.1 for binary
 noise.bursty.mean = 0;
 noise.bursty.sigma = 100;
