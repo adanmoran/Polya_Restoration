@@ -3,7 +3,7 @@
 %
 % Inputs: 
 % image - the image to which you are adding noise
-% correlation - a value between 0 and 1 which denotes the 
+% transition_prob - a value between 0 and 1 which denotes the 
 % markov probability of streaking (i.e. P(Xn == Xn-1 | Xn-1) )
 % error - the bit error rate
 % colour - the colour of the image. 
@@ -16,7 +16,7 @@
 % image - the noisified image
 function image = add_bursty_noise( ...
     image, ...
-    correlation, ...
+    transition_prob, ...
     error, ...
     noise, ...
     mean, ...
@@ -54,23 +54,23 @@ function image = add_bursty_noise( ...
             % By default, we do not flip bits
             val = 0;
             % if we flipped the last time, flip again with
-            % probability given by correlation coefficient
+            % probability given by transition_prob coefficient
             switch(prev)
                 % If we flipped a bit the last time, flip one again based
-                % on the correlation draw
+                % on the transition_prob draw
                 case 1
-                    prob_0 = 1 - correlation;
-                    val = randsample([0,1],1,true,[prob_0, correlation]);
+                    prob_0 = 1 - transition_prob;
+                    val = randsample([0,1],1,true,[prob_0, transition_prob]);
                 % If we didn't flip a bit last time...
                 otherwise
                     % See if a bit should be flipped based on
-                    % correlation
-                    prob_1 = 1 - correlation;
-                    tmp = randsample([0,1],1,true,[correlation, prob_1]);
+                    % transition_prob
+                    prob_1 = 1 - transition_prob;
+                    tmp = randsample([0,1],1,true,[transition_prob, prob_1]);
                     % Then see if the bit should be flipped based on the
                     % error draw
                     flip = randsample([0,1],1,true,[1-error, error]);
-                    % If both correlation and error say to flip, flip the
+                    % If both transition_prob and error say to flip, flip the
                     % bit
                     if tmp == 1 && flip == 1
                         val = 1;
