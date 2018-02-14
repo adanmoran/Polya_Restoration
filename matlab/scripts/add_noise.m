@@ -1,6 +1,14 @@
-%% add_noise
-% Add Gaussian or bursty noise to input image.
-
+%% Helper Function to Add Noise Type
+% Add the correct type of noise based on preferences object.
+% 
+% Inputs:
+%     image - the image to which you are adding noise
+%     prefs - the preferences structure containing prefs.image.type
+%     noise - the noise structure containing parameters for the noise adding
+%             functions
+% 
+% Outputs:
+%     noisy_image - the noisified image
 function noisy_image = add_noise(image, prefs, noise)
     if strcmp(noise.type, 'gaussian')
         if strcmp(prefs.image.type, 'bw')
@@ -62,6 +70,12 @@ function noisy_image = add_noise(image, prefs, noise)
                                            noise.bursty.mean, ...
                                            noise.bursty.sigma);
         end
+        
+    elseif strcmp(noise.type, 'gauss-markov')
+        noisy_image = add_gauss_markov_noise(image, ...
+                                        noise.gauss_markov.correlation, ...
+                                        noise.gauss_markov.mean, ...
+                                        noise.gauss_markov.sigma);
         
     else % no noise
         noisy_image = image;

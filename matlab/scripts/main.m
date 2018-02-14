@@ -6,8 +6,8 @@ clc
 % imagepath = '../images/lena512.bmp';
 % imagepath = '../images/oil_spill.jpg';
 % imagepath = '../images/aerial1.tiff';
-% imagepath = '../images/pentagon.tiff';
-imagepath = '../images/goldengate.tiff';
+imagepath = '../images/pentagon.tiff';
+% imagepath = '../images/goldengate.tiff';
 
 image = imread(imagepath);
 
@@ -70,7 +70,12 @@ noise.bursty.error = 0.1; % 0.2 for gaussian, 0.1 for binary
 noise.bursty.mean = 0;
 noise.bursty.sigma = 100;
 
-noise.type = 'both'; % 'gaussian' or 'burst' or 'both' or 'none'
+noise.gauss_markov.correlation = 0.9; % (-1, 1)
+noise.gauss_markov.mean = 0;
+noise.gauss_markov.sigma = 10;
+
+noise.type = 'gauss-markov'; % 'gaussian' or 'burst' or 'both' or 'none' 
+                     % or 'gauss-markov'
 
 
 %% Add Gaussian or Bursty Noise
@@ -78,7 +83,7 @@ rng(0, 'twister');
 
 if strcmp(prefs.image.type, 'bw')
     % If it's an rgb image, convert it to grayscale
-    if size(size(image),2) > 2
+    if size(size(image), 2) > 2
         image = rgb2gray(image);
     end
     image = imbinarize(image, prefs.image.binarize_thresh);
