@@ -16,8 +16,8 @@
 function image = add_gauss_markov_noise(image, correlation, mean, sigma)
     rng(0, 'twister'); % Choose your random generator to use randn()
     
-    V = zeros(size(image));
-    for k = 1:numel(V)
+    V = zeros(size(image, 1), size(image, 2));
+    for k = 1 : numel(V)
         noise = 0;
         if (k - 1) ~= 0
             noise = correlation * V(k - 1);
@@ -25,6 +25,14 @@ function image = add_gauss_markov_noise(image, correlation, mean, sigma)
         V(k) = noise + sigma * randn(1, 1) + mean;
     end
     
+    % If our image is 3D (i.e. layered grayscales), assign the
+    % new colour to each
     % Add noise to image (transposed to get in rows)
-    image = uint8(double(image) + V');
+    if length(size(image)) == 3
+        for n = 1 : size(image, 3)
+            image(:, :, n) = uint8(double(image(:, :, n)) + V');
+        end
+    else
+        image = uint8(double(image) + V');
+    end
 end
