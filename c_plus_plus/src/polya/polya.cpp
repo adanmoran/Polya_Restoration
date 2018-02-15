@@ -23,7 +23,6 @@
 % from the urns. Options are 'random' (for random urn draws) or 'median'
 % (for drawing the median urn). Default is 'random'.
 */
-using Dynamic1D = Eigen::VectorXi;
 auto polya(
     const UrnMatrix& V, 
     const AdjacencyMatrix& A, 
@@ -35,9 +34,9 @@ auto polya(
     // Compute the superurn of each pixel. As a matrix, this is A*V
     SuperUrnMatrix S = A * V;
     // create a vector of 1's that has the length of the number of available types
-    Dynamic1D ones = Dynamic1D::Ones(k); 
+    Dynamic1D_i ones = Dynamic1D_i::Ones(k); 
     // Vector containing the total number of balls for each superurn row
-    Dynamic1D T = S * ones;
+    Dynamic1D_i T = S * ones;
 
     auto W = S.cwiseQuotient(T.sparseView());
 
@@ -45,24 +44,18 @@ auto polya(
     {
         case SamplingType::RANDOM:
 
-        break;
+            break;
         case SamplingType::MEDIAN:
-            auto C = cumsum(S);
-            Dynamic1D median(c.rows());
-            //TODO: build the median vector
 
-                T = T.cwiseQuotient(2)
-                for(int o = 0 ; o < matrix.outerSize(); o++)
-    {
-        for (typename Eigen::SparseMatrix<T>::InnerIterator it(matrix,o); it; ++it)
-        {
-        }
-    }
+            // Divide the totals by 2 to be able to find the median
+            T *= 0.5;
+            auto median = cumsumFind(S, T);
+
             //Build the matrix out of these cumulative sum indices
             int n = median.rows();
             int m = Delta.cols();
 
-            Triplets BValues;
+            Triplets<int> BValues;
             BValues.reserve(n);
 
             for(int i = 0; i < n; ++i)

@@ -44,6 +44,10 @@ using UrnMatrix = Eigen::SparseMatrix<int>;
 using DeltaMatrix = SquareSparseMatrix<int>;
 using SuperUrnMatrix = Eigen::SparseMatrix<int>;
 
+// Dynamic Vector sizes
+using Dynamic1D_d = Eigen::VectorXd;
+using Dynamic1D_i = Eigen::VectorXi;
+
 // Dynamic matrix sizes
 using Dynamic2D_d = Eigen::MatrixXd;
 using Dynamic2D_i = Eigen::MatrixXi;

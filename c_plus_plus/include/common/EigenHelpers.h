@@ -67,6 +67,41 @@ auto cumsum(const Eigen::SparseMatrix<T>& matrix) -> Eigen::SparseMatrix<T>
 }
 
 /**
+ * Helper function for getting the index over the row-wise cumsum efficiently.
+ * e.g.
+ *             1 2 3   3
+ * cumsumFind( 4 5 6 , 7.5 )
+ *             7 8 9   12
+ *
+ * <=>
+ *                  1 2 3     3
+ *     max( cumsum( 4 5 6 ) > 7.5 )
+ *                  7 8 9     12
+ * <=>
+ *          1 3  6    3
+ *     max( 4 9  15 > 7.5 )
+ *          7 15 24   12
+ * <=>
+ *          0 0 1
+ *     max( 0 1 1 )
+ *          0 1 1
+ * <=>
+ *     3
+ *     2
+ *     2
+ */
+template<class U, class V>
+auto cumsumFind(
+    const Eigen::SparseMatrix<U>& lhs,
+    const VectorX<V> rhs) -> VectorX<V>
+{
+    VectorX<V> indices(rhs.size());
+
+    // TODO:
+    // Iterate row-wise and find the element that is the maximum
+    return indices;
+}
+/**
  * Helper function to generate square, sparse identity of a given size
  */
 template<class T = int>
