@@ -19,6 +19,9 @@ public:
     : Eigen::SparseMatrix<T>(size,size)
     {}
 
+    SquareSparseMatrix(const Eigen::SparseMatrix<T>& other)
+    : Eigen::SparseMatrix<T>(other)
+    {}
 };
 
 /**

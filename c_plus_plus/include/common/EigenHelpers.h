@@ -93,14 +93,53 @@ auto cumsum(const Eigen::SparseMatrix<T>& matrix) -> Eigen::SparseMatrix<T>
 template<class U, class V>
 auto cumsumFind(
     const Eigen::SparseMatrix<U>& lhs,
-    const VectorX<V> rhs) -> VectorX<V>
+    const VectorX<V> rhs) -> Eigen::VectorXi
 {
-    VectorX<V> indices(rhs.size());
+    Eigen::VectorXi indices(rhs.rows());
 
-    // TODO:
-    // Iterate row-wise and find the element that is the maximum
+    // If sizes don't match, we return all -1's
+    if (lhs.rows() != rhs.rows())
+    {
+        for(auto i = 0; i < rhs.rows(); ++i)
+        {
+            indices[i] = -1;
+        }
+        return indices;
+    }
+
+    // Transpose to do row operations as opposed to column operations
+    Eigen::SparseMatrix<U> transpose = lhs.transpose();
+
+    using II = typename Eigen::SparseMatrix<U>::InnerIterator; 
+
+    // Iterate and cumsum while finding the first element
+    // above rhs(row)
+    // Column major of transpose is row-major of regular
+    for(int row = 0; row < transpose.outerSize(); ++row)
+    {
+        U summed = static_cast<U>(0);
+        bool found = false;
+
+        // Iterate over the rows of the original sparse matrix
+        for (II it(transpose, row); it && !found; ++it)
+        {
+            auto col = it.index();
+
+            // do a cumulative sum
+            summed += lhs.coeff(row, col);
+
+            // find which index provides the median value
+            if (summed > rhs[row])
+            {
+                indices[row] = col;
+                found = true;
+            }
+        }
+    }
+    
     return indices;
 }
+
 /**
  * Helper function to generate square, sparse identity of a given size
  */

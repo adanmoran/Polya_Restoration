@@ -36,22 +36,25 @@ auto polya(
     // create a vector of 1's that has the length of the number of available types
     Dynamic1D_i ones = Dynamic1D_i::Ones(k); 
     // Vector containing the total number of balls for each superurn row
-    Dynamic1D_i T = S * ones;
-
-    auto W = S.cwiseQuotient(T.sparseView());
+    Dynamic1D_i totals = S * ones;
 
     switch(type)
     {
         case SamplingType::RANDOM:
-
+        {
+            auto W = S.cwiseQuotient(totals.sparseView());
             break;
+        }
         case SamplingType::MEDIAN:
+        {
 
             // Divide the totals by 2 to be able to find the median
+            Dynamic1D_d T = totals.cast<double>();
             T *= 0.5;
+            // Get the indices where the median ball type exists
             auto median = cumsumFind(S, T);
 
-            //Build the matrix out of these cumulative sum indices
+            //Build the matrix out of these median indices
             int n = median.rows();
             int m = Delta.cols();
 
@@ -63,11 +66,17 @@ auto polya(
                 BValues.push_back(Triplet<int>(i,median[i],1));
             }
 
+            // Create a matrix of balls to add to the original urn
             auto B = createSparseMatrix(n, m, BValues);
-
+            // Multiply by Delta to add that many balls to the original urn
+            B = B * Delta;
+            // Return the original urn plus the new balls
+            return V + B;
+        }
+        default:
         break;
     }
-    return UrnMatrix(V.rows(), V.cols());
+    return V;
 }
 
 /* vim: set ts=4 sw=4 et :*/

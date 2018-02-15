@@ -224,6 +224,95 @@ TEST_F(EigenTest, RowCumSumContents)
 	
 }
 
+TEST_F(EigenTest, cumsumFindSizes)
+{
+	using Eigen::VectorXi;
+	ASSERT_EQ(cumsumFind(createSquareMatrix(4,Triplets<int>()),VectorXi(4)).rows(),4);
+	ASSERT_EQ(cumsumFind(createSquareMatrix(1,Triplets<int>()),VectorXi(2)).rows(),2);
+	ASSERT_EQ(cumsumFind(createSparseMatrix(7,3,Triplets<int>()),VectorXi(3)).rows(),3);
+}
+TEST_F(EigenTest, cumsumFindInvalidValues)
+{
+	using Eigen::VectorXi;
+	auto v1 = cumsumFind(createSquareMatrix(4,Triplets<int>()),VectorXi(3));
+	ASSERT_EQ(v1.rows(),3);
+
+	for(auto i = 0; i != v1.rows(); ++i)
+	{
+		EXPECT_EQ(v1[i],-1);
+	}
+
+	auto v2 = cumsumFind(createSparseMatrix(7,2,Triplets<int>()),VectorXi(6));
+	ASSERT_EQ(v2.rows(),6);
+
+	for(auto i = 0; i != v2.rows(); ++i)
+	{
+		EXPECT_EQ(v2[i],-1);
+	}
+	
+}
+
+TEST_F(EigenTest, cumsumFindValidInputs)
+{
+	using Eigen::MatrixXi;
+	using Eigen::VectorXd;
+	using Eigen::VectorXi;
+
+	MatrixXi m1(3,3);
+	m1 << 
+		1,2,3, // sum = 6
+		4,5,6, // sum = 15
+		7,8,9; // sum = 24
+	VectorX<double> T1(3);
+	T1 << 3, 7.5, 12;
+
+	VectorXi v1(3);
+	v1 << 2,1,1;
+
+	auto out1 = cumsumFind(Eigen::SparseMatrix<int>(m1.sparseView()),T1);
+	EXPECT_EQ(out1, v1);
+
+	MatrixXi m2(4,3);
+	m2 << 
+		7,0,1, // sum = 8
+		4,2,6, // sum = 12
+		7,8,0, // sum = 15
+		1,9,9; // sum = 19
+	VectorX<double> T2(4);
+	T2 << 4,6,7.5,9.5;
+
+	VectorXi v2(4);
+	v2 << 0,2,1,1;
+
+	auto out2 = cumsumFind(Eigen::SparseMatrix<int>(m2.sparseView()),T2);
+	EXPECT_EQ(out2, v2);
+
+	//  0 0 0 1   sum = 1
+	//  0 9 0 2   sum = 11
+	//  4 0 5 0   sum = 9
+	//  1 0 0 1   sum = 2
+	//  4 4 4 4   sum = 16
+	auto m3 = createSparseMatrix(5,4,
+			Triplets<int>(
+				{
+					{0,3,1},
+					{1,1,9}, {1,3,2},
+					{2,0,4}, {2,2,5},
+					{3,0,1}, {3,3,1},
+					{4,0,4}, {4,1,4}, {4,2,4}, {4,3,4}
+				}
+			)
+		);
+
+	VectorX<double> T3(5);
+	T3 << 0.5, 5.5, 4.5, 1, 8;
+
+	VectorXi v3(5);
+	v3 << 3, 1, 2, 3, 2;
+
+	auto out3 = cumsumFind(m3,T3);
+	EXPECT_EQ(out3, v3);
+}
 
 int main(int argc, char** argv)
 {
