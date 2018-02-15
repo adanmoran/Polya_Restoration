@@ -29,5 +29,5 @@ for i = 1:size(R,1)
         Y(i,j) = computelee(Rvar,K(Indx),K(:)');
     end
 end
-
+Y = uint8(Y);
 end
