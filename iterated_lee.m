@@ -1,3 +1,6 @@
+%Borrowed and adapted from Aaron Johnsy, February 2017
+%Source: https://angeljohnsy.blogspot.com/2014/08/lee-filter.html
+
 I = imread('lena512.bmp');
 J = imnoise(I,'speckle',0.2);
 tic;
