@@ -42,6 +42,7 @@ using VectorX = Eigen::Matrix<NUMERIC, Eigen::Dynamic, 1>;
 using AdjacencyMatrix = SquareSparseMatrix<int>;
 using UrnMatrix = Eigen::SparseMatrix<int>;
 using DeltaMatrix = SquareSparseMatrix<int>;
+using SuperUrnMatrix = Eigen::SparseMatrix<int>;
 
 // Dynamic matrix sizes
 using Dynamic2D_d = Eigen::MatrixXd;
