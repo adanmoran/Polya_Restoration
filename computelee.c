@@ -6,15 +6,15 @@ void arrayProduct(double v, double In, double *y, double *z, mwSize n)
 {
     double VarW,MeanW,W;
     mwSize i;
-   
+    
     MeanW=0;
-    for (i=0; i < sizeof(y); i++) 
+    for (i=0; i < n; i++) 
     {
         MeanW=MeanW+y[i];
     }
     MeanW=MeanW/n;
     VarW=0;
-    for(i=0; i < sizeof(y); i++)
+    for(i=0; i < n; i++)
     {
         VarW=VarW+((y[i]-MeanW)*(y[i]-MeanW));
     }

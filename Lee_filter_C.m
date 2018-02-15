@@ -27,7 +27,6 @@ for i = 1:size(R,1)
     for j = 1:size(R,2)
         K = EImg(i:i+sz(1,1)-1,j:j+sz(1,2)-1);
         Y(i,j) = computelee(Rvar,K(Indx),K(:)');
-       
     end
 end
 
