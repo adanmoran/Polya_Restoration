@@ -2,6 +2,10 @@
 clear
 close all
 clc
+
+%% Compile C File for Lee Filter
+mex computelee.c
+
 %% Load Image in Grayscale or Colour
 % imagepath = '../images/lena512.bmp';
 % imagepath = '../images/oil_spill.jpg';
@@ -54,6 +58,9 @@ prefs.polya.iterations = 8;
 
 prefs.median.iterations = 8;
 
+prefs.lee.kernel = [5 5]; % window size for lee filter
+prefs.lee.iterations = 8;
+
 % Noise parameters
 % BW Gaussian Noise Parameters
 noise.bw.gaussian_std_dev = 1;
@@ -94,8 +101,9 @@ noisy_image = add_noise(image, prefs, noise);
 figure;
 imshowpair(image, noisy_image, 'montage');
 
-% Initialize the image for the median filter comparison
+% Initialize the image for filter comparisons
 medianed = noisy_image;
+lee = noisy_image;
 
 %% Run Colour or Greyscale Polya Filter
 if strcmp(prefs.image.type, 'rgb') || strcmp(prefs.image.type, 'ycbcr')
@@ -106,9 +114,8 @@ if strcmp(prefs.image.type, 'rgb') || strcmp(prefs.image.type, 'ycbcr')
     channel_1 = noisy_image(:, :, 1);
     channel_2 = noisy_image(:, :, 2);
     channel_3 = noisy_image(:, :, 3);
-    medianed_1 = channel_1;
-    medianed_2 = channel_2;
-    medianed_3 = channel_3;
+    [med_1, med_2, med_3] = deal(channel_1, channel_2, channel_3);
+    [lee_1, lee_2, lee_3] = deal(channel_1, channel_2, channel_3);
     
     % Run the greyscale polya filter on each channel individually
     channel_1_p = polyafilt(channel_1, prefs);
@@ -117,18 +124,27 @@ if strcmp(prefs.image.type, 'rgb') || strcmp(prefs.image.type, 'ycbcr')
     
     % Run the median filter on each channel individually
     for i = 1:prefs.median.iterations
-        medianed_1 = medfilt2(medianed_1);
-        medianed_2 = medfilt2(medianed_2);
-        medianed_3 = medfilt2(medianed_3);
+        med_1 = medfilt2(med_1);
+        med_2 = medfilt2(med_2);
+        med_3 = medfilt2(med_3);
+    end
+    
+    % Run the Lee filter on each channel individually
+    for i = 1:prefs.lee.iterations
+        lee_1 = leefilt(channel_1, lee_1, prefs.lee.kernel);
+        lee_2 = leefilt(channel_2, lee_2, prefs.lee.kernel);
+        lee_3 = leefilt(channel_3, lee_3, prefs.lee.kernel);
     end
     
     % Reconstruct the colour image
     output = cat(3, channel_1_p, channel_2_p, channel_3_p);
-    medianed = cat(3, medianed_1, medianed_2, medianed_3);
+    medianed = cat(3, med_1, med_2, med_3);
+    lee = cat(3, lee_1, lee_2, lee_3);
     
     if strcmp(prefs.image.type, 'ycbcr')
         output = ycbcr2rgb(output);
         medianed = ycbcr2rgb(medianed);
+        lee = ycbcr2rgb(lee);
         noisy_image = ycbcr2rgb(noisy_image);
     end
         
@@ -138,6 +154,9 @@ elseif strcmp(prefs.image.type, 'gray')
     for i = 1:prefs.median.iterations
         medianed = medfilt2(medianed);
     end
+    for i = 1:prefs.lee.iterations
+        lee = leefilt(image, lee, prefs.lee.kernel);
+    end        
     
 elseif strcmp(prefs.image.type, 'bw')
     prefs.quant.num_ball_types = 3;
@@ -147,11 +166,15 @@ elseif strcmp(prefs.image.type, 'bw')
     for i = 1:prefs.median.iterations
         medianed = medfilt2(medianed);
     end
+    for i = 1:prefs.lee.iterations
+        lee = leefilt(image, lee, prefs.lee.kernel);
+    end
     
     % Convert to numeric type for metric functions
     output = uint8(output);
     image = uint8(image);
     medianed = uint8(medianed);
+    lee = uint8(lee);
 end
 
 %% Display Results
@@ -161,12 +184,25 @@ title ('Noise vs Polya');
 fprintf('Polya vs Original MSE: %.3f\n', immse(output, image));
 fprintf(' ---- ssim: %.3f\n', ssim(output, image));
 fprintf(' ---- psnr: %.3f\n', psnr(output, image));
+
 figure;
 imshowpair(noisy_image, medianed, 'montage');
 title('Noise vs Median');
 fprintf('Median vs Original MSE: %.3f\n', immse(medianed, image));
 fprintf(' ---- ssim: %.3f\n', ssim(medianed, image));
 fprintf(' ---- psnr: %.3f\n', psnr(medianed, image));
+
+figure;
+imshowpair(noisy_image, lee, 'montage');
+title('Noise vs Lee');
+fprintf('Lee vs Original MSE: %.3f\n', immse(lee, image));
+fprintf(' ---- ssim: %.3f\n', ssim(lee, image));
+fprintf(' ---- psnr: %.3f\n', psnr(lee, image));
+
 figure;
 imshowpair(output, medianed, 'montage');
 title('Polya vs Median');
+
+figure;
+imshowpair(output, lee, 'montage');
+title('Polya vs Lee');
