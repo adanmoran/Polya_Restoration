@@ -6,8 +6,8 @@ clc
 % imagepath = '../images/lena512.bmp';
 % imagepath = '../images/oil_spill.jpg';
 % imagepath = '../images/aerial1.tiff';
-imagepath = '../images/pentagon.tiff';
-% imagepath = '../images/goldengate.tiff';
+% imagepath = '../images/pentagon.tiff';
+imagepath = '../images/goldengate.tiff';
 
 image = imread(imagepath);
 
@@ -102,27 +102,36 @@ if strcmp(prefs.image.type, 'rgb') || strcmp(prefs.image.type, 'ycbcr')
     if strcmp(prefs.image.type, 'ycbcr')
         noisy_image = rgb2ycbcr(noisy_image);
     end
+    % Save each colour channel for polya and median filter
     channel_1 = noisy_image(:, :, 1);
     channel_2 = noisy_image(:, :, 2);
     channel_3 = noisy_image(:, :, 3);
+    medianed_1 = channel_1;
+    medianed_2 = channel_2;
+    medianed_3 = channel_3;
     
     % Run the greyscale polya filter on each channel individually
     channel_1_p = polyafilt(channel_1, prefs);
     channel_2_p = polyafilt(channel_2, prefs);
     channel_3_p = polyafilt(channel_3, prefs);
     
-    % Reconstruct the RGB image
+    % Run the median filter on each channel individually
+    for i = 1:prefs.median.iterations
+        medianed_1 = medfilt2(medianed_1);
+        medianed_2 = medfilt2(medianed_2);
+        medianed_3 = medfilt2(medianed_3);
+    end
+    
+    % Reconstruct the colour image
     output = cat(3, channel_1_p, channel_2_p, channel_3_p);
-
+    medianed = cat(3, medianed_1, medianed_2, medianed_3);
+    
     if strcmp(prefs.image.type, 'ycbcr')
         output = ycbcr2rgb(output);
+        medianed = ycbcr2rgb(medianed);
         noisy_image = ycbcr2rgb(noisy_image);
     end
-    
-    for i = 1:prefs.median.iterations
-        medianed = medfilt3(medianed);
-    end
-    
+        
 elseif strcmp(prefs.image.type, 'gray')
     % Run the grayscale polya filter
     output = polyafilt(noisy_image, prefs);
