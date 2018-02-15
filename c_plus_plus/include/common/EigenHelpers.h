@@ -5,6 +5,8 @@
 #ifndef EIGEN_HELPERS_H_
 #define EIGEN_HELPERS_H_
 
+#include <stdexcept>
+#include <string>
 #include <vector>
 #include <Eigen/Core>
 #include <Eigen/Sparse>
@@ -20,6 +22,8 @@ auto createSparseMatrix(
     const Triplets<T>& ijk) -> Eigen::SparseMatrix<T>
 {
     Eigen::SparseMatrix<T> a(rows, cols);
+    a.reserve(ijk.size());
+
     a.setFromTriplets(ijk.begin(), ijk.end());
     return a;
 }
@@ -121,6 +125,14 @@ auto cumsumFind(
         bool found = false;
 
         // Iterate over the rows of the original sparse matrix
+        II it(transpose,row); 
+        if (!it)
+        {
+            std::string msg = "cumsumFind: sparse row ";
+            msg += std::to_string(row);
+            msg += " was all zero. Please ensure every row has at least one element.";
+            throw std::runtime_error(msg);
+        }
         for (II it(transpose, row); it && !found; ++it)
         {
             auto col = it.index();
@@ -134,6 +146,15 @@ auto cumsumFind(
                 indices[row] = col;
                 found = true;
             }
+        }
+        if (!found)
+        {
+            std::string msg = "cumsumFind: vector element ";
+            msg += std::to_string(indices[row]);
+            msg += " was too large for sparse matrix row ";
+            msg += std::to_string(row);
+            msg += ". Please ensure all values of the comparison vector are smaller than the maximum element of the sparse matrix.";
+            throw std::runtime_error(msg);
         }
     }
     

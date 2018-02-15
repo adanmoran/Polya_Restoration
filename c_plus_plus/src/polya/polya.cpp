@@ -33,6 +33,7 @@ auto polya(
     int k = Delta.rows();
     // Compute the superurn of each pixel. As a matrix, this is A*V
     SuperUrnMatrix S = A * V;
+    // Compute the superurn of each pixel. As a matrix, this is A*V
     // create a vector of 1's that has the length of the number of available types
     Dynamic1D_i ones = Dynamic1D_i::Ones(k); 
     // Vector containing the total number of balls for each superurn row
@@ -58,16 +59,15 @@ auto polya(
             int n = median.rows();
             int m = Delta.cols();
 
-            Triplets<int> BValues;
-            BValues.reserve(n);
+            Eigen::SparseMatrix<int> B(V.rows(),V.cols());
+            B.reserve(n);
 
             for(int i = 0; i < n; ++i)
             {
-                BValues.push_back(Triplet<int>(i,median[i],1));
+                B.insert(i,median[i]) = 1;
             }
 
             // Create a matrix of balls to add to the original urn
-            auto B = createSparseMatrix(n, m, BValues);
             // Multiply by Delta to add that many balls to the original urn
             B = B * Delta;
             // Return the original urn plus the new balls

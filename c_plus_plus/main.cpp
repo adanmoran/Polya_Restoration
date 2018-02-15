@@ -14,6 +14,8 @@
 #include <QDebug>
 // Ours
 #include "common/EigenTypes.h"
+#include "common/EigenHelpers.h"
+#include "polya/polya.h"
 
 using SparseMatrix = Eigen::SparseMatrix<int>;
 using Dynamic1D = Eigen::VectorXf;
@@ -69,33 +71,43 @@ int main( int argc, char **argv )
     */
     using namespace std::chrono;
 
-    high_resolution_clock::time_point t1 = high_resolution_clock::now();
+    using tp = high_resolution_clock::time_point;
+    using millis = duration<double, std::milli>;
+
 
     int n = 1048576;
-    SparseMatrix A(n,n);
-    Eigen::MatrixXi V(n,256);
+
+    tp t1 = high_resolution_clock::now();
+    AdjacencyMatrix A = eye(n);
+    std::cout << "Adj creation Time: " << millis(high_resolution_clock::now() - t1).count() << std::endl;
 
     Triplets<int> ints;
     ints.reserve(n);
     for(int i =0; i < n; ++i)
     {
-        ints.push_back(Triplet<int>(i,i,1));
-        for (int j = 0; j < 256; ++j)
-        {
-            V(i,j) = j;
-        }
+        // cannot have all-zero terms!
+        ints.push_back(Triplet<int>(i, i % 256, i % 256+1));
     }
-    A.setFromTriplets(ints.begin(), ints.end());
 
-    high_resolution_clock::time_point t2 = high_resolution_clock::now();
+    // create an by 256 urn matrix
+    std::cout << "Creating urn matrix" << std::endl;
+    tp t2 = high_resolution_clock::now();
+    UrnMatrix V = createSparseMatrix(n,256,ints);
+    std::cout << "Urn creation Time: " << millis(high_resolution_clock::now() - t2).count() << std::endl;
+
+    // create a 256*256 delta matrix
+    DeltaMatrix delta = eye(256);
+
     duration<double, std::milli> time_span = t2 - t1;
-    std::cout << "Creation Time: " << time_span.count() << std::endl;
 
-    double average;
+    double average = 0.0;
+
+    // run the polya process however many times and measure the average time
     for(int i = 0; i < 10; ++i)
     {
+        std::cout << "iteration " << i << std::endl;
         t2 = high_resolution_clock::now();
-        auto B = A * V;
+        V = polya(V, A, delta, SamplingType::MEDIAN);
         t1 = high_resolution_clock::now();
         time_span = t1 - t2;
         average += time_span.count() ;

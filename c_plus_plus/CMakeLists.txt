@@ -78,6 +78,7 @@ target_include_directories(Main PUBLIC
 target_link_libraries(Main
     Eigen
     Qt5::Widgets
+    Polya
 )
 
 # Source Code
