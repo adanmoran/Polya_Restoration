@@ -55,10 +55,13 @@
 #include <QMainWindow>
 #include <QImage>
 #include <QObject>
+//SG
+#include <qpushbutton.h>
+#include <qradiobutton.h>
 /*#ifndef QT_NO_PRINTER
 #include <QPrinter>
 #endif*/
-
+//SG
 class QAction;
 class QLabel;
 class QMenu;
@@ -93,15 +96,18 @@ private:
 	void setImage(const QImage &newImage);
 	void scaleImage(double factor);
 	void adjustScrollBar(QScrollBar *scrollBar, double factor);
-
+//SG
+	void pushButtons();
+	void radioButtons();
+//SG
 	QImage image;
 	QLabel *imageLabel;
 	QScrollArea *scrollArea;
 	double scaleFactor;
 
-/*#ifndef QT_NO_PRINTER
+/*SG#ifndef QT_NO_PRINTER
 	QPrinter printer;
-#endif*/
+#endifSG*/
 
 	QAction *saveAsAct;
 	QAction *printAct;
@@ -110,6 +116,10 @@ private:
 	QAction *zoomOutAct;
 	QAction *normalSizeAct;
 	QAction *fitToWindowAct;
+//SG
+	QPushButton *pushbutton;
+	QRadioButton *radiobutton;
+//SG
 };
 
 #endif
