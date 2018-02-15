@@ -1,4 +1,4 @@
-function Y = Lee_filter_C(R,E,sz)
+function Y = leefilt(R,E,sz)
 %R is the Reference Image
 %E is the Error or Noisy Image
 %K is the Kernel or Window
