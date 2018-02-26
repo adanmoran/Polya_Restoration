@@ -56,8 +56,7 @@
 #include <QImage>
 #include <QObject>
 //SG
-#include <qpushbutton.h>
-#include <qradiobutton.h>
+#include <QComboBox>
 /*#ifndef QT_NO_PRINTER
 #include <QPrinter>
 #endif*/
@@ -67,6 +66,9 @@ class QLabel;
 class QMenu;
 class QScrollArea;
 class QScrollBar;
+//SG
+class QComboBox;
+//SG
 
 class ImageViewer : public QMainWindow
 {
@@ -96,10 +98,7 @@ private:
 	void setImage(const QImage &newImage);
 	void scaleImage(double factor);
 	void adjustScrollBar(QScrollBar *scrollBar, double factor);
-//SG
-	void pushButtons();
-	void radioButtons();
-//SG
+
 	QImage image;
 	QLabel *imageLabel;
 	QScrollArea *scrollArea;
@@ -117,8 +116,7 @@ private:
 	QAction *normalSizeAct;
 	QAction *fitToWindowAct;
 //SG
-	QPushButton *pushbutton;
-	QRadioButton *radiobutton;
+	QComboBox *typeComboBox;
 //SG
 };
 

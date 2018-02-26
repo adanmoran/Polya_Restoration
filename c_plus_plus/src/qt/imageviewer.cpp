@@ -322,10 +322,27 @@ void ImageViewer::createActions()
 
     helpMenu->addAction(tr("&About"), this, &ImageViewer::about);
     helpMenu->addAction(tr("About &Qt"), &QApplication::aboutQt);
+
 //SG
-	QMenu *polyaMenu = menuBar()->addMenu(tr("&Polya Process"));
-	polyaMenu->addAction(tr("&Input"), this, &ImageViewer::pushButtons);
-	polyaMenu->addAction(tr("&Run"), this, &ImageViewer::radioButtons);
+
+	QToolBar *noiseToolBar = addToolBar(tr("&Noise"));
+
+	QComboBox *noisetype = new QComboBox;
+	QLabel *typelabel = new QLabel(this);
+	typelabel->setText("Noise Type");
+	noiseToolBar->addWidget(typelabel);
+	noiseToolBar->addSeparator();
+
+	noiseToolBar->addWidget(noisetype);
+	noisetype->addItem("None");
+	noisetype->addItem("Gaussian");
+	noisetype->addItem("Binary Burst");
+	noisetype->addItem("Gaussian Markov");
+	noisetype->addItem("Gaussian Burst");
+	noisetype->addItem("Gaussian + Binary Burst");
+
+	noiseToolBar->addSeparator();
+
 //SG
 }
 
@@ -356,15 +373,3 @@ void ImageViewer::adjustScrollBar(QScrollBar *scrollBar, double factor)
     scrollBar->setValue(int(factor * scrollBar->value()
                             + ((factor - 1) * scrollBar->pageStep()/2)));
 }
-//SG
-void ImageViewer::pushButtons()
-{
-	//pushbutton = new QPushButton("&Download", this);
-	QPushButton::QPushButton("&Download", this);
-}
-
-void ImageViewer::radioButtons()
-{
-	radiobutton = new QRadioButton("Search from the &cursor", this);
-}
-//SG
