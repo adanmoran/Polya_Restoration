@@ -48,7 +48,6 @@
 **
 ****************************************************************************/
 
-
 #include <QtWidgets>
 /*SG#if defined(QT_PRINTSUPPORT_LIB)
 #include <QtPrintSupport/qtprintsupportglobal.h>
@@ -58,12 +57,17 @@
 #endif SG*/
 //SG
 #include "qt/imageviewer.h"
+#include "qt/slidersgroup.h"
 //SG
 ImageViewer::ImageViewer()
    : imageLabel(new QLabel)
    , scrollArea(new QScrollArea)
    , scaleFactor(1)
+   , burstsigma(new SlidersGroup(Qt::Horizontal, tr("Burst Sigma")))
 {
+	qInfo() << "info";
+	qWarning() << "warning";
+	qDebug() << "debug";
     imageLabel->setBackgroundRole(QPalette::Base);
     imageLabel->setSizePolicy(QSizePolicy::Ignored, QSizePolicy::Ignored);
     imageLabel->setScaledContents(true);
@@ -76,6 +80,57 @@ ImageViewer::ImageViewer()
     createActions();
 
     resize(QGuiApplication::primaryScreen()->availableSize() * 3 / 5);
+
+	//SG Noise Toolbar
+
+	QToolBar *noiseToolBar = addToolBar(tr("&Noise"));
+
+	QComboBox *noisetype = new QComboBox;
+	QLabel *typelabel = new QLabel(this);
+	typelabel->setText("Noise Type");
+	noiseToolBar->addWidget(typelabel);
+	noiseToolBar->addSeparator();
+
+	noiseToolBar->addWidget(noisetype);
+	noisetype->addItem("None");
+	noisetype->addItem("Gaussian");
+	noisetype->addItem("Binary Burst");
+	noisetype->addItem("Gaussian Markov");
+	noisetype->addItem("Gaussian Burst");
+	noisetype->addItem("Gaussian + Binary Burst");
+
+	noiseToolBar->addSeparator();
+
+	SlidersGroup *transition = new SlidersGroup(Qt::Horizontal, tr("Transition"));
+	noiseToolBar->addWidget(transition);
+
+	noiseToolBar->addSeparator();
+
+	SlidersGroup *error = new SlidersGroup(Qt::Horizontal, tr("Error"));
+	noiseToolBar->addWidget(error);
+
+	noiseToolBar->addSeparator();
+
+	SlidersGroup *confidence = new SlidersGroup(Qt::Horizontal, tr("Confidence Interval"));
+	noiseToolBar->addWidget(confidence);
+
+	noiseToolBar->addSeparator();
+
+	SlidersGroup *gaussiansigma = new SlidersGroup(Qt::Horizontal, tr("Gaussian Sigma"));
+	gsaction = noiseToolBar->addWidget(gaussiansigma);
+	gsaction->setVisible(false);
+
+	bsaction = noiseToolBar->addWidget(burstsigma);
+	bsaction->setVisible(false);
+
+	noiseToolBar->addSeparator();
+
+	//Connect signals and slots for noise type options
+	qInfo() << "connecting"; 
+	//connect(noisetype, QOverload<const QString&>::of(&QComboBox::activated), [=](const QString& str) {chooseNoise(str);});
+	connect(noisetype, SIGNAL(activated(const QString&)), SLOT(chooseNoise(const QString&)));
+	//	verticalSliders, SLOT(setValue(int)));
+	//SG
 }
 
 
@@ -323,27 +378,7 @@ void ImageViewer::createActions()
     helpMenu->addAction(tr("&About"), this, &ImageViewer::about);
     helpMenu->addAction(tr("About &Qt"), &QApplication::aboutQt);
 
-//SG
 
-	QToolBar *noiseToolBar = addToolBar(tr("&Noise"));
-
-	QComboBox *noisetype = new QComboBox;
-	QLabel *typelabel = new QLabel(this);
-	typelabel->setText("Noise Type");
-	noiseToolBar->addWidget(typelabel);
-	noiseToolBar->addSeparator();
-
-	noiseToolBar->addWidget(noisetype);
-	noisetype->addItem("None");
-	noisetype->addItem("Gaussian");
-	noisetype->addItem("Binary Burst");
-	noisetype->addItem("Gaussian Markov");
-	noisetype->addItem("Gaussian Burst");
-	noisetype->addItem("Gaussian + Binary Burst");
-
-	noiseToolBar->addSeparator();
-
-//SG
 }
 
 void ImageViewer::updateActions()
@@ -373,3 +408,64 @@ void ImageViewer::adjustScrollBar(QScrollBar *scrollBar, double factor)
     scrollBar->setValue(int(factor * scrollBar->value()
                             + ((factor - 1) * scrollBar->pageStep()/2)));
 }
+
+//SG
+void ImageViewer::createControls(const QString &title)
+{
+	controlsGroup = new QGroupBox(title);
+
+	minimumLabel = new QLabel(tr("Minimum value:"));
+	maximumLabel = new QLabel(tr("Maximum value:"));
+	valueLabel = new QLabel(tr("Current value:"));
+
+	invertedAppearance = new QCheckBox(tr("Inverted appearance"));
+	invertedKeyBindings = new QCheckBox(tr("Inverted key bindings"));
+
+	minimumSpinBox = new QSpinBox;
+	minimumSpinBox->setRange(-100, 100);
+	minimumSpinBox->setSingleStep(1);
+
+	maximumSpinBox = new QSpinBox;
+	maximumSpinBox->setRange(-100, 100);
+	maximumSpinBox->setSingleStep(1);
+
+	valueSpinBox = new QSpinBox;
+	valueSpinBox->setRange(-100, 100);
+	valueSpinBox->setSingleStep(1);
+
+	orientationCombo = new QComboBox;
+	orientationCombo->addItem(tr("Horizontal slider-like widgets"));
+	orientationCombo->addItem(tr("Vertical slider-like widgets"));
+
+	connect(orientationCombo, SIGNAL(activated(int)),
+		stackedWidget, SLOT(setCurrentIndex(int)));
+	connect(minimumSpinBox, SIGNAL(valueChanged(int)),
+		horizontalSliders, SLOT(setMinimum(int)));
+	connect(minimumSpinBox, SIGNAL(valueChanged(int)),
+		verticalSliders, SLOT(setMinimum(int)));
+	connect(maximumSpinBox, SIGNAL(valueChanged(int)),
+		horizontalSliders, SLOT(setMaximum(int)));
+	connect(maximumSpinBox, SIGNAL(valueChanged(int)),
+		verticalSliders, SLOT(setMaximum(int)));
+	connect(invertedAppearance, SIGNAL(toggled(bool)),
+		horizontalSliders, SLOT(invertAppearance(bool)));
+	connect(invertedAppearance, SIGNAL(toggled(bool)),
+		verticalSliders, SLOT(invertAppearance(bool)));
+	connect(invertedKeyBindings, SIGNAL(toggled(bool)),
+		horizontalSliders, SLOT(invertKeyBindings(bool)));
+	connect(invertedKeyBindings, SIGNAL(toggled(bool)),
+		verticalSliders, SLOT(invertKeyBindings(bool)));
+
+	QGridLayout *controlsLayout = new QGridLayout;
+	controlsLayout->addWidget(minimumLabel, 0, 0);
+	controlsLayout->addWidget(maximumLabel, 1, 0);
+	controlsLayout->addWidget(valueLabel, 2, 0);
+	controlsLayout->addWidget(minimumSpinBox, 0, 1);
+	controlsLayout->addWidget(maximumSpinBox, 1, 1);
+	controlsLayout->addWidget(valueSpinBox, 2, 1);
+	controlsLayout->addWidget(invertedAppearance, 0, 2);
+	controlsLayout->addWidget(invertedKeyBindings, 1, 2);
+	controlsLayout->addWidget(orientationCombo, 3, 0, 1, 3);
+	controlsGroup->setLayout(controlsLayout);
+}
+//SG

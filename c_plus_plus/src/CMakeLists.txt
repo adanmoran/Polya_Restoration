@@ -7,6 +7,7 @@ add_subdirectory(polya)
 message(${CMAKE_CURRENT_SOURCE_DIR})
 add_library(ImageViewer
     ${CMAKE_CURRENT_SOURCE_DIR}/qt/imageviewer.cpp
+	${CMAKE_CURRENT_SOURCE_DIR}/qt/slidersgroup.cpp
 )
 target_include_directories(ImageViewer PUBLIC
     ${CMAKE_SOURCE_DIR}/include

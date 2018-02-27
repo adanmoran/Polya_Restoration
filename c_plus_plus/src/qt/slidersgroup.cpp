@@ -49,126 +49,74 @@
 ****************************************************************************/
 
 
-#ifndef IMAGEVIEWER_H
-#define IMAGEVIEWER_H
-#include <iostream>
-#include <QMainWindow>
-#include <QImage>
-#include <QObject>
-//SG
-#include <QComboBox>
-#include <qwidget.h>
-/*#ifndef QT_NO_PRINTER
-#include <QPrinter>
-#endif*/
-//SG
-#include <QAction>
-class QLabel;
-class QMenu;
-class QScrollArea;
-class QScrollBar;
-//SG Drop Down Menu
-class QComboBox;
-//SG
-//SG Sliders
-class QCheckBox;
-class QGroupBox;
-class QLabel;
-class QSpinBox;
-class QStackedWidget;
-class SlidersGroup;
-//SG
+#include <QtWidgets>
 
-class ImageViewer : public QMainWindow
+#include "qt/slidersgroup.h"
+
+SlidersGroup::SlidersGroup(Qt::Orientation orientation, const QString &title,
+	QWidget *parent)
+	: QGroupBox(title, parent)
 {
-	Q_OBJECT
-		public slots:
-	void chooseNoise(const QString& noiseType)
-	{
-		if (noiseType == QString("None"))
-		{
-			bsaction->setVisible(false);
-			gsaction->setVisible(false);
-			// disable gsaction
-		}
-		else if (noiseType == QString("Binary Burst"))
-		{
-			bsaction->setVisible(true);
-			gsaction->setVisible(false);
-			// disable gsaction
-		}
-		else
-		{
-			//enable gsaction
-			gsaction->setVisible(true);
-			bsaction->setVisible(false);
-		}
-	}
-public:
-	ImageViewer();
-	bool loadFile(const QString &);
+	slider = new QSlider(orientation);
+	slider->setFocusPolicy(Qt::StrongFocus);
+	slider->setTickPosition(QSlider::TicksBothSides);
+	slider->setTickInterval(10);
+	slider->setSingleStep(1);
 
-	private slots:
-	void open();
-	void saveAs();
-	void print();
-	void copy();
-	void paste();
-	void zoomIn();
-	void zoomOut();
-	void normalSize();
-	void fitToWindow();
-	void about();
+	scrollBar = new QScrollBar(orientation);
+	scrollBar->setFocusPolicy(Qt::StrongFocus);
 
-private:
-	void createActions();
-	void createMenus() {}
-	void updateActions();
-	bool saveFile(const QString &fileName);
-	void setImage(const QImage &newImage);
-	void scaleImage(double factor);
-	void adjustScrollBar(QScrollBar *scrollBar, double factor);
-//SG Sliders
-	void createControls(const QString &title);
-//SG
-	QImage image;
-	QLabel *imageLabel;
-	QScrollArea *scrollArea;
-	double scaleFactor;
+	dial = new QDial;
+	dial->setFocusPolicy(Qt::StrongFocus);
 
-/*SG#ifndef QT_NO_PRINTER
-	QPrinter printer;
-#endifSG*/
+	connect(slider, SIGNAL(valueChanged(int)), scrollBar, SLOT(setValue(int)));
+	connect(scrollBar, SIGNAL(valueChanged(int)), dial, SLOT(setValue(int)));
+	connect(dial, SIGNAL(valueChanged(int)), slider, SLOT(setValue(int)));
+	connect(dial, SIGNAL(valueChanged(int)), this, SIGNAL(valueChanged(int)));
 
-	QAction *saveAsAct;
-	QAction *printAct;
-	QAction *copyAct;
-	QAction *zoomInAct;
-	QAction *zoomOutAct;
-	QAction *normalSizeAct;
-	QAction *fitToWindowAct;
-//SG Drop Down Menu
-	QComboBox *typeComboBox;
-//SG
-//SG Sliders
-	SlidersGroup *burstsigma;
-	QAction* bsaction = nullptr;
-	QAction* gsaction = nullptr;
-	SlidersGroup *horizontalSliders;
-	SlidersGroup *verticalSliders;
-	QStackedWidget *stackedWidget;
+	QBoxLayout::Direction direction;
 
-	QGroupBox *controlsGroup;
-	QLabel *minimumLabel;
-	QLabel *maximumLabel;
-	QLabel *valueLabel;
-	QCheckBox *invertedAppearance;
-	QCheckBox *invertedKeyBindings;
-	QSpinBox *minimumSpinBox;
-	QSpinBox *maximumSpinBox;
-	QSpinBox *valueSpinBox;
-	QComboBox *orientationCombo;
-//SG
-};
+	if (orientation == Qt::Horizontal)
+		direction = QBoxLayout::TopToBottom;
+	else
+		direction = QBoxLayout::LeftToRight;
 
-#endif
+	QBoxLayout *slidersLayout = new QBoxLayout(direction);
+	slidersLayout->addWidget(slider);
+	slidersLayout->addWidget(scrollBar);
+//	slidersLayout->addWidget(dial);
+	setLayout(slidersLayout);
+}
+
+void SlidersGroup::setValue(int value)
+{
+	slider->setValue(value);
+}
+
+void SlidersGroup::setMinimum(int value)
+{
+	slider->setMinimum(value);
+	scrollBar->setMinimum(value);
+	dial->setMinimum(value);
+}
+
+void SlidersGroup::setMaximum(int value)
+{
+	slider->setMaximum(value);
+	scrollBar->setMaximum(value);
+	dial->setMaximum(value);
+}
+
+void SlidersGroup::invertAppearance(bool invert)
+{
+	slider->setInvertedAppearance(invert);
+	scrollBar->setInvertedAppearance(invert);
+	dial->setInvertedAppearance(invert);
+}
+
+void SlidersGroup::invertKeyBindings(bool invert)
+{
+	slider->setInvertedControls(invert);
+	scrollBar->setInvertedControls(invert);
+	dial->setInvertedControls(invert);
+}

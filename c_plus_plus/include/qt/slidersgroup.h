@@ -49,126 +49,37 @@
 ****************************************************************************/
 
 
-#ifndef IMAGEVIEWER_H
-#define IMAGEVIEWER_H
-#include <iostream>
-#include <QMainWindow>
-#include <QImage>
-#include <QObject>
-//SG
-#include <QComboBox>
-#include <qwidget.h>
-/*#ifndef QT_NO_PRINTER
-#include <QPrinter>
-#endif*/
-//SG
-#include <QAction>
-class QLabel;
-class QMenu;
-class QScrollArea;
-class QScrollBar;
-//SG Drop Down Menu
-class QComboBox;
-//SG
-//SG Sliders
-class QCheckBox;
-class QGroupBox;
-class QLabel;
-class QSpinBox;
-class QStackedWidget;
-class SlidersGroup;
-//SG
+#ifndef SLIDERSGROUP_H
+#define SLIDERSGROUP_H
 
-class ImageViewer : public QMainWindow
+#include <QGroupBox>
+
+class QDial;
+class QScrollBar;
+class QSlider;
+
+class SlidersGroup : public QGroupBox
 {
 	Q_OBJECT
-		public slots:
-	void chooseNoise(const QString& noiseType)
-	{
-		if (noiseType == QString("None"))
-		{
-			bsaction->setVisible(false);
-			gsaction->setVisible(false);
-			// disable gsaction
-		}
-		else if (noiseType == QString("Binary Burst"))
-		{
-			bsaction->setVisible(true);
-			gsaction->setVisible(false);
-			// disable gsaction
-		}
-		else
-		{
-			//enable gsaction
-			gsaction->setVisible(true);
-			bsaction->setVisible(false);
-		}
-	}
-public:
-	ImageViewer();
-	bool loadFile(const QString &);
 
-	private slots:
-	void open();
-	void saveAs();
-	void print();
-	void copy();
-	void paste();
-	void zoomIn();
-	void zoomOut();
-	void normalSize();
-	void fitToWindow();
-	void about();
+public:
+	SlidersGroup(Qt::Orientation orientation, const QString &title,
+		QWidget *parent = 0);
+
+signals:
+	void valueChanged(int value);
+
+	public slots:
+	void setValue(int value);
+	void setMinimum(int value);
+	void setMaximum(int value);
+	void invertAppearance(bool invert);
+	void invertKeyBindings(bool invert);
 
 private:
-	void createActions();
-	void createMenus() {}
-	void updateActions();
-	bool saveFile(const QString &fileName);
-	void setImage(const QImage &newImage);
-	void scaleImage(double factor);
-	void adjustScrollBar(QScrollBar *scrollBar, double factor);
-//SG Sliders
-	void createControls(const QString &title);
-//SG
-	QImage image;
-	QLabel *imageLabel;
-	QScrollArea *scrollArea;
-	double scaleFactor;
-
-/*SG#ifndef QT_NO_PRINTER
-	QPrinter printer;
-#endifSG*/
-
-	QAction *saveAsAct;
-	QAction *printAct;
-	QAction *copyAct;
-	QAction *zoomInAct;
-	QAction *zoomOutAct;
-	QAction *normalSizeAct;
-	QAction *fitToWindowAct;
-//SG Drop Down Menu
-	QComboBox *typeComboBox;
-//SG
-//SG Sliders
-	SlidersGroup *burstsigma;
-	QAction* bsaction = nullptr;
-	QAction* gsaction = nullptr;
-	SlidersGroup *horizontalSliders;
-	SlidersGroup *verticalSliders;
-	QStackedWidget *stackedWidget;
-
-	QGroupBox *controlsGroup;
-	QLabel *minimumLabel;
-	QLabel *maximumLabel;
-	QLabel *valueLabel;
-	QCheckBox *invertedAppearance;
-	QCheckBox *invertedKeyBindings;
-	QSpinBox *minimumSpinBox;
-	QSpinBox *maximumSpinBox;
-	QSpinBox *valueSpinBox;
-	QComboBox *orientationCombo;
-//SG
+	QSlider * slider;
+	QScrollBar *scrollBar;
+	QDial *dial;
 };
 
-#endif
+#endif#pragma once
