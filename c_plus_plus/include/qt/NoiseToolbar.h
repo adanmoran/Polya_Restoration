@@ -50,6 +50,9 @@ private:
     auto initializeSliders() -> void;
     auto initializeTransitionSlider() -> void;
     auto initializeErrorSlider() -> void;
+    auto initializeConfidenceSlider() -> void;
+    auto initializeGaussianSigmaSlider() -> void;
+    auto initializeBurstSigmaSlider() -> void;
 
     QToolBar* toolbar_;
     /**
