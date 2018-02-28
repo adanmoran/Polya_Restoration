@@ -82,7 +82,11 @@ class SlidersGroup;
 class ImageViewer : public QMainWindow
 {
 	Q_OBJECT
-		public slots:
+
+signals:
+	void resized(const QSize&);
+
+public slots:
 	void chooseNoise(const QString& noiseType)
 	{
 		if (noiseType == QString("None"))
@@ -119,6 +123,10 @@ public:
 	void normalSize();
 	void fitToWindow();
 	void about();
+	void resizeEvent(QResizeEvent* event)
+	{
+		emit resized(size());
+	}
 
 private:
 	void createActions();

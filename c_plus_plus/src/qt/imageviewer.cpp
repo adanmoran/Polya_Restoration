@@ -49,7 +49,6 @@
 ****************************************************************************/
 
 #include <QtWidgets>
-#include <QDesktopWidget>
 /*SG#if defined(QT_PRINTSUPPORT_LIB)
 #include <QtPrintSupport/qtprintsupportglobal.h>
 #if QT_CONFIG(printdialog)
@@ -78,16 +77,16 @@ ImageViewer::ImageViewer()
 
     resize(QGuiApplication::primaryScreen()->availableSize() );
 
-	QDesktopWidget dimensions;
-
 	//SG Noise Toolbar
+
+	int toolbarWidth = size().width();
 
 	QToolBar *noiseToolBar = addToolBar(tr("&Noise"));
 
 	QComboBox *noisetype = new QComboBox;
-	QLabel *typelabel = new QLabel(this);
-	typelabel->setText("Noise Type");
-	noiseToolBar->addWidget(typelabel);
+	QLabel *noiselabel = new QLabel(this);
+	noiselabel->setText("Noise Type");
+	noiseToolBar->addWidget(noiselabel);
 	noiseToolBar->addSeparator();
 
 	noiseToolBar->addWidget(noisetype);
@@ -107,8 +106,9 @@ ImageViewer::ImageViewer()
 	transition->setMaximum(100);
 	transition->setValue(95);
 	//set width
-	int transitionw = dimensions.width()*0.2;
-	transition->setFixedWidth(transitionw);
+	int transitionw = toolbarWidth *0.2;
+	transition->setMinimumWidth(transitionw);
+	connect(this, QOverload<const QSize&>::of(&ImageViewer::resized), [=](const QSize& size) {transition->setMinimumWidth(size.width()*.2);});
 
 	noiseToolBar->addSeparator();
 
@@ -119,8 +119,9 @@ ImageViewer::ImageViewer()
 	error->setMaximum(100);
 	error->setValue(90);
 	//set width
-	int errorw = dimensions.width()*0.2;
+	int errorw = toolbarWidth *0.2;
 	error->setFixedWidth(errorw);
+	connect(this, QOverload<const QSize&>::of(&ImageViewer::resized), [=](const QSize& size) {error->setMinimumWidth(size.width()*.2);});
 
 	noiseToolBar->addSeparator();
 
@@ -131,8 +132,9 @@ ImageViewer::ImageViewer()
 	confidence->setMaximum(100);
 	confidence->setValue(80);
 	//set width
-	int confidencew = dimensions.width()*0.2;
+	int confidencew = toolbarWidth *0.2;
 	confidence->setFixedWidth(confidencew);
+	connect(this, QOverload<const QSize&>::of(&ImageViewer::resized), [=](const QSize& size) {confidence->setMinimumWidth(size.width()*.2);});
 
 	noiseToolBar->addSeparator();
 
@@ -144,8 +146,9 @@ ImageViewer::ImageViewer()
 	gaussiansigma->setMaximum(100);
 	gaussiansigma->setValue(1);
 	//set width
-	int gsw = dimensions.width()*0.2;
+	int gsw = toolbarWidth *0.2;
 	gaussiansigma->setFixedWidth(gsw);
+	connect(this, QOverload<const QSize&>::of(&ImageViewer::resized), [=](const QSize& size) {gaussiansigma->setMinimumWidth(size.width()*.2);});
 
 	SlidersGroup *burstsigma = new SlidersGroup(Qt::Horizontal, tr("Burst Sigma"));
 	bsaction = noiseToolBar->addWidget(burstsigma);
@@ -155,8 +158,9 @@ ImageViewer::ImageViewer()
 	burstsigma->setMaximum(100);
 	burstsigma->setValue(1);
 	//set width
-	int bsw = dimensions.width()*0.2;
+	int bsw = toolbarWidth *0.2;
 	burstsigma->setFixedWidth(bsw);
+	connect(this, QOverload<const QSize&>::of(&ImageViewer::resized), [=](const QSize& size) {burstsigma->setMinimumWidth(size.width()*.2);});
 
 	noiseToolBar->addSeparator();
 
