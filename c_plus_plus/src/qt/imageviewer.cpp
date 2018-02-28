@@ -57,7 +57,6 @@
 #endif SG*/
 //SG
 #include "qt/imageviewer.h"
-#include "qt/slidersgroup.h"
 #include "qt/NoiseToolbar.h"
 //SG
 ImageViewer::ImageViewer()
@@ -82,102 +81,14 @@ ImageViewer::ImageViewer()
 
 	int toolbarWidth = size().width();
 
-	QToolBar *noiseToolBar = addToolBar(tr("&Noise"));
-
 	NoiseToolbar* ntb = new NoiseToolbar(tr("&Noise"), this);
 	addToolBar(ntb);
 	// set default width
 	ntb->scaleToWidth(size().width());
+
 	// connect the resizing signal with the scaling of the toolbar, to properly scale the sliders
 	connect(this, SIGNAL(resized(const QSize&)), ntb, SLOT(scaleToWidth(const QSize&)));
-	
-	QComboBox *noisetype = new QComboBox;
-	QLabel *noiselabel = new QLabel(this);
-	noiselabel->setText("Noise Type");
-	noiseToolBar->addWidget(noiselabel);
-	noiseToolBar->addSeparator();
-
-	noiseToolBar->addWidget(noisetype);
-	noisetype->addItem("None");
-	noisetype->addItem("Gaussian");
-	noisetype->addItem("Binary Burst");
-	noisetype->addItem("Gaussian Markov");
-	noisetype->addItem("Gaussian Burst");
-	noisetype->addItem("Gaussian + Binary Burst");
-
-	noiseToolBar->addSeparator();
-
-	SlidersGroup *transition = new SlidersGroup(Qt::Horizontal, tr("Transition (%)"));
-	noiseToolBar->addWidget(transition);
-	//set initial values
-	transition->setMinimum(0);
-	transition->setMaximum(100);
-	transition->setValue(95);
-	//set width
-	int transitionw = toolbarWidth *0.2;
-	transition->setMinimumWidth(transitionw);
-	connect(this, QOverload<const QSize&>::of(&ImageViewer::resized), [=](const QSize& size) {transition->setMinimumWidth(size.width()*.2);});
-
-	noiseToolBar->addSeparator();
-
-	SlidersGroup *error = new SlidersGroup(Qt::Horizontal, tr("Error (%)"));
-	noiseToolBar->addWidget(error);
-	//set initial values
-	error->setMinimum(0);
-	error->setMaximum(100);
-	error->setValue(90);
-	//set width
-	int errorw = toolbarWidth *0.2;
-	error->setFixedWidth(errorw);
-	connect(this, QOverload<const QSize&>::of(&ImageViewer::resized), [=](const QSize& size) {error->setMinimumWidth(size.width()*.2);});
-
-	noiseToolBar->addSeparator();
-
-	SlidersGroup *confidence = new SlidersGroup(Qt::Horizontal, tr("Confidence Interval (%)"));
-	noiseToolBar->addWidget(confidence);
-	//set initial values
-	confidence->setMinimum(0);
-	confidence->setMaximum(100);
-	confidence->setValue(80);
-	//set width
-	int confidencew = toolbarWidth *0.2;
-	confidence->setFixedWidth(confidencew);
-	connect(this, QOverload<const QSize&>::of(&ImageViewer::resized), [=](const QSize& size) {confidence->setMinimumWidth(size.width()*.2);});
-
-	noiseToolBar->addSeparator();
-
-	SlidersGroup *gaussiansigma = new SlidersGroup(Qt::Horizontal, tr("Gaussian Sigma"));
-	gsaction = noiseToolBar->addWidget(gaussiansigma);
-	gsaction->setVisible(false);
-	//set initial values
-	gaussiansigma->setMinimum(0);
-	gaussiansigma->setMaximum(100);
-	gaussiansigma->setValue(1);
-	//set width
-	int gsw = toolbarWidth *0.2;
-	gaussiansigma->setFixedWidth(gsw);
-	connect(this, QOverload<const QSize&>::of(&ImageViewer::resized), [=](const QSize& size) {gaussiansigma->setMinimumWidth(size.width()*.2);});
-
-	SlidersGroup *burstsigma = new SlidersGroup(Qt::Horizontal, tr("Burst Sigma"));
-	bsaction = noiseToolBar->addWidget(burstsigma);
-	bsaction->setVisible(false);
-	//set initial values
-	burstsigma->setMinimum(0);
-	burstsigma->setMaximum(100);
-	burstsigma->setValue(1);
-	//set width
-	int bsw = toolbarWidth *0.2;
-	burstsigma->setFixedWidth(bsw);
-	connect(this, QOverload<const QSize&>::of(&ImageViewer::resized), [=](const QSize& size) {burstsigma->setMinimumWidth(size.width()*.2);});
-
-	noiseToolBar->addSeparator();
-
-	//Connect signals and slots for noise type options
-	//connect(noisetype, QOverload<const QString&>::of(&QComboBox::activated), [=](const QString& str) {chooseNoise(str);});
-	connect(noisetype, SIGNAL(activated(const QString&)), SLOT(chooseNoise(const QString&)));
-	//	verticalSliders, SLOT(setValue(int)));
-	//SG
-}
+	}
 
 
 bool ImageViewer::loadFile(const QString &fileName)
@@ -455,63 +366,5 @@ void ImageViewer::adjustScrollBar(QScrollBar *scrollBar, double factor)
                             + ((factor - 1) * scrollBar->pageStep()/2)));
 }
 
-//SG
-void ImageViewer::createControls(const QString &title)
-{
-	controlsGroup = new QGroupBox(title);
 
-	minimumLabel = new QLabel(tr("Minimum value:"));
-	maximumLabel = new QLabel(tr("Maximum value:"));
-	valueLabel = new QLabel(tr("Current value:"));
-
-	invertedAppearance = new QCheckBox(tr("Inverted appearance"));
-	invertedKeyBindings = new QCheckBox(tr("Inverted key bindings"));
-
-	minimumSpinBox = new QSpinBox;
-	minimumSpinBox->setRange(-100, 100);
-	minimumSpinBox->setSingleStep(1);
-
-	maximumSpinBox = new QSpinBox;
-	maximumSpinBox->setRange(-100, 100);
-	maximumSpinBox->setSingleStep(1);
-
-	valueSpinBox = new QSpinBox;
-	valueSpinBox->setRange(-100, 100);
-	valueSpinBox->setSingleStep(1);
-
-	orientationCombo = new QComboBox;
-	orientationCombo->addItem(tr("Horizontal slider-like widgets"));
-	orientationCombo->addItem(tr("Vertical slider-like widgets"));
-
-	connect(orientationCombo, SIGNAL(activated(int)),
-		stackedWidget, SLOT(setCurrentIndex(int)));
-	connect(minimumSpinBox, SIGNAL(valueChanged(int)),
-		horizontalSliders, SLOT(setMinimum(int)));
-	connect(minimumSpinBox, SIGNAL(valueChanged(int)),
-		verticalSliders, SLOT(setMinimum(int)));
-	connect(maximumSpinBox, SIGNAL(valueChanged(int)),
-		horizontalSliders, SLOT(setMaximum(int)));
-	connect(maximumSpinBox, SIGNAL(valueChanged(int)),
-		verticalSliders, SLOT(setMaximum(int)));
-	connect(invertedAppearance, SIGNAL(toggled(bool)),
-		horizontalSliders, SLOT(invertAppearance(bool)));
-	connect(invertedAppearance, SIGNAL(toggled(bool)),
-		verticalSliders, SLOT(invertAppearance(bool)));
-	connect(invertedKeyBindings, SIGNAL(toggled(bool)),
-		horizontalSliders, SLOT(invertKeyBindings(bool)));
-	connect(invertedKeyBindings, SIGNAL(toggled(bool)),
-		verticalSliders, SLOT(invertKeyBindings(bool)));
-
-	QGridLayout *controlsLayout = new QGridLayout;
-	controlsLayout->addWidget(minimumLabel, 0, 0);
-	controlsLayout->addWidget(maximumLabel, 1, 0);
-	controlsLayout->addWidget(valueLabel, 2, 0);
-	controlsLayout->addWidget(minimumSpinBox, 0, 1);
-	controlsLayout->addWidget(maximumSpinBox, 1, 1);
-	controlsLayout->addWidget(valueSpinBox, 2, 1);
-	controlsLayout->addWidget(invertedAppearance, 0, 2);
-	controlsLayout->addWidget(invertedKeyBindings, 1, 2);
-	controlsLayout->addWidget(orientationCombo, 3, 0, 1, 3);
-	controlsGroup->setLayout(controlsLayout);
-}
-//SG
+/* vim: set ts=4 sw=4 et : */

@@ -55,29 +55,11 @@
 #include <QMainWindow>
 #include <QImage>
 #include <QObject>
-//SG
-#include <QComboBox>
-#include <qwidget.h>
-/*#ifndef QT_NO_PRINTER
-#include <QPrinter>
-#endif*/
-//SG
-#include <QAction>
+
 class QLabel;
 class QMenu;
 class QScrollArea;
 class QScrollBar;
-//SG Drop Down Menu
-class QComboBox;
-//SG
-//SG Sliders
-class QCheckBox;
-class QGroupBox;
-class QLabel;
-class QSpinBox;
-class QStackedWidget;
-class SlidersGroup;
-//SG
 
 class ImageViewer : public QMainWindow
 {
@@ -87,32 +69,12 @@ signals:
 	void resized(const QSize&);
 
 public slots:
-	void chooseNoise(const QString& noiseType)
-	{
-		if (noiseType == QString("None"))
-		{
-			bsaction->setVisible(false);
-			gsaction->setVisible(false);
-			// disable gsaction
-		}
-		else if (noiseType == QString("Binary Burst"))
-		{
-			bsaction->setVisible(true);
-			gsaction->setVisible(false);
-			// disable gsaction
-		}
-		else
-		{
-			//enable gsaction
-			gsaction->setVisible(true);
-			bsaction->setVisible(false);
-		}
-	}
+
 public:
 	ImageViewer();
 	bool loadFile(const QString &);
 
-	private slots:
+private slots:
 	void open();
 	void saveAs();
 	void print();
@@ -136,17 +98,11 @@ private:
 	void setImage(const QImage &newImage);
 	void scaleImage(double factor);
 	void adjustScrollBar(QScrollBar *scrollBar, double factor);
-//SG Sliders
-	void createControls(const QString &title);
-//SG
+
 	QImage image;
 	QLabel *imageLabel;
 	QScrollArea *scrollArea;
 	double scaleFactor;
-
-/*SG#ifndef QT_NO_PRINTER
-	QPrinter printer;
-#endifSG*/
 
 	QAction *saveAsAct;
 	QAction *printAct;
@@ -155,28 +111,6 @@ private:
 	QAction *zoomOutAct;
 	QAction *normalSizeAct;
 	QAction *fitToWindowAct;
-//SG Drop Down Menu
-	QComboBox *typeComboBox;
-//SG
-//SG Sliders
-	SlidersGroup *burstsigma;
-	QAction* bsaction = nullptr;
-	QAction* gsaction = nullptr;
-	SlidersGroup *horizontalSliders;
-	SlidersGroup *verticalSliders;
-	QStackedWidget *stackedWidget;
-
-	QGroupBox *controlsGroup;
-	QLabel *minimumLabel;
-	QLabel *maximumLabel;
-	QLabel *valueLabel;
-	QCheckBox *invertedAppearance;
-	QCheckBox *invertedKeyBindings;
-	QSpinBox *minimumSpinBox;
-	QSpinBox *maximumSpinBox;
-	QSpinBox *valueSpinBox;
-	QComboBox *orientationCombo;
-//SG
 };
 
 #endif
