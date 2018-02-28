@@ -125,7 +125,7 @@ public:
 	void about();
 	void resizeEvent(QResizeEvent* event)
 	{
-		emit resized(size());
+	    emit resized(size());
 	}
 
 private:
@@ -180,3 +180,4 @@ private:
 };
 
 #endif
+/* vim: set ts=4 sw=4 et : */

@@ -82,4 +82,4 @@ private:
 	QDial *dial;
 };
 
-#endif#pragma once
+#endif

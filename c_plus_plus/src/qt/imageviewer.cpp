@@ -58,6 +58,7 @@
 //SG
 #include "qt/imageviewer.h"
 #include "qt/slidersgroup.h"
+#include "qt/NoiseToolbar.h"
 //SG
 ImageViewer::ImageViewer()
    : imageLabel(new QLabel)
@@ -83,6 +84,13 @@ ImageViewer::ImageViewer()
 
 	QToolBar *noiseToolBar = addToolBar(tr("&Noise"));
 
+	NoiseToolbar* ntb = new NoiseToolbar(tr("&Noise"), this);
+	addToolBar(ntb);
+	// set default width
+	ntb->scaleToWidth(size().width());
+	// connect the resizing signal with the scaling of the toolbar, to properly scale the sliders
+	connect(this, SIGNAL(resized(const QSize&)), ntb, SLOT(scaleToWidth(const QSize&)));
+	
 	QComboBox *noisetype = new QComboBox;
 	QLabel *noiselabel = new QLabel(this);
 	noiselabel->setText("Noise Type");
