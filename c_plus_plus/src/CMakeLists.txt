@@ -9,6 +9,7 @@ add_library(ImageViewer
     ${CMAKE_CURRENT_SOURCE_DIR}/qt/imageviewer.cpp
 	${CMAKE_CURRENT_SOURCE_DIR}/qt/slidersgroup.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/qt/NoiseToolbar.cpp
+	${CMAKE_CURRENT_SOURCE_DIR}/qt/EdgeToolBar.cpp
 )
 target_include_directories(ImageViewer PUBLIC
     ${CMAKE_SOURCE_DIR}/include

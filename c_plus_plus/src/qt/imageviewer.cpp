@@ -58,6 +58,7 @@
 //SG
 #include "qt/imageviewer.h"
 #include "qt/NoiseToolbar.h"
+#include "qt/EdgeToolbar.h"
 //SG
 ImageViewer::ImageViewer()
    : imageLabel(new QLabel)
@@ -76,7 +77,7 @@ ImageViewer::ImageViewer()
     createActions();
 
     resize(QGuiApplication::primaryScreen()->availableSize() );
-
+// Noise Toolbar
 	NoiseToolbar* ntb = new NoiseToolbar(tr("&Noise"), this);
 	addToolBar(ntb);
 	// set default width
@@ -85,6 +86,20 @@ ImageViewer::ImageViewer()
 	// connect the resizing signal with the scaling of the toolbar, to properly scale the sliders
 	connect(this, SIGNAL(resized(const QSize&)), ntb, SLOT(scaleToWidth(const QSize&)));
 //    connect(ntb, QOverload<int>::of(&NoiseToolbar::transitionChanged), [=](int val) {qInfo() << val;});
+
+// Start next toolbar on new line
+	addToolBarBreak();
+// Edge Toolbar
+	EdgeToolbar* etb = new EdgeToolbar(tr("&Edge"), this);
+	addToolBar(etb);
+	// set default width
+	etb->scaleToWidth(size().width());
+
+	// connect the resizing signal with the scaling of the toolbar, to properly scale the sliders
+	connect(this, SIGNAL(resized(const QSize&)), etb, SLOT(scaleToWidth(const QSize&)));
+	//    connect(ntb, QOverload<int>::of(&NoiseToolbar::transitionChanged), [=](int val) {qInfo() << val;});
+
+
 }
 
 bool ImageViewer::loadFile(const QString &fileName)
