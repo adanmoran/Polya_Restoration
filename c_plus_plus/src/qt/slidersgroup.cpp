@@ -52,6 +52,7 @@
 #include <QtWidgets>
 
 #include "qt/slidersgroup.h"
+#include <QLCDNumber>
 
 SlidersGroup::SlidersGroup(Qt::Orientation orientation, const QString &title,
 	QWidget *parent)
@@ -69,6 +70,12 @@ SlidersGroup::SlidersGroup(Qt::Orientation orientation, const QString &title,
 	dial = new QDial;
 	dial->setFocusPolicy(Qt::StrongFocus);
 
+	QLCDNumber *lcd = new QLCDNumber(3);
+	lcd->setSegmentStyle(QLCDNumber::Flat);
+
+	connect(slider, SIGNAL(valueChanged(int)), lcd, SLOT(display(int)));
+	connect(scrollBar, SIGNAL(valueChanged(int)), lcd, SLOT(display(int)));
+
 	connect(slider, SIGNAL(valueChanged(int)), scrollBar, SLOT(setValue(int)));
 	connect(scrollBar, SIGNAL(valueChanged(int)), dial, SLOT(setValue(int)));
 	connect(dial, SIGNAL(valueChanged(int)), slider, SLOT(setValue(int)));
@@ -82,8 +89,9 @@ SlidersGroup::SlidersGroup(Qt::Orientation orientation, const QString &title,
 		direction = QBoxLayout::LeftToRight;
 
 	QBoxLayout *slidersLayout = new QBoxLayout(direction);
-	slidersLayout->addWidget(slider);
+	//slidersLayout->addWidget(slider);
 	slidersLayout->addWidget(scrollBar);
+	slidersLayout->addWidget(lcd);
 //	slidersLayout->addWidget(dial);
 	setLayout(slidersLayout);
 }

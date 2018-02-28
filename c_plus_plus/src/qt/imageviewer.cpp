@@ -49,6 +49,7 @@
 ****************************************************************************/
 
 #include <QtWidgets>
+#include <QDesktopWidget>
 /*SG#if defined(QT_PRINTSUPPORT_LIB)
 #include <QtPrintSupport/qtprintsupportglobal.h>
 #if QT_CONFIG(printdialog)
@@ -63,11 +64,7 @@ ImageViewer::ImageViewer()
    : imageLabel(new QLabel)
    , scrollArea(new QScrollArea)
    , scaleFactor(1)
-   , burstsigma(new SlidersGroup(Qt::Horizontal, tr("Burst Sigma")))
 {
-	qInfo() << "info";
-	qWarning() << "warning";
-	qDebug() << "debug";
     imageLabel->setBackgroundRole(QPalette::Base);
     imageLabel->setSizePolicy(QSizePolicy::Ignored, QSizePolicy::Ignored);
     imageLabel->setScaledContents(true);
@@ -79,7 +76,9 @@ ImageViewer::ImageViewer()
 
     createActions();
 
-    resize(QGuiApplication::primaryScreen()->availableSize() * 3 / 5);
+    resize(QGuiApplication::primaryScreen()->availableSize() );
+
+	QDesktopWidget dimensions;
 
 	//SG Noise Toolbar
 
@@ -101,32 +100,67 @@ ImageViewer::ImageViewer()
 
 	noiseToolBar->addSeparator();
 
-	SlidersGroup *transition = new SlidersGroup(Qt::Horizontal, tr("Transition"));
+	SlidersGroup *transition = new SlidersGroup(Qt::Horizontal, tr("Transition (%)"));
 	noiseToolBar->addWidget(transition);
+	//set initial values
+	transition->setMinimum(0);
+	transition->setMaximum(100);
+	transition->setValue(95);
+	//set width
+	int transitionw = dimensions.width()*0.2;
+	transition->setFixedWidth(transitionw);
 
 	noiseToolBar->addSeparator();
 
-	SlidersGroup *error = new SlidersGroup(Qt::Horizontal, tr("Error"));
+	SlidersGroup *error = new SlidersGroup(Qt::Horizontal, tr("Error (%)"));
 	noiseToolBar->addWidget(error);
+	//set initial values
+	error->setMinimum(0);
+	error->setMaximum(100);
+	error->setValue(90);
+	//set width
+	int errorw = dimensions.width()*0.2;
+	error->setFixedWidth(errorw);
 
 	noiseToolBar->addSeparator();
 
-	SlidersGroup *confidence = new SlidersGroup(Qt::Horizontal, tr("Confidence Interval"));
+	SlidersGroup *confidence = new SlidersGroup(Qt::Horizontal, tr("Confidence Interval (%)"));
 	noiseToolBar->addWidget(confidence);
+	//set initial values
+	confidence->setMinimum(0);
+	confidence->setMaximum(100);
+	confidence->setValue(80);
+	//set width
+	int confidencew = dimensions.width()*0.2;
+	confidence->setFixedWidth(confidencew);
 
 	noiseToolBar->addSeparator();
 
 	SlidersGroup *gaussiansigma = new SlidersGroup(Qt::Horizontal, tr("Gaussian Sigma"));
 	gsaction = noiseToolBar->addWidget(gaussiansigma);
 	gsaction->setVisible(false);
+	//set initial values
+	gaussiansigma->setMinimum(0);
+	gaussiansigma->setMaximum(100);
+	gaussiansigma->setValue(1);
+	//set width
+	int gsw = dimensions.width()*0.2;
+	gaussiansigma->setFixedWidth(gsw);
 
+	SlidersGroup *burstsigma = new SlidersGroup(Qt::Horizontal, tr("Burst Sigma"));
 	bsaction = noiseToolBar->addWidget(burstsigma);
 	bsaction->setVisible(false);
+	//set initial values
+	burstsigma->setMinimum(0);
+	burstsigma->setMaximum(100);
+	burstsigma->setValue(1);
+	//set width
+	int bsw = dimensions.width()*0.2;
+	burstsigma->setFixedWidth(bsw);
 
 	noiseToolBar->addSeparator();
 
 	//Connect signals and slots for noise type options
-	qInfo() << "connecting"; 
 	//connect(noisetype, QOverload<const QString&>::of(&QComboBox::activated), [=](const QString& str) {chooseNoise(str);});
 	connect(noisetype, SIGNAL(activated(const QString&)), SLOT(chooseNoise(const QString&)));
 	//	verticalSliders, SLOT(setValue(int)));
