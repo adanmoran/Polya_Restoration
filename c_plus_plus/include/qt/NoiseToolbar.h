@@ -12,6 +12,7 @@
 #include <QToolBar>
 #include <QString>
 #include <QSize>
+#include <QAction>
 
 #include "qt/slidersgroup.h"
 
@@ -40,6 +41,7 @@ public slots:
     // Scale the sliders to fit inside this width
     void scaleToWidth(const QSize&);
     void scaleToWidth(int);
+	void chooseNoise(const QString&);
 
 signals:
     void widthChanged(int);
@@ -66,6 +68,10 @@ private:
     SlidersGroup* confidence_;
     SlidersGroup* gaussianSigma_;
     SlidersGroup* burstSigma_;
+
+    // Actions, for hiding and showing sliders
+    QAction* gaussianSigmaAction_;
+    QAction* burstSigmaAction_;
 
     const double GAUSSIAN_MEAN = 0;
     const QString COMBO_LABEL = "Noise Type";

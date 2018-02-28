@@ -23,6 +23,11 @@ NoiseToolbar::NoiseToolbar(const QString& title, QWidget* parent)
     initializeComboLabel();
     initializeComboBox();
     initializeSliders();
+
+    // Connect the combo box to the sliders
+	connect(noiseType_, SIGNAL(activated(const QString&)), SLOT(chooseNoise(const QString&)));
+    // Set the view based on the default choice
+    chooseNoise(noiseType_->currentText());
 }
 
 ///////////
@@ -41,8 +46,8 @@ auto NoiseToolbar::scaleToWidth(int width) -> void
 
     // There are 5 sliders,but only 4 are visible at once.
     // so each takes 25% of the remaining space
-    // we make it 23% to account for separators
-    auto sliderScaling = remainingSize * 0.23;
+    // we make it 22% to account for separators
+    auto sliderScaling = remainingSize * 0.22;
 
     transitionProb_->setMinimumWidth(sliderScaling);
     errorProb_->setMinimumWidth(sliderScaling);
@@ -52,6 +57,25 @@ auto NoiseToolbar::scaleToWidth(int width) -> void
 
     // emit the signal
     emit widthChanged(width);
+}
+
+auto NoiseToolbar::chooseNoise(const QString& noiseType) -> void
+{
+    if (noiseType == NO_NOISE)
+    {
+        burstSigmaAction_->setVisible(false);
+        gaussianSigmaAction_->setVisible(false);
+    }
+    else if (noiseType == BINARY_BURST_NOISE)
+    {
+        burstSigmaAction_->setVisible(true);
+        gaussianSigmaAction_->setVisible(false);
+    }
+    else
+    {
+        gaussianSigmaAction_->setVisible(true);
+        burstSigmaAction_->setVisible(false);
+    }
 }
 
 /////////////
@@ -126,7 +150,7 @@ auto NoiseToolbar::initializeGaussianSigmaSlider() -> void
     gaussianSigma_->setMaximum(50);
     // Default values is 90%, can be changed by user
     gaussianSigma_->setValue(30);
-    addWidget(gaussianSigma_);
+    gaussianSigmaAction_ = addWidget(gaussianSigma_);
     addSeparator();
 }
 
@@ -137,7 +161,7 @@ auto NoiseToolbar::initializeBurstSigmaSlider() -> void
     burstSigma_->setMaximum(50);
     // Default values is 3.0, can be changed by user
     burstSigma_->setValue(30);
-    addWidget(burstSigma_);
+    burstSigmaAction_ = addWidget(burstSigma_);
     addSeparator();
 }
 /* vim: set ts=4 sw=4 et : */
