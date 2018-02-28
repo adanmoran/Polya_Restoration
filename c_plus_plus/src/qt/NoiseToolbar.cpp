@@ -23,9 +23,9 @@ NoiseToolbar::NoiseToolbar(const QString& title, QWidget* parent)
     initializeComboLabel();
     initializeComboBox();
     initializeSliders();
+    comboConnections();
+    sliderConnections();
 
-    // Connect the combo box to the sliders
-	connect(noiseType_, SIGNAL(activated(const QString&)), SLOT(chooseNoise(const QString&)));
     // Set the view based on the default choice
     chooseNoise(noiseType_->currentText());
 }
@@ -106,8 +106,11 @@ auto NoiseToolbar::initializeSliders() -> void
     initializeTransitionSlider();
     initializeErrorSlider();
     initializeConfidenceSlider();
+    // These don't add their own separators because only one of them appears at a time
+    // We manually add one for good appearance
     initializeGaussianSigmaSlider();
     initializeBurstSigmaSlider();
+    addSeparator();
 }
 
 auto NoiseToolbar::initializeTransitionSlider() -> void
@@ -151,7 +154,6 @@ auto NoiseToolbar::initializeGaussianSigmaSlider() -> void
     // Default values is 90%, can be changed by user
     gaussianSigma_->setValue(30);
     gaussianSigmaAction_ = addWidget(gaussianSigma_);
-    addSeparator();
 }
 
 auto NoiseToolbar::initializeBurstSigmaSlider() -> void
@@ -162,6 +164,25 @@ auto NoiseToolbar::initializeBurstSigmaSlider() -> void
     // Default values is 3.0, can be changed by user
     burstSigma_->setValue(30);
     burstSigmaAction_ = addWidget(burstSigma_);
-    addSeparator();
 }
+
+auto NoiseToolbar::comboConnections() -> void
+{
+    // Connect the combo box to the sliders
+	connect(noiseType_, SIGNAL(activated(const QString&)), SLOT(chooseNoise(const QString&)));
+    // Connect the combo box activation signal to the activation signal of this toolbar
+    connect(noiseType_, SIGNAL(activated(const QString&)), SIGNAL(comboChanged(const QString&)));
+
+}
+
+auto NoiseToolbar::sliderConnections() -> void
+{
+    // Emit the slider values when they change
+    connect(transitionProb_, SIGNAL(valueChanged(int)), SIGNAL(transitionChanged(int)));
+    connect(errorProb_, SIGNAL(valueChanged(int)), SIGNAL(errorChanged(int)));
+    connect(confidence_, SIGNAL(valueChanged(int)), SIGNAL(confidenceChanged(int)));
+    connect(gaussianSigma_, SIGNAL(valueChanged(int)), SIGNAL(gaussianSigmaChanged(int)));
+    connect(burstSigma_, SIGNAL(valueChanged(int)), SIGNAL(burstSigmaChanged(int)));
+}
+
 /* vim: set ts=4 sw=4 et : */

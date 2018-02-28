@@ -54,9 +54,7 @@
 
 #include <QGroupBox>
 
-class QDial;
 class QScrollBar;
-class QSlider;
 
 class SlidersGroup : public QGroupBox
 {
@@ -77,9 +75,7 @@ signals:
 	void invertKeyBindings(bool invert);
 
 private:
-	QSlider * slider;
 	QScrollBar *scrollBar;
-	QDial *dial;
 };
 
 #endif

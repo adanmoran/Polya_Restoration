@@ -55,6 +55,7 @@
 #include <QMainWindow>
 #include <QImage>
 #include <QObject>
+#include <QDebug>
 
 class QLabel;
 class QMenu;

@@ -77,10 +77,6 @@ ImageViewer::ImageViewer()
 
     resize(QGuiApplication::primaryScreen()->availableSize() );
 
-	//SG Noise Toolbar
-
-	int toolbarWidth = size().width();
-
 	NoiseToolbar* ntb = new NoiseToolbar(tr("&Noise"), this);
 	addToolBar(ntb);
 	// set default width
@@ -88,8 +84,8 @@ ImageViewer::ImageViewer()
 
 	// connect the resizing signal with the scaling of the toolbar, to properly scale the sliders
 	connect(this, SIGNAL(resized(const QSize&)), ntb, SLOT(scaleToWidth(const QSize&)));
-	}
-
+//    connect(ntb, QOverload<int>::of(&NoiseToolbar::transitionChanged), [=](int val) {qInfo() << val;});
+}
 
 bool ImageViewer::loadFile(const QString &fileName)
 {

@@ -45,6 +45,12 @@ public slots:
 
 signals:
     void widthChanged(int);
+    void transitionChanged(int);
+    void errorChanged(int);
+    void confidenceChanged(int);
+    void gaussianSigmaChanged(int);
+    void burstSigmaChanged(int);
+    void comboChanged(const QString&);
 
 private:
     auto initializeComboBox() -> void;
@@ -55,8 +61,9 @@ private:
     auto initializeConfidenceSlider() -> void;
     auto initializeGaussianSigmaSlider() -> void;
     auto initializeBurstSigmaSlider() -> void;
+    auto comboConnections() -> void;
+    auto sliderConnections() -> void;
 
-    QToolBar* toolbar_;
     /**
      * Dropdown box which allows one to choose the noise type.
      */
