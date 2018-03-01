@@ -61,6 +61,7 @@
 #include "qt/EdgeToolbar.h"
 #include "qt/QuantizeToolbar.h"
 #include "qt/PolyaToolbar.h"
+#include "qt/OutputsToolbar.h"
 //SG
 ImageViewer::ImageViewer()
    : imageLabel(new QLabel)
@@ -128,6 +129,18 @@ ImageViewer::ImageViewer()
 	//    connect(ntb, QOverload<int>::of(&NoiseToolbar::transitionChanged), [=](int val) {qInfo() << val;});
 	// connect the edge toolbar's "edge map checkbox" signal to the radius selection option
 	connect(etb, SIGNAL(boxChecked(bool)), ptb, SLOT(edgeMapSelected(bool)));
+
+	// Start next toolbar on new line
+		addToolBarBreak();
+	// Outputs Toolbar
+	OutputsToolbar* otb = new OutputsToolbar(tr("&Outputs"), this);
+	addToolBar(Qt::BottomToolBarArea, otb);
+	// set default width
+	otb->scaleToWidth(size().width());
+	// connect the resizing signal with the scaling of the toolbar, to properly scale the sliders
+	connect(this, SIGNAL(resized(const QSize&)), otb, SLOT(scaleToWidth(const QSize&)));
+
+
 }
 
 bool ImageViewer::loadFile(const QString &fileName)

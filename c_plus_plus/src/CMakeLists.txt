@@ -12,6 +12,7 @@ add_library(ImageViewer
 	${CMAKE_CURRENT_SOURCE_DIR}/qt/EdgeToolbar.cpp
 	${CMAKE_CURRENT_SOURCE_DIR}/qt/QuantizeToolbar.cpp
 	${CMAKE_CURRENT_SOURCE_DIR}/qt/PolyaToolbar.cpp
+	${CMAKE_CURRENT_SOURCE_DIR}/qt/OutputsToolbar.cpp
 )
 target_include_directories(ImageViewer PUBLIC
     ${CMAKE_SOURCE_DIR}/include
