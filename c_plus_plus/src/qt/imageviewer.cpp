@@ -64,9 +64,14 @@
 #include "qt/OutputsToolbar.h"
 //SG
 ImageViewer::ImageViewer()
-   : imageLabel(new QLabel)
-   , scrollArea(new QScrollArea)
-   , scaleFactor(1)
+	: imageLabel(new QLabel)
+	, scrollArea(new QScrollArea)
+	, scaleFactor(1)
+	, mainLayout_(new QGridLayout)
+	, mainLayoutBox_(new QGroupBox)
+	, edgeMapArea_(new QScrollArea)
+	, noiseArea_(new QScrollArea)
+	, restoredArea_(new QScrollArea)
 {
     imageLabel->setBackgroundRole(QPalette::Base);
     imageLabel->setSizePolicy(QSizePolicy::Ignored, QSizePolicy::Ignored);
@@ -75,7 +80,7 @@ ImageViewer::ImageViewer()
     scrollArea->setBackgroundRole(QPalette::Dark);
     scrollArea->setWidget(imageLabel);
     scrollArea->setVisible(false);
-    setCentralWidget(scrollArea);
+ //   setCentralWidget(scrollArea);
 
     createActions();
 
@@ -101,8 +106,6 @@ ImageViewer::ImageViewer()
 	// connect the resizing signal with the scaling of the toolbar, to properly scale the sliders
 	connect(this, SIGNAL(resized(const QSize&)), ptb, SLOT(scaleToWidth(const QSize&)));
 	//    connect(ntb, QOverload<int>::of(&NoiseToolbar::transitionChanged), [=](int val) {qInfo() << val;});
-
-
 
 // Start next toolbar on new line
 	addToolBarBreak();
@@ -140,6 +143,7 @@ ImageViewer::ImageViewer()
 	// connect the resizing signal with the scaling of the toolbar, to properly scale the sliders
 	connect(this, SIGNAL(resized(const QSize&)), otb, SLOT(scaleToWidth(const QSize&)));
 
+	createGridLayout();
 
 }
 
@@ -416,6 +420,16 @@ void ImageViewer::adjustScrollBar(QScrollBar *scrollBar, double factor)
 {
     scrollBar->setValue(int(factor * scrollBar->value()
                             + ((factor - 1) * scrollBar->pageStep()/2)));
+}
+
+void ImageViewer::createGridLayout()
+{
+	mainLayout_->addWidget(scrollArea,0,0);
+	mainLayout_->addWidget(noiseArea_, 0, 1);
+	mainLayout_->addWidget(edgeMapArea_, 1, 0);
+	mainLayout_->addWidget(restoredArea_, 1, 1);
+	mainLayoutBox_->setLayout(mainLayout_);
+	setCentralWidget(mainLayoutBox_);
 }
 
 

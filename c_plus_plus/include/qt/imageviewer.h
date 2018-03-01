@@ -56,6 +56,8 @@
 #include <QImage>
 #include <QObject>
 #include <QDebug>
+#include <QGridLayout>
+#include <QGroupBox>
 
 class QLabel;
 class QMenu;
@@ -99,6 +101,7 @@ private:
 	void setImage(const QImage &newImage);
 	void scaleImage(double factor);
 	void adjustScrollBar(QScrollBar *scrollBar, double factor);
+	void createGridLayout();
 
 	QImage image;
 	QLabel *imageLabel;
@@ -112,6 +115,13 @@ private:
 	QAction *zoomOutAct;
 	QAction *normalSizeAct;
 	QAction *fitToWindowAct;
+
+	QGridLayout* mainLayout_;
+	QGroupBox* mainLayoutBox_;
+
+	QScrollArea* edgeMapArea_;
+	QScrollArea* restoredArea_;
+	QScrollArea* noiseArea_;
 };
 
 #endif
