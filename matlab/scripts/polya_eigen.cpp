@@ -1,9 +1,8 @@
-#include "mex.h"
-#include "matrix.h"
-
 //////////////////////////////
 // Copyright MTHE 493, 2018 //
 //////////////////////////////
+#include "mex.h"
+#include "matrix.h"
 
 #include "common/EigenTypes.h"
 #include "polya/polya.h"
@@ -83,20 +82,65 @@ auto polya(
 }
 
 // *******************************************************
-// Include eigen stuff before running mex command assuming root directory is Polya_Restoration
-// ipath = ['-I' fullfile(pwd, 'c_plus_plus', 'include')];
-// ipath2 = ['-I' fullfile(pwd, 'c_plus_plus', 'external', 'eigen')];
-// mex('-v',ipath,ipath2,"matlab/scripts/polya_eigen.cpp",'-outdir',"matlab/scripts/")
+// Include eigen stuff before running mex command assuming root directory is Polya_Restoration/matlab/scripts
+// ipath = ['-I' '../../c_plus_plus/include'];
+// ipath2=['-I' '../../c_plus_plus/external/eigen'];
+// mex('-v',ipath,ipath2,"polya_eigen.cpp")
 
 void mexFunction( int nlhs, mxArray *plhs[],
                   int nrhs, const mxArray *prhs[])
 {
-//     double *V, *A, *Delta, *sampling_type;
-//     
-//     V = mxGetPr(prhs[0]);
-//     A = mxGetPr(prhs[1]);
-//     Delta = mxGetPr(prhs[2]);
-//     sampling_type = mxGetChars(prhs[3]);
+    mexPrintf("Hello world\n");
+    double *V;
+    mwSize nzmax; 
+    mwSize columns, rows;
+    mwIndex nnz;
+    mwIndex *irs, *jcs, j, k;
+    
+    if (!mxIsSparse(prhs[0]))  {
+        mexErrMsgIdAndTxt( "MATLAB:mxgetnzmax:invalidInputSparisty",
+                "Input argument must be a sparse array.");
+    }
+    
+    V = mxGetPr(prhs[0]);
+    nzmax = mxGetNzmax(prhs[0]);
+    columns = mxGetN(prhs[0]);
+    rows = mxGetM(prhs[0]);
+    irs = mxGetIr(prhs[0]);
+    jcs = mxGetJc(prhs[0]);
+    
+    /* NOTE: nnz is the actual number of nonzeros and is stored as the
+     * last element of the jc array where the size of the jc array is the
+     * number of columns + 1 */
+    nnz = *(mxGetJc(prhs[0]) + columns);
+    
+    for (int i = 0; i < nnz; i++)
+    {
+        mexPrintf("%f ", V[i]);
+        mexPrintf("\n");
+    }
+    
+    mexPrintf("Contains %d nonzero elements.\n", nnz);
+    mexPrintf("Can store up to %d nonzero elements.\n", nzmax);
+    mexPrintf("Has %d columns and %d rows.\n", columns, rows);
+    mexPrintf("irs: %d and jcs: %d.\n", *irs, *jcs);
+    
+    Eigen::MappedSparseMatrix<double> urn(rows, columns, nnz, reinterpret_cast<int*>(jcs), reinterpret_cast<int*>(irs), V);
+//     Eigen::MappedSparseMatrix<double> urn(rows, columns, nnz, jcs, irs, V);
+
+//     Eigen::Map<Eigen::MatrixXd> md(V,rows,columns);
+    
+    auto mat = Eigen::MatrixXd(urn);
+    for(int i = 0; i < mat.rows(); ++i)
+    {
+        for(int j = 0; j < mat.cols(); ++j)
+        {
+            mexPrintf("%f ", mat(i,j));
+        }
+        mexPrintf("\n");
+        int* a = reinterpret_cast<int*>(jcs);
+        mexPrintf("jcs: %d and cast-jcs: %d.\n", jcs[i], a[i]);
+    }
     
 //     Need to convert input types to eigen matrices before passing into polya function
 // 
