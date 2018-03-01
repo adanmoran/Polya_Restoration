@@ -32,7 +32,7 @@ public:
 	// Scale the sliders to fit inside this width
 	void scaleToWidth(const QSize&);
 	void scaleToWidth(int);
-	void useEdgeMap(bool);
+	void useEdgeMap(int);
 
 signals:
 	void widthChanged(int);

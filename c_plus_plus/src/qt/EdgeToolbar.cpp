@@ -22,7 +22,7 @@ EdgeToolbar::EdgeToolbar(const QString& title, QWidget* parent)
 	initializeSliders();
 
 	// Set the view based on the default choice
-//	useEdgeMap(useedge_->isChecked());
+	useEdgeMap(useedge_->isChecked());
 }
 
 ///////////
@@ -51,17 +51,19 @@ auto EdgeToolbar::scaleToWidth(int width) -> void
 	emit widthChanged(width);
 }
 
-auto EdgeToolbar::useEdgeMap(bool useedge) -> void
+auto EdgeToolbar::useEdgeMap(int useedge) -> void
 {
-	if (useedge)
-	{
-		sigmaedgeAction_->setVisible(true);
-		thresholdAction_->setVisible(true);
-	}
-	else
+	if (useedge == Qt::Unchecked)
 	{
 		sigmaedgeAction_->setVisible(false);
 		thresholdAction_->setVisible(false);
+		emit boxChecked(false);
+	}
+	else
+	{
+		sigmaedgeAction_->setVisible(true);
+		thresholdAction_->setVisible(true);
+		emit boxChecked(true);
 	}
 }
 
@@ -113,9 +115,7 @@ auto EdgeToolbar::initializeThresholdSlider() -> void
 auto EdgeToolbar::Connections() -> void
 {
 	// Connect the combo box to the sliders
-	connect(useedge_, &QAbstractButton::clicked, this, &EdgeToolbar::useEdgeMap);
-	// Connect the combo box activation signal to the activation signal of this toolbar
-	connect(useedge_, SIGNAL(clicked(bool)), SIGNAL(boxChecked(bool)));
+	connect(useedge_, &QCheckBox::stateChanged, this, &EdgeToolbar::useEdgeMap);
 
 }
 
