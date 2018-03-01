@@ -38,7 +38,8 @@ auto EdgeToolbar::scaleToWidth(const QSize& size) -> void
 auto EdgeToolbar::scaleToWidth(int width) -> void
 {
 	// TODO Change the width of all the elements to fit inside the given width
-	auto remainingSize = width - (edgeLabel_->size().width());
+	// Only have half the screen
+	auto remainingSize = width/2 - (edgeLabel_->size().width());
 
 	// There are 5 sliders,but only 4 are visible at once.
 	// so each takes 25% of the remaining space

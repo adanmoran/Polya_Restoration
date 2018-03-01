@@ -19,10 +19,10 @@ QuantizeToolbar::QuantizeToolbar(const QString& title, QWidget* parent)
 	, inverseLow_(new QRadioButton(tr("Low"), this))
 	, inverseMean_(new QRadioButton(tr("Mean"), this))
 	, inverseHigh_(new QRadioButton(tr("High"), this))
-	, quantizeTypebox_(new QGroupBox(tr("Type"),this))
-	, inverseQuantizebox_(new QGroupBox(tr("Inverse Quantization Value Select"), this))
-	, quantizeTypehbox_(new QHBoxLayout(this))
-	, inverseQuantizehbox_(new QHBoxLayout(this))
+	, quantizeTypeBox_(new QGroupBox(tr("Type"),this))
+	, inverseQuantizeBox_(new QGroupBox(tr("Inverse Quantization Value Select"), this))
+	, quantizeTypeHBox_(new QHBoxLayout(this))
+	, inverseQuantizeHBox_(new QHBoxLayout(this))
 {
 	// Add the elements to the toolbar in order
 //	initializeComboLabel();
@@ -47,7 +47,7 @@ auto QuantizeToolbar::scaleToWidth(const QSize& size) -> void
 auto QuantizeToolbar::scaleToWidth(int width) -> void
 {
 	// TODO Change the width of all the elements to fit inside the given width
-	auto remainingSize = width - (quantizeLabel_->size().width());
+	auto remainingSize = width/2 - ((quantizeLabel_->size().width())+(quantizeTypeBox_->size().width()) + (inverseQuantizeBox_->size().width()));
 
 	// There are 5 sliders,but only 4 are visible at once.
 	// so each takes 25% of the remaining space
@@ -133,19 +133,19 @@ auto QuantizeToolbar::initializeRadioButtons() -> void
 
 auto QuantizeToolbar::initializeTypeButtons() -> void
 {
-	quantizeTypehbox_->addWidget(typeLloyd_);
-	quantizeTypehbox_->addWidget(typeUniform_);
-	quantizeTypebox_->setLayout(quantizeTypehbox_);
-	quantizeTypeAction_ = addWidget(quantizeTypebox_);
+	quantizeTypeHBox_->addWidget(typeLloyd_);
+	quantizeTypeHBox_->addWidget(typeUniform_);
+	quantizeTypeBox_->setLayout(quantizeTypeHBox_);
+	quantizeTypeAction_ = addWidget(quantizeTypeBox_);
 	addSeparator();
 }
 
 auto QuantizeToolbar::initializeInverseButtons() -> void
 {
-	inverseQuantizehbox_->addWidget(inverseLow_);
-	inverseQuantizehbox_->addWidget(inverseMean_);
-	inverseQuantizehbox_->addWidget(inverseHigh_);
-	inverseQuantizebox_->setLayout(inverseQuantizehbox_);
-	inverseQuantizeAction_ = addWidget(inverseQuantizebox_);
+	inverseQuantizeHBox_->addWidget(inverseLow_);
+	inverseQuantizeHBox_->addWidget(inverseMean_);
+	inverseQuantizeHBox_->addWidget(inverseHigh_);
+	inverseQuantizeBox_->setLayout(inverseQuantizeHBox_);
+	inverseQuantizeAction_ = addWidget(inverseQuantizeBox_);
 	addSeparator();
 }

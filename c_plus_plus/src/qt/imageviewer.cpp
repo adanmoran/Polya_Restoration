@@ -90,6 +90,20 @@ ImageViewer::ImageViewer()
 //    connect(ntb, QOverload<int>::of(&NoiseToolbar::transitionChanged), [=](int val) {qInfo() << val;});
 
 // Start next toolbar on new line
+//		addToolBarBreak();
+// Polya Toolbar
+	PolyaToolbar* ptb = new PolyaToolbar(tr("&Polya"), this);
+	addToolBar(ptb);
+	// set default width
+	ptb->scaleToWidth(size().width());
+
+	// connect the resizing signal with the scaling of the toolbar, to properly scale the sliders
+	connect(this, SIGNAL(resized(const QSize&)), ptb, SLOT(scaleToWidth(const QSize&)));
+	//    connect(ntb, QOverload<int>::of(&NoiseToolbar::transitionChanged), [=](int val) {qInfo() << val;});
+
+
+
+// Start next toolbar on new line
 	addToolBarBreak();
 // Edge Toolbar
 	EdgeToolbar* etb = new EdgeToolbar(tr("&Edge"), this);
@@ -112,21 +126,8 @@ ImageViewer::ImageViewer()
 	// connect the resizing signal with the scaling of the toolbar, to properly scale the sliders
 	connect(this, SIGNAL(resized(const QSize&)), qtb, SLOT(scaleToWidth(const QSize&)));
 	//    connect(ntb, QOverload<int>::of(&NoiseToolbar::transitionChanged), [=](int val) {qInfo() << val;});
-
-	// Start next toolbar on new line
-		addToolBarBreak();
-	// Polya Toolbar
-	PolyaToolbar* ptb = new PolyaToolbar(tr("&Polya"), this);
-	addToolBar(ptb);
-	// set default width
-	ptb->scaleToWidth(size().width());
-
-	// connect the resizing signal with the scaling of the toolbar, to properly scale the sliders
-	connect(this, SIGNAL(resized(const QSize&)), ptb, SLOT(scaleToWidth(const QSize&)));
-	//    connect(ntb, QOverload<int>::of(&NoiseToolbar::transitionChanged), [=](int val) {qInfo() << val;});
 	// connect the edge toolbar's "edge map checkbox" signal to the radius selection option
 	connect(etb, SIGNAL(boxChecked(bool)), ptb, SLOT(edgeMapSelected(bool)));
-
 }
 
 bool ImageViewer::loadFile(const QString &fileName)

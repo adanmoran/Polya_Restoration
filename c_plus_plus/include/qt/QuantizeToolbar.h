@@ -63,11 +63,11 @@ private:
 
 	QAction* numballtypesAction_;
 
-	QGroupBox* quantizeTypebox_;
-	QGroupBox* inverseQuantizebox_;
+	QGroupBox* quantizeTypeBox_;
+	QGroupBox* inverseQuantizeBox_;
 
-	QHBoxLayout* quantizeTypehbox_;
-	QHBoxLayout* inverseQuantizehbox_;
+	QHBoxLayout* quantizeTypeHBox_;
+	QHBoxLayout* inverseQuantizeHBox_;
 
 	QRadioButton* typeLloyd_;
 	QRadioButton* typeUniform_;

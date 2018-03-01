@@ -12,6 +12,8 @@
 NoiseToolbar::NoiseToolbar(const QString& title, QWidget* parent)
 : QToolBar(title, parent)
 , noiseType_(new QComboBox(this))
+, noiseTypeBox_(new QGroupBox(tr("Noise Type"), this))
+, noiseTypeHBox_(new QHBoxLayout(this))
 , noiseLabel_(new QLabel(this))
 , transitionProb_(new SlidersGroup(Qt::Horizontal, tr("Transition (%)")))
 ,errorProb_(new SlidersGroup(Qt::Horizontal, tr("Error (%)")))
@@ -20,7 +22,7 @@ NoiseToolbar::NoiseToolbar(const QString& title, QWidget* parent)
 , burstSigma_(new SlidersGroup(Qt::Horizontal, tr("Burst Sigma * 10")))
 {
     // Add the elements to the toolbar in order
-    initializeComboLabel();
+//    initializeComboLabel();
     initializeComboBox();
     initializeSliders();
     comboConnections();
@@ -42,7 +44,8 @@ auto NoiseToolbar::scaleToWidth(const QSize& size) -> void
 auto NoiseToolbar::scaleToWidth(int width) -> void
 {
     // TODO Change the width of all the elements to fit inside the given width
-    auto remainingSize = width - (noiseLabel_->size().width() + noiseType_->size().width());
+	// Only have half of screen
+    auto remainingSize = width/2 - (noiseLabel_->size().width() + noiseType_->size().width());
 
     // There are 5 sliders,but only 4 are visible at once.
     // so each takes 25% of the remaining space
@@ -97,7 +100,9 @@ auto NoiseToolbar::initializeComboBox() -> void
 	noiseType_->addItem(GAUSSIAN_MARKOV_NOISE);
 	noiseType_->addItem(GAUSSIAN_BURST_NOISE);
 	noiseType_->addItem(GAUSSIAN_AND_BURST_NOISE);
-    addWidget(noiseType_);
+	noiseTypeHBox_->addWidget(noiseType_);
+	noiseTypeBox_->setLayout(noiseTypeHBox_);
+    addWidget(noiseTypeBox_);
     addSeparator();
 }
 

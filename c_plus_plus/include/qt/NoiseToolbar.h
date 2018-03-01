@@ -13,6 +13,8 @@
 #include <QString>
 #include <QSize>
 #include <QAction>
+#include <QGroupBox>
+#include <QHBoxLayout>
 
 #include "qt/slidersgroup.h"
 
@@ -82,6 +84,11 @@ private:
 
     const double GAUSSIAN_MEAN = 0;
     const QString COMBO_LABEL = "Noise Type";
+
+	QGroupBox* noiseTypeBox_;
+
+	QHBoxLayout* noiseTypeHBox_;
+
 
 };
 

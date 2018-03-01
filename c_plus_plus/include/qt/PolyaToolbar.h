@@ -57,6 +57,7 @@ private:
 	auto initializePushButtons() -> void;
 	auto initializePlayButton() -> void;
 	auto initializeResetButton() -> void;
+	auto initializeOptionsButton() -> void;
 
 	SlidersGroup* radiusSlider_;
 
@@ -91,6 +92,7 @@ private:
 
 	QPushButton* play_;
 	QPushButton* reset_;
+	QPushButton* options_;
 
 
 };

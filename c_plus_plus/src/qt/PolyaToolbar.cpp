@@ -31,9 +31,9 @@ PolyaToolbar::PolyaToolbar(const QString& title, QWidget* parent)
 	, startingBalls_(new QSpinBox)
 	, startingBallsBox_(new QGroupBox(tr("Starting Balls"), this))
 	, startingBallsHBox_(new QHBoxLayout(this))
-
 	, play_(new QPushButton(tr("Start"),this))
 	, reset_(new QPushButton(tr("Reset Values"), this))
+	, options_(new QPushButton(tr("Additional Inputs"), this))
 {
 	// Add the elements to the toolbar in order
 	initializeComboLabel();
@@ -58,14 +58,17 @@ auto PolyaToolbar::scaleToWidth(const QSize& size) -> void
 auto PolyaToolbar::scaleToWidth(int width) -> void
 {
 	// TODO Change the width of all the elements to fit inside the given width
-	auto remainingSize = width - (polyaLabel_->size().width());
+	auto remainingSize = width - ((polyaLabel_->size().width()) + (startingBallsBox_->size().width()) + \
+		(iterationsBox_->size().width()) + (addBallsBox_->size().width()) + (normBox_->size().width()) + \
+		(play_->size().width()) + (reset_->size().width()));
 
 	// There are 5 sliders,but only 4 are visible at once.
 	// so each takes 25% of the remaining space
 	// we make it 22% to account for separators
-	auto sliderScaling = remainingSize * 0.22;
+	auto sliderScaling = remainingSize * 0.1;
 
 	radiusSlider_->setMinimumWidth(sliderScaling);
+	radiusBox_->setMinimumWidth(sliderScaling);
 
 	// emit the signal
 	emit widthChanged(width);
@@ -178,6 +181,7 @@ auto PolyaToolbar::initializePushButtons() -> void
 {
 	initializePlayButton();
 	initializeResetButton();
+	initializeOptionsButton();
 }
 
 auto PolyaToolbar::initializePlayButton() -> void
@@ -189,5 +193,11 @@ auto PolyaToolbar::initializePlayButton() -> void
 auto PolyaToolbar::initializeResetButton() -> void
 {
 	addWidget(reset_);
+	addSeparator();
+}
+
+auto PolyaToolbar::initializeOptionsButton() -> void
+{
+	addWidget(options_);
 	addSeparator();
 }
