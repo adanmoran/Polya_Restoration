@@ -14,6 +14,7 @@ include(CTest)
 # Set the compiler to use C++14
 set(CMAKE_CXX_STANDARD 14)
 set(CMAKE_BUILD_TYPE "Release")
+cmake_policy(SET CMP0071 NEW)
 
 #########
 # GTest #
@@ -52,7 +53,19 @@ if(APPLE)
 elseif(UNIX)
     set(QT_COMPILER gcc_64)
 else()
-    set(QT_COMPILER msvc2017_64)
+	if("${CMAKE_GENERATOR}" MATCHES "(Win64|IA64)") # 64-bit windows
+		if(MSVC_VERSION STREQUAL 1900)
+			set(QT_COMPILER msvc2015_64)
+		else()
+			set(QT_COMPILER msvc2017_64)
+		endif()
+	else() # 32-bit windows
+		if(MSVC_VERSION STREQUAL 1900)
+			set(QT_COMPILER msvc2015)
+		else()
+			set(QT_COMPILER msvc2017)
+		endif()
+	endif()
 endif()
 
 # Append to CMAKE_PREFIX_PATH to find the correct find_scripts
