@@ -59,6 +59,7 @@
 #include "qt/imageviewer.h"
 #include "qt/NoiseToolbar.h"
 #include "qt/EdgeToolbar.h"
+#include "qt/QuantizeToolbar.h"
 //SG
 ImageViewer::ImageViewer()
    : imageLabel(new QLabel)
@@ -99,6 +100,17 @@ ImageViewer::ImageViewer()
 	connect(this, SIGNAL(resized(const QSize&)), etb, SLOT(scaleToWidth(const QSize&)));
 	//    connect(ntb, QOverload<int>::of(&NoiseToolbar::transitionChanged), [=](int val) {qInfo() << val;});
 
+	// Start next toolbar on new line
+	addToolBarBreak();
+	// Quantize Toolbar
+	QuantizeToolbar* qtb = new QuantizeToolbar(tr("&Edge"), this);
+	addToolBar(qtb);
+	// set default width
+	qtb->scaleToWidth(size().width());
+
+	// connect the resizing signal with the scaling of the toolbar, to properly scale the sliders
+	connect(this, SIGNAL(resized(const QSize&)), qtb, SLOT(scaleToWidth(const QSize&)));
+	//    connect(ntb, QOverload<int>::of(&NoiseToolbar::transitionChanged), [=](int val) {qInfo() << val;});
 
 }
 
