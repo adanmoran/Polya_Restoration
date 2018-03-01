@@ -17,7 +17,7 @@ EdgeToolbar::EdgeToolbar(const QString& title, QWidget* parent)
 	, useEdge_(new QCheckBox(tr("Use Edge Map"), this))
 {
 	// Add the elements to the toolbar in order
-	initializeComboLabel();
+//	initializeComboLabel();
 	initializeCheckBox();
 	initializeSliders();
 	Connections();

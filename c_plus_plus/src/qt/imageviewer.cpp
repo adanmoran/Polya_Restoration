@@ -101,7 +101,7 @@ ImageViewer::ImageViewer()
 	//    connect(ntb, QOverload<int>::of(&NoiseToolbar::transitionChanged), [=](int val) {qInfo() << val;});
 
 	// Start next toolbar on new line
-	addToolBarBreak();
+//	addToolBarBreak();
 	// Quantize Toolbar
 	QuantizeToolbar* qtb = new QuantizeToolbar(tr("&Edge"), this);
 	addToolBar(qtb);

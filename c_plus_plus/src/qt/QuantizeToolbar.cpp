@@ -25,7 +25,7 @@ QuantizeToolbar::QuantizeToolbar(const QString& title, QWidget* parent)
 	, inverseQuantizehbox_(new QHBoxLayout(this))
 {
 	// Add the elements to the toolbar in order
-	initializeComboLabel();
+//	initializeComboLabel();
 	initializeCheckBox();
 	initializeSliders();
 	initializeRadioButtons();
