@@ -49,24 +49,33 @@
 ****************************************************************************/
 
 
-#include <QApplication>
-#include <QCommandLineParser>
+#ifndef SLIDERSGROUP_H
+#define SLIDERSGROUP_H
 
-#include "qt/imageviewer.h"
+#include <QGroupBox>
 
-int main(int argc, char *argv[])
+class QScrollBar;
+
+class SlidersGroup : public QGroupBox
 {
-	QApplication app(argc, argv);
-	QGuiApplication::setApplicationDisplayName(ImageViewer::tr("Image Viewer"));
-	QCommandLineParser commandLineParser;
-	commandLineParser.addHelpOption();
-	commandLineParser.addPositionalArgument(ImageViewer::tr("[file]"), ImageViewer::tr("Image file to open."));
-	commandLineParser.process(QCoreApplication::arguments());
-	ImageViewer imageViewer;
-	if (!commandLineParser.positionalArguments().isEmpty()
-		&& !imageViewer.loadFile(commandLineParser.positionalArguments().front())) {
-		return -1;
-	}
-	imageViewer.show();
-	return app.exec();
-}
+	Q_OBJECT
+
+public:
+	SlidersGroup(Qt::Orientation orientation, const QString &title,
+		QWidget *parent = 0);
+
+signals:
+	void valueChanged(int value);
+
+	public slots:
+	void setValue(int value);
+	void setMinimum(int value);
+	void setMaximum(int value);
+	void invertAppearance(bool invert);
+	void invertKeyBindings(bool invert);
+
+private:
+	QScrollBar *scrollBar;
+};
+
+#endif

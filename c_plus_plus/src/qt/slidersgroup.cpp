@@ -49,24 +49,57 @@
 ****************************************************************************/
 
 
-#include <QApplication>
-#include <QCommandLineParser>
+#include <QtWidgets>
 
-#include "qt/imageviewer.h"
+#include "qt/slidersgroup.h"
+#include <QLCDNumber>
 
-int main(int argc, char *argv[])
+SlidersGroup::SlidersGroup(Qt::Orientation orientation, const QString &title,
+	QWidget *parent)
+	: QGroupBox(title, parent)
 {
-	QApplication app(argc, argv);
-	QGuiApplication::setApplicationDisplayName(ImageViewer::tr("Image Viewer"));
-	QCommandLineParser commandLineParser;
-	commandLineParser.addHelpOption();
-	commandLineParser.addPositionalArgument(ImageViewer::tr("[file]"), ImageViewer::tr("Image file to open."));
-	commandLineParser.process(QCoreApplication::arguments());
-	ImageViewer imageViewer;
-	if (!commandLineParser.positionalArguments().isEmpty()
-		&& !imageViewer.loadFile(commandLineParser.positionalArguments().front())) {
-		return -1;
-	}
-	imageViewer.show();
-	return app.exec();
+	scrollBar = new QScrollBar(orientation);
+	scrollBar->setFocusPolicy(Qt::StrongFocus);
+
+	QLCDNumber *lcd = new QLCDNumber(3);
+	lcd->setSegmentStyle(QLCDNumber::Flat);
+
+	connect(scrollBar, SIGNAL(valueChanged(int)), lcd, SLOT(display(int)));
+
+	QBoxLayout::Direction direction;
+
+	if (orientation == Qt::Horizontal)
+		direction = QBoxLayout::TopToBottom;
+	else
+		direction = QBoxLayout::LeftToRight;
+
+	QBoxLayout *slidersLayout = new QBoxLayout(direction);
+	slidersLayout->addWidget(scrollBar);
+	slidersLayout->addWidget(lcd);
+	setLayout(slidersLayout);
+}
+
+void SlidersGroup::setValue(int value)
+{
+	scrollBar->setValue(value);
+}
+
+void SlidersGroup::setMinimum(int value)
+{
+	scrollBar->setMinimum(value);
+}
+
+void SlidersGroup::setMaximum(int value)
+{
+	scrollBar->setMaximum(value);
+}
+
+void SlidersGroup::invertAppearance(bool invert)
+{
+	scrollBar->setInvertedAppearance(invert);
+}
+
+void SlidersGroup::invertKeyBindings(bool invert)
+{
+	scrollBar->setInvertedControls(invert);
 }
