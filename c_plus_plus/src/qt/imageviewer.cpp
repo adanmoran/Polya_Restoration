@@ -60,6 +60,7 @@
 #include "qt/NoiseToolbar.h"
 #include "qt/EdgeToolbar.h"
 #include "qt/QuantizeToolbar.h"
+#include "qt/PolyaToolbar.h"
 //SG
 ImageViewer::ImageViewer()
    : imageLabel(new QLabel)
@@ -103,7 +104,7 @@ ImageViewer::ImageViewer()
 	// Start next toolbar on new line
 //	addToolBarBreak();
 	// Quantize Toolbar
-	QuantizeToolbar* qtb = new QuantizeToolbar(tr("&Edge"), this);
+	QuantizeToolbar* qtb = new QuantizeToolbar(tr("&Quantize"), this);
 	addToolBar(qtb);
 	// set default width
 	qtb->scaleToWidth(size().width());
@@ -111,6 +112,20 @@ ImageViewer::ImageViewer()
 	// connect the resizing signal with the scaling of the toolbar, to properly scale the sliders
 	connect(this, SIGNAL(resized(const QSize&)), qtb, SLOT(scaleToWidth(const QSize&)));
 	//    connect(ntb, QOverload<int>::of(&NoiseToolbar::transitionChanged), [=](int val) {qInfo() << val;});
+
+	// Start next toolbar on new line
+		addToolBarBreak();
+	// Polya Toolbar
+	PolyaToolbar* ptb = new PolyaToolbar(tr("&Polya"), this);
+	addToolBar(ptb);
+	// set default width
+	ptb->scaleToWidth(size().width());
+
+	// connect the resizing signal with the scaling of the toolbar, to properly scale the sliders
+	connect(this, SIGNAL(resized(const QSize&)), ptb, SLOT(scaleToWidth(const QSize&)));
+	//    connect(ntb, QOverload<int>::of(&NoiseToolbar::transitionChanged), [=](int val) {qInfo() << val;});
+	// connect the edge toolbar's "edge map checkbox" signal to the radius selection option
+	connect(etb, SIGNAL(boxChecked(bool)), ptb, SLOT(edgeMapSelected(bool)));
 
 }
 
