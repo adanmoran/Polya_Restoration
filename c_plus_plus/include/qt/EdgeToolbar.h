@@ -13,7 +13,7 @@
 #include <QString>
 #include <QSize>
 #include <QAction>
-#include <QCheckbox>
+#include <QCheckBox>
 
 #include "qt/slidersgroup.h"
 
@@ -37,7 +37,7 @@ public:
 signals:
 	void widthChanged(int);
 	void boxChecked(bool);
-	void sigmaedgeChanged(int);
+	void sigmaEdgeChanged(int);
 	void thresholdChanged(int);
 
 private:
@@ -53,7 +53,7 @@ private:
 	* Dropdown box which allows one to choose the noise type.
 	*/
 
-	SlidersGroup* sigmaedge_;
+	SlidersGroup* sigmaEdge_;
 	SlidersGroup* threshold_;
 
 
@@ -61,9 +61,9 @@ private:
 
 	const QString COMBO_LABEL = "Edge Map";
 
-	QCheckBox* useedge_;
+	QCheckBox* useEdge_;
 
-	QAction* sigmaedgeAction_;
+	QAction* sigmaEdgeAction_;
 	QAction* thresholdAction_;
 
 
@@ -71,5 +71,5 @@ private:
 
 #endif
 
-/* vim: set ts=4 sw=4 et : */
 #pragma once
+/* vim: set ts=4 sw=4 et : */

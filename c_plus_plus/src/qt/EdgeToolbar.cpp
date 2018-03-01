@@ -12,17 +12,18 @@
 EdgeToolbar::EdgeToolbar(const QString& title, QWidget* parent)
 	: QToolBar(title, parent)
 	, edgeLabel_(new QLabel(this))
-	, sigmaedge_(new SlidersGroup(Qt::Horizontal, tr("Sigma * 10")))
+	, sigmaEdge_(new SlidersGroup(Qt::Horizontal, tr("Sigma * 10")))
 	, threshold_(new SlidersGroup(Qt::Horizontal, tr("Threshold (%)")))
-	, useedge_(new QCheckBox(tr("Use Edge Map"), this))
+	, useEdge_(new QCheckBox(tr("Use Edge Map"), this))
 {
 	// Add the elements to the toolbar in order
 	initializeComboLabel();
 	initializeCheckBox();
 	initializeSliders();
+	Connections();
 
 	// Set the view based on the default choice
-	useEdgeMap(useedge_->isChecked());
+	useEdgeMap(useEdge_->isChecked());
 }
 
 ///////////
@@ -44,25 +45,25 @@ auto EdgeToolbar::scaleToWidth(int width) -> void
 	// we make it 22% to account for separators
 	auto sliderScaling = remainingSize * 0.22;
 
-	sigmaedge_->setMinimumWidth(sliderScaling);
+	sigmaEdge_->setMinimumWidth(sliderScaling);
 	threshold_->setMinimumWidth(sliderScaling);
 
 	// emit the signal
 	emit widthChanged(width);
 }
 
-auto EdgeToolbar::useEdgeMap(int useedge) -> void
+auto EdgeToolbar::useEdgeMap(int useEdge) -> void
 {
-	if (useedge == Qt::Unchecked)
+	if (useEdge == Qt::Unchecked)
 	{
-		sigmaedgeAction_->setVisible(false);
-		thresholdAction_->setVisible(false);
+		sigmaEdgeAction_->setEnabled(false);
+		thresholdAction_->setEnabled(false);
 		emit boxChecked(false);
 	}
 	else
 	{
-		sigmaedgeAction_->setVisible(true);
-		thresholdAction_->setVisible(true);
+		sigmaEdgeAction_->setEnabled(true);
+		thresholdAction_->setEnabled(true);
 		emit boxChecked(true);
 	}
 }
@@ -80,7 +81,7 @@ auto EdgeToolbar::initializeComboLabel() -> void
 
 auto EdgeToolbar::initializeCheckBox() -> void
 {
-	addWidget(useedge_);
+	addWidget(useEdge_);
 	addSeparator();
 }
 
@@ -92,12 +93,12 @@ auto EdgeToolbar::initializeSliders() -> void
 
 auto EdgeToolbar::initializeSigmaSlider() -> void
 {
-	// Probability is between 0 - 100
-	sigmaedge_->setMinimum(0);
-	sigmaedge_->setMaximum(5);
-	// Default values is 95%, can be changed by user
-	sigmaedge_->setValue(3);
-	sigmaedgeAction_ = addWidget(sigmaedge_);
+	// Edge map has sigma between 0 and 5.0
+	sigmaEdge_->setMinimum(0);
+	sigmaEdge_->setMaximum(50);
+	// Default values is 3.0, can be changed by user
+	sigmaEdge_->setValue(30);
+	sigmaEdgeAction_ = addWidget(sigmaEdge_);
 	addSeparator();
 }
 
@@ -115,14 +116,15 @@ auto EdgeToolbar::initializeThresholdSlider() -> void
 auto EdgeToolbar::Connections() -> void
 {
 	// Connect the combo box to the sliders
-	connect(useedge_, &QCheckBox::stateChanged, this, &EdgeToolbar::useEdgeMap);
+	connect(useEdge_, SIGNAL(stateChanged(int)), SLOT(useEdgeMap(int)));
 
 }
 
 auto EdgeToolbar::sliderConnections() -> void
 {
 	// Emit the slider values when they change
-	connect(sigmaedge_, SIGNAL(valueChanged(int)), SIGNAL(sigmaedgeChanged(int)));
+	connect(sigmaEdge_, SIGNAL(valueChanged(int)), SIGNAL(sigmaEdgeChanged(int)));
 	connect(threshold_, SIGNAL(valueChanged(int)), SIGNAL(thresholdChanged(int)));
 }
 
+/* vim: set ts=4 sw=4 et : */
