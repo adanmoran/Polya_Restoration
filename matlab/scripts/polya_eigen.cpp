@@ -4,154 +4,165 @@
 #include "mex.h"
 #include "matrix.h"
 
-#include "common/EigenTypes.h"
-#include "polya/polya.h"
 #include <iostream>
+#include <chrono>
+#include "common/EigenTypes.h"
 #include "common/EigenHelpers.h"
+#include "polya/polya.h"
 
-
-/* Polya Contagion Model
-% V = Urn Matrix; A nxk matrix where n is the number of vertices, and k is
-% the number of different types of balls
-%
-% A = Adjacency Matrix; a binary nxn matrix where a 1 represents 
-% a connection between the vertices (i,j). Note that A must contain
-# 1's along the diagonal so that the superurn can be correctly retrieved.
-%
-% Delta = a kxk matrix where the (i,j)th entry denotes the number of balls 
-% of type j that will be added when a ball of type i is drawn.
-%
-% SampleType (optional) = a string telling the polya model how to sample
-% from the urns. Options are 'random' (for random urn draws) or 'median'
-% (for drawing the median urn). Default is 'random'.
+/*
+Helper function to convert a mxArray of a sparse matrix to a C++ Triplets<int>
+object.
 */
-auto polya(
-    const UrnMatrix& V, 
-    const AdjacencyMatrix& A, 
-    const DeltaMatrix& Delta, 
-    SamplingType type) -> UrnMatrix
+auto sparse_mxarray_to_triplets(const mxArray *in) -> Triplets<int>
 {
-    // Number of types (of balls) we have
-    int k = Delta.rows();
-    // Compute the superurn of each pixel. As a matrix, this is A*V
-    SuperUrnMatrix S = A * V;
-    // Compute the superurn of each pixel. As a matrix, this is A*V
-    // create a vector of 1's that has the length of the number of available types
-    Dynamic1D_i ones = Dynamic1D_i::Ones(k); 
-    // Vector containing the total number of balls for each superurn row
-    Dynamic1D_i totals = S * ones;
+    double *sparse_array;
+    mwSize nzmax, rows, columns;
+    mwIndex nnz;
+    mwIndex *irs, *jcs;
+    int nrow;
+    Triplets<int> ints;
 
-    switch(type)
+    sparse_array = mxGetPr(in); // pointer to values in sparse array
+    columns = mxGetN(in); // # columns
+    rows = mxGetM(in); // # rows
+    nzmax = mxGetNzmax(in); // max # of non-zero elements
+    nnz = *(mxGetJc(in) + columns); // # non-zero elements in sparse array
+
+    // Each element in the ir array indicates a row at which a
+    // nonzero element can be found.
+    irs = mxGetIr(in);
+
+    // the jth column of the sparse mxArray, jc[j] is the total number of
+    // nonzero elements in all preceding columns. The last element of the jc
+    // array, jc[number of columns], is equal to nnz, which is the number of
+    // nonzero elements in the entire sparse mxArray.
+    jcs = mxGetJc(in);
+
+    ints.reserve(nnz);
+    for(int y = 0; y < columns; y++)
     {
-        case SamplingType::RANDOM:
+        nrow = jcs[y + 1] - jcs[y]; // number of elements in current column
+        for(int x = 0; x < nrow; x++)
         {
-            auto W = S.cwiseQuotient(totals.sparseView());
-            break;
+//             mexPrintf("   (%d,%d)    %g\n",*irs,y,*sparse_array);
+            ints.push_back(Triplet<int>(*irs++, y, *sparse_array++));
         }
-        case SamplingType::MEDIAN:
-        {
-
-            // Divide the totals by 2 to be able to find the median
-            Dynamic1D_d T = totals.cast<double>();
-            T *= 0.5;
-            // Get the indices where the median ball type exists
-            auto median = cumsumFind(S, T);
-
-            //Build the matrix out of these median indices
-            int n = median.rows();
-            int m = Delta.cols();
-
-            Eigen::SparseMatrix<int> B(V.rows(),V.cols());
-            B.reserve(n);
-
-            for(int i = 0; i < n; ++i)
-            {
-                B.insert(i,median[i]) = 1;
-            }
-
-            // Create a matrix of balls to add to the original urn
-            // Multiply by Delta to add that many balls to the original urn
-            B = B * Delta;
-            // Return the original urn plus the new balls
-            return V + B;
-        }
-        default:
-        break;
     }
-    return V;
+
+    return ints;
 }
 
-// *******************************************************
-// Include eigen stuff before running mex command assuming root directory is Polya_Restoration/matlab/scripts
-// ipath = ['-I' '../../c_plus_plus/include'];
-// ipath2=['-I' '../../c_plus_plus/external/eigen'];
-// mex('-v',ipath,ipath2,"polya_eigen.cpp")
 
 void mexFunction( int nlhs, mxArray *plhs[],
                   int nrhs, const mxArray *prhs[])
 {
-    mexPrintf("Hello world\n");
-    double *V;
-    mwSize nzmax; 
-    mwSize columns, rows;
-    mwIndex nnz;
-    mwIndex *irs, *jcs, j, k;
-    
+    if (!(nrhs == 5)) {
+        mexErrMsgIdAndTxt("polya_eigen:NotEnoughInputs",
+                "Not enough input parameters.");
+    }
     if (!mxIsSparse(prhs[0]))  {
-        mexErrMsgIdAndTxt( "MATLAB:mxgetnzmax:invalidInputSparisty",
-                "Input argument must be a sparse array.");
+        mexErrMsgIdAndTxt("polya_eigen:NonSparseInput1",
+                "Input argument 1 must be a sparse array.");
     }
-    
-    V = mxGetPr(prhs[0]);
-    nzmax = mxGetNzmax(prhs[0]);
-    columns = mxGetN(prhs[0]);
-    rows = mxGetM(prhs[0]);
-    irs = mxGetIr(prhs[0]);
-    jcs = mxGetJc(prhs[0]);
-    
-    /* NOTE: nnz is the actual number of nonzeros and is stored as the
-     * last element of the jc array where the size of the jc array is the
-     * number of columns + 1 */
-    nnz = *(mxGetJc(prhs[0]) + columns);
-    
-    for (int i = 0; i < nnz; i++)
-    {
-        mexPrintf("%f ", V[i]);
-        mexPrintf("\n");
+    if (!mxIsSparse(prhs[1]))  {
+        mexErrMsgIdAndTxt("polya_eigen:NonSparseInput2",
+                "Input argument 2 must be a sparse array.");
     }
-    
-    mexPrintf("Contains %d nonzero elements.\n", nnz);
-    mexPrintf("Can store up to %d nonzero elements.\n", nzmax);
-    mexPrintf("Has %d columns and %d rows.\n", columns, rows);
-    mexPrintf("irs: %d and jcs: %d.\n", *irs, *jcs);
-    
-    Eigen::MappedSparseMatrix<double> urn(rows, columns, nnz, reinterpret_cast<int*>(jcs), reinterpret_cast<int*>(irs), V);
-//     Eigen::MappedSparseMatrix<double> urn(rows, columns, nnz, jcs, irs, V);
+    if (!mxIsSparse(prhs[2]))  {
+        mexErrMsgIdAndTxt("polya_eigen:NonSparseInput3",
+                "Input argument 3 must be a sparse array.");
+    }
+    if (mxIsChar(prhs[3]) != 1)  {
+        mexErrMsgIdAndTxt("polya_eigen:NonCharInput4",
+                "Input argument 4 must be a char array. Use '' not "".");
+    }
+    if (!mxIsScalar(prhs[4]))  {
+        mexErrMsgIdAndTxt("polya_eigen:NonScalarInput4",
+                "Input argument 3 must be a scalar");
+    }
 
-//     Eigen::Map<Eigen::MatrixXd> md(V,rows,columns);
-    
-    auto mat = Eigen::MatrixXd(urn);
-    for(int i = 0; i < mat.rows(); ++i)
+    using namespace std::chrono;
+    using tp = high_resolution_clock::time_point;
+    using millis = duration<double, std::milli>;
+
+    const mxArray *V; // V = urn matrix
+    const mxArray *A; // A = adjacency matrix
+    const mxArray *D; // D = delta matrix
+    mwSize V_cols, V_rows;
+    mwSize A_cols, A_rows;
+    mwSize D_cols, D_rows;
+    Triplets<int> ints;
+
+    V = prhs[0];
+    V_cols = mxGetN(V);
+    V_rows = mxGetM(V);
+    ints = sparse_mxarray_to_triplets(V);
+    UrnMatrix urn = createSparseMatrix(V_rows, V_cols, ints);
+
+    A = prhs[1];
+    A_cols = mxGetN(A);
+    A_rows = mxGetM(A);
+    ints = sparse_mxarray_to_triplets(A);
+    AdjacencyMatrix adj = createSparseMatrix(A_rows, A_cols, ints);
+
+    D = prhs[2];
+    D_cols = mxGetN(D);
+    D_rows = mxGetM(D);
+    ints = sparse_mxarray_to_triplets(D);
+    DeltaMatrix del = createSparseMatrix(D_rows, D_cols, ints);
+
+    char *chars_in = mxArrayToString(prhs[3]);
+
+    SamplingType stype;
+    if(strcmp(chars_in, "random") == 0)
     {
-        for(int j = 0; j < mat.cols(); ++j)
+        stype = SamplingType::RANDOM;
+    }
+    else
+    {
+        stype = SamplingType::MEDIAN;
+    }
+
+    int iterations = mxGetScalar(prhs[4]);
+    double average = 0.0;
+
+    for (int i = 0 ; i < iterations; ++i)
+    {
+        tp t2 = high_resolution_clock::now();
+        urn = polya(urn, adj, del, stype);
+        tp t1 = high_resolution_clock::now();
+        duration<double, std::milli> time_span = t1 - t2;
+        average += time_span.count();
+    }
+    mexPrintf("Average iteration time:%f\n", average / iterations);
+
+    // Copy eigen matrix results out to matlab
+    mwSize rows = urn.rows();
+    mwSize cols = urn.cols();
+    mwSize nnz = urn.nonZeros();
+    mexPrintf("cols: %d, rows: %d, nnz: %d\n", cols, rows, nnz);
+
+    mwIndex *irs,*jcs;
+    double *sr;
+
+    plhs[0] = mxCreateSparse(rows, cols, nnz, mxREAL);
+    sr  = mxGetPr(plhs[0]);
+    irs = mxGetIr(plhs[0]);
+    jcs = mxGetJc(plhs[0]);
+
+    mwIndex k = 0;
+    for (int j=0; j < urn.outerSize(); ++j)
+    {
+        jcs[j] = k;
+        for (UrnMatrix::InnerIterator it(urn,j); it; ++it)
         {
-            mexPrintf("%f ", mat(i,j));
+            double val = static_cast<double>(it.value());
+            mwIndex row = it.row();
+            sr[k] = val;
+            irs[k] = row;
+            k++;
         }
-        mexPrintf("\n");
-        int* a = reinterpret_cast<int*>(jcs);
-        mexPrintf("jcs: %d and cast-jcs: %d.\n", jcs[i], a[i]);
     }
-    
-//     Need to convert input types to eigen matrices before passing into polya function
-// 
-//     https://stackoverflow.com/questions/43163426/pass-c-eigen-matrix-to-matlab-mex-output
-//     // Eigen matrix with some result (non NULL!)
-//     UrnMatrix resultEigen = polya(V, A, Delta, sampling_type); 
-//     mwSize rows = resultEigen.rows();
-//     mwSize cols = resultEigen.cols();
-//     plhs[0] = mxCreateDoubleMatrix(rows, cols, mxREAL); // Create MATLAB array of same size
-//     Eigen::Map<Eigen::MatrixXd> map(mxGetPr(plhs[0], rows, cols); // Map the array
-//     map = resultEigen; // Copy
+    jcs[urn.outerSize()] = k;
 }
-
-/* vim: set ts=4 sw=4 et :*/

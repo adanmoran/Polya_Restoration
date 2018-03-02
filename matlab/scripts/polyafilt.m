@@ -62,7 +62,7 @@ function output_image = polyafilt(noisy_image, prefs)
 
     %% Setup Polya Model
     % Matrix for ball addition
-    Delta = prefs.polya.balls_to_add * eye(prefs.quant.num_ball_types);
+    Delta = prefs.polya.balls_to_add * speye(prefs.quant.num_ball_types);
     % Initialize urns
     urns = initialize_polya_urns(noisy_image, ...
                                  prefs.polya.starting_balls, ...
@@ -75,14 +75,16 @@ function output_image = polyafilt(noisy_image, prefs)
                                            prefs.adj.radius);
     end
     %% Iterate the Polya Model
-    for i = 1:prefs.polya.iterations
-        tic
-        fprintf('Iteration %d of %d | Duration: ', ...
-                i, ...
-                prefs.polya.iterations);
-        urns = polya(urns, adjacency, Delta, prefs.polya.sample_type);
-        fprintf('%.3f\n', toc);
-    end
+%     for i = 1:prefs.polya.iterations
+%         tic
+%         fprintf('Iteration %d of %d | Duration: ', ...
+%                 i, ...
+%                 prefs.polya.iterations);
+%         urns = polya(urns, adjacency, Delta, prefs.polya.sample_type);
+%         fprintf('%.3f\n', toc);
+%     end
+
+    urns = polya_eigen(urns, adjacency, Delta, 'median', prefs.polya.iterations);
 
     %% Build the final image
     output_image = image_from_urns(size(noisy_image), urns);

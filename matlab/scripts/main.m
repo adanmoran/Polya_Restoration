@@ -6,12 +6,18 @@ clc
 %% Compile C File for Lee Filter
 mex computelee.c
 
+%% Compile C++ File for Polya_Eigen Function
+ipath = ['-I' '../../c_plus_plus/include/'];
+ipath2 = ['-I' '../../c_plus_plus/external/eigen/'];
+polyapath = '../../c_plus_plus/src/polya/polya.cpp';
+mex(ipath, ipath2, "polya_eigen.cpp", polyapath)
+
 %% Load Image in Grayscale or Colour
 % imagepath = '../images/lena512.bmp';
 % imagepath = '../images/oil_spill.jpg';
 % imagepath = '../images/aerial1.tiff';
-% imagepath = '../images/pentagon.tiff';
-imagepath = '../images/goldengate.tiff';
+imagepath = '../images/pentagon.tiff';
+% imagepath = '../images/goldengate.tiff';
 
 image = imread(imagepath);
 
@@ -43,7 +49,7 @@ prefs.edges.sigma = 3;
 % Two ships: 0.5
 prefs.edges.thresh = 0.2;
 
-prefs.quant.num_ball_types = 30; % [2 - 256]
+prefs.quant.num_ball_types = 256; % [2 - 256]
 prefs.quant.type = 'unif'; % unif, lloyd
 prefs.quant.inverse = 'mid'; % low, high, mid
 
