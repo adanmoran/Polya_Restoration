@@ -10,13 +10,24 @@
 #include "get_sparse_adj.h"
 #include "common/EigenTypes.h"
 
+struct MatrixSize
+{
+	size_t rows;
+	size_t cols;
+
+	MatrixSize(size_t r, size_t c)
+	: rows(r)
+	, cols(c)
+	{}
+};
+
 class MatlabProxy
 {
 public:
 	enum class PNorm
 	{
-		ONE,
-		TWO,
+		ONE = 1,
+		TWO = 2,
 		INF
 	};
 
@@ -37,7 +48,7 @@ public:
 	 * radius = adjacency radius
 	 * norm = norm over which the radius is taken
 	 */
-	auto getSparseAdj(const std::array<size_t, 2>& rc, size_t radius, PNorm norm) -> AdjacencyMatrix;
+	auto getSparseAdj(const MatrixSize& rc, size_t radius, PNorm norm) -> AdjacencyMatrix;
 
 	/**
 	 * Terminate the MATLAB Runtime and close all functions calleable by this proxy.
