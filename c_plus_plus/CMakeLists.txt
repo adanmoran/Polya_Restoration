@@ -105,6 +105,39 @@ target_link_libraries(Main
     Qt5::Gui
 )
 
+add_executable(TestMatlab
+	${CMAKE_CURRENT_SOURCE_DIR}/test_matlab.cpp
+)
+file(GLOB MATLAB_LIBS ${CMAKE_CURRENT_SOURCE_DIR}/external/MATLAB/v93/extern/lib/win64/microsoft/*)
+
+# find_library (MATLAB_RUNTIME libmx 
+    # PATHS ${CMAKE_CURRENT_SOURCE_DIR}/external/MATLAB/v93/bin/win64/
+    # NO_DEFAULT_PATH 
+# )
+# find_library (MATLAB_MCL mclmcrrt9_3
+	# PATHS ${CMAKE_CURRENT_SOURCE_DIR}/external/MATLAB/v93/runtime/win64/
+	# NO_DEFAULT_PATH
+# )
+find_library (GET_SPARSE_LIB get_sparse_adj
+	PATHS ${CMAKE_CURRENT_SOURCE_DIR}/matlab_libs/
+	NO_DEFAULT_PATH
+)
+message(STATUS "Found sparse lib at ${GET_SPARSE_LIB}")
+#message(STATUS "Found Matlab mcl lib at ${MATLAB_MCL}")
+#message(STATUS "Found Matlab runtime lib at ${MATLAB_RUNTIME}")
+message(STATUS "Found Matlab libs at ${MATLAB_LIBS}")
+
+target_link_libraries(TestMatlab
+	${GET_SPARSE_LIB}
+	${MATLAB_LIBS}
+	#${MATLAB_MCL}
+	#${MATLAB_RUNTIME}
+)
+target_include_directories(TestMatlab PUBLIC
+	${CMAKE_CURRENT_SOURCE_DIR}/matlab_libs/
+	${CMAKE_CURRENT_SOURCE_DIR}/external/MATLAB/v93/extern/include
+)
+
 # Source Code
 add_subdirectory(src)
 if(NOT WIN32)
