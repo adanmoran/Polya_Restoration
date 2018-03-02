@@ -128,14 +128,11 @@ message(STATUS "Found sparse lib at ${GET_SPARSE_LIB}")
 message(STATUS "Found Matlab libs at ${MATLAB_LIBS}")
 
 target_link_libraries(TestMatlab
-	${GET_SPARSE_LIB}
-	${MATLAB_LIBS}
+	MatlabProxy
 	#${MATLAB_MCL}
 	#${MATLAB_RUNTIME}
 )
 target_include_directories(TestMatlab PUBLIC
-	${CMAKE_CURRENT_SOURCE_DIR}/matlab_libs/
-	${CMAKE_CURRENT_SOURCE_DIR}/external/MATLAB/v93/extern/include
 )
 
 # Source Code

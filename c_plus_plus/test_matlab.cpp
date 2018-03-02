@@ -1,4 +1,4 @@
-#include "get_sparse_adj.h"
+#include "matlab/MatlabProxy.h"
 #include <iostream>
 int run_main(int argc, char** argv)
 {
@@ -56,3 +56,5 @@ int main()
 
 	return mclRunMain(reinterpret_cast<mclMainFcnType>(run_main), 0, NULL);
 }
+
+/* vim: set ts=4 sw=4 et : */

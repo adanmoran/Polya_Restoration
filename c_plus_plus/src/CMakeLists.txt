@@ -3,6 +3,8 @@
 ########################################
 
 add_subdirectory(polya)
+add_subdirectory(matlab)
+
 
 message(${CMAKE_CURRENT_SOURCE_DIR})
 add_library(ImageViewer
@@ -20,5 +22,4 @@ target_link_libraries(ImageViewer
     Qt5::Widgets
 	Qt5::Core
 )
-
 # vim: set ts=4 sw=4 et :
