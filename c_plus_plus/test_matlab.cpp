@@ -37,7 +37,7 @@ int run_main(int argc, char** argv)
 
 	// Get the noise on the image by calling MATLAB commands
 	Prefs prefs;
-	prefs.image.type = Prefs::ImageType::RGB;
+	prefs.image.type = Prefs::ImageType::GRAY;
 
 	Noise noise;
 	noise.type = Noise::Type::GAUSSIAN;

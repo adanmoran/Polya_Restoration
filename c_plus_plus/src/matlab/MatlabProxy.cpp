@@ -185,18 +185,22 @@ auto MatlabProxy::toMATLABArray(const QImage& image, Prefs::ImageType type) -> m
 			{
 				// Filling in the vector column-wise while iterating row-wise means we need to
 				// do these jumps
-				int arrayPosition = k*width*height + col*height + row;
+				int arrayPosition = k*width*height + row*height + col;
 				QRgb colour = line[col];
+//				std::cout << "The colour is: " << colour << std::endl;
 				switch (depth)
 				{
 				case static_cast<int>(ColorDepth::RED) :
 					columnMajorData[arrayPosition] = mxDouble(qRed(colour));
+//					std::cout << "The Red colour is: " << columnMajorData[arrayPosition] << std::endl;
 					break;
 				case static_cast<int>(ColorDepth::GREEN) :
 					columnMajorData[arrayPosition] = mxDouble(qGreen(colour));
+//					std::cout << "The Green colour is: " << columnMajorData[arrayPosition] << std::endl;
 					break;
 				case static_cast<int>(ColorDepth::BLUE) :
 					columnMajorData[arrayPosition] = mxDouble(qBlue(colour));
+//					std::cout << "The Blue colour is: " << columnMajorData[arrayPosition] << std::endl;
 					break;
 				}
 			}
@@ -206,7 +210,8 @@ auto MatlabProxy::toMATLABArray(const QImage& image, Prefs::ImageType type) -> m
 	// Create an mwArray from the generated data above
 	mwSize imMatrixSize[] = { width, height, depth };
 	mwArray imMatrix(3, imMatrixSize, mxDOUBLE_CLASS);
-	imMatrix.SetData(columnMajorData.data(), columnMajorData.size());
+	imMatrix.SetData(columnMajorData.data(), width*height);
+//	std::cout << "The Image is: " << imMatrix << std::endl;
 
 	return imMatrix;
 }
@@ -262,9 +267,9 @@ auto MatlabProxy::toQImage(const mwArray& imageMatrix)->QImage
 			}
 			// C++ is 0-based
 			image.setPixelColor(i-1, j-1, colour);
+
 		}
 	}
-	
 	return image;
 }
 
