@@ -6,6 +6,7 @@
 #define MATLAB_PROXY_H_
 
 #include <array>
+#include <string>
 
 #include "get_sparse_adj.h"
 #include "common/EigenTypes.h"
@@ -65,6 +66,8 @@ private:
 	bool mclInitialized_;
 	// Is our connection to the individual functions open?
 	bool open_;
+
+	const std::string INF_STR = "inf";
 };
 
 #endif

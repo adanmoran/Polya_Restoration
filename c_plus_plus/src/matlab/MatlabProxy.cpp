@@ -54,22 +54,21 @@ auto MatlabProxy::getSparseAdj(const MatrixSize& rc, size_t radius, MatlabProxy:
 			
 			// Set the norm. Note that allowable values are 1, 2, or 'inf'.
 			mwArray p_norm;
+
 			switch (norm)
 			{
 			case MatlabProxy::PNorm::INF:
+				p_norm = mwArray(INF_STR.c_str());
+				break;
 				// TODO: set p_norm to 'inf'
 			default:
-				p_norm = mwArray(mxDouble(static_cast<int>(norm)));
+				p_norm = mxDouble(static_cast<int>(norm));
 				break;
 			}
 
 			// output element
 			mwArray adj;
-			std::cout << "Calling get_sparse_adj with rc = " << rowcol << ", radius = " << rad << ", P = " << p_norm << std::endl;
 			get_sparse_adj(1, adj, rowcol, rad, p_norm);
-
-			std::cout << "The adjacency matrix for a 3x3 is: " << adj << std::endl;
-
 
 			// Get the row indices of the non zero elements
 			mwArray adjRows = adj.RowIndex();
@@ -89,7 +88,6 @@ auto MatlabProxy::getSparseAdj(const MatrixSize& rc, size_t radius, MatlabProxy:
 
 			// Construct the adjacency matrix. It is square, so we read one dimension of it to build it.
 			AdjacencyMatrix eigenAdjacency = createSquareMatrix(static_cast<int>(adj.GetDimensions().Get(1, 1)), adjacencyValues);
-			std::cout << Eigen::MatrixXi(eigenAdjacency) << std::endl;
 		}
 		catch (const mwException& e)
 		{
