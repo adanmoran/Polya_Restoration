@@ -8,6 +8,8 @@ add_library(MatlabProxy
 target_link_libraries(MatlabProxy
 	${GET_SPARSE_LIB}
 	${MATLAB_LIBS}
+	${CANNY_LIB}
+	${POLYA_TOOLS_LIB}
 	Eigen
 )
 target_include_directories(MatlabProxy PUBLIC
