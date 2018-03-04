@@ -32,6 +32,12 @@ auto MatlabProxy::Initialize() -> bool
 		std::cerr << "Could not initialize the get_sparse_adj application" << std::endl;
 		return false;
 	}
+	if (!polyaToolsInitialize())
+	{
+		std::cerr << "Could not initialize the polya tools library." << std::endl;
+		return false;
+	}
+
 	open_ = true;
 
 	std::cout << "Initialized!" << std::endl;
@@ -62,7 +68,7 @@ auto MatlabProxy::getSparseAdj(const MatrixSize& rc, size_t radius, MatlabProxy:
 				break;
 				// TODO: set p_norm to 'inf'
 			default:
-				p_norm = mxDouble(static_cast<int>(norm));
+				p_norm = mwArray(mxDouble(static_cast<int>(norm)));
 				break;
 			}
 
@@ -88,6 +94,7 @@ auto MatlabProxy::getSparseAdj(const MatrixSize& rc, size_t radius, MatlabProxy:
 
 			// Construct the adjacency matrix. It is square, so we read one dimension of it to build it.
 			AdjacencyMatrix eigenAdjacency = createSquareMatrix(static_cast<int>(adj.GetDimensions().Get(1, 1)), adjacencyValues);
+			return eigenAdjacency;
 		}
 		catch (const mwException& e)
 		{
@@ -99,6 +106,15 @@ auto MatlabProxy::getSparseAdj(const MatrixSize& rc, size_t radius, MatlabProxy:
 	return AdjacencyMatrix(1);
 }
 
+auto MatlabProxy::addNoise(QImage* image, MatlabProxy::NoiseType noiseType, bool bw) -> bool
+{
+	if (open_)
+	{
+		return false;
+	}
+	return false;
+}
+
 auto MatlabProxy::terminate() -> void
 {
 	if (open_)
@@ -106,6 +122,9 @@ auto MatlabProxy::terminate() -> void
 		std::cout << "Terminating get_sparse_adj" << std::endl;
 		// Terminate the get_sparse_adj  (must be done before MATLAB Runtime)
 		get_sparse_adjTerminate();
+
+		std::cout << "Terminating polyaTools" << std::endl;
+		polyaToolsTerminate();
 		open_ = false;
 	}
 

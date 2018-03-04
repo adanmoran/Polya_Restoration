@@ -107,7 +107,7 @@ find_library (CANNY_LIB canny
 	PATHS ${CMAKE_SOURCE_DIR}/matlab_libs/
 	NO_DEFAULT_PATH
 )
-find_library (POLYA_TOOLS_LIBS polyaTools
+find_library (POLYA_TOOLS_LIB polyaTools
 	PATHS ${CMAKE_SOURCE_DIR}/matlab_libs/
 	NO_DEFAULT_PATH
 )
@@ -143,6 +143,8 @@ add_executable(TestMatlab
 
 target_link_libraries(TestMatlab
 	MatlabProxy
+	Qt5::Gui
+	Qt5::Widgets
 	#${MATLAB_MCL}
 	#${MATLAB_RUNTIME}
 )

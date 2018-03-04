@@ -11,6 +11,7 @@ target_link_libraries(MatlabProxy
 	${CANNY_LIB}
 	${POLYA_TOOLS_LIB}
 	Eigen
+	Qt5::Widgets
 )
 target_include_directories(MatlabProxy PUBLIC
 	${CMAKE_SOURCE_DIR}/matlab_libs/

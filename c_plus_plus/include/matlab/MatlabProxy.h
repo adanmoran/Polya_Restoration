@@ -8,8 +8,14 @@
 #include <array>
 #include <string>
 
-#include "get_sparse_adj.h"
+//Qt objects
+#include <QImage>
+
 #include "common/EigenTypes.h"
+
+// MATLAB Runtime wrappers
+#include "get_sparse_adj.h"
+#include "polyaTools.h"
 
 struct MatrixSize
 {
@@ -37,6 +43,16 @@ public:
 		INF
 	};
 
+	enum class NoiseType
+	{
+		GAUSSIAN,
+		BINARY_BURST,
+		GAUSS_BURST,
+		GAUSSIAN_AND_BINARY_BURST,
+		GAUSSIAN_AND_GAUSS_BURST,
+		GAUSS_MARKOV
+	};
+
 	MatlabProxy();
 	~MatlabProxy();
 
@@ -55,6 +71,19 @@ public:
 	 * norm = norm over which the radius is taken
 	 */
 	auto getSparseAdj(const MatrixSize& rc, size_t radius, PNorm norm) -> AdjacencyMatrix;
+
+	/**
+	 * Add noise to the image using the desired type
+	 *
+	 * Inputs:
+	 * image = pointer to the image to which we add noise. This image will be modified directly.
+	 * noiseType = the type of noise to add
+	 * bw = set to true if the image is logical (i.e. 0 or 1 valued)
+	 * 
+	 * Returns:
+	 * true if successfully modified the image pointer to contain noise.
+	 */
+	auto addNoise(QImage* image, NoiseType noiseType, bool bw = false) -> bool;
 
 	/**
 	 * Terminate the MATLAB Runtime and close all functions calleable by this proxy.

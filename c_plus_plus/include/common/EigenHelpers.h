@@ -176,5 +176,14 @@ auto eye(int size) -> Eigen::SparseMatrix<T>
 
     return createSquareMatrix(size, ijk);
 }
+
+/**
+ * Convert a sparse matrix to a full matrix
+ */
+template<class T>
+auto full(const Eigen::SparseMatrix<T>& matrix) -> Eigen::Matrix<T, Eigen::Dynamic, Eigen::Dynamic>
+{
+	return Eigen::Matrix<T, Eigen::Dynamic, Eigen::Dynamic>(matrix);
+}
 #endif
 /* vim: set ts=4 sw=4 et : */
