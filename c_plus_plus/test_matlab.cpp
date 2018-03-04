@@ -12,7 +12,7 @@ int run_main(int argc, char** argv)
 	mp.Initialize();
 	auto a = mp.getSparseAdj({ 3,3 }, 1, MatlabProxy::PNorm::ONE);
 
-	std::cout << "The adjacency matrix for a 3x3 is \n" << Eigen::MatrixXd(a) << std::endl;
+	std::cout << "The adjacency matrix for a 3x3 is \n" << full(a) << std::endl;
 
 	QApplication app(argc, argv);
 
@@ -26,6 +26,25 @@ int run_main(int argc, char** argv)
 	QLabel label;
 	label.setPixmap(QPixmap::fromImage(lena));
 	label.show();
+
+	QImage noisyImg = label.pixmap()->toImage();
+
+	// Get the noise on the image by calling MATLAB commands
+	Prefs prefs;
+	prefs.image.type = Prefs::ImageType::GRAY;
+
+	Noise noise;
+	noise.type = Noise::Type::GAUSSIAN;
+	noise.gaussian.sigma = 0.01;
+
+	if (!mp.addNoise(&noisyImg, prefs, noise))
+	{
+		std::cerr << "Failed to add noise to the image " << std::endl;
+		return -2;
+	}
+	QLabel noiseLabel;
+	noiseLabel.setPixmap(QPixmap::fromImage(noisyImg));
+	noiseLabel.show();
 
 	return app.exec();
 }

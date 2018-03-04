@@ -33,6 +33,69 @@ struct MatrixSize
 	{}
 };
 
+struct Prefs
+{
+	enum class ImageType
+	{
+		RGB,
+		GRAY,
+		BW
+	};
+
+	struct Image
+	{
+		double binarize_thresh = 0.0;
+		ImageType type = ImageType::RGB;
+	} image;
+};
+
+struct Noise
+{
+	enum class Type
+	{
+		NONE,
+		GAUSSIAN,
+		BINARY_BURST,
+		GAUSS_BURST,
+		GAUSSIAN_AND_BINARY_BURST,
+		GAUSSIAN_AND_GAUSS_BURST,
+		GAUSS_MARKOV
+	};
+	enum class BurstType
+	{
+		BINARY,
+		GAUSSIAN
+	};
+
+	Type type = Type::NONE;
+
+	struct BlackAndWhite
+	{
+		double gaussian_std_dev = 1.0;
+		double gaussian_mean = 0.0;
+		double gaussian_confidence_interval = 0.8;
+	} bw;
+	struct Gaussian
+	{
+		double sigma = 1.0;
+		double mean = 0.0;
+	} gaussian;
+	struct Bursty
+	{
+		BurstType type = BurstType::BINARY;
+		double transition_prob = 0.0;
+		double error = 0.0;
+		double mean = 0.0;
+		double sigma = 100.0;
+	} bursty;
+	struct GaussMarkov
+	{
+		double correlation = 0.5;
+		double mean = 0.0;
+		double sigma = 1.0;
+	} gauss_markov;
+};
+
 class MatlabProxy
 {
 public:
@@ -41,16 +104,6 @@ public:
 		ONE = 1,
 		TWO = 2,
 		INF
-	};
-
-	enum class NoiseType
-	{
-		GAUSSIAN,
-		BINARY_BURST,
-		GAUSS_BURST,
-		GAUSSIAN_AND_BINARY_BURST,
-		GAUSSIAN_AND_GAUSS_BURST,
-		GAUSS_MARKOV
 	};
 
 	MatlabProxy();
@@ -83,7 +136,7 @@ public:
 	 * Returns:
 	 * true if successfully modified the image pointer to contain noise.
 	 */
-	auto addNoise(QImage* image, NoiseType noiseType, bool bw = false) -> bool;
+	auto addNoise(QImage* image, Prefs prefs, Noise noise) -> bool;
 
 	/**
 	 * Terminate the MATLAB Runtime and close all functions calleable by this proxy.

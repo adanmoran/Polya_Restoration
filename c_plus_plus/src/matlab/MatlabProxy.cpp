@@ -106,12 +106,25 @@ auto MatlabProxy::getSparseAdj(const MatrixSize& rc, size_t radius, MatlabProxy:
 	return AdjacencyMatrix(1);
 }
 
-auto MatlabProxy::addNoise(QImage* image, MatlabProxy::NoiseType noiseType, bool bw) -> bool
+auto MatlabProxy::addNoise(QImage* image, Prefs prefs, Noise noise) -> bool
 {
-	if (open_)
+	// If the pointer is null, we can't do anything!
+	if (!image)
 	{
 		return false;
 	}
+	// We can only run the polya code if the library is open
+	if (!open_)
+	{
+		return false;
+	}
+	// TODO: Convert the image to an mwArray
+
+	// TODO: Convert the noise struct to an mwArray
+
+	// Create a "prefs" struct as required by MATLAB which contains the required elements
+
+	//TODO: call add_noise from MATLAB with the image and the noise
 	return false;
 }
 
