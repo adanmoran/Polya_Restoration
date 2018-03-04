@@ -19,6 +19,11 @@ struct MatrixSize
 	: rows(r)
 	, cols(c)
 	{}
+
+	MatrixSize(const std::array<size_t, 2>& size)
+		: rows(size[0])
+		, cols(size[1])
+	{}
 };
 
 class MatlabProxy
@@ -57,6 +62,8 @@ public:
 
 private:
 	// Is our connection to the matlab runtime open?
+	bool mclInitialized_;
+	// Is our connection to the individual functions open?
 	bool open_;
 };
 

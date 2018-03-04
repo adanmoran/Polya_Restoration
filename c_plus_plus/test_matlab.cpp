@@ -4,7 +4,7 @@ int run_main(int argc, char** argv)
 {
 	MatlabProxy mp;
 	mp.Initialize();
-	auto a = mp.getSparseAdj(MatrixSize(3, 3), 1, MatlabProxy::PNorm::ONE);
+	auto a = mp.getSparseAdj({ 3,3 }, 1, MatlabProxy::PNorm::ONE);
 
 	return 0;
 }

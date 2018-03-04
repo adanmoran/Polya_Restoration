@@ -3,9 +3,11 @@
 //////////////////////////////////////
 #include <iostream>
 #include "matlab/MatlabProxy.h"
+#include "common/EigenHelpers.h"
 
 MatlabProxy::MatlabProxy()
 : open_(false)
+, mclInitialized_(false)
 {}
 
 MatlabProxy::~MatlabProxy()
@@ -22,6 +24,7 @@ auto MatlabProxy::Initialize() -> bool
 		std::cerr << "Could not initialize the application" << std::endl;
 		return false;
 	}
+	mclInitialized_ = true;
 
 	//Load the function code into the MATLAB Runtime
 	if (!get_sparse_adjInitialize())
@@ -29,9 +32,9 @@ auto MatlabProxy::Initialize() -> bool
 		std::cerr << "Could not initialize the get_sparse_adj application" << std::endl;
 		return false;
 	}
+	open_ = true;
 
 	std::cout << "Initialized!" << std::endl;
-	open_ = true;
 	return open_;
 }
 
@@ -66,29 +69,56 @@ auto MatlabProxy::getSparseAdj(const MatrixSize& rc, size_t radius, MatlabProxy:
 			get_sparse_adj(1, adj, rowcol, rad, p_norm);
 
 			std::cout << "The adjacency matrix for a 3x3 is: " << adj << std::endl;
+
+
+			// Get the row indices of the non zero elements
+			mwArray adjRows = adj.RowIndex();
+			mwArray adjCols = adj.ColumnIndex();
+
+			// Create the adjacency matrix elements
+			Triplets<int> adjacencyValues;
+			//Allocate for the number of non zeros in the adjacency matrix returned
+			adjacencyValues.reserve(adj.MaximumNonZeros());
+
+			// MATLAB indices start at 1
+			for (int i = 1; i <= adj.MaximumNonZeros(); ++i)
+			{
+				// Eigen indices start at 0
+				adjacencyValues.push_back({ static_cast<int>(adjRows.Get(1,i)) - 1, static_cast<int>(adjCols.Get(1,i)) - 1, 1});
+			}
+
+			// Construct the adjacency matrix. It is square, so we read one dimension of it to build it.
+			AdjacencyMatrix eigenAdjacency = createSquareMatrix(static_cast<int>(adj.GetDimensions().Get(1, 1)), adjacencyValues);
+			std::cout << Eigen::MatrixXi(eigenAdjacency) << std::endl;
 		}
 		catch (const mwException& e)
 		{
 			std::cerr << e.what() << std::endl;
-			return -2;
 		}
 	}
 
-	AdjacencyMatrix adj(1);
-	return adj;
+	// Return a 1x1 empty adjacency matrix
+	return AdjacencyMatrix(1);
 }
 
 auto MatlabProxy::terminate() -> void
 {
 	if (open_)
 	{
-		std::cout << "Terminating code" << std::endl;
+		std::cout << "Terminating get_sparse_adj" << std::endl;
 		// Terminate the get_sparse_adj  (must be done before MATLAB Runtime)
 		get_sparse_adjTerminate();
-		//Release  all resources used by the MATLAB Runtime
-		mclTerminateApplication();
 		open_ = false;
 	}
+
+	if (mclInitialized_)
+	{
+		std::cout << "Terminating mclTerminateApplication" << std::endl;
+		//Release  all resources used by the MATLAB Runtime
+		mclTerminateApplication();
+		mclInitialized_ = false;
+	}
+
 }
 
 /* vim: set ts=4 sw=4 et : */
