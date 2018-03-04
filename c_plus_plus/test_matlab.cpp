@@ -5,6 +5,7 @@
 #include <QLabel>
 #include <QImage>
 #include <QImageReader>
+#include <QMatrix>
 
 int run_main(int argc, char** argv)
 {
@@ -23,6 +24,11 @@ int run_main(int argc, char** argv)
 		std::cout << "Failed to read lena" << std::endl;
 		return -1;
 	}
+	if (lena.isGrayscale())
+	{
+		std::cout << "Lena is a grayscale image!" << std::endl;
+	}
+
 	QLabel label;
 	label.setPixmap(QPixmap::fromImage(lena));
 	label.show();
@@ -31,15 +37,18 @@ int run_main(int argc, char** argv)
 
 	// Get the noise on the image by calling MATLAB commands
 	Prefs prefs;
-	prefs.image.type = Prefs::ImageType::GRAY;
+	prefs.image.type = Prefs::ImageType::RGB;
 
 	Noise noise;
 	noise.type = Noise::Type::GAUSSIAN;
 	noise.gaussian.sigma = 0.01;
 
+	std::cout << "noisyImg has format " << noisyImg.format() << std::endl;
+
 	if (!mp.addNoise(&noisyImg, prefs, noise))
 	{
 		std::cerr << "Failed to add noise to the image " << std::endl;
+
 		return -2;
 	}
 	QLabel noiseLabel;

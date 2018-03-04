@@ -118,14 +118,19 @@ auto MatlabProxy::addNoise(QImage* image, Prefs prefs, Noise noise) -> bool
 	{
 		return false;
 	}
-	// TODO: Convert the image to an mwArray
+	
+	// Convert the image to a MATLAB mwArray
+	auto imageMatrix = toMATLABArray(*image, prefs.image.type);
+	*image = toQImage(imageMatrix);
+
 
 	// TODO: Convert the noise struct to an mwArray
 
 	// Create a "prefs" struct as required by MATLAB which contains the required elements
 
 	//TODO: call add_noise from MATLAB with the image and the noise
-	return false;
+	
+	return true;
 }
 
 auto MatlabProxy::terminate() -> void
@@ -149,6 +154,118 @@ auto MatlabProxy::terminate() -> void
 		mclInitialized_ = false;
 	}
 
+}
+
+///////////////////////
+// Private Functions //
+///////////////////////
+
+auto MatlabProxy::toMATLABArray(const QImage& image, Prefs::ImageType type) -> mwArray
+{
+	// Compute the desired mwArray size
+	int depth = 1;
+	int width = image.width();
+	int height = image.height();
+	if (type == Prefs::ImageType::RGB)
+	{
+		depth = 3;
+	}
+
+	// Allocate the memory that will contain the data for the mwArray.
+	std::vector<mxDouble> columnMajorData;
+	columnMajorData.reserve(depth * width * height);
+
+	// Fill the vector with the colour values
+	for (int k = 0; k < depth; ++k)
+	{
+		for (int row = 0; row < height; ++row)
+		{
+			auto line = reinterpret_cast<const QRgb*>(image.scanLine(row));
+			for (int col = 0; col < width; ++col)
+			{
+				// Filling in the vector column-wise while iterating row-wise means we need to
+				// do these jumps
+				int arrayPosition = k*width*height + col*height + row;
+				QRgb colour = line[col];
+				switch (depth)
+				{
+				case static_cast<int>(ColorDepth::RED) :
+					columnMajorData[arrayPosition] = mxDouble(qRed(colour));
+					break;
+				case static_cast<int>(ColorDepth::GREEN) :
+					columnMajorData[arrayPosition] = mxDouble(qGreen(colour));
+					break;
+				case static_cast<int>(ColorDepth::BLUE) :
+					columnMajorData[arrayPosition] = mxDouble(qBlue(colour));
+					break;
+				}
+			}
+		}
+	}
+
+	// Create an mwArray from the generated data above
+	mwSize imMatrixSize[] = { width, height, depth };
+	mwArray imMatrix(3, imMatrixSize, mxDOUBLE_CLASS);
+	imMatrix.SetData(columnMajorData.data(), columnMajorData.size());
+
+	return imMatrix;
+}
+
+auto MatlabProxy::toQImage(const mwArray& imageMatrix)->QImage
+{
+	auto dimensions = imageMatrix.GetDimensions();
+	auto numDims = dimensions.NumberOfElements();
+
+	// Make sure the image is of the form n x m or n x m x 3
+	if (numDims < 2 || numDims > 3)
+	{
+		std::cout << "The image has unexpected number of dimensions: " << numDims << std::endl;
+		return QImage();
+	}
+	if (numDims == 3 && static_cast<int>(dimensions.Get(1, 3)) != 3)
+	{
+		std::cout << "The RGB image is not of the form RGB - it is an n x m x " << static_cast<int>(dimensions.Get(1, 3)) << " matrix." << std::endl;
+		return QImage();
+	}
+
+	bool rgb = numDims == 3;
+
+	int width = static_cast<int>(dimensions.Get(1, 1));
+	int height = static_cast<int>(dimensions.Get(1, 2));
+	int depth = 1;
+	if (rgb)
+	{
+		depth = 3;
+	}
+
+	// Convert the mwArray to a QImage with 24
+	QImage image(width, height, QImage::Format::Format_RGB32);
+	// MATLAB arrays are 1-based
+	for (int i = 1; i <= width; ++i)
+	{
+		for (int j = 1; j <= width; ++j)
+		{
+			QColor colour;
+
+			// If we have a 3D matrix, write the colours as desired
+			if (rgb)
+			{
+				colour.setRed(imageMatrix(i, j, 1));
+				colour.setBlue(imageMatrix(i, j, 2));
+				colour.setGreen(imageMatrix(i, j, 3));
+			}
+			else
+			{
+				colour.setRed(imageMatrix(i, j));
+				colour.setGreen(imageMatrix(i, j));
+				colour.setBlue(imageMatrix(i, j));
+			}
+			// C++ is 0-based
+			image.setPixelColor(i-1, j-1, colour);
+		}
+	}
+	
+	return image;
 }
 
 /* vim: set ts=4 sw=4 et : */

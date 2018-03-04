@@ -144,12 +144,25 @@ public:
 	auto terminate() -> void;
 
 private:
+	// Convert an image to an mwArray
+	auto toMATLABArray(const QImage& image, Prefs::ImageType type)->mwArray;
+
+	// Convert an mwArray to an image
+	auto toQImage(const mwArray& imageMatrix)->QImage;
+
 	// Is our connection to the matlab runtime open?
 	bool mclInitialized_;
 	// Is our connection to the individual functions open?
 	bool open_;
 
 	const std::string INF_STR = "inf";
+	
+	enum class ColorDepth
+	{
+		RED = 0,
+		GREEN = 1,
+		BLUE = 2
+	};
 };
 
 #endif
