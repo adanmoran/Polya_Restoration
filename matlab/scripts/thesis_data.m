@@ -7,6 +7,13 @@ clc
 fprintf('Mexing Lee Filter\n');
 mex computelee.c
 
+%% Compile C++ File for Polya_Eigen Function
+fprintf('Mexing Polya Eigen Function\n');
+ipath = ['-I' '../../c_plus_plus/include/'];
+ipath2 = ['-I' '../../c_plus_plus/external/eigen/'];
+polyapath = '../../c_plus_plus/src/polya/polya.cpp';
+mex(ipath, ipath2, "polya_eigen.cpp", polyapath)
+
 %% Pick an image for testing
 fprintf('Loading image\n');
 imagepath = '../images/lena512.bmp';
@@ -58,7 +65,6 @@ switch(im_info.ColorType)
     otherwise
         error("Can't detect image type. Need to override prefs.image.type");
 end
-prefs.image.type = 'rgb'; % 'bw', 'gray', 'rgb', 'ycbcr'
 
 % We do not binarize for optimal tests, as binarization is non-optimal. See
 % main.m for the preferences options if you want to change this.
@@ -175,7 +181,8 @@ for r = 1:maxRadius
                 fprintf('Iteration %d of %d | Duration = ',...
                     N, maxIterations);
                 % Generate new urn
-                urns = polya(urns, adjacency, Delta, prefs.polya.sample_type);
+%                 urns = polya(urns, adjacency, Delta, prefs.polya.sample_type);
+                urns = polya_eigen(urns, adjacency, Delta, prefs.polya.sample_type, 1);
                 % Convert back to image
                 outputImage = image_from_urns(size(noisy_image), urns);
                 outputImage = inverse_quantize_image(outputImage, ...
@@ -199,8 +206,8 @@ for r = 1:maxRadius
                 optimalResults.polya.filtered = outputImage;
 
                 optimalResults.prefs.radius = r;
-                optimalResults.prefs.num_ball_types = delta;
-                optimalResults.prefs.quant = numBins;
+                optimalResults.prefs.num_ball_types = numBins;
+                optimalResults.prefs.balls_to_add = delta;
                 optimalResults.prefs.iterations = N;
                 fprintf('New optimal MSE: %.2f\n', newMse);
             end
