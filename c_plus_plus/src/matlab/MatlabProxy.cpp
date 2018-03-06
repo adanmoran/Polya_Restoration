@@ -123,7 +123,6 @@ auto MatlabProxy::addNoise(QImage* image, Prefs prefs, Noise noise) -> bool
 	auto imageMatrix = toMATLABArray(*image, prefs.image.type);
 	*image = toQImage(imageMatrix);
 
-
 	// TODO: Convert the noise struct to an mwArray
 
 	// Create a "prefs" struct as required by MATLAB which contains the required elements
@@ -172,8 +171,8 @@ auto MatlabProxy::toMATLABArray(const QImage& image, Prefs::ImageType type) -> m
 	}
 
 	// Allocate the memory that will contain the data for the mwArray.
-	std::vector<mxDouble> columnMajorData;
-	columnMajorData.reserve(depth * width * height);
+	std::vector<mxDouble> data;
+	data.reserve(depth * width * height);
 
 	// Fill the vector with the colour values
 	for (int k = 0; k < depth; ++k)
@@ -191,15 +190,15 @@ auto MatlabProxy::toMATLABArray(const QImage& image, Prefs::ImageType type) -> m
 				switch (depth)
 				{
 				case static_cast<int>(ColorDepth::RED) :
-					columnMajorData[arrayPosition] = mxDouble(qRed(colour));
+					data[arrayPosition] = mxDouble(qRed(colour));
 //					std::cout << "The Red colour is: " << columnMajorData[arrayPosition] << std::endl;
 					break;
 				case static_cast<int>(ColorDepth::GREEN) :
-					columnMajorData[arrayPosition] = mxDouble(qGreen(colour));
+					data[arrayPosition] = mxDouble(qGreen(colour));
 //					std::cout << "The Green colour is: " << columnMajorData[arrayPosition] << std::endl;
 					break;
 				case static_cast<int>(ColorDepth::BLUE) :
-					columnMajorData[arrayPosition] = mxDouble(qBlue(colour));
+					data[arrayPosition] = mxDouble(qBlue(colour));
 //					std::cout << "The Blue colour is: " << columnMajorData[arrayPosition] << std::endl;
 					break;
 				}
@@ -210,8 +209,7 @@ auto MatlabProxy::toMATLABArray(const QImage& image, Prefs::ImageType type) -> m
 	// Create an mwArray from the generated data above
 	mwSize imMatrixSize[] = { width, height, depth };
 	mwArray imMatrix(3, imMatrixSize, mxDOUBLE_CLASS);
-	imMatrix.SetData(columnMajorData.data(), width*height);
-//	std::cout << "The Image is: " << imMatrix << std::endl;
+	imMatrix.SetData(data.data(), width*height*depth);
 
 	return imMatrix;
 }
@@ -246,7 +244,7 @@ auto MatlabProxy::toQImage(const mwArray& imageMatrix)->QImage
 	// Convert the mwArray to a QImage with 24
 	QImage image(width, height, QImage::Format::Format_RGB32);
 	// MATLAB arrays are 1-based
-	for (int i = 1; i <= width; ++i)
+	for (int i = 1; i <= height; ++i)
 	{
 		for (int j = 1; j <= width; ++j)
 		{
