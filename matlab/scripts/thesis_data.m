@@ -164,7 +164,7 @@ for r = 1:maxRadius
                                             prefs.quant.type);
         % Optimize Delta
         for delta = deltaToOptimize
-            Delta = delta * eye(numBins);
+            Delta = delta * speye(numBins);
             % Initialize urns
             fprintf('Running polya filter for radius = %d, bins = %d, delta = %d.\n',...
                 r, numBins, delta);
