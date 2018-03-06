@@ -162,12 +162,19 @@ for r = 1:maxRadius
                                             noisy_image, ... 
                                             numBins, ... 
                                             prefs.quant.type);
+        useCpp = numBins > 64;
+        
         % Optimize Delta
         for delta = deltaToOptimize
-            Delta = delta * speye(numBins);
             % Initialize urns
             fprintf('Running polya filter for radius = %d, bins = %d, delta = %d.\n',...
                 r, numBins, delta);
+
+            if useCpp
+                Delta = delta * speye(numBins);
+            else
+                Delta = delta * eye(numBins);
+            end
             urns = initialize_polya_urns(quantized_image, ...
                                          startingBalls, ...
                                          numBins);
@@ -181,8 +188,11 @@ for r = 1:maxRadius
                 fprintf('Iteration %d of %d | Duration = ',...
                     N, maxIterations);
                 % Generate new urn
-%                 urns = polya(urns, adjacency, Delta, prefs.polya.sample_type);
-                urns = polya_eigen(urns, adjacency, Delta, prefs.polya.sample_type, 1);
+                if useCpp
+                    urns = polya_eigen(urns, adjacency, Delta, prefs.polya.sample_type, 1);
+                else
+                    urns = polya(urns, adjacency, Delta, prefs.polya.sample_type);
+                end            
                 % Convert back to image
                 outputImage = image_from_urns(size(noisy_image), urns);
                 outputImage = inverse_quantize_image(outputImage, ...
