@@ -86,23 +86,12 @@ prefs.adj.norm = 2;
 
 %% Structure to store optimal data and noise
 
-% Noise parameters
-% Colour & Greyscale Noise Parameters
-noise.gaussian.sigma = 0.01;
-noise.gaussian.mean = 0;
+norm = prefs.adj.norm;
+quant = prefs.quant;
 
-noise.bursty.type = 'binary'; % 'gaussian' or 'binary'
-noise.bursty.transition_prob = 0.98;
-noise.bursty.error = 0.1; % 0.2 for gaussian, 0.1 for binary
-noise.bursty.mean = 0;
-noise.bursty.sigma = 100;
+parfor i = 1:10
 
-noise.gauss_markov.correlation = 0.9; % (-1, 1)
-noise.gauss_markov.mean = 0;
-noise.gauss_markov.sigma = 10;
-
-noise.type = 'both'; % 'gaussian' or 'burst' or 'both' or 'none' 
-                     % or 'gauss-markov'
+noise = generate_noise(i);
                      
 % Information about image, to add to CSV at the end
 optimalResults.image.name = imagepath;
@@ -111,12 +100,12 @@ optimalResults.image.image = image;
 
 % Optimized preferences will be stored here
 optimalResults.prefs.radius = 1;
-optimalResults.prefs.norm = prefs.adj.norm;
+optimalResults.prefs.norm = norm;
 
 optimalResults.prefs.num_ball_types = 256;
 optimalResults.prefs.balls_to_add = startingBalls;
 
-optimalResults.prefs.quant = prefs.quant;
+optimalResults.prefs.quant = quant;
 
 optimalResults.prefs.iterations = 0;
 optimalResults.prefs.epsilon = epsilon;
@@ -226,3 +215,43 @@ for r = 1:maxRadius
 end
             
 % Now run the median for this noise type and compute the optimal results
+end
+
+%% Generate noise based on loop variable (for parfor)
+function noise = generate_noise(i)
+    switch(i)
+        case 1 % Low gauss-markov noise
+            noise.gauss_markov.correlation = 0.9; % (-1, 1)
+            noise.gauss_markov.mean = 0;
+            noise.gauss_markov.sigma = 1;
+            noise.type = 'gauss-markov';
+            return;
+        case 2 % Medium gauss-markov noise
+            return;
+        case 3 % High gauss-markov noise
+            return;
+        case 4 % Low gaussian noise with binary erasure
+            noise.gaussian.sigma = 0.01;
+            noise.gaussian.mean = 0;
+
+            noise.bursty.type = 'binary';
+            noise.bursty.transition_prob = 0.98;
+            noise.bursty.error = 0.1;
+            noise.type = 'both';
+        case 5 % Medium gaussian noise with binary erasure
+            return;
+        case 6 % High gaussian noise with binary erasure
+            return;
+        case 7 % Hidden-markov noise
+            noise.gaussian.sigma = 0.01;
+            noise.gaussian.mean = 0;
+
+            noise.bursty.type = 'gaussian';
+            noise.bursty.transition_prob = 0.98;
+            noise.bursty.error = 0.2;
+            noise.bursty.mean = 0;
+            noise.bursty.sigma = 100;
+            noise.type = 'both';
+            return;
+    end
+end
