@@ -186,7 +186,7 @@ for r = 1:maxRadius
             
             previousMse = immse(noisy_image, image);
             outputImage = noisy_image;
-            previuosOutput = outputImage;
+            previousOutput = outputImage;
             
             for N = 1 : maxIterations
                 tic
