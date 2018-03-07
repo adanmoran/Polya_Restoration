@@ -17,6 +17,7 @@ mex(ipath, ipath2, "polya_eigen.cpp", polyapath)
 %% Pick an image for testing
 fprintf('Loading image\n');
 imagepath = '../images/lena512.bmp';
+[~,imagename,ext] = fileparts(imagepath);
 % imagepath = '../images/oil_spill.jpg';
 % imagepath = '../images/aerial1.tiff';
 % imagepath = '../images/pentagon.tiff';
@@ -89,58 +90,72 @@ prefs.adj.norm = 2;
 norm = prefs.adj.norm;
 quant = prefs.quant;
 
-parfor i = 1:10
-
+noises = 1:3 ;
+files = -1 * ones(size(noises));
+logs = -1 * ones(size(noises));
+noise = generate_noise(2);
+noise.name
+parfor i = noises
+% Generate a noise for this image and this thread
 noise = generate_noise(i);
+
+% Open a file for this noise type
+fname = sprintf('%s_%s_optimal', imagename, noise.name);
+files(i) = fopen(sprintf('./optimal_log/%s.csv', fname),'wt');
+logs(i) = fopen(sprintf('./optimal_log/%s.log', fname), 'wt');
+
+fprintf(files(i), 'Radius, # Bins, Delta, N, MSE, PSNR, SSIM\n');
+fprintf(logs(i),'Log Started on %s\n\n', date);
                      
-% Information about image, to add to CSV at the end
-optimalResults.image.name = imagepath;
-optimalResults.image.noise = noise;
-optimalResults.image.image = image;
-
-% Optimized preferences will be stored here
-optimalResults.prefs.radius = 1;
-optimalResults.prefs.norm = norm;
-
-optimalResults.prefs.num_ball_types = 256;
-optimalResults.prefs.balls_to_add = startingBalls;
-
-optimalResults.prefs.quant = quant;
-
-optimalResults.prefs.iterations = 0;
-optimalResults.prefs.epsilon = epsilon;
-
-% Optimized results on metrics
-optimalResults.polya.mse = 255*255;
-optimalResults.polya.psnr = Inf;
-optimalResults.polya.ssim = 0;
-optimalResults.polya.filtered = zeros(size(image));
-
-optimalResults.median.mse = 255*255;
-optimalResults.median.psnr = Inf;
-optimalResults.median.ssim = 0;
-optimalResults.median.filtered = zeros(size(image));
-
-optimalResults.lee.mse = 255*255;
-optimalResults.lee.psnr = Inf;
-optimalResults.lee.ssim = 0;
-optimalResults.lee.filtered = zeros(size(image));
+% % Information about image, to add to CSV at the end
+% optimalResults.image.name = imagepath;
+% optimalResults.image.noise = noise;
+% optimalResults.image.image = image;
+% 
+% % Optimized preferences will be stored here
+% optimalResults.prefs.radius = 1;
+% optimalResults.prefs.norm = norm; 
+% 
+% optimalResults.prefs.num_ball_types = 256;
+% optimalResults.prefs.balls_to_add = startingBalls;
+% 
+% optimalResults.prefs.quant = quant;
+% 
+% optimalResults.prefs.iterations = 0;
+% optimalResults.prefs.epsilon = epsilon;
+% 
+% % Optimized results on metrics
+% optimalResults.polya.mse = 255*255;
+% optimalResults.polya.psnr = Inf;
+% optimalResults.polya.ssim = 0;
+% optimalResults.polya.filtered = zeros(size(image));
+% 
+% optimalResults.median.mse = 255*255;
+% optimalResults.median.psnr = Inf;
+% optimalResults.median.ssim = 0;
+% optimalResults.median.filtered = zeros(size(image));
+% 
+% optimalResults.lee.mse = 255*255;
+% optimalResults.lee.psnr = Inf;
+% optimalResults.lee.ssim = 0;
+% optimalResults.lee.filtered = zeros(size(image));
+optimalMse = 255 * 255;
 
 %% Run the optimization for this image and noise type
 rng(0, 'twister');
 
-fprintf('Adding Noise\n');
+fprintf(logs(i), 'Adding Noise\n');
 noisy_image = add_noise(image, prefs, noise);
 
-figure;
-imshowpair(image, noisy_image, 'montage');
+%figure;
+%imshowpair(image, noisy_image, 'montage');
 
 % Initialize the image for filter comparisons
 medianed = noisy_image;
 lee = noisy_image;
 
 % Optimize radius
-fprintf('Optimizing %s for noise type %s\n', imagepath, noise.type);
+fprintf(logs(i), 'Optimizing for %s\n', fname);
 for r = 1:maxRadius
     adjacency = get_sparse_adj(size(noisy_image), ...
                                r, ...
@@ -156,7 +171,7 @@ for r = 1:maxRadius
         % Optimize Delta
         for delta = deltaToOptimize
             % Initialize urns
-            fprintf('Running polya filter for radius = %d, bins = %d, delta = %d.\n',...
+            fprintf(logs(i), 'Running polya filter for radius = %d, bins = %d, delta = %d.\n',...
                 r, numBins, delta);
 
             if useCpp
@@ -171,10 +186,11 @@ for r = 1:maxRadius
             
             previousMse = immse(noisy_image, image);
             outputImage = noisy_image;
+            previuosOutput = outputImage;
             
             for N = 1 : maxIterations
                 tic
-                fprintf('Iteration %d of %d | Duration = ',...
+                fprintf(logs(i), 'Iteration %d of %d | Duration = ',...
                     N, maxIterations);
                 % Generate new urn
                 if useCpp
@@ -190,47 +206,82 @@ for r = 1:maxRadius
                                     codebook);
                 % Compute MSE and stop if we are not improving
                 newMse = immse(outputImage, image);
-                fprintf('%.3f | MSE = %.4f\n', toc, newMse);
-                if abs(newMse - previousMse) < epsilon
+                fprintf(logs(i), '%.3f | MSE = %.4f\n', toc, newMse);
+                % Stop only when we are not improving as much as desired
+                % (given we've run it twice at least
+                if floor(newMse) > floor(previousMse)
+                    % If we went up this time, the last iteration is more optimal
+                    N = N - 1;
+                    outputImage = previousOutput;
+                    newMse = previousMse
+                    break
+                elseif abs(previousMse - newMse) < epsilon && N < 2
                     break;
                 end
                 previousMse = newMse;
+                previousOutput = outputImage;
             end
-            if newMse < optimalResults.polya.mse
-                % If this MSE is better than the optimal, these preferences
-                % are optimal
-                optimalResults.polya.mse = newMse;
-                optimalResults.polya.psnr = psnr(outputImage, image);
-                optimalResults.polya.ssim = ssim(outputImage, image);
-                optimalResults.polya.filtered = outputImage;
-
-                optimalResults.prefs.radius = r;
-                optimalResults.prefs.num_ball_types = numBins;
-                optimalResults.prefs.balls_to_add = delta;
-                optimalResults.prefs.iterations = N;
-                fprintf('New optimal MSE: %.2f\n', newMse);
+%             if newMse < optimalResults.polya.mse
+%                 % If this MSE is better than the optimal, these preferences
+%                 % are optimal
+%                 optimalResults.polya.mse = newMse;
+%                 optimalResults.polya.psnr = psnr(outputImage, image);
+%                 optimalResults.polya.ssim = ssim(outputImage, image);
+%                 optimalResults.polya.filtered = outputImage;
+% 
+%                 optimalResults.prefs.radius = r;
+%                 optimalResults.prefs.num_ball_types = numBins;
+%                 optimalResults.prefs.balls_to_add = delta;
+%                 optimalResults.prefs.iterations = N;
+%                 fprintf('New optimal MSE: %.2f\n', newMse);
+%             end
+            if newMse < optimalMse
+                fprintf(logs(i), 'New optimal MSE: %.2f\n', newMse);
+                % Save the results to a CSV file
+                fprintf(files(i), '%d, %d, %d, %d, %.3f, %.3f, %.3f\n', ...
+                    r, numBins, delta, N, ...
+                    newMse, psnr(outputImage, image), ssim(outputImage, image));
+                % Save the most recent output image
+                imwrite(outputImage, sprintf('./frames/%s.%s',fname, ext));
+                % Keep track of the optimal MSE
+                optimalMse = newMse;
             end
         end
     end
 end
-            
+fclose(files(i));
+fclose(logs(i));
 % Now run the median for this noise type and compute the optimal results
+end
+
+% Ensure the files are closed
+for file = files
+    if file ~= -1
+        fclose(file);
+    end
+end
+% Ensure the logs are closed
+for log = logs
+    if log ~= -1
+        fclose(log);
+    end
 end
 
 %% Generate noise based on loop variable (for parfor)
 function noise = generate_noise(i)
+    noise = struct;
     switch(i)
         case 1 % Low gauss-markov noise
+            noise.name = 'gauss_markov_low';
             noise.gauss_markov.correlation = 0.9; % (-1, 1)
             noise.gauss_markov.mean = 0;
             noise.gauss_markov.sigma = 1;
             noise.type = 'gauss-markov';
             return;
-        case 2 % Medium gauss-markov noise
-            return;
-        case 3 % High gauss-markov noise
-            return;
-        case 4 % Low gaussian noise with binary erasure
+%         case 2 % Medium gauss-markov noise
+%         case 3 % High gauss-markov noise
+        case {2,3,4} % Low gaussian noise with binary erasure
+            noise.name = 'gaussian_and_binary_erasure';
             noise.gaussian.sigma = 0.01;
             noise.gaussian.mean = 0;
 
@@ -238,11 +289,11 @@ function noise = generate_noise(i)
             noise.bursty.transition_prob = 0.98;
             noise.bursty.error = 0.1;
             noise.type = 'both';
+            return;
         case 5 % Medium gaussian noise with binary erasure
-            return;
         case 6 % High gaussian noise with binary erasure
-            return;
         case 7 % Hidden-markov noise
+            noise.name = 'hidden_markov_0.01_100';
             noise.gaussian.sigma = 0.01;
             noise.gaussian.mean = 0;
 
