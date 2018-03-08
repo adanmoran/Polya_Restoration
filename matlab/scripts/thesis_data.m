@@ -86,8 +86,8 @@ prefs.adj.norm = 2;
 norm = prefs.adj.norm;
 quant = prefs.quant;
 
-% Choose which noise "numbers" to optimize over
-noises = 1:3;
+% Optimize over all noise types (there are 9 defined in generate_noise())
+noises = 1:9;
 % Store file pointers to CSV files
 files = -1 * ones(size(noises));
 % Store file pointers to logs
