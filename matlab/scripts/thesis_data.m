@@ -17,13 +17,17 @@ mex(ipath, ipath2, "polya_eigen.cpp", polyapath)
 %% Pick an image for testing
 fprintf('Loading image\n');
 imagepath = '../images/lena512.bmp';
-[~,imagename,ext] = fileparts(imagepath);
-% imagepath = '../images/oil_spill.jpg';
 % imagepath = '../images/aerial1.tiff';
 % imagepath = '../images/pentagon.tiff';
 % imagepath = '../images/goldengate.tiff';
 
+[~,imagename,ext] = fileparts(imagepath);
 image = imread(imagepath);
+
+% If it's a colour image, convert it to grayscale
+if size(image, 3)
+    image = rgb2gray(image);
+end
 
 %% Assign the values over which we will optimize
 % Don't need to optimize starting balls; this just gives us the
@@ -56,17 +60,7 @@ epsilon = 0.5;
 maxIterations = 50;
 
 %% Preferences that do not need to be optimized
-im_info = imfinfo(imagepath);
-switch(im_info.ColorType)
-    case('truecolor')
-        prefs.image.type = 'rgb';
-    case('grayscale')
-        prefs.image.type = 'gray';
-    case('indexed')
-        prefs.image.type = 'gray';
-    otherwise
-        error("Can't detect image type. Need to override prefs.image.type");
-end
+prefs.image.type = 'gray';
 
 % We do not binarize for optimal tests, as binarization is non-optimal. See
 % main.m for the preferences options if you want to change this.
@@ -118,9 +112,10 @@ rng(0, 'twister');
 
 fprintf(logs(i), 'Adding Noise\n');
 noisy_image = add_noise(image, prefs, noise);
+optimalMse = immse(noisy_image, image);
 
 % Save the noisy image for comparison later
-imwrite(outputImage, sprintf('./frames/%s_%s_noise.%s',...
+imwrite(noisy_image, sprintf('./frames/%s_%s_noise%s',...
         imagename, noise.name, ext));
 
 % Optimize radius
@@ -201,7 +196,7 @@ for r = 1:maxRadius
                     r, numBins, delta, N, ...
                     newMse, psnr(outputImage, image), ssim(outputImage, image));
                 % Save the most recent output image
-                imwrite(outputImage, sprintf('./frames/%s.%s',fname, ext));
+                imwrite(outputImage, sprintf('./frames/%s%s',fname, ext));
                 % Keep track of the optimal MSE
                 optimalMse = newMse;
             end
@@ -239,7 +234,7 @@ for N = 1 : maxIterations
     previousMse = newMse;
 end
 % Save the medianed value in the image
-imwrite(medianed, sprintf('./frames/%s_median_%dN.%s',fname, N, ext));
+imwrite(medianed, sprintf('./frames/%s_median_%dN%s',fname, N, ext));
 
 end
 
