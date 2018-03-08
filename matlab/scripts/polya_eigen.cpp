@@ -135,13 +135,13 @@ void mexFunction( int nlhs, mxArray *plhs[],
         duration<double, std::milli> time_span = t1 - t2;
         average += time_span.count();
     }
-//     mexPrintf("Average iteration time:%f\n", average / iterations);
+    mexPrintf("Average iteration time:%f\n", average / iterations);
 
     // Copy eigen matrix results out to matlab
     mwSize rows = urn.rows();
     mwSize cols = urn.cols();
     mwSize nnz = urn.nonZeros();
-//     mexPrintf("cols: %d, rows: %d, nnz: %d\n", cols, rows, nnz);
+    mexPrintf("cols: %d, rows: %d, nnz: %d\n", cols, rows, nnz);
 
     mwIndex *irs,*jcs;
     double *sr;
