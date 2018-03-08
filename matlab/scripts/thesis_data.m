@@ -260,41 +260,65 @@ end
 function noise = generate_noise(i)
     noise = struct;
     switch(i)
-        case 1 % Low gauss-markov noise
-            noise.name = 'gauss_markov_low';
-            noise.gauss_markov.correlation = 0.9; % (-1, 1)
-            noise.gauss_markov.mean = 0;
-            noise.gauss_markov.sigma = 5;
-            noise.type = 'gauss-markov';
-            return;
-%         case 2 % Medium gauss-markov noise
-%         case 3 % High gauss-markov noise
-        case {2,3,4} % Low gaussian noise with binary erasure
-            noise.name = 'speckle_and_binary_erasure';
-            noise.speckle.sigma = 0.01;
-            noise.speckle.mean = 0;
+        case 1 % Low speckkle noise
+            noise.name = 'speckle_low';
+            noise.speckle.sigma = 0.03;
+            noise.type = {'speckle'};
+        case 2 % Medium speckle noise
+            noise.name = 'speckle_mid';
+            noise.speckle.sigma = 0.08;
+            noise.type = {'speckle'};
+        case 3 % High speckle noise
+            noise.name = 'speckle_high';
+            noise.speckle.sigma = 0.15;
+            noise.type = {'speckle'};
+        case 4 % Low speckle noise and low error binary_erasure
+            noise.name = 'speckle_and_binary_erasure_low';
+            noise.speckle.sigma = 0.03;
+
+            noise.bursty.type = 'binary';
+            noise.bursty.transition_prob = 0.98;
+            noise.bursty.error = 0.02;
+            noise.type = {'speckle','binary-erasure'};
+        case 5 % Low speckle noise and mid error binary erasure
+            noise.name = 'speckle_and_binary_erasure_mid';
+            noise.speckle.sigma = 0.03;
 
             noise.bursty.type = 'binary';
             noise.bursty.transition_prob = 0.98;
             noise.bursty.error = 0.1;
             noise.type = {'speckle','binary-erasure'};
-            return;
-        case 5 % Medium gaussian noise with binary erasure
-        case 6 % High gaussian noise with binary erasure
-        case 7 % Low Gaussian only noise
-        case 8 % Medium Gaussian only noise
-        case 9 % High Gaussian only noise
-        case 10 % Low hidden-markov noise
-            noise.name = 'hidden_markov_0.01_100';
-            noise.speckle.sigma = 0.01;
-            noise.speckle.mean = 0;
+        case 6 % Low speckle noise and high error binary erasure
+            noise.name = 'speckle_and_binary_erasure_high';
+            noise.speckle.sigma = 0.03;
 
-            noise.bursty.type = 'gaussian';
+            noise.bursty.type = 'binary';
             noise.bursty.transition_prob = 0.98;
-            noise.bursty.error = 0.2;
-            noise.bursty.mean = 0;
-            noise.bursty.sigma = 100;
-            noise.type = {'speckle','gaussian-burst'};
-            return;
+            noise.bursty.error = 0.4;
+            noise.type = {'speckle','binary-erasure'}; 
+        case 7 % Low speckle noise and low gauss-markov
+            noise.name = 'speckle_and_gauss_markov_low';
+            noise.speckle.sigma = 0.03;
+            
+            noise.gauss_markov.correlation = 0.98; % (-1, 1)
+            noise.gauss_markov.mean = 0;
+            noise.gauss_markov.sigma = 3;
+            noise.type = {'speckle', 'gauss-markov'};
+        case  8 % Low speckle noise and medium gauss-markov
+            noise.name = 'speckle_and_gauss_markov_mid';
+            noise.speckle.sigma = 0.03;
+            
+            noise.gauss_markov.correlation = 0.98; % (-1, 1)
+            noise.gauss_markov.mean = 0;
+            noise.gauss_markov.sigma = 6;
+            noise.type = {'speckle', 'gauss-markov'};
+        case 9 % Low speckle noise and high gauss-markov
+            noise.name = 'speckle_and_gauss_markov_high';
+            noise.speckle.sigma = 0.03;
+            
+            noise.gauss_markov.correlation = 0.98; % (-1, 1)
+            noise.gauss_markov.mean = 0;
+            noise.gauss_markov.sigma = 10;
+            noise.type = {'speckle', 'gauss-markov'};
     end
 end

@@ -14,6 +14,7 @@ function noisy_image = add_noise(image, prefs, noise)
     
     for type = noise.type       
         if strcmp(type, 'speckle')
+            % This is actually gaussian in the 'bw' case, not speckle
             if strcmp(prefs.image.type, 'bw')
                 noisy_image = add_gaussian_noise( ...
                                     noisy_image, ...
@@ -24,8 +25,7 @@ function noisy_image = add_noise(image, prefs, noise)
 
             else
                 noisy_image = imnoise(noisy_image, ...
-                                      'gaussian', ...
-                                      noise.speckle.mean, ...
+                                      'speckle', ...
                                       noise.speckle.sigma);
             end
 
@@ -42,13 +42,14 @@ function noisy_image = add_noise(image, prefs, noise)
                                            noise.bursty.mean, ...
                                            noise.bursty.sigma);
         
-        elseif strcmp(noise.type, 'gauss-markov')
+        elseif strcmp(type, 'gauss-markov')
             noisy_image = add_gauss_markov_noise(noisy_image, ...
                                         noise.gauss_markov.correlation, ...
                                         noise.gauss_markov.mean, ...
                                         noise.gauss_markov.sigma);
         
         else % no noise if 'none' or an incorrect input
+            fprintf('nothing');
             noisy_image = image;
             return;
         end
