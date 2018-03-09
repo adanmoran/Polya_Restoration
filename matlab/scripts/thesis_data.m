@@ -16,16 +16,16 @@ mex(ipath, ipath2, "polya_eigen.cpp", polyapath)
 
 %% Pick an image for testing
 fprintf('Loading image\n');
-imagepath = '../images/lena512.bmp';
+% imagepath = '../images/lena512.bmp';
 % imagepath = '../images/aerial1.tiff';
 % imagepath = '../images/pentagon.tiff';
-% imagepath = '../images/goldengate.tiff';
+imagepath = '../images/goldengate.tiff';
 
 [~,imagename,ext] = fileparts(imagepath);
 image = imread(imagepath);
 
 % If it's a colour image, convert it to grayscale
-if size(image, 3)
+if size(image, 3) > 1
     image = rgb2gray(image);
 end
 
