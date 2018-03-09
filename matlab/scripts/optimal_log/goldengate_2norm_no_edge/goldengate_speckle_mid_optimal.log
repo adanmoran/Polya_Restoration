@@ -1,0 +1,1962 @@
+Log Started on 08-Mar-2018
+
+Adding Noise
+Optimizing for goldengate_speckle_mid_optimal
+Running polya filter for radius = 1, bins = 32, delta = 20.
+Initial MSE: 1142.6897
+Iteration 1 of 50 | Duration = 1.199 | MSE = 1140.3195
+Iteration 2 of 50 | Duration = 1.042 | MSE = 1140.3195
+Iteration 3 of 50 | Duration = 0.965 | MSE = 1140.3195
+New optimal MSE: 1140.3195
+
+Running polya filter for radius = 1, bins = 32, delta = 40.
+Initial MSE: 1142.6897
+Iteration 1 of 50 | Duration = 1.238 | MSE = 1140.3195
+Iteration 2 of 50 | Duration = 1.043 | MSE = 1140.3195
+Iteration 3 of 50 | Duration = 1.024 | MSE = 593.2236
+Iteration 4 of 50 | Duration = 1.129 | MSE = 481.5393
+Iteration 5 of 50 | Duration = 1.007 | MSE = 464.3544
+Iteration 6 of 50 | Duration = 1.387 | MSE = 386.4272
+Iteration 7 of 50 | Duration = 1.096 | MSE = 360.7843
+Iteration 8 of 50 | Duration = 1.151 | MSE = 357.0923
+Iteration 9 of 50 | Duration = 1.175 | MSE = 336.9752
+Iteration 10 of 50 | Duration = 1.166 | MSE = 335.1846
+Iteration 11 of 50 | Duration = 1.165 | MSE = 332.8419
+Iteration 12 of 50 | Duration = 1.140 | MSE = 331.8698
+Iteration 13 of 50 | Duration = 1.116 | MSE = 328.6794
+Iteration 14 of 50 | Duration = 1.050 | MSE = 325.3120
+Iteration 15 of 50 | Duration = 1.100 | MSE = 322.3748
+Iteration 16 of 50 | Duration = 0.987 | MSE = 320.4873
+Iteration 17 of 50 | Duration = 1.046 | MSE = 318.7200
+Iteration 18 of 50 | Duration = 1.146 | MSE = 315.6399
+Iteration 19 of 50 | Duration = 1.061 | MSE = 313.1490
+Iteration 20 of 50 | Duration = 1.125 | MSE = 312.8342
+New optimal MSE: 312.8342
+
+Running polya filter for radius = 1, bins = 32, delta = 60.
+Initial MSE: 1142.6897
+Iteration 1 of 50 | Duration = 1.315 | MSE = 1140.3195
+Iteration 2 of 50 | Duration = 0.988 | MSE = 593.2236
+Iteration 3 of 50 | Duration = 1.109 | MSE = 479.6775
+Iteration 4 of 50 | Duration = 1.372 | MSE = 386.9648
+Iteration 5 of 50 | Duration = 1.033 | MSE = 358.5144
+Iteration 6 of 50 | Duration = 1.002 | MSE = 337.2379
+Iteration 7 of 50 | Duration = 1.053 | MSE = 335.1248
+Iteration 8 of 50 | Duration = 1.092 | MSE = 331.6522
+Iteration 9 of 50 | Duration = 1.014 | MSE = 328.2221
+Iteration 10 of 50 | Duration = 1.079 | MSE = 323.3047
+Iteration 11 of 50 | Duration = 1.094 | MSE = 320.5279
+Iteration 12 of 50 | Duration = 1.168 | MSE = 315.9445
+Iteration 13 of 50 | Duration = 1.106 | MSE = 313.7345
+Iteration 14 of 50 | Duration = 1.132 | MSE = 309.6690
+Iteration 15 of 50 | Duration = 1.134 | MSE = 308.9737
+Iteration 16 of 50 | Duration = 1.089 | MSE = 307.9118
+Iteration 17 of 50 | Duration = 1.027 | MSE = 307.1875
+Iteration 18 of 50 | Duration = 1.050 | MSE = 306.2979
+Iteration 19 of 50 | Duration = 1.002 | MSE = 305.8476
+New optimal MSE: 305.8476
+
+Running polya filter for radius = 1, bins = 32, delta = 80.
+Initial MSE: 1142.6897
+Iteration 1 of 50 | Duration = 1.371 | MSE = 1140.3195
+Iteration 2 of 50 | Duration = 1.131 | MSE = 593.2236
+Iteration 3 of 50 | Duration = 1.094 | MSE = 484.4083
+Iteration 4 of 50 | Duration = 1.251 | MSE = 387.4977
+Iteration 5 of 50 | Duration = 1.124 | MSE = 359.4967
+Iteration 6 of 50 | Duration = 1.127 | MSE = 337.1448
+Iteration 7 of 50 | Duration = 1.089 | MSE = 331.8557
+Iteration 8 of 50 | Duration = 1.253 | MSE = 326.4752
+Iteration 9 of 50 | Duration = 1.091 | MSE = 323.6668
+Iteration 10 of 50 | Duration = 1.114 | MSE = 319.1133
+Iteration 11 of 50 | Duration = 1.026 | MSE = 317.2952
+Iteration 12 of 50 | Duration = 1.136 | MSE = 313.3764
+Iteration 13 of 50 | Duration = 1.106 | MSE = 311.4793
+Iteration 14 of 50 | Duration = 1.084 | MSE = 307.9957
+Iteration 15 of 50 | Duration = 1.053 | MSE = 307.4201
+Iteration 16 of 50 | Duration = 1.025 | MSE = 306.4054
+Iteration 17 of 50 | Duration = 1.006 | MSE = 305.7603
+Iteration 18 of 50 | Duration = 0.986 | MSE = 304.9472
+Iteration 19 of 50 | Duration = 1.087 | MSE = 304.6762
+New optimal MSE: 304.6762
+
+Running polya filter for radius = 1, bins = 32, delta = 100.
+Initial MSE: 1142.6897
+Iteration 1 of 50 | Duration = 2.443 | MSE = 566.0998
+Iteration 2 of 50 | Duration = 1.368 | MSE = 439.2507
+Iteration 3 of 50 | Duration = 1.105 | MSE = 389.9332
+Iteration 4 of 50 | Duration = 1.168 | MSE = 364.7026
+Iteration 5 of 50 | Duration = 1.119 | MSE = 344.9237
+Iteration 6 of 50 | Duration = 1.142 | MSE = 333.3835
+Iteration 7 of 50 | Duration = 1.166 | MSE = 328.4403
+Iteration 8 of 50 | Duration = 1.119 | MSE = 325.4422
+Iteration 9 of 50 | Duration = 1.021 | MSE = 322.8718
+Iteration 10 of 50 | Duration = 1.042 | MSE = 320.7688
+Iteration 11 of 50 | Duration = 1.122 | MSE = 318.9685
+Iteration 12 of 50 | Duration = 1.017 | MSE = 317.5935
+Iteration 13 of 50 | Duration = 1.091 | MSE = 315.8383
+Iteration 14 of 50 | Duration = 0.996 | MSE = 314.2330
+Iteration 15 of 50 | Duration = 1.061 | MSE = 313.3566
+Iteration 16 of 50 | Duration = 1.085 | MSE = 312.8832
+
+Running polya filter for radius = 1, bins = 32, delta = 120.
+Initial MSE: 1142.6897
+Iteration 1 of 50 | Duration = 1.422 | MSE = 513.4320
+Iteration 2 of 50 | Duration = 1.646 | MSE = 406.9343
+Iteration 3 of 50 | Duration = 1.304 | MSE = 341.1461
+Iteration 4 of 50 | Duration = 1.018 | MSE = 330.1468
+Iteration 5 of 50 | Duration = 1.050 | MSE = 321.5045
+Iteration 6 of 50 | Duration = 1.075 | MSE = 314.7317
+Iteration 7 of 50 | Duration = 1.061 | MSE = 308.0301
+Iteration 8 of 50 | Duration = 1.084 | MSE = 306.0889
+Iteration 9 of 50 | Duration = 1.158 | MSE = 303.8541
+Iteration 10 of 50 | Duration = 1.174 | MSE = 302.1003
+Iteration 11 of 50 | Duration = 1.053 | MSE = 300.2377
+Iteration 12 of 50 | Duration = 1.067 | MSE = 299.6667
+Iteration 13 of 50 | Duration = 1.046 | MSE = 298.9611
+Iteration 14 of 50 | Duration = 1.104 | MSE = 298.0380
+Iteration 15 of 50 | Duration = 1.081 | MSE = 296.9124
+Iteration 16 of 50 | Duration = 1.085 | MSE = 296.6599
+New optimal MSE: 296.6599
+
+Running polya filter for radius = 1, bins = 32, delta = 140.
+Initial MSE: 1142.6897
+Iteration 1 of 50 | Duration = 1.323 | MSE = 513.4320
+Iteration 2 of 50 | Duration = 1.600 | MSE = 406.9343
+Iteration 3 of 50 | Duration = 1.121 | MSE = 341.2181
+Iteration 4 of 50 | Duration = 1.117 | MSE = 330.0210
+Iteration 5 of 50 | Duration = 1.248 | MSE = 321.4648
+Iteration 6 of 50 | Duration = 1.110 | MSE = 314.6750
+Iteration 7 of 50 | Duration = 1.195 | MSE = 307.9530
+Iteration 8 of 50 | Duration = 1.158 | MSE = 305.9937
+Iteration 9 of 50 | Duration = 1.109 | MSE = 303.7760
+Iteration 10 of 50 | Duration = 1.143 | MSE = 302.0369
+Iteration 11 of 50 | Duration = 1.186 | MSE = 300.2026
+Iteration 12 of 50 | Duration = 1.151 | MSE = 299.6195
+Iteration 13 of 50 | Duration = 1.190 | MSE = 298.9086
+Iteration 14 of 50 | Duration = 1.072 | MSE = 297.9968
+Iteration 15 of 50 | Duration = 1.256 | MSE = 296.8863
+Iteration 16 of 50 | Duration = 1.074 | MSE = 296.6357
+New optimal MSE: 296.6357
+
+Running polya filter for radius = 1, bins = 32, delta = 160.
+Initial MSE: 1142.6897
+Iteration 1 of 50 | Duration = 1.604 | MSE = 513.4320
+Iteration 2 of 50 | Duration = 1.692 | MSE = 406.9343
+Iteration 3 of 50 | Duration = 1.148 | MSE = 343.0532
+Iteration 4 of 50 | Duration = 1.144 | MSE = 326.3891
+Iteration 5 of 50 | Duration = 1.188 | MSE = 318.8581
+Iteration 6 of 50 | Duration = 1.129 | MSE = 313.4481
+Iteration 7 of 50 | Duration = 1.145 | MSE = 306.8102
+Iteration 8 of 50 | Duration = 1.073 | MSE = 304.4244
+Iteration 9 of 50 | Duration = 1.282 | MSE = 302.5523
+Iteration 10 of 50 | Duration = 1.041 | MSE = 301.2831
+Iteration 11 of 50 | Duration = 1.091 | MSE = 299.5738
+Iteration 12 of 50 | Duration = 1.123 | MSE = 298.9669
+Iteration 13 of 50 | Duration = 1.192 | MSE = 298.3075
+Iteration 14 of 50 | Duration = 1.170 | MSE = 297.5619
+Iteration 15 of 50 | Duration = 1.183 | MSE = 296.6105
+Iteration 16 of 50 | Duration = 1.200 | MSE = 296.2783
+New optimal MSE: 296.2783
+
+Running polya filter for radius = 1, bins = 32, delta = 180.
+Initial MSE: 1142.6897
+Iteration 1 of 50 | Duration = 1.305 | MSE = 513.4320
+Iteration 2 of 50 | Duration = 1.603 | MSE = 406.8471
+Iteration 3 of 50 | Duration = 1.118 | MSE = 342.7392
+Iteration 4 of 50 | Duration = 1.221 | MSE = 326.2978
+Iteration 5 of 50 | Duration = 1.249 | MSE = 318.6325
+Iteration 6 of 50 | Duration = 1.114 | MSE = 313.2201
+Iteration 7 of 50 | Duration = 1.216 | MSE = 306.6409
+Iteration 8 of 50 | Duration = 1.055 | MSE = 304.2906
+Iteration 9 of 50 | Duration = 1.238 | MSE = 302.4402
+Iteration 10 of 50 | Duration = 1.009 | MSE = 301.1409
+Iteration 11 of 50 | Duration = 1.157 | MSE = 299.4460
+Iteration 12 of 50 | Duration = 1.085 | MSE = 298.8490
+Iteration 13 of 50 | Duration = 1.101 | MSE = 298.2098
+Iteration 14 of 50 | Duration = 1.323 | MSE = 297.4697
+Iteration 15 of 50 | Duration = 1.098 | MSE = 296.5151
+Iteration 16 of 50 | Duration = 1.261 | MSE = 296.1984
+New optimal MSE: 296.1984
+
+Running polya filter for radius = 1, bins = 32, delta = 200.
+Initial MSE: 1142.6897
+Iteration 1 of 50 | Duration = 1.481 | MSE = 513.4320
+Iteration 2 of 50 | Duration = 1.465 | MSE = 406.8395
+Iteration 3 of 50 | Duration = 1.101 | MSE = 342.7398
+Iteration 4 of 50 | Duration = 1.102 | MSE = 326.2995
+Iteration 5 of 50 | Duration = 1.071 | MSE = 318.6370
+Iteration 6 of 50 | Duration = 1.106 | MSE = 313.2298
+Iteration 7 of 50 | Duration = 1.074 | MSE = 306.6513
+Iteration 8 of 50 | Duration = 1.108 | MSE = 304.3023
+Iteration 9 of 50 | Duration = 1.199 | MSE = 302.4519
+Iteration 10 of 50 | Duration = 0.942 | MSE = 301.1546
+Iteration 11 of 50 | Duration = 1.169 | MSE = 299.4596
+Iteration 12 of 50 | Duration = 1.031 | MSE = 298.8627
+Iteration 13 of 50 | Duration = 1.145 | MSE = 298.2235
+Iteration 14 of 50 | Duration = 1.034 | MSE = 297.4833
+Iteration 15 of 50 | Duration = 1.058 | MSE = 296.5288
+Iteration 16 of 50 | Duration = 1.108 | MSE = 296.2120
+
+Running polya filter for radius = 1, bins = 64, delta = 20.
+Initial MSE: 1142.6897
+Iteration 1 of 50 | Duration = 2.271 | MSE = 1134.1404
+Iteration 2 of 50 | Duration = 1.814 | MSE = 1134.1404
+Iteration 3 of 50 | Duration = 1.854 | MSE = 1134.1404
+
+Running polya filter for radius = 1, bins = 64, delta = 40.
+Initial MSE: 1142.6897
+Iteration 1 of 50 | Duration = 2.202 | MSE = 1134.1404
+Iteration 2 of 50 | Duration = 1.754 | MSE = 1134.1404
+Iteration 3 of 50 | Duration = 1.910 | MSE = 605.2573
+Iteration 4 of 50 | Duration = 1.801 | MSE = 494.0700
+Iteration 5 of 50 | Duration = 1.883 | MSE = 477.4305
+Iteration 6 of 50 | Duration = 2.116 | MSE = 382.6641
+Iteration 7 of 50 | Duration = 1.889 | MSE = 356.4397
+Iteration 8 of 50 | Duration = 1.824 | MSE = 350.6785
+Iteration 9 of 50 | Duration = 2.000 | MSE = 334.1544
+Iteration 10 of 50 | Duration = 2.045 | MSE = 332.3655
+Iteration 11 of 50 | Duration = 2.087 | MSE = 329.8136
+Iteration 12 of 50 | Duration = 2.013 | MSE = 328.6564
+Iteration 13 of 50 | Duration = 1.849 | MSE = 325.4133
+Iteration 14 of 50 | Duration = 2.053 | MSE = 321.8382
+Iteration 15 of 50 | Duration = 2.071 | MSE = 318.3259
+Iteration 16 of 50 | Duration = 2.163 | MSE = 316.6745
+Iteration 17 of 50 | Duration = 2.057 | MSE = 315.1594
+Iteration 18 of 50 | Duration = 2.096 | MSE = 312.1823
+Iteration 19 of 50 | Duration = 1.867 | MSE = 310.0681
+Iteration 20 of 50 | Duration = 1.849 | MSE = 309.6103
+
+Running polya filter for radius = 1, bins = 64, delta = 60.
+Initial MSE: 1142.6897
+Iteration 1 of 50 | Duration = 2.122 | MSE = 1134.1404
+Iteration 2 of 50 | Duration = 1.779 | MSE = 605.2573
+Iteration 3 of 50 | Duration = 1.875 | MSE = 491.3770
+Iteration 4 of 50 | Duration = 2.203 | MSE = 382.4222
+Iteration 5 of 50 | Duration = 1.954 | MSE = 352.0328
+Iteration 6 of 50 | Duration = 1.927 | MSE = 334.6844
+Iteration 7 of 50 | Duration = 1.982 | MSE = 332.2456
+Iteration 8 of 50 | Duration = 1.932 | MSE = 328.5243
+Iteration 9 of 50 | Duration = 1.948 | MSE = 324.7993
+Iteration 10 of 50 | Duration = 1.941 | MSE = 319.5878
+Iteration 11 of 50 | Duration = 1.792 | MSE = 316.6152
+Iteration 12 of 50 | Duration = 1.934 | MSE = 312.5842
+Iteration 13 of 50 | Duration = 1.810 | MSE = 310.4383
+Iteration 14 of 50 | Duration = 1.892 | MSE = 307.2643
+Iteration 15 of 50 | Duration = 1.985 | MSE = 306.4264
+Iteration 16 of 50 | Duration = 1.797 | MSE = 305.3469
+Iteration 17 of 50 | Duration = 1.875 | MSE = 304.6514
+Iteration 18 of 50 | Duration = 1.767 | MSE = 303.8055
+Iteration 19 of 50 | Duration = 1.766 | MSE = 303.3842
+
+Running polya filter for radius = 1, bins = 64, delta = 80.
+Initial MSE: 1142.6897
+Iteration 1 of 50 | Duration = 2.097 | MSE = 1134.1404
+Iteration 2 of 50 | Duration = 1.879 | MSE = 605.2573
+Iteration 3 of 50 | Duration = 1.900 | MSE = 497.6390
+Iteration 4 of 50 | Duration = 2.080 | MSE = 383.5229
+Iteration 5 of 50 | Duration = 1.811 | MSE = 353.7961
+Iteration 6 of 50 | Duration = 1.871 | MSE = 334.6218
+Iteration 7 of 50 | Duration = 1.861 | MSE = 328.1872
+Iteration 8 of 50 | Duration = 1.896 | MSE = 323.2229
+Iteration 9 of 50 | Duration = 1.835 | MSE = 320.3831
+Iteration 10 of 50 | Duration = 1.850 | MSE = 316.0449
+Iteration 11 of 50 | Duration = 1.810 | MSE = 314.0068
+Iteration 12 of 50 | Duration = 1.889 | MSE = 310.2809
+Iteration 13 of 50 | Duration = 1.792 | MSE = 308.3738
+Iteration 14 of 50 | Duration = 1.914 | MSE = 305.5908
+Iteration 15 of 50 | Duration = 1.718 | MSE = 304.9584
+Iteration 16 of 50 | Duration = 1.936 | MSE = 303.9506
+Iteration 17 of 50 | Duration = 1.740 | MSE = 303.2997
+Iteration 18 of 50 | Duration = 1.740 | MSE = 302.5476
+Iteration 19 of 50 | Duration = 1.875 | MSE = 302.2341
+
+Running polya filter for radius = 1, bins = 64, delta = 100.
+Initial MSE: 1142.6897
+Iteration 1 of 50 | Duration = 3.320 | MSE = 557.8929
+Iteration 2 of 50 | Duration = 2.317 | MSE = 436.1017
+Iteration 3 of 50 | Duration = 1.966 | MSE = 385.7664
+Iteration 4 of 50 | Duration = 1.886 | MSE = 359.0316
+Iteration 5 of 50 | Duration = 1.856 | MSE = 340.4742
+Iteration 6 of 50 | Duration = 1.965 | MSE = 330.5916
+Iteration 7 of 50 | Duration = 1.792 | MSE = 325.6249
+Iteration 8 of 50 | Duration = 1.969 | MSE = 322.5211
+Iteration 9 of 50 | Duration = 1.782 | MSE = 320.2051
+Iteration 10 of 50 | Duration = 1.741 | MSE = 318.1373
+Iteration 11 of 50 | Duration = 1.741 | MSE = 316.3582
+Iteration 12 of 50 | Duration = 1.799 | MSE = 314.8859
+Iteration 13 of 50 | Duration = 1.818 | MSE = 313.2520
+Iteration 14 of 50 | Duration = 1.980 | MSE = 311.9319
+Iteration 15 of 50 | Duration = 1.918 | MSE = 311.1301
+Iteration 16 of 50 | Duration = 2.002 | MSE = 310.6001
+Iteration 17 of 50 | Duration = 2.042 | MSE = 310.1330
+
+Running polya filter for radius = 1, bins = 64, delta = 120.
+Initial MSE: 1142.6897
+Iteration 1 of 50 | Duration = 2.128 | MSE = 509.4622
+Iteration 2 of 50 | Duration = 2.306 | MSE = 397.4440
+Iteration 3 of 50 | Duration = 1.869 | MSE = 337.9855
+Iteration 4 of 50 | Duration = 1.783 | MSE = 327.4956
+Iteration 5 of 50 | Duration = 1.816 | MSE = 317.8209
+Iteration 6 of 50 | Duration = 1.866 | MSE = 311.1349
+Iteration 7 of 50 | Duration = 1.718 | MSE = 305.7191
+Iteration 8 of 50 | Duration = 1.661 | MSE = 303.4913
+Iteration 9 of 50 | Duration = 1.614 | MSE = 301.2768
+Iteration 10 of 50 | Duration = 1.738 | MSE = 299.5073
+Iteration 11 of 50 | Duration = 1.619 | MSE = 297.8859
+Iteration 12 of 50 | Duration = 1.791 | MSE = 297.3067
+Iteration 13 of 50 | Duration = 1.645 | MSE = 296.5559
+Iteration 14 of 50 | Duration = 1.667 | MSE = 295.5999
+Iteration 15 of 50 | Duration = 1.739 | MSE = 294.6343
+Iteration 16 of 50 | Duration = 1.675 | MSE = 294.3812
+New optimal MSE: 294.3812
+
+Running polya filter for radius = 1, bins = 64, delta = 140.
+Initial MSE: 1142.6897
+Iteration 1 of 50 | Duration = 1.932 | MSE = 509.4622
+Iteration 2 of 50 | Duration = 2.219 | MSE = 397.4440
+Iteration 3 of 50 | Duration = 1.825 | MSE = 338.0445
+Iteration 4 of 50 | Duration = 1.684 | MSE = 327.3641
+Iteration 5 of 50 | Duration = 1.749 | MSE = 317.7887
+Iteration 6 of 50 | Duration = 1.786 | MSE = 311.0614
+Iteration 7 of 50 | Duration = 1.581 | MSE = 305.6451
+Iteration 8 of 50 | Duration = 1.858 | MSE = 303.3984
+Iteration 9 of 50 | Duration = 1.614 | MSE = 301.2184
+Iteration 10 of 50 | Duration = 1.640 | MSE = 299.4620
+Iteration 11 of 50 | Duration = 1.808 | MSE = 297.8572
+Iteration 12 of 50 | Duration = 1.807 | MSE = 297.2719
+Iteration 13 of 50 | Duration = 1.774 | MSE = 296.5130
+Iteration 14 of 50 | Duration = 1.697 | MSE = 295.5629
+Iteration 15 of 50 | Duration = 1.891 | MSE = 294.6131
+Iteration 16 of 50 | Duration = 1.726 | MSE = 294.3594
+New optimal MSE: 294.3594
+
+Running polya filter for radius = 1, bins = 64, delta = 160.
+Initial MSE: 1142.6897
+Iteration 1 of 50 | Duration = 2.299 | MSE = 509.4622
+Iteration 2 of 50 | Duration = 2.191 | MSE = 397.4440
+Iteration 3 of 50 | Duration = 1.823 | MSE = 339.8420
+Iteration 4 of 50 | Duration = 1.788 | MSE = 323.1779
+Iteration 5 of 50 | Duration = 1.690 | MSE = 315.7743
+Iteration 6 of 50 | Duration = 1.778 | MSE = 310.1157
+Iteration 7 of 50 | Duration = 1.684 | MSE = 304.4147
+Iteration 8 of 50 | Duration = 1.619 | MSE = 301.9187
+Iteration 9 of 50 | Duration = 1.716 | MSE = 300.1061
+Iteration 10 of 50 | Duration = 1.786 | MSE = 298.7789
+Iteration 11 of 50 | Duration = 1.792 | MSE = 297.2629
+Iteration 12 of 50 | Duration = 1.632 | MSE = 296.6167
+Iteration 13 of 50 | Duration = 1.736 | MSE = 295.9061
+Iteration 14 of 50 | Duration = 1.644 | MSE = 295.1537
+Iteration 15 of 50 | Duration = 1.662 | MSE = 294.3954
+Iteration 16 of 50 | Duration = 1.751 | MSE = 294.0436
+New optimal MSE: 294.0436
+
+Running polya filter for radius = 1, bins = 64, delta = 180.
+Initial MSE: 1142.6897
+Iteration 1 of 50 | Duration = 2.318 | MSE = 509.4622
+Iteration 2 of 50 | Duration = 2.356 | MSE = 397.3473
+Iteration 3 of 50 | Duration = 1.976 | MSE = 339.5503
+Iteration 4 of 50 | Duration = 1.676 | MSE = 323.1326
+Iteration 5 of 50 | Duration = 1.646 | MSE = 315.5546
+Iteration 6 of 50 | Duration = 1.802 | MSE = 309.9069
+Iteration 7 of 50 | Duration = 1.694 | MSE = 304.2636
+Iteration 8 of 50 | Duration = 1.576 | MSE = 301.7977
+Iteration 9 of 50 | Duration = 1.766 | MSE = 300.0032
+Iteration 10 of 50 | Duration = 1.646 | MSE = 298.6604
+Iteration 11 of 50 | Duration = 1.622 | MSE = 297.1454
+Iteration 12 of 50 | Duration = 1.637 | MSE = 296.5170
+Iteration 13 of 50 | Duration = 1.704 | MSE = 295.8236
+Iteration 14 of 50 | Duration = 1.631 | MSE = 295.0680
+Iteration 15 of 50 | Duration = 1.672 | MSE = 294.3064
+Iteration 16 of 50 | Duration = 1.703 | MSE = 293.9614
+New optimal MSE: 293.9614
+
+Running polya filter for radius = 1, bins = 64, delta = 200.
+Initial MSE: 1142.6897
+Iteration 1 of 50 | Duration = 2.274 | MSE = 509.4622
+Iteration 2 of 50 | Duration = 2.318 | MSE = 397.3416
+Iteration 3 of 50 | Duration = 1.829 | MSE = 339.5489
+Iteration 4 of 50 | Duration = 1.651 | MSE = 323.1322
+Iteration 5 of 50 | Duration = 1.698 | MSE = 315.5588
+Iteration 6 of 50 | Duration = 1.596 | MSE = 309.9153
+Iteration 7 of 50 | Duration = 1.811 | MSE = 304.2746
+Iteration 8 of 50 | Duration = 1.616 | MSE = 301.8098
+Iteration 9 of 50 | Duration = 1.697 | MSE = 300.0153
+Iteration 10 of 50 | Duration = 1.814 | MSE = 298.6748
+Iteration 11 of 50 | Duration = 1.667 | MSE = 297.1598
+Iteration 12 of 50 | Duration = 1.671 | MSE = 296.5314
+Iteration 13 of 50 | Duration = 1.657 | MSE = 295.8379
+Iteration 14 of 50 | Duration = 1.838 | MSE = 295.0824
+Iteration 15 of 50 | Duration = 1.692 | MSE = 294.3208
+Iteration 16 of 50 | Duration = 1.713 | MSE = 293.9758
+
+Running polya filter for radius = 1, bins = 128, delta = 20.
+Initial MSE: 1142.6897
+Iteration 1 of 50 | Duration = 3.570 | MSE = 1133.5217
+Iteration 2 of 50 | Duration = 3.556 | MSE = 1133.5217
+Iteration 3 of 50 | Duration = 3.964 | MSE = 1133.5217
+
+Running polya filter for radius = 1, bins = 128, delta = 40.
+Initial MSE: 1142.6897
+Iteration 1 of 50 | Duration = 3.854 | MSE = 1133.5217
+Iteration 2 of 50 | Duration = 4.063 | MSE = 1133.5217
+Iteration 3 of 50 | Duration = 3.792 | MSE = 614.5822
+Iteration 4 of 50 | Duration = 4.169 | MSE = 505.1105
+Iteration 5 of 50 | Duration = 4.037 | MSE = 488.6412
+Iteration 6 of 50 | Duration = 4.230 | MSE = 384.2426
+Iteration 7 of 50 | Duration = 4.053 | MSE = 357.1925
+Iteration 8 of 50 | Duration = 4.098 | MSE = 350.1059
+Iteration 9 of 50 | Duration = 4.052 | MSE = 335.0491
+Iteration 10 of 50 | Duration = 4.350 | MSE = 333.1422
+Iteration 11 of 50 | Duration = 4.085 | MSE = 330.5717
+Iteration 12 of 50 | Duration = 4.344 | MSE = 329.3071
+Iteration 13 of 50 | Duration = 4.219 | MSE = 326.0133
+Iteration 14 of 50 | Duration = 4.305 | MSE = 322.2434
+Iteration 15 of 50 | Duration = 4.287 | MSE = 318.5537
+Iteration 16 of 50 | Duration = 4.320 | MSE = 316.9089
+Iteration 17 of 50 | Duration = 4.397 | MSE = 315.5075
+Iteration 18 of 50 | Duration = 4.243 | MSE = 312.5601
+Iteration 19 of 50 | Duration = 4.145 | MSE = 310.6816
+Iteration 20 of 50 | Duration = 4.193 | MSE = 310.1486
+Iteration 21 of 50 | Duration = 4.044 | MSE = 307.8639
+Iteration 22 of 50 | Duration = 4.315 | MSE = 307.3287
+Iteration 23 of 50 | Duration = 4.526 | MSE = 306.5481
+Iteration 24 of 50 | Duration = 4.304 | MSE = 306.0450
+Iteration 25 of 50 | Duration = 4.284 | MSE = 305.4282
+Iteration 26 of 50 | Duration = 4.411 | MSE = 304.9829
+
+Running polya filter for radius = 1, bins = 128, delta = 60.
+Initial MSE: 1142.6897
+Iteration 1 of 50 | Duration = 3.848 | MSE = 1133.5217
+Iteration 2 of 50 | Duration = 3.819 | MSE = 614.5822
+Iteration 3 of 50 | Duration = 3.980 | MSE = 502.0096
+Iteration 4 of 50 | Duration = 4.469 | MSE = 383.3956
+Iteration 5 of 50 | Duration = 3.959 | MSE = 351.4222
+Iteration 6 of 50 | Duration = 4.014 | MSE = 335.7067
+Iteration 7 of 50 | Duration = 4.457 | MSE = 333.0934
+Iteration 8 of 50 | Duration = 3.992 | MSE = 329.2523
+Iteration 9 of 50 | Duration = 4.084 | MSE = 325.3559
+Iteration 10 of 50 | Duration = 4.241 | MSE = 319.8610
+Iteration 11 of 50 | Duration = 4.616 | MSE = 316.7731
+Iteration 12 of 50 | Duration = 4.134 | MSE = 313.0560
+Iteration 13 of 50 | Duration = 4.235 | MSE = 310.9018
+Iteration 14 of 50 | Duration = 4.457 | MSE = 308.1550
+Iteration 15 of 50 | Duration = 4.156 | MSE = 307.2341
+Iteration 16 of 50 | Duration = 4.210 | MSE = 306.1366
+Iteration 17 of 50 | Duration = 4.191 | MSE = 305.4293
+Iteration 18 of 50 | Duration = 4.233 | MSE = 304.6079
+Iteration 19 of 50 | Duration = 4.269 | MSE = 304.1686
+
+Running polya filter for radius = 1, bins = 128, delta = 80.
+Initial MSE: 1142.6897
+Iteration 1 of 50 | Duration = 3.738 | MSE = 1133.5217
+Iteration 2 of 50 | Duration = 3.941 | MSE = 614.5822
+Iteration 3 of 50 | Duration = 3.852 | MSE = 509.0493
+Iteration 4 of 50 | Duration = 4.412 | MSE = 385.0952
+Iteration 5 of 50 | Duration = 4.230 | MSE = 353.7391
+Iteration 6 of 50 | Duration = 4.083 | MSE = 335.5827
+Iteration 7 of 50 | Duration = 4.175 | MSE = 328.6609
+Iteration 8 of 50 | Duration = 4.050 | MSE = 323.9435
+Iteration 9 of 50 | Duration = 4.121 | MSE = 320.9523
+Iteration 10 of 50 | Duration = 4.298 | MSE = 316.6327
+Iteration 11 of 50 | Duration = 4.212 | MSE = 314.4426
+Iteration 12 of 50 | Duration = 4.354 | MSE = 310.8266
+Iteration 13 of 50 | Duration = 4.139 | MSE = 309.0068
+Iteration 14 of 50 | Duration = 4.106 | MSE = 306.4307
+Iteration 15 of 50 | Duration = 4.123 | MSE = 305.7722
+Iteration 16 of 50 | Duration = 4.220 | MSE = 304.7607
+Iteration 17 of 50 | Duration = 4.275 | MSE = 304.0861
+Iteration 18 of 50 | Duration = 4.174 | MSE = 303.3636
+Iteration 19 of 50 | Duration = 4.374 | MSE = 303.0099
+
+Running polya filter for radius = 1, bins = 128, delta = 100.
+Initial MSE: 1142.6897
+Iteration 1 of 50 | Duration = 5.199 | MSE = 558.9485
+Iteration 2 of 50 | Duration = 4.617 | MSE = 436.8860
+Iteration 3 of 50 | Duration = 4.248 | MSE = 385.6326
+Iteration 4 of 50 | Duration = 4.088 | MSE = 358.1154
+Iteration 5 of 50 | Duration = 4.352 | MSE = 340.1968
+Iteration 6 of 50 | Duration = 4.151 | MSE = 330.7964
+Iteration 7 of 50 | Duration = 4.019 | MSE = 325.8349
+Iteration 8 of 50 | Duration = 4.239 | MSE = 322.6471
+Iteration 9 of 50 | Duration = 4.292 | MSE = 320.4093
+Iteration 10 of 50 | Duration = 4.254 | MSE = 318.3044
+Iteration 11 of 50 | Duration = 4.092 | MSE = 316.5572
+Iteration 12 of 50 | Duration = 4.091 | MSE = 315.0567
+Iteration 13 of 50 | Duration = 4.140 | MSE = 313.5270
+Iteration 14 of 50 | Duration = 4.214 | MSE = 312.2968
+Iteration 15 of 50 | Duration = 4.363 | MSE = 311.4987
+Iteration 16 of 50 | Duration = 4.232 | MSE = 310.9604
+Iteration 17 of 50 | Duration = 4.122 | MSE = 310.5322
+
+Running polya filter for radius = 1, bins = 128, delta = 120.
+Initial MSE: 1142.6897
+Iteration 1 of 50 | Duration = 3.899 | MSE = 510.7642
+Iteration 2 of 50 | Duration = 4.940 | MSE = 395.9135
+Iteration 3 of 50 | Duration = 4.350 | MSE = 338.7036
+Iteration 4 of 50 | Duration = 4.135 | MSE = 328.5269
+Iteration 5 of 50 | Duration = 4.245 | MSE = 318.1640
+Iteration 6 of 50 | Duration = 4.277 | MSE = 311.5482
+Iteration 7 of 50 | Duration = 4.122 | MSE = 306.6593
+Iteration 8 of 50 | Duration = 4.373 | MSE = 304.2108
+Iteration 9 of 50 | Duration = 4.284 | MSE = 302.0301
+Iteration 10 of 50 | Duration = 4.258 | MSE = 300.3084
+Iteration 11 of 50 | Duration = 4.236 | MSE = 298.7439
+Iteration 12 of 50 | Duration = 4.150 | MSE = 298.0975
+Iteration 13 of 50 | Duration = 4.211 | MSE = 297.3076
+Iteration 14 of 50 | Duration = 4.653 | MSE = 296.3813
+Iteration 15 of 50 | Duration = 4.198 | MSE = 295.5566
+Iteration 16 of 50 | Duration = 4.035 | MSE = 295.3010
+
+Running polya filter for radius = 1, bins = 128, delta = 140.
+Initial MSE: 1142.6897
+Iteration 1 of 50 | Duration = 4.035 | MSE = 510.7642
+Iteration 2 of 50 | Duration = 4.667 | MSE = 395.9135
+Iteration 3 of 50 | Duration = 4.191 | MSE = 338.7492
+Iteration 4 of 50 | Duration = 4.229 | MSE = 328.3744
+Iteration 5 of 50 | Duration = 4.280 | MSE = 318.1461
+Iteration 6 of 50 | Duration = 4.295 | MSE = 311.4633
+Iteration 7 of 50 | Duration = 4.295 | MSE = 306.5814
+Iteration 8 of 50 | Duration = 4.350 | MSE = 304.1296
+Iteration 9 of 50 | Duration = 4.298 | MSE = 301.9806
+Iteration 10 of 50 | Duration = 4.270 | MSE = 300.2713
+Iteration 11 of 50 | Duration = 4.495 | MSE = 298.7117
+Iteration 12 of 50 | Duration = 4.113 | MSE = 298.0628
+Iteration 13 of 50 | Duration = 4.188 | MSE = 297.2775
+Iteration 14 of 50 | Duration = 4.267 | MSE = 296.3570
+Iteration 15 of 50 | Duration = 4.275 | MSE = 295.5389
+Iteration 16 of 50 | Duration = 4.241 | MSE = 295.2858
+
+Running polya filter for radius = 1, bins = 128, delta = 160.
+Initial MSE: 1142.6897
+Iteration 1 of 50 | Duration = 3.729 | MSE = 510.7642
+Iteration 2 of 50 | Duration = 4.933 | MSE = 395.9135
+Iteration 3 of 50 | Duration = 4.253 | MSE = 340.5558
+Iteration 4 of 50 | Duration = 4.445 | MSE = 323.8622
+Iteration 5 of 50 | Duration = 4.193 | MSE = 316.3696
+Iteration 6 of 50 | Duration = 4.256 | MSE = 310.5304
+Iteration 7 of 50 | Duration = 4.544 | MSE = 305.3109
+Iteration 8 of 50 | Duration = 4.358 | MSE = 302.7424
+Iteration 9 of 50 | Duration = 4.437 | MSE = 300.9552
+Iteration 10 of 50 | Duration = 4.235 | MSE = 299.5892
+Iteration 11 of 50 | Duration = 4.218 | MSE = 298.1112
+Iteration 12 of 50 | Duration = 4.373 | MSE = 297.4423
+Iteration 13 of 50 | Duration = 4.410 | MSE = 296.7364
+Iteration 14 of 50 | Duration = 4.395 | MSE = 296.0145
+Iteration 15 of 50 | Duration = 4.122 | MSE = 295.3252
+Iteration 16 of 50 | Duration = 4.202 | MSE = 294.9648
+
+Running polya filter for radius = 1, bins = 128, delta = 180.
+Initial MSE: 1142.6897
+Iteration 1 of 50 | Duration = 3.695 | MSE = 510.7642
+Iteration 2 of 50 | Duration = 4.691 | MSE = 395.7964
+Iteration 3 of 50 | Duration = 4.515 | MSE = 340.2546
+Iteration 4 of 50 | Duration = 4.242 | MSE = 323.8194
+Iteration 5 of 50 | Duration = 4.252 | MSE = 316.1302
+Iteration 6 of 50 | Duration = 4.518 | MSE = 310.3396
+Iteration 7 of 50 | Duration = 4.404 | MSE = 305.1534
+Iteration 8 of 50 | Duration = 4.204 | MSE = 302.6107
+Iteration 9 of 50 | Duration = 4.182 | MSE = 300.8321
+Iteration 10 of 50 | Duration = 4.389 | MSE = 299.4649
+Iteration 11 of 50 | Duration = 4.111 | MSE = 297.9857
+Iteration 12 of 50 | Duration = 4.159 | MSE = 297.3463
+Iteration 13 of 50 | Duration = 4.252 | MSE = 296.6534
+Iteration 14 of 50 | Duration = 4.532 | MSE = 295.9224
+Iteration 15 of 50 | Duration = 4.270 | MSE = 295.2325
+Iteration 16 of 50 | Duration = 4.207 | MSE = 294.8835
+
+Running polya filter for radius = 1, bins = 128, delta = 200.
+Initial MSE: 1142.6897
+Iteration 1 of 50 | Duration = 3.747 | MSE = 510.7642
+Iteration 2 of 50 | Duration = 4.944 | MSE = 395.7912
+Iteration 3 of 50 | Duration = 4.184 | MSE = 340.2528
+Iteration 4 of 50 | Duration = 4.246 | MSE = 323.8181
+Iteration 5 of 50 | Duration = 4.098 | MSE = 316.1330
+Iteration 6 of 50 | Duration = 4.236 | MSE = 310.3472
+Iteration 7 of 50 | Duration = 4.261 | MSE = 305.1634
+Iteration 8 of 50 | Duration = 4.271 | MSE = 302.6217
+Iteration 9 of 50 | Duration = 4.253 | MSE = 300.8432
+Iteration 10 of 50 | Duration = 4.353 | MSE = 299.4782
+Iteration 11 of 50 | Duration = 4.417 | MSE = 297.9990
+Iteration 12 of 50 | Duration = 4.207 | MSE = 297.3596
+Iteration 13 of 50 | Duration = 4.336 | MSE = 296.6666
+Iteration 14 of 50 | Duration = 4.163 | MSE = 295.9357
+Iteration 15 of 50 | Duration = 4.348 | MSE = 295.2458
+Iteration 16 of 50 | Duration = 4.454 | MSE = 294.8968
+
+Running polya filter for radius = 1, bins = 256, delta = 20.
+Initial MSE: 1142.6897
+Iteration 1 of 50 | Duration = 6.633 | MSE = 1142.1212
+Iteration 2 of 50 | Duration = 6.511 | MSE = 1142.1212
+Iteration 3 of 50 | Duration = 6.859 | MSE = 1142.1212
+
+Running polya filter for radius = 1, bins = 256, delta = 40.
+Initial MSE: 1142.6897
+Iteration 1 of 50 | Duration = 6.333 | MSE = 1142.1212
+Iteration 2 of 50 | Duration = 6.626 | MSE = 1142.1212
+Iteration 3 of 50 | Duration = 7.843 | MSE = 621.2497
+Iteration 4 of 50 | Duration = 7.800 | MSE = 511.2775
+Iteration 5 of 50 | Duration = 7.970 | MSE = 494.4568
+Iteration 6 of 50 | Duration = 8.269 | MSE = 383.9965
+Iteration 7 of 50 | Duration = 8.171 | MSE = 356.1581
+Iteration 8 of 50 | Duration = 8.062 | MSE = 348.2018
+Iteration 9 of 50 | Duration = 8.119 | MSE = 333.6145
+Iteration 10 of 50 | Duration = 7.987 | MSE = 331.6309
+Iteration 11 of 50 | Duration = 8.119 | MSE = 329.1422
+Iteration 12 of 50 | Duration = 8.020 | MSE = 327.8257
+Iteration 13 of 50 | Duration = 8.002 | MSE = 324.4423
+Iteration 14 of 50 | Duration = 8.529 | MSE = 320.5969
+Iteration 15 of 50 | Duration = 8.025 | MSE = 316.7580
+Iteration 16 of 50 | Duration = 8.620 | MSE = 315.1668
+Iteration 17 of 50 | Duration = 8.134 | MSE = 313.7971
+Iteration 18 of 50 | Duration = 8.180 | MSE = 310.9084
+Iteration 19 of 50 | Duration = 8.257 | MSE = 309.0628
+Iteration 20 of 50 | Duration = 7.916 | MSE = 308.4838
+Iteration 21 of 50 | Duration = 7.920 | MSE = 306.2808
+Iteration 22 of 50 | Duration = 8.023 | MSE = 305.7548
+Iteration 23 of 50 | Duration = 7.961 | MSE = 304.9585
+Iteration 24 of 50 | Duration = 7.928 | MSE = 304.4178
+Iteration 25 of 50 | Duration = 8.155 | MSE = 303.7676
+Iteration 26 of 50 | Duration = 8.109 | MSE = 303.3270
+
+Running polya filter for radius = 1, bins = 256, delta = 60.
+Initial MSE: 1142.6897
+Iteration 1 of 50 | Duration = 7.543 | MSE = 1142.1212
+Iteration 2 of 50 | Duration = 8.010 | MSE = 621.2497
+Iteration 3 of 50 | Duration = 7.682 | MSE = 507.8827
+Iteration 4 of 50 | Duration = 8.195 | MSE = 382.8888
+Iteration 5 of 50 | Duration = 8.166 | MSE = 349.5003
+Iteration 6 of 50 | Duration = 7.925 | MSE = 334.3958
+Iteration 7 of 50 | Duration = 7.979 | MSE = 331.6476
+Iteration 8 of 50 | Duration = 7.856 | MSE = 327.8544
+Iteration 9 of 50 | Duration = 8.136 | MSE = 323.7906
+Iteration 10 of 50 | Duration = 8.034 | MSE = 318.1432
+Iteration 11 of 50 | Duration = 8.026 | MSE = 315.0185
+Iteration 12 of 50 | Duration = 8.030 | MSE = 311.4319
+Iteration 13 of 50 | Duration = 7.948 | MSE = 309.3034
+Iteration 14 of 50 | Duration = 8.044 | MSE = 306.6112
+Iteration 15 of 50 | Duration = 8.054 | MSE = 305.6208
+Iteration 16 of 50 | Duration = 7.907 | MSE = 304.4842
+Iteration 17 of 50 | Duration = 8.307 | MSE = 303.7892
+Iteration 18 of 50 | Duration = 8.141 | MSE = 302.9953
+Iteration 19 of 50 | Duration = 8.205 | MSE = 302.5371
+
+Running polya filter for radius = 1, bins = 256, delta = 80.
+Initial MSE: 1142.6897
+Iteration 1 of 50 | Duration = 7.643 | MSE = 1142.1212
+Iteration 2 of 50 | Duration = 7.618 | MSE = 621.2497
+Iteration 3 of 50 | Duration = 8.070 | MSE = 515.5543
+Iteration 4 of 50 | Duration = 8.219 | MSE = 384.8185
+Iteration 5 of 50 | Duration = 8.042 | MSE = 352.0491
+Iteration 6 of 50 | Duration = 8.219 | MSE = 334.0628
+Iteration 7 of 50 | Duration = 8.279 | MSE = 326.9904
+Iteration 8 of 50 | Duration = 7.958 | MSE = 322.4360
+Iteration 9 of 50 | Duration = 8.185 | MSE = 319.4324
+Iteration 10 of 50 | Duration = 8.364 | MSE = 315.0683
+Iteration 11 of 50 | Duration = 7.955 | MSE = 312.8020
+Iteration 12 of 50 | Duration = 8.192 | MSE = 309.2415
+Iteration 13 of 50 | Duration = 7.913 | MSE = 307.4115
+Iteration 14 of 50 | Duration = 8.269 | MSE = 304.8615
+Iteration 15 of 50 | Duration = 8.261 | MSE = 304.1485
+Iteration 16 of 50 | Duration = 8.153 | MSE = 303.1446
+Iteration 17 of 50 | Duration = 8.088 | MSE = 302.4621
+Iteration 18 of 50 | Duration = 8.169 | MSE = 301.7373
+Iteration 19 of 50 | Duration = 7.962 | MSE = 301.3724
+
+Running polya filter for radius = 1, bins = 256, delta = 100.
+Initial MSE: 1142.6897
+Iteration 1 of 50 | Duration = 8.213 | MSE = 560.2041
+Iteration 2 of 50 | Duration = 8.279 | MSE = 437.3585
+Iteration 3 of 50 | Duration = 7.851 | MSE = 385.2010
+Iteration 4 of 50 | Duration = 7.883 | MSE = 356.8895
+Iteration 5 of 50 | Duration = 8.053 | MSE = 339.0834
+Iteration 6 of 50 | Duration = 8.191 | MSE = 329.8081
+Iteration 7 of 50 | Duration = 7.899 | MSE = 324.8212
+Iteration 8 of 50 | Duration = 7.849 | MSE = 321.6742
+Iteration 9 of 50 | Duration = 7.905 | MSE = 319.5097
+Iteration 10 of 50 | Duration = 7.428 | MSE = 317.3681
+Iteration 11 of 50 | Duration = 7.154 | MSE = 315.6135
+Iteration 12 of 50 | Duration = 7.591 | MSE = 314.0758
+Iteration 13 of 50 | Duration = 7.066 | MSE = 312.5789
+Iteration 14 of 50 | Duration = 7.216 | MSE = 311.3877
+Iteration 15 of 50 | Duration = 7.091 | MSE = 310.5874
+Iteration 16 of 50 | Duration = 7.171 | MSE = 310.0301
+Iteration 17 of 50 | Duration = 7.192 | MSE = 309.6043
+
+Running polya filter for radius = 1, bins = 256, delta = 120.
+Initial MSE: 1142.6897
+Iteration 1 of 50 | Duration = 6.198 | MSE = 511.5483
+Iteration 2 of 50 | Duration = 8.454 | MSE = 394.2085
+Iteration 3 of 50 | Duration = 7.141 | MSE = 337.3576
+Iteration 4 of 50 | Duration = 7.435 | MSE = 327.2108
+Iteration 5 of 50 | Duration = 7.399 | MSE = 316.5118
+Iteration 6 of 50 | Duration = 7.351 | MSE = 309.9096
+Iteration 7 of 50 | Duration = 7.463 | MSE = 305.1261
+Iteration 8 of 50 | Duration = 7.359 | MSE = 302.5731
+Iteration 9 of 50 | Duration = 7.679 | MSE = 300.3556
+Iteration 10 of 50 | Duration = 7.450 | MSE = 298.6422
+Iteration 11 of 50 | Duration = 7.308 | MSE = 297.0972
+Iteration 12 of 50 | Duration = 7.670 | MSE = 296.4221
+Iteration 13 of 50 | Duration = 7.017 | MSE = 295.6242
+Iteration 14 of 50 | Duration = 7.238 | MSE = 294.7110
+Iteration 15 of 50 | Duration = 7.305 | MSE = 293.9275
+Iteration 16 of 50 | Duration = 7.278 | MSE = 293.6734
+New optimal MSE: 293.6734
+
+Running polya filter for radius = 1, bins = 256, delta = 140.
+Initial MSE: 1142.6897
+Iteration 1 of 50 | Duration = 6.195 | MSE = 511.5483
+Iteration 2 of 50 | Duration = 7.865 | MSE = 394.2085
+Iteration 3 of 50 | Duration = 7.189 | MSE = 337.3998
+Iteration 4 of 50 | Duration = 7.334 | MSE = 327.0686
+Iteration 5 of 50 | Duration = 7.437 | MSE = 316.4895
+Iteration 6 of 50 | Duration = 7.332 | MSE = 309.8157
+Iteration 7 of 50 | Duration = 7.252 | MSE = 305.0422
+Iteration 8 of 50 | Duration = 7.288 | MSE = 302.5020
+Iteration 9 of 50 | Duration = 7.344 | MSE = 300.3148
+Iteration 10 of 50 | Duration = 7.262 | MSE = 298.6035
+Iteration 11 of 50 | Duration = 7.246 | MSE = 297.0620
+Iteration 12 of 50 | Duration = 7.123 | MSE = 296.3900
+Iteration 13 of 50 | Duration = 7.428 | MSE = 295.5934
+Iteration 14 of 50 | Duration = 7.285 | MSE = 294.6879
+Iteration 15 of 50 | Duration = 7.397 | MSE = 293.9103
+Iteration 16 of 50 | Duration = 7.291 | MSE = 293.6548
+New optimal MSE: 293.6548
+
+Running polya filter for radius = 1, bins = 256, delta = 160.
+Initial MSE: 1142.6897
+Iteration 1 of 50 | Duration = 6.501 | MSE = 511.5483
+Iteration 2 of 50 | Duration = 7.864 | MSE = 394.2085
+Iteration 3 of 50 | Duration = 7.454 | MSE = 339.1435
+Iteration 4 of 50 | Duration = 7.323 | MSE = 322.3918
+Iteration 5 of 50 | Duration = 7.311 | MSE = 314.7894
+Iteration 6 of 50 | Duration = 7.532 | MSE = 308.8816
+Iteration 7 of 50 | Duration = 7.546 | MSE = 303.7185
+Iteration 8 of 50 | Duration = 7.388 | MSE = 301.0974
+Iteration 9 of 50 | Duration = 7.322 | MSE = 299.2878
+Iteration 10 of 50 | Duration = 7.410 | MSE = 297.9010
+Iteration 11 of 50 | Duration = 7.005 | MSE = 296.4618
+Iteration 12 of 50 | Duration = 7.685 | MSE = 295.7907
+Iteration 13 of 50 | Duration = 7.404 | MSE = 295.0677
+Iteration 14 of 50 | Duration = 7.336 | MSE = 294.3523
+Iteration 15 of 50 | Duration = 7.118 | MSE = 293.6732
+Iteration 16 of 50 | Duration = 7.339 | MSE = 293.3129
+New optimal MSE: 293.3129
+
+Running polya filter for radius = 1, bins = 256, delta = 180.
+Initial MSE: 1142.6897
+Iteration 1 of 50 | Duration = 6.050 | MSE = 511.5483
+Iteration 2 of 50 | Duration = 7.785 | MSE = 394.0895
+Iteration 3 of 50 | Duration = 7.312 | MSE = 338.8385
+Iteration 4 of 50 | Duration = 7.207 | MSE = 322.3549
+Iteration 5 of 50 | Duration = 7.247 | MSE = 314.5527
+Iteration 6 of 50 | Duration = 7.348 | MSE = 308.6974
+Iteration 7 of 50 | Duration = 7.406 | MSE = 303.5651
+Iteration 8 of 50 | Duration = 7.126 | MSE = 300.9648
+Iteration 9 of 50 | Duration = 7.304 | MSE = 299.1641
+Iteration 10 of 50 | Duration = 7.229 | MSE = 297.7867
+Iteration 11 of 50 | Duration = 7.383 | MSE = 296.3411
+Iteration 12 of 50 | Duration = 7.266 | MSE = 295.6951
+Iteration 13 of 50 | Duration = 7.419 | MSE = 294.9886
+Iteration 14 of 50 | Duration = 7.391 | MSE = 294.2638
+Iteration 15 of 50 | Duration = 7.405 | MSE = 293.5813
+Iteration 16 of 50 | Duration = 7.030 | MSE = 293.2375
+New optimal MSE: 293.2375
+
+Running polya filter for radius = 1, bins = 256, delta = 200.
+Initial MSE: 1142.6897
+Iteration 1 of 50 | Duration = 6.220 | MSE = 511.5483
+Iteration 2 of 50 | Duration = 7.865 | MSE = 394.0859
+Iteration 3 of 50 | Duration = 7.161 | MSE = 338.8376
+Iteration 4 of 50 | Duration = 7.259 | MSE = 322.3556
+Iteration 5 of 50 | Duration = 7.404 | MSE = 314.5584
+Iteration 6 of 50 | Duration = 7.355 | MSE = 308.7069
+Iteration 7 of 50 | Duration = 6.997 | MSE = 303.5758
+Iteration 8 of 50 | Duration = 7.210 | MSE = 300.9765
+Iteration 9 of 50 | Duration = 7.603 | MSE = 299.1757
+Iteration 10 of 50 | Duration = 7.240 | MSE = 297.8004
+Iteration 11 of 50 | Duration = 7.711 | MSE = 296.3549
+Iteration 12 of 50 | Duration = 7.379 | MSE = 295.7089
+Iteration 13 of 50 | Duration = 7.037 | MSE = 295.0023
+Iteration 14 of 50 | Duration = 7.444 | MSE = 294.2775
+Iteration 15 of 50 | Duration = 7.540 | MSE = 293.5951
+Iteration 16 of 50 | Duration = 7.341 | MSE = 293.2513
+
+Running polya filter for radius = 2, bins = 32, delta = 20.
+Initial MSE: 1142.6897
+Iteration 1 of 50 | Duration = 1.459 | MSE = 1140.3195
+Iteration 2 of 50 | Duration = 1.091 | MSE = 1140.3195
+Iteration 3 of 50 | Duration = 1.022 | MSE = 1140.3195
+
+Running polya filter for radius = 2, bins = 32, delta = 40.
+Initial MSE: 1142.6897
+Iteration 1 of 50 | Duration = 1.397 | MSE = 1140.3195
+Iteration 2 of 50 | Duration = 1.147 | MSE = 1140.3195
+Iteration 3 of 50 | Duration = 1.048 | MSE = 589.7804
+Iteration 4 of 50 | Duration = 1.101 | MSE = 361.5979
+Iteration 5 of 50 | Duration = 0.984 | MSE = 263.7536
+Iteration 6 of 50 | Duration = 1.105 | MSE = 213.8429
+Iteration 7 of 50 | Duration = 0.965 | MSE = 198.2933
+Iteration 8 of 50 | Duration = 1.109 | MSE = 192.2350
+Iteration 9 of 50 | Duration = 1.107 | MSE = 188.2904
+Iteration 10 of 50 | Duration = 1.060 | MSE = 186.0413
+Iteration 11 of 50 | Duration = 0.997 | MSE = 183.8857
+Iteration 12 of 50 | Duration = 1.145 | MSE = 182.6441
+Iteration 13 of 50 | Duration = 1.053 | MSE = 181.2208
+Iteration 14 of 50 | Duration = 0.969 | MSE = 180.1804
+Iteration 15 of 50 | Duration = 1.009 | MSE = 179.0546
+Iteration 16 of 50 | Duration = 1.081 | MSE = 178.3976
+Iteration 17 of 50 | Duration = 1.007 | MSE = 177.7153
+Iteration 18 of 50 | Duration = 0.988 | MSE = 177.0443
+Iteration 19 of 50 | Duration = 1.129 | MSE = 176.3974
+Iteration 20 of 50 | Duration = 1.242 | MSE = 176.0110
+New optimal MSE: 176.0110
+
+Running polya filter for radius = 2, bins = 32, delta = 60.
+Initial MSE: 1142.6897
+Iteration 1 of 50 | Duration = 1.346 | MSE = 1140.3195
+Iteration 2 of 50 | Duration = 0.935 | MSE = 535.2407
+Iteration 3 of 50 | Duration = 1.305 | MSE = 286.7797
+Iteration 4 of 50 | Duration = 1.198 | MSE = 213.3849
+Iteration 5 of 50 | Duration = 0.987 | MSE = 199.1376
+Iteration 6 of 50 | Duration = 1.100 | MSE = 191.9216
+Iteration 7 of 50 | Duration = 1.034 | MSE = 188.7350
+Iteration 8 of 50 | Duration = 1.039 | MSE = 185.4649
+Iteration 9 of 50 | Duration = 1.031 | MSE = 183.2291
+Iteration 10 of 50 | Duration = 1.129 | MSE = 181.3100
+Iteration 11 of 50 | Duration = 1.002 | MSE = 180.2699
+Iteration 12 of 50 | Duration = 0.920 | MSE = 178.8497
+Iteration 13 of 50 | Duration = 1.049 | MSE = 177.9606
+Iteration 14 of 50 | Duration = 1.119 | MSE = 177.0100
+Iteration 15 of 50 | Duration = 0.955 | MSE = 176.5098
+Iteration 16 of 50 | Duration = 0.993 | MSE = 175.6965
+Iteration 17 of 50 | Duration = 1.057 | MSE = 175.1350
+Iteration 18 of 50 | Duration = 1.142 | MSE = 174.5968
+Iteration 19 of 50 | Duration = 1.002 | MSE = 174.2650
+New optimal MSE: 174.2650
+
+Running polya filter for radius = 2, bins = 32, delta = 80.
+Initial MSE: 1142.6897
+Iteration 1 of 50 | Duration = 1.475 | MSE = 1140.3195
+Iteration 2 of 50 | Duration = 1.133 | MSE = 539.1767
+Iteration 3 of 50 | Duration = 0.932 | MSE = 293.6170
+Iteration 4 of 50 | Duration = 1.108 | MSE = 211.0777
+Iteration 5 of 50 | Duration = 1.092 | MSE = 197.2157
+Iteration 6 of 50 | Duration = 1.136 | MSE = 190.4843
+Iteration 7 of 50 | Duration = 1.031 | MSE = 187.1912
+Iteration 8 of 50 | Duration = 1.087 | MSE = 183.9160
+Iteration 9 of 50 | Duration = 1.057 | MSE = 181.9111
+Iteration 10 of 50 | Duration = 1.069 | MSE = 180.1825
+Iteration 11 of 50 | Duration = 1.126 | MSE = 179.2896
+Iteration 12 of 50 | Duration = 1.081 | MSE = 177.9133
+Iteration 13 of 50 | Duration = 1.171 | MSE = 177.0862
+Iteration 14 of 50 | Duration = 0.939 | MSE = 176.2112
+Iteration 15 of 50 | Duration = 1.076 | MSE = 175.7306
+
+Running polya filter for radius = 2, bins = 32, delta = 100.
+Initial MSE: 1142.6897
+Iteration 1 of 50 | Duration = 2.465 | MSE = 422.4041
+Iteration 2 of 50 | Duration = 1.521 | MSE = 238.6468
+Iteration 3 of 50 | Duration = 1.093 | MSE = 211.0917
+Iteration 4 of 50 | Duration = 1.125 | MSE = 198.3878
+Iteration 5 of 50 | Duration = 1.159 | MSE = 190.1731
+Iteration 6 of 50 | Duration = 1.061 | MSE = 185.2497
+Iteration 7 of 50 | Duration = 1.055 | MSE = 182.5417
+Iteration 8 of 50 | Duration = 1.054 | MSE = 180.4600
+Iteration 9 of 50 | Duration = 1.091 | MSE = 178.4378
+Iteration 10 of 50 | Duration = 1.047 | MSE = 176.9616
+Iteration 11 of 50 | Duration = 0.991 | MSE = 176.0129
+Iteration 12 of 50 | Duration = 1.121 | MSE = 175.2104
+Iteration 13 of 50 | Duration = 1.015 | MSE = 174.2799
+Iteration 14 of 50 | Duration = 1.000 | MSE = 173.4448
+Iteration 15 of 50 | Duration = 1.125 | MSE = 172.8829
+Iteration 16 of 50 | Duration = 1.032 | MSE = 172.3959
+New optimal MSE: 172.3959
+
+Running polya filter for radius = 2, bins = 32, delta = 120.
+Initial MSE: 1142.6897
+Iteration 1 of 50 | Duration = 1.337 | MSE = 283.6529
+Iteration 2 of 50 | Duration = 1.550 | MSE = 230.0277
+Iteration 3 of 50 | Duration = 1.045 | MSE = 200.5648
+Iteration 4 of 50 | Duration = 1.144 | MSE = 192.8456
+Iteration 5 of 50 | Duration = 1.139 | MSE = 187.2359
+Iteration 6 of 50 | Duration = 1.057 | MSE = 183.5881
+Iteration 7 of 50 | Duration = 0.999 | MSE = 180.4340
+Iteration 8 of 50 | Duration = 1.022 | MSE = 179.1176
+Iteration 9 of 50 | Duration = 1.017 | MSE = 177.6896
+Iteration 10 of 50 | Duration = 0.969 | MSE = 176.4448
+Iteration 11 of 50 | Duration = 1.060 | MSE = 175.3138
+Iteration 12 of 50 | Duration = 1.022 | MSE = 174.7739
+Iteration 13 of 50 | Duration = 1.086 | MSE = 174.1714
+Iteration 14 of 50 | Duration = 1.013 | MSE = 173.4449
+Iteration 15 of 50 | Duration = 0.955 | MSE = 172.7157
+Iteration 16 of 50 | Duration = 1.097 | MSE = 172.4322
+
+Running polya filter for radius = 2, bins = 32, delta = 140.
+Initial MSE: 1142.6897
+Iteration 1 of 50 | Duration = 1.344 | MSE = 283.6529
+Iteration 2 of 50 | Duration = 1.657 | MSE = 230.0249
+Iteration 3 of 50 | Duration = 1.140 | MSE = 200.7252
+Iteration 4 of 50 | Duration = 1.004 | MSE = 192.4872
+Iteration 5 of 50 | Duration = 0.963 | MSE = 187.0582
+Iteration 6 of 50 | Duration = 1.022 | MSE = 183.4738
+Iteration 7 of 50 | Duration = 1.142 | MSE = 180.2879
+Iteration 8 of 50 | Duration = 0.975 | MSE = 178.9293
+Iteration 9 of 50 | Duration = 1.161 | MSE = 177.5081
+Iteration 10 of 50 | Duration = 1.079 | MSE = 176.3461
+Iteration 11 of 50 | Duration = 1.129 | MSE = 175.2091
+Iteration 12 of 50 | Duration = 1.035 | MSE = 174.6388
+Iteration 13 of 50 | Duration = 0.985 | MSE = 174.0509
+Iteration 14 of 50 | Duration = 1.027 | MSE = 173.3553
+Iteration 15 of 50 | Duration = 1.043 | MSE = 172.6274
+Iteration 16 of 50 | Duration = 1.139 | MSE = 172.3653
+New optimal MSE: 172.3653
+
+Running polya filter for radius = 2, bins = 32, delta = 160.
+Initial MSE: 1142.6897
+Iteration 1 of 50 | Duration = 1.343 | MSE = 283.6529
+Iteration 2 of 50 | Duration = 1.590 | MSE = 230.0174
+Iteration 3 of 50 | Duration = 1.068 | MSE = 201.2142
+Iteration 4 of 50 | Duration = 0.988 | MSE = 191.2057
+Iteration 5 of 50 | Duration = 1.136 | MSE = 185.8998
+Iteration 6 of 50 | Duration = 1.313 | MSE = 182.7092
+Iteration 7 of 50 | Duration = 1.039 | MSE = 179.6583
+Iteration 8 of 50 | Duration = 0.999 | MSE = 178.1861
+Iteration 9 of 50 | Duration = 1.023 | MSE = 176.9317
+Iteration 10 of 50 | Duration = 1.062 | MSE = 175.9319
+Iteration 11 of 50 | Duration = 0.956 | MSE = 174.8557
+Iteration 12 of 50 | Duration = 1.039 | MSE = 174.2333
+Iteration 13 of 50 | Duration = 1.043 | MSE = 173.5717
+Iteration 14 of 50 | Duration = 1.155 | MSE = 172.9576
+Iteration 15 of 50 | Duration = 0.979 | MSE = 172.2215
+Iteration 16 of 50 | Duration = 1.050 | MSE = 171.8543
+New optimal MSE: 171.8543
+
+Running polya filter for radius = 2, bins = 32, delta = 180.
+Initial MSE: 1142.6897
+Iteration 1 of 50 | Duration = 1.319 | MSE = 283.6529
+Iteration 2 of 50 | Duration = 1.433 | MSE = 229.5468
+Iteration 3 of 50 | Duration = 1.154 | MSE = 200.6011
+Iteration 4 of 50 | Duration = 1.150 | MSE = 191.0471
+Iteration 5 of 50 | Duration = 1.170 | MSE = 185.6141
+Iteration 6 of 50 | Duration = 1.092 | MSE = 182.4100
+Iteration 7 of 50 | Duration = 1.169 | MSE = 179.4676
+Iteration 8 of 50 | Duration = 0.977 | MSE = 178.0610
+Iteration 9 of 50 | Duration = 0.964 | MSE = 176.8068
+Iteration 10 of 50 | Duration = 1.029 | MSE = 175.7615
+Iteration 11 of 50 | Duration = 1.165 | MSE = 174.6822
+Iteration 12 of 50 | Duration = 1.158 | MSE = 174.1373
+Iteration 13 of 50 | Duration = 0.960 | MSE = 173.4867
+Iteration 14 of 50 | Duration = 1.018 | MSE = 172.8627
+Iteration 15 of 50 | Duration = 1.131 | MSE = 172.1363
+Iteration 16 of 50 | Duration = 1.047 | MSE = 171.7775
+New optimal MSE: 171.7775
+
+Running polya filter for radius = 2, bins = 32, delta = 200.
+Initial MSE: 1142.6897
+Iteration 1 of 50 | Duration = 1.309 | MSE = 283.6529
+Iteration 2 of 50 | Duration = 1.765 | MSE = 229.5423
+Iteration 3 of 50 | Duration = 1.089 | MSE = 200.5955
+Iteration 4 of 50 | Duration = 1.133 | MSE = 191.0473
+Iteration 5 of 50 | Duration = 1.057 | MSE = 185.6149
+Iteration 6 of 50 | Duration = 1.114 | MSE = 182.4152
+Iteration 7 of 50 | Duration = 1.139 | MSE = 179.4766
+Iteration 8 of 50 | Duration = 1.173 | MSE = 178.0732
+Iteration 9 of 50 | Duration = 1.243 | MSE = 176.8155
+Iteration 10 of 50 | Duration = 1.010 | MSE = 175.7621
+Iteration 11 of 50 | Duration = 1.073 | MSE = 174.6823
+Iteration 12 of 50 | Duration = 1.074 | MSE = 174.1382
+Iteration 13 of 50 | Duration = 1.073 | MSE = 173.4878
+Iteration 14 of 50 | Duration = 1.017 | MSE = 172.8640
+Iteration 15 of 50 | Duration = 1.125 | MSE = 172.1410
+Iteration 16 of 50 | Duration = 1.119 | MSE = 171.7798
+
+Running polya filter for radius = 2, bins = 64, delta = 20.
+Initial MSE: 1142.6897
+Iteration 1 of 50 | Duration = 2.107 | MSE = 1134.1404
+Iteration 2 of 50 | Duration = 1.902 | MSE = 1134.1404
+Iteration 3 of 50 | Duration = 1.884 | MSE = 1134.1404
+
+Running polya filter for radius = 2, bins = 64, delta = 40.
+Initial MSE: 1142.6897
+Iteration 1 of 50 | Duration = 2.208 | MSE = 1134.1404
+Iteration 2 of 50 | Duration = 1.773 | MSE = 1134.1404
+Iteration 3 of 50 | Duration = 1.918 | MSE = 659.6436
+Iteration 4 of 50 | Duration = 1.875 | MSE = 424.1268
+Iteration 5 of 50 | Duration = 2.245 | MSE = 313.5424
+Iteration 6 of 50 | Duration = 1.966 | MSE = 231.1233
+Iteration 7 of 50 | Duration = 2.573 | MSE = 205.7061
+Iteration 8 of 50 | Duration = 1.848 | MSE = 192.8251
+Iteration 9 of 50 | Duration = 1.915 | MSE = 186.9207
+Iteration 10 of 50 | Duration = 1.867 | MSE = 183.6216
+Iteration 11 of 50 | Duration = 1.976 | MSE = 181.4641
+Iteration 12 of 50 | Duration = 1.835 | MSE = 179.9739
+Iteration 13 of 50 | Duration = 2.397 | MSE = 178.6292
+Iteration 14 of 50 | Duration = 1.808 | MSE = 177.4623
+Iteration 15 of 50 | Duration = 1.993 | MSE = 176.5095
+Iteration 16 of 50 | Duration = 1.850 | MSE = 175.8366
+Iteration 17 of 50 | Duration = 1.834 | MSE = 175.1939
+Iteration 18 of 50 | Duration = 1.870 | MSE = 174.5032
+Iteration 19 of 50 | Duration = 2.513 | MSE = 173.9000
+Iteration 20 of 50 | Duration = 1.756 | MSE = 173.4694
+
+Running polya filter for radius = 2, bins = 64, delta = 60.
+Initial MSE: 1142.6897
+Iteration 1 of 50 | Duration = 2.254 | MSE = 1134.1404
+Iteration 2 of 50 | Duration = 1.824 | MSE = 597.1654
+Iteration 3 of 50 | Duration = 2.009 | MSE = 337.3018
+Iteration 4 of 50 | Duration = 1.961 | MSE = 222.2038
+Iteration 5 of 50 | Duration = 2.389 | MSE = 198.6048
+Iteration 6 of 50 | Duration = 1.890 | MSE = 190.0062
+Iteration 7 of 50 | Duration = 2.475 | MSE = 185.9965
+Iteration 8 of 50 | Duration = 1.845 | MSE = 182.6714
+Iteration 9 of 50 | Duration = 1.958 | MSE = 180.4716
+Iteration 10 of 50 | Duration = 2.078 | MSE = 178.6509
+Iteration 11 of 50 | Duration = 1.936 | MSE = 177.5752
+Iteration 12 of 50 | Duration = 1.884 | MSE = 176.2273
+Iteration 13 of 50 | Duration = 1.828 | MSE = 175.2939
+Iteration 14 of 50 | Duration = 1.970 | MSE = 174.5118
+Iteration 15 of 50 | Duration = 1.902 | MSE = 173.9163
+Iteration 16 of 50 | Duration = 2.015 | MSE = 173.2067
+Iteration 17 of 50 | Duration = 1.949 | MSE = 172.6855
+Iteration 18 of 50 | Duration = 1.964 | MSE = 172.1696
+Iteration 19 of 50 | Duration = 2.593 | MSE = 171.7748
+New optimal MSE: 171.7748
+
+Running polya filter for radius = 2, bins = 64, delta = 80.
+Initial MSE: 1142.6897
+Iteration 1 of 50 | Duration = 2.174 | MSE = 1134.1404
+Iteration 2 of 50 | Duration = 1.943 | MSE = 599.8534
+Iteration 3 of 50 | Duration = 2.298 | MSE = 349.8294
+Iteration 4 of 50 | Duration = 2.100 | MSE = 219.8479
+Iteration 5 of 50 | Duration = 1.909 | MSE = 197.0405
+Iteration 6 of 50 | Duration = 2.023 | MSE = 188.4710
+Iteration 7 of 50 | Duration = 1.936 | MSE = 184.4026
+Iteration 8 of 50 | Duration = 1.938 | MSE = 181.3384
+Iteration 9 of 50 | Duration = 2.474 | MSE = 179.3172
+Iteration 10 of 50 | Duration = 1.961 | MSE = 177.6536
+Iteration 11 of 50 | Duration = 2.383 | MSE = 176.6004
+Iteration 12 of 50 | Duration = 2.051 | MSE = 175.3434
+Iteration 13 of 50 | Duration = 1.914 | MSE = 174.4996
+Iteration 14 of 50 | Duration = 2.001 | MSE = 173.7583
+Iteration 15 of 50 | Duration = 1.882 | MSE = 173.2497
+Iteration 16 of 50 | Duration = 1.924 | MSE = 172.5420
+Iteration 17 of 50 | Duration = 2.456 | MSE = 172.0826
+
+Running polya filter for radius = 2, bins = 64, delta = 100.
+Initial MSE: 1142.6897
+Iteration 1 of 50 | Duration = 3.523 | MSE = 414.9400
+Iteration 2 of 50 | Duration = 2.405 | MSE = 236.5736
+Iteration 3 of 50 | Duration = 2.497 | MSE = 208.9750
+Iteration 4 of 50 | Duration = 2.189 | MSE = 195.3662
+Iteration 5 of 50 | Duration = 1.986 | MSE = 187.5328
+Iteration 6 of 50 | Duration = 2.102 | MSE = 182.8172
+Iteration 7 of 50 | Duration = 1.875 | MSE = 180.0096
+Iteration 8 of 50 | Duration = 2.131 | MSE = 177.7520
+Iteration 9 of 50 | Duration = 1.722 | MSE = 175.9157
+Iteration 10 of 50 | Duration = 2.066 | MSE = 174.5959
+Iteration 11 of 50 | Duration = 1.870 | MSE = 173.5891
+Iteration 12 of 50 | Duration = 1.810 | MSE = 172.6830
+Iteration 13 of 50 | Duration = 2.016 | MSE = 171.8543
+Iteration 14 of 50 | Duration = 1.946 | MSE = 171.1157
+Iteration 15 of 50 | Duration = 2.039 | MSE = 170.5588
+Iteration 16 of 50 | Duration = 1.826 | MSE = 170.0457
+Iteration 17 of 50 | Duration = 1.925 | MSE = 169.4914
+Iteration 18 of 50 | Duration = 1.861 | MSE = 169.0439
+New optimal MSE: 169.0439
+
+Running polya filter for radius = 2, bins = 64, delta = 120.
+Initial MSE: 1142.6897
+Iteration 1 of 50 | Duration = 2.371 | MSE = 281.5416
+Iteration 2 of 50 | Duration = 2.465 | MSE = 225.3379
+Iteration 3 of 50 | Duration = 2.273 | MSE = 198.5239
+Iteration 4 of 50 | Duration = 1.805 | MSE = 190.5170
+Iteration 5 of 50 | Duration = 2.087 | MSE = 184.3764
+Iteration 6 of 50 | Duration = 2.130 | MSE = 180.5834
+Iteration 7 of 50 | Duration = 1.936 | MSE = 178.1559
+Iteration 8 of 50 | Duration = 1.975 | MSE = 176.5747
+Iteration 9 of 50 | Duration = 2.020 | MSE = 175.1457
+Iteration 10 of 50 | Duration = 1.811 | MSE = 173.9351
+Iteration 11 of 50 | Duration = 2.641 | MSE = 172.9963
+Iteration 12 of 50 | Duration = 1.817 | MSE = 172.3839
+Iteration 13 of 50 | Duration = 1.909 | MSE = 171.7225
+Iteration 14 of 50 | Duration = 1.914 | MSE = 171.0116
+Iteration 15 of 50 | Duration = 1.820 | MSE = 170.4704
+Iteration 16 of 50 | Duration = 1.843 | MSE = 170.0840
+
+Running polya filter for radius = 2, bins = 64, delta = 140.
+Initial MSE: 1142.6897
+Iteration 1 of 50 | Duration = 2.364 | MSE = 281.5416
+Iteration 2 of 50 | Duration = 2.391 | MSE = 225.3348
+Iteration 3 of 50 | Duration = 2.298 | MSE = 198.6364
+Iteration 4 of 50 | Duration = 1.810 | MSE = 190.0993
+Iteration 5 of 50 | Duration = 2.554 | MSE = 184.1785
+Iteration 6 of 50 | Duration = 1.918 | MSE = 180.4791
+Iteration 7 of 50 | Duration = 2.383 | MSE = 177.9745
+Iteration 8 of 50 | Duration = 1.917 | MSE = 176.3660
+Iteration 9 of 50 | Duration = 1.899 | MSE = 174.9874
+Iteration 10 of 50 | Duration = 1.851 | MSE = 173.8272
+Iteration 11 of 50 | Duration = 2.092 | MSE = 172.8876
+Iteration 12 of 50 | Duration = 1.779 | MSE = 172.2612
+Iteration 13 of 50 | Duration = 1.937 | MSE = 171.6496
+Iteration 14 of 50 | Duration = 1.904 | MSE = 170.9365
+Iteration 15 of 50 | Duration = 1.906 | MSE = 170.3880
+Iteration 16 of 50 | Duration = 1.816 | MSE = 170.0445
+
+Running polya filter for radius = 2, bins = 64, delta = 160.
+Initial MSE: 1142.6897
+Iteration 1 of 50 | Duration = 2.322 | MSE = 281.5416
+Iteration 2 of 50 | Duration = 2.556 | MSE = 225.3295
+Iteration 3 of 50 | Duration = 2.358 | MSE = 199.1181
+Iteration 4 of 50 | Duration = 1.806 | MSE = 188.4751
+Iteration 5 of 50 | Duration = 2.051 | MSE = 183.3245
+Iteration 6 of 50 | Duration = 1.900 | MSE = 179.8337
+Iteration 7 of 50 | Duration = 2.018 | MSE = 177.2782
+Iteration 8 of 50 | Duration = 1.820 | MSE = 175.6569
+Iteration 9 of 50 | Duration = 1.798 | MSE = 174.4818
+Iteration 10 of 50 | Duration = 1.808 | MSE = 173.4245
+Iteration 11 of 50 | Duration = 2.346 | MSE = 172.4692
+Iteration 12 of 50 | Duration = 1.792 | MSE = 171.8098
+Iteration 13 of 50 | Duration = 1.825 | MSE = 171.2270
+Iteration 14 of 50 | Duration = 1.912 | MSE = 170.5591
+Iteration 15 of 50 | Duration = 1.786 | MSE = 169.9413
+Iteration 16 of 50 | Duration = 1.823 | MSE = 169.5202
+
+Running polya filter for radius = 2, bins = 64, delta = 180.
+Initial MSE: 1142.6897
+Iteration 1 of 50 | Duration = 2.288 | MSE = 281.5416
+Iteration 2 of 50 | Duration = 2.325 | MSE = 224.8135
+Iteration 3 of 50 | Duration = 2.261 | MSE = 198.5360
+Iteration 4 of 50 | Duration = 1.889 | MSE = 188.3901
+Iteration 5 of 50 | Duration = 1.958 | MSE = 183.0052
+Iteration 6 of 50 | Duration = 2.062 | MSE = 179.5578
+Iteration 7 of 50 | Duration = 1.812 | MSE = 177.0972
+Iteration 8 of 50 | Duration = 1.813 | MSE = 175.5099
+Iteration 9 of 50 | Duration = 1.674 | MSE = 174.3629
+Iteration 10 of 50 | Duration = 1.881 | MSE = 173.2831
+Iteration 11 of 50 | Duration = 1.739 | MSE = 172.3206
+Iteration 12 of 50 | Duration = 1.745 | MSE = 171.7210
+Iteration 13 of 50 | Duration = 2.003 | MSE = 171.1066
+Iteration 14 of 50 | Duration = 1.880 | MSE = 170.4620
+Iteration 15 of 50 | Duration = 1.788 | MSE = 169.8658
+Iteration 16 of 50 | Duration = 2.132 | MSE = 169.4369
+
+Running polya filter for radius = 2, bins = 64, delta = 200.
+Initial MSE: 1142.6897
+Iteration 1 of 50 | Duration = 2.036 | MSE = 281.5416
+Iteration 2 of 50 | Duration = 2.496 | MSE = 224.8088
+Iteration 3 of 50 | Duration = 2.388 | MSE = 198.5288
+Iteration 4 of 50 | Duration = 1.997 | MSE = 188.3925
+Iteration 5 of 50 | Duration = 1.980 | MSE = 183.0091
+Iteration 6 of 50 | Duration = 1.879 | MSE = 179.5657
+Iteration 7 of 50 | Duration = 1.857 | MSE = 177.1071
+Iteration 8 of 50 | Duration = 2.002 | MSE = 175.5161
+Iteration 9 of 50 | Duration = 2.302 | MSE = 174.3639
+Iteration 10 of 50 | Duration = 1.807 | MSE = 173.2839
+Iteration 11 of 50 | Duration = 2.408 | MSE = 172.3197
+Iteration 12 of 50 | Duration = 1.737 | MSE = 171.7232
+Iteration 13 of 50 | Duration = 1.875 | MSE = 171.1071
+Iteration 14 of 50 | Duration = 2.099 | MSE = 170.4641
+Iteration 15 of 50 | Duration = 1.694 | MSE = 169.8736
+Iteration 16 of 50 | Duration = 1.902 | MSE = 169.4488
+
+Running polya filter for radius = 2, bins = 128, delta = 20.
+Initial MSE: 1142.6897
+Iteration 1 of 50 | Duration = 4.246 | MSE = 1133.5217
+Iteration 2 of 50 | Duration = 4.451 | MSE = 1133.5217
+Iteration 3 of 50 | Duration = 4.782 | MSE = 1133.5217
+
+Running polya filter for radius = 2, bins = 128, delta = 40.
+Initial MSE: 1142.6897
+Iteration 1 of 50 | Duration = 4.273 | MSE = 1133.5217
+Iteration 2 of 50 | Duration = 4.609 | MSE = 1133.5217
+Iteration 3 of 50 | Duration = 4.808 | MSE = 701.5346
+Iteration 4 of 50 | Duration = 4.864 | MSE = 468.5646
+Iteration 5 of 50 | Duration = 5.044 | MSE = 354.1333
+Iteration 6 of 50 | Duration = 5.073 | MSE = 251.8475
+Iteration 7 of 50 | Duration = 5.213 | MSE = 217.6367
+Iteration 8 of 50 | Duration = 4.939 | MSE = 198.2193
+Iteration 9 of 50 | Duration = 4.976 | MSE = 189.6339
+Iteration 10 of 50 | Duration = 4.832 | MSE = 184.7676
+Iteration 11 of 50 | Duration = 5.163 | MSE = 181.9145
+Iteration 12 of 50 | Duration = 4.953 | MSE = 180.2501
+Iteration 13 of 50 | Duration = 4.975 | MSE = 178.8678
+Iteration 14 of 50 | Duration = 4.812 | MSE = 177.7022
+Iteration 15 of 50 | Duration = 4.790 | MSE = 176.7127
+Iteration 16 of 50 | Duration = 4.932 | MSE = 176.0085
+Iteration 17 of 50 | Duration = 4.998 | MSE = 175.3734
+Iteration 18 of 50 | Duration = 4.905 | MSE = 174.7206
+Iteration 19 of 50 | Duration = 4.945 | MSE = 174.1412
+Iteration 20 of 50 | Duration = 4.817 | MSE = 173.6962
+
+Running polya filter for radius = 2, bins = 128, delta = 60.
+Initial MSE: 1142.6897
+Iteration 1 of 50 | Duration = 4.357 | MSE = 1133.5217
+Iteration 2 of 50 | Duration = 4.563 | MSE = 635.9597
+Iteration 3 of 50 | Duration = 4.580 | MSE = 377.1932
+Iteration 4 of 50 | Duration = 4.999 | MSE = 236.2864
+Iteration 5 of 50 | Duration = 5.340 | MSE = 202.8684
+Iteration 6 of 50 | Duration = 5.053 | MSE = 191.3150
+Iteration 7 of 50 | Duration = 4.727 | MSE = 186.3233
+Iteration 8 of 50 | Duration = 4.959 | MSE = 182.8757
+Iteration 9 of 50 | Duration = 5.259 | MSE = 180.6692
+Iteration 10 of 50 | Duration = 5.078 | MSE = 178.8619
+Iteration 11 of 50 | Duration = 5.026 | MSE = 177.6769
+Iteration 12 of 50 | Duration = 5.005 | MSE = 176.4116
+Iteration 13 of 50 | Duration = 5.008 | MSE = 175.4978
+Iteration 14 of 50 | Duration = 4.746 | MSE = 174.7031
+Iteration 15 of 50 | Duration = 5.212 | MSE = 174.0758
+Iteration 16 of 50 | Duration = 4.787 | MSE = 173.4074
+Iteration 17 of 50 | Duration = 4.754 | MSE = 172.8597
+Iteration 18 of 50 | Duration = 5.110 | MSE = 172.3638
+
+Running polya filter for radius = 2, bins = 128, delta = 80.
+Initial MSE: 1142.6897
+Iteration 1 of 50 | Duration = 4.532 | MSE = 1133.5217
+Iteration 2 of 50 | Duration = 4.791 | MSE = 637.4312
+Iteration 3 of 50 | Duration = 4.517 | MSE = 392.2077
+Iteration 4 of 50 | Duration = 5.101 | MSE = 233.3086
+Iteration 5 of 50 | Duration = 4.867 | MSE = 201.5765
+Iteration 6 of 50 | Duration = 4.702 | MSE = 189.8161
+Iteration 7 of 50 | Duration = 4.967 | MSE = 184.8564
+Iteration 8 of 50 | Duration = 4.825 | MSE = 181.6585
+Iteration 9 of 50 | Duration = 5.163 | MSE = 179.5528
+Iteration 10 of 50 | Duration = 4.828 | MSE = 177.8890
+Iteration 11 of 50 | Duration = 4.751 | MSE = 176.8106
+Iteration 12 of 50 | Duration = 5.040 | MSE = 175.5781
+Iteration 13 of 50 | Duration = 4.911 | MSE = 174.7156
+Iteration 14 of 50 | Duration = 5.171 | MSE = 174.0007
+Iteration 15 of 50 | Duration = 4.737 | MSE = 173.4789
+Iteration 16 of 50 | Duration = 5.015 | MSE = 172.7756
+Iteration 17 of 50 | Duration = 5.075 | MSE = 172.3156
+
+Running polya filter for radius = 2, bins = 128, delta = 100.
+Initial MSE: 1142.6897
+Iteration 1 of 50 | Duration = 5.806 | MSE = 416.5284
+Iteration 2 of 50 | Duration = 5.570 | MSE = 237.2780
+Iteration 3 of 50 | Duration = 5.106 | MSE = 209.3507
+Iteration 4 of 50 | Duration = 5.127 | MSE = 195.4789
+Iteration 5 of 50 | Duration = 5.004 | MSE = 187.5217
+Iteration 6 of 50 | Duration = 5.082 | MSE = 182.8740
+Iteration 7 of 50 | Duration = 5.029 | MSE = 179.8703
+Iteration 8 of 50 | Duration = 5.162 | MSE = 177.6192
+Iteration 9 of 50 | Duration = 5.048 | MSE = 175.8561
+Iteration 10 of 50 | Duration = 5.129 | MSE = 174.5523
+Iteration 11 of 50 | Duration = 4.820 | MSE = 173.5343
+Iteration 12 of 50 | Duration = 4.784 | MSE = 172.6307
+Iteration 13 of 50 | Duration = 5.104 | MSE = 171.8048
+Iteration 14 of 50 | Duration = 4.971 | MSE = 171.1188
+Iteration 15 of 50 | Duration = 4.751 | MSE = 170.5438
+Iteration 16 of 50 | Duration = 5.111 | MSE = 169.9810
+Iteration 17 of 50 | Duration = 4.832 | MSE = 169.4663
+Iteration 18 of 50 | Duration = 4.912 | MSE = 169.0528
+
+Running polya filter for radius = 2, bins = 128, delta = 120.
+Initial MSE: 1142.6897
+Iteration 1 of 50 | Duration = 4.005 | MSE = 282.6635
+Iteration 2 of 50 | Duration = 5.821 | MSE = 225.1504
+Iteration 3 of 50 | Duration = 4.700 | MSE = 199.1498
+Iteration 4 of 50 | Duration = 4.773 | MSE = 191.1386
+Iteration 5 of 50 | Duration = 5.247 | MSE = 184.5027
+Iteration 6 of 50 | Duration = 4.907 | MSE = 180.8259
+Iteration 7 of 50 | Duration = 4.823 | MSE = 178.4401
+Iteration 8 of 50 | Duration = 4.737 | MSE = 176.7042
+Iteration 9 of 50 | Duration = 4.887 | MSE = 175.3073
+Iteration 10 of 50 | Duration = 4.972 | MSE = 174.1893
+Iteration 11 of 50 | Duration = 5.010 | MSE = 173.2415
+Iteration 12 of 50 | Duration = 4.940 | MSE = 172.6146
+Iteration 13 of 50 | Duration = 5.016 | MSE = 171.9191
+Iteration 14 of 50 | Duration = 5.063 | MSE = 171.2950
+Iteration 15 of 50 | Duration = 4.698 | MSE = 170.7793
+Iteration 16 of 50 | Duration = 4.911 | MSE = 170.3229
+
+Running polya filter for radius = 2, bins = 128, delta = 140.
+Initial MSE: 1142.6897
+Iteration 1 of 50 | Duration = 4.272 | MSE = 282.6635
+Iteration 2 of 50 | Duration = 5.960 | MSE = 225.1484
+Iteration 3 of 50 | Duration = 5.002 | MSE = 199.2660
+Iteration 4 of 50 | Duration = 5.043 | MSE = 190.6923
+Iteration 5 of 50 | Duration = 4.987 | MSE = 184.3541
+Iteration 6 of 50 | Duration = 4.947 | MSE = 180.6728
+Iteration 7 of 50 | Duration = 5.030 | MSE = 178.2588
+Iteration 8 of 50 | Duration = 4.645 | MSE = 176.5633
+Iteration 9 of 50 | Duration = 4.773 | MSE = 175.1834
+Iteration 10 of 50 | Duration = 4.930 | MSE = 174.0789
+Iteration 11 of 50 | Duration = 4.983 | MSE = 173.1467
+Iteration 12 of 50 | Duration = 5.195 | MSE = 172.4983
+Iteration 13 of 50 | Duration = 5.257 | MSE = 171.8342
+Iteration 14 of 50 | Duration = 4.903 | MSE = 171.2053
+Iteration 15 of 50 | Duration = 5.019 | MSE = 170.6697
+Iteration 16 of 50 | Duration = 4.811 | MSE = 170.2282
+
+Running polya filter for radius = 2, bins = 128, delta = 160.
+Initial MSE: 1142.6897
+Iteration 1 of 50 | Duration = 4.591 | MSE = 282.6635
+Iteration 2 of 50 | Duration = 5.775 | MSE = 225.1417
+Iteration 3 of 50 | Duration = 5.191 | MSE = 199.7458
+Iteration 4 of 50 | Duration = 4.911 | MSE = 188.9106
+Iteration 5 of 50 | Duration = 5.027 | MSE = 183.6325
+Iteration 6 of 50 | Duration = 5.208 | MSE = 180.0188
+Iteration 7 of 50 | Duration = 5.069 | MSE = 177.5471
+Iteration 8 of 50 | Duration = 5.371 | MSE = 175.9266
+Iteration 9 of 50 | Duration = 5.063 | MSE = 174.6682
+Iteration 10 of 50 | Duration = 4.957 | MSE = 173.6480
+Iteration 11 of 50 | Duration = 4.996 | MSE = 172.7401
+Iteration 12 of 50 | Duration = 4.727 | MSE = 172.0642
+Iteration 13 of 50 | Duration = 5.457 | MSE = 171.4495
+Iteration 14 of 50 | Duration = 5.055 | MSE = 170.8076
+Iteration 15 of 50 | Duration = 4.885 | MSE = 170.2064
+Iteration 16 of 50 | Duration = 4.944 | MSE = 169.7270
+
+Running polya filter for radius = 2, bins = 128, delta = 180.
+Initial MSE: 1142.6897
+Iteration 1 of 50 | Duration = 4.259 | MSE = 282.6635
+Iteration 2 of 50 | Duration = 5.832 | MSE = 224.6304
+Iteration 3 of 50 | Duration = 4.893 | MSE = 199.1822
+Iteration 4 of 50 | Duration = 5.166 | MSE = 188.8879
+Iteration 5 of 50 | Duration = 5.060 | MSE = 183.3353
+Iteration 6 of 50 | Duration = 5.040 | MSE = 179.7687
+Iteration 7 of 50 | Duration = 5.314 | MSE = 177.3384
+Iteration 8 of 50 | Duration = 5.091 | MSE = 175.7301
+Iteration 9 of 50 | Duration = 5.079 | MSE = 174.5055
+Iteration 10 of 50 | Duration = 4.887 | MSE = 173.4766
+Iteration 11 of 50 | Duration = 5.057 | MSE = 172.6055
+Iteration 12 of 50 | Duration = 4.951 | MSE = 171.9768
+Iteration 13 of 50 | Duration = 5.190 | MSE = 171.3334
+Iteration 14 of 50 | Duration = 5.255 | MSE = 170.6714
+Iteration 15 of 50 | Duration = 4.871 | MSE = 170.0918
+Iteration 16 of 50 | Duration = 5.016 | MSE = 169.6498
+
+Running polya filter for radius = 2, bins = 128, delta = 200.
+Initial MSE: 1142.6897
+Iteration 1 of 50 | Duration = 4.438 | MSE = 282.6635
+Iteration 2 of 50 | Duration = 5.520 | MSE = 224.6245
+Iteration 3 of 50 | Duration = 4.994 | MSE = 199.1747
+Iteration 4 of 50 | Duration = 4.965 | MSE = 188.8898
+Iteration 5 of 50 | Duration = 5.127 | MSE = 183.3384
+Iteration 6 of 50 | Duration = 4.974 | MSE = 179.7771
+Iteration 7 of 50 | Duration = 5.036 | MSE = 177.3456
+Iteration 8 of 50 | Duration = 5.331 | MSE = 175.7312
+Iteration 9 of 50 | Duration = 5.098 | MSE = 174.5033
+Iteration 10 of 50 | Duration = 4.942 | MSE = 173.4776
+Iteration 11 of 50 | Duration = 5.052 | MSE = 172.6056
+Iteration 12 of 50 | Duration = 5.053 | MSE = 171.9780
+Iteration 13 of 50 | Duration = 4.868 | MSE = 171.3363
+Iteration 14 of 50 | Duration = 5.022 | MSE = 170.6777
+Iteration 15 of 50 | Duration = 5.132 | MSE = 170.0965
+Iteration 16 of 50 | Duration = 5.020 | MSE = 169.6593
+
+Running polya filter for radius = 2, bins = 256, delta = 20.
+Initial MSE: 1142.6897
+Iteration 1 of 50 | Duration = 7.165 | MSE = 1142.1212
+Iteration 2 of 50 | Duration = 7.708 | MSE = 1142.1212
+Iteration 3 of 50 | Duration = 7.814 | MSE = 1142.1212
+
+Running polya filter for radius = 2, bins = 256, delta = 40.
+Initial MSE: 1142.6897
+Iteration 1 of 50 | Duration = 7.162 | MSE = 1142.1212
+Iteration 2 of 50 | Duration = 7.723 | MSE = 1142.1212
+Iteration 3 of 50 | Duration = 7.651 | MSE = 727.7325
+Iteration 4 of 50 | Duration = 7.666 | MSE = 495.2509
+Iteration 5 of 50 | Duration = 7.887 | MSE = 378.7849
+Iteration 6 of 50 | Duration = 8.330 | MSE = 264.9461
+Iteration 7 of 50 | Duration = 8.240 | MSE = 224.7528
+Iteration 8 of 50 | Duration = 8.237 | MSE = 200.5851
+Iteration 9 of 50 | Duration = 8.316 | MSE = 189.7956
+Iteration 10 of 50 | Duration = 8.454 | MSE = 183.6720
+Iteration 11 of 50 | Duration = 8.371 | MSE = 180.1894
+Iteration 12 of 50 | Duration = 8.256 | MSE = 178.2424
+Iteration 13 of 50 | Duration = 8.398 | MSE = 176.7174
+Iteration 14 of 50 | Duration = 8.393 | MSE = 175.5727
+Iteration 15 of 50 | Duration = 8.225 | MSE = 174.5710
+Iteration 16 of 50 | Duration = 8.376 | MSE = 173.8792
+Iteration 17 of 50 | Duration = 8.832 | MSE = 173.2754
+Iteration 18 of 50 | Duration = 8.306 | MSE = 172.6515
+Iteration 19 of 50 | Duration = 8.609 | MSE = 172.0952
+Iteration 20 of 50 | Duration = 8.440 | MSE = 171.6559
+
+Running polya filter for radius = 2, bins = 256, delta = 60.
+Initial MSE: 1142.6897
+Iteration 1 of 50 | Duration = 7.088 | MSE = 1142.1212
+Iteration 2 of 50 | Duration = 7.924 | MSE = 659.9511
+Iteration 3 of 50 | Duration = 7.957 | MSE = 400.7832
+Iteration 4 of 50 | Duration = 8.348 | MSE = 244.4982
+Iteration 5 of 50 | Duration = 8.150 | MSE = 204.6925
+Iteration 6 of 50 | Duration = 8.414 | MSE = 190.2016
+Iteration 7 of 50 | Duration = 8.273 | MSE = 184.3459
+Iteration 8 of 50 | Duration = 8.269 | MSE = 180.8340
+Iteration 9 of 50 | Duration = 8.744 | MSE = 178.5773
+Iteration 10 of 50 | Duration = 8.479 | MSE = 176.7623
+Iteration 11 of 50 | Duration = 8.317 | MSE = 175.4989
+Iteration 12 of 50 | Duration = 8.514 | MSE = 174.2912
+Iteration 13 of 50 | Duration = 8.365 | MSE = 173.4076
+Iteration 14 of 50 | Duration = 8.613 | MSE = 172.6291
+Iteration 15 of 50 | Duration = 8.470 | MSE = 172.0192
+Iteration 16 of 50 | Duration = 8.492 | MSE = 171.3712
+Iteration 17 of 50 | Duration = 8.641 | MSE = 170.8177
+Iteration 18 of 50 | Duration = 8.919 | MSE = 170.3022
+Iteration 19 of 50 | Duration = 8.554 | MSE = 169.8996
+
+Running polya filter for radius = 2, bins = 256, delta = 80.
+Initial MSE: 1142.6897
+Iteration 1 of 50 | Duration = 7.174 | MSE = 1142.1212
+Iteration 2 of 50 | Duration = 7.606 | MSE = 660.7944
+Iteration 3 of 50 | Duration = 7.984 | MSE = 417.7434
+Iteration 4 of 50 | Duration = 8.333 | MSE = 241.1379
+Iteration 5 of 50 | Duration = 8.384 | MSE = 203.5734
+Iteration 6 of 50 | Duration = 8.419 | MSE = 188.4995
+Iteration 7 of 50 | Duration = 8.206 | MSE = 182.9264
+Iteration 8 of 50 | Duration = 8.207 | MSE = 179.5653
+Iteration 9 of 50 | Duration = 8.274 | MSE = 177.4334
+Iteration 10 of 50 | Duration = 8.511 | MSE = 175.7584
+Iteration 11 of 50 | Duration = 8.374 | MSE = 174.6669
+Iteration 12 of 50 | Duration = 8.314 | MSE = 173.5247
+Iteration 13 of 50 | Duration = 8.203 | MSE = 172.6407
+Iteration 14 of 50 | Duration = 8.209 | MSE = 171.8892
+Iteration 15 of 50 | Duration = 8.337 | MSE = 171.3728
+Iteration 16 of 50 | Duration = 9.228 | MSE = 170.7211
+Iteration 17 of 50 | Duration = 8.578 | MSE = 170.2551
+
+Running polya filter for radius = 2, bins = 256, delta = 100.
+Initial MSE: 1142.6897
+Iteration 1 of 50 | Duration = 9.261 | MSE = 415.9882
+Iteration 2 of 50 | Duration = 8.999 | MSE = 235.5089
+Iteration 3 of 50 | Duration = 8.516 | MSE = 207.6814
+Iteration 4 of 50 | Duration = 8.299 | MSE = 193.6686
+Iteration 5 of 50 | Duration = 8.318 | MSE = 185.6782
+Iteration 6 of 50 | Duration = 8.297 | MSE = 180.9980
+Iteration 7 of 50 | Duration = 8.193 | MSE = 177.9650
+Iteration 8 of 50 | Duration = 7.915 | MSE = 175.7159
+Iteration 9 of 50 | Duration = 8.565 | MSE = 174.0112
+Iteration 10 of 50 | Duration = 8.266 | MSE = 172.7222
+Iteration 11 of 50 | Duration = 8.416 | MSE = 171.7241
+Iteration 12 of 50 | Duration = 8.099 | MSE = 170.8327
+Iteration 13 of 50 | Duration = 8.567 | MSE = 170.0409
+Iteration 14 of 50 | Duration = 8.212 | MSE = 169.3402
+Iteration 15 of 50 | Duration = 8.344 | MSE = 168.7471
+Iteration 16 of 50 | Duration = 8.417 | MSE = 168.1973
+Iteration 17 of 50 | Duration = 8.192 | MSE = 167.6871
+Iteration 18 of 50 | Duration = 8.582 | MSE = 167.2437
+New optimal MSE: 167.2437
+
+Running polya filter for radius = 2, bins = 256, delta = 120.
+Initial MSE: 1142.6897
+Iteration 1 of 50 | Duration = 6.936 | MSE = 280.8623
+Iteration 2 of 50 | Duration = 8.814 | MSE = 222.9931
+Iteration 3 of 50 | Duration = 8.231 | MSE = 197.0695
+Iteration 4 of 50 | Duration = 8.313 | MSE = 189.1862
+Iteration 5 of 50 | Duration = 8.182 | MSE = 182.3699
+Iteration 6 of 50 | Duration = 8.124 | MSE = 178.7543
+Iteration 7 of 50 | Duration = 8.113 | MSE = 176.3998
+Iteration 8 of 50 | Duration = 8.050 | MSE = 174.6042
+Iteration 9 of 50 | Duration = 8.287 | MSE = 173.2478
+Iteration 10 of 50 | Duration = 8.237 | MSE = 172.1155
+Iteration 11 of 50 | Duration = 8.103 | MSE = 171.1951
+Iteration 12 of 50 | Duration = 7.942 | MSE = 170.5420
+Iteration 13 of 50 | Duration = 8.303 | MSE = 169.8557
+Iteration 14 of 50 | Duration = 8.059 | MSE = 169.2280
+Iteration 15 of 50 | Duration = 8.394 | MSE = 168.6917
+Iteration 16 of 50 | Duration = 8.377 | MSE = 168.2640
+
+Running polya filter for radius = 2, bins = 256, delta = 140.
+Initial MSE: 1142.6897
+Iteration 1 of 50 | Duration = 6.995 | MSE = 280.8623
+Iteration 2 of 50 | Duration = 8.880 | MSE = 222.9905
+Iteration 3 of 50 | Duration = 8.169 | MSE = 197.1622
+Iteration 4 of 50 | Duration = 8.041 | MSE = 188.7155
+Iteration 5 of 50 | Duration = 8.247 | MSE = 182.2308
+Iteration 6 of 50 | Duration = 8.517 | MSE = 178.5754
+Iteration 7 of 50 | Duration = 8.095 | MSE = 176.2244
+Iteration 8 of 50 | Duration = 8.254 | MSE = 174.4715
+Iteration 9 of 50 | Duration = 8.166 | MSE = 173.1289
+Iteration 10 of 50 | Duration = 8.294 | MSE = 172.0189
+Iteration 11 of 50 | Duration = 8.598 | MSE = 171.1058
+Iteration 12 of 50 | Duration = 8.465 | MSE = 170.4560
+Iteration 13 of 50 | Duration = 7.837 | MSE = 169.7887
+Iteration 14 of 50 | Duration = 8.090 | MSE = 169.1454
+Iteration 15 of 50 | Duration = 8.469 | MSE = 168.5934
+Iteration 16 of 50 | Duration = 8.276 | MSE = 168.1746
+
+Running polya filter for radius = 2, bins = 256, delta = 160.
+Initial MSE: 1142.6897
+Iteration 1 of 50 | Duration = 7.322 | MSE = 280.8623
+Iteration 2 of 50 | Duration = 9.115 | MSE = 222.9835
+Iteration 3 of 50 | Duration = 8.132 | MSE = 197.6511
+Iteration 4 of 50 | Duration = 7.997 | MSE = 186.8541
+Iteration 5 of 50 | Duration = 8.096 | MSE = 181.5743
+Iteration 6 of 50 | Duration = 8.031 | MSE = 177.8969
+Iteration 7 of 50 | Duration = 8.103 | MSE = 175.5146
+Iteration 8 of 50 | Duration = 8.320 | MSE = 173.8665
+Iteration 9 of 50 | Duration = 7.990 | MSE = 172.6228
+Iteration 10 of 50 | Duration = 8.357 | MSE = 171.6126
+Iteration 11 of 50 | Duration = 8.272 | MSE = 170.6900
+Iteration 12 of 50 | Duration = 8.183 | MSE = 170.0073
+Iteration 13 of 50 | Duration = 8.462 | MSE = 169.3770
+Iteration 14 of 50 | Duration = 8.292 | MSE = 168.7362
+Iteration 15 of 50 | Duration = 8.177 | MSE = 168.1482
+Iteration 16 of 50 | Duration = 8.386 | MSE = 167.6814
+
+Running polya filter for radius = 2, bins = 256, delta = 180.
+Initial MSE: 1142.6897
+Iteration 1 of 50 | Duration = 7.331 | MSE = 280.8623
+Iteration 2 of 50 | Duration = 9.064 | MSE = 222.4705
+Iteration 3 of 50 | Duration = 8.169 | MSE = 197.0910
+Iteration 4 of 50 | Duration = 8.200 | MSE = 186.8530
+Iteration 5 of 50 | Duration = 8.055 | MSE = 181.2973
+Iteration 6 of 50 | Duration = 8.328 | MSE = 177.6643
+Iteration 7 of 50 | Duration = 8.312 | MSE = 175.3045
+Iteration 8 of 50 | Duration = 8.024 | MSE = 173.6864
+Iteration 9 of 50 | Duration = 7.995 | MSE = 172.4533
+Iteration 10 of 50 | Duration = 8.413 | MSE = 171.4411
+Iteration 11 of 50 | Duration = 8.308 | MSE = 170.5536
+Iteration 12 of 50 | Duration = 8.027 | MSE = 169.9040
+Iteration 13 of 50 | Duration = 8.345 | MSE = 169.2432
+Iteration 14 of 50 | Duration = 8.171 | MSE = 168.5971
+Iteration 15 of 50 | Duration = 8.019 | MSE = 168.0365
+Iteration 16 of 50 | Duration = 8.547 | MSE = 167.5763
+
+Running polya filter for radius = 2, bins = 256, delta = 200.
+Initial MSE: 1142.6897
+Iteration 1 of 50 | Duration = 7.273 | MSE = 280.8623
+Iteration 2 of 50 | Duration = 8.769 | MSE = 222.4645
+Iteration 3 of 50 | Duration = 8.120 | MSE = 197.0840
+Iteration 4 of 50 | Duration = 8.280 | MSE = 186.8549
+Iteration 5 of 50 | Duration = 8.337 | MSE = 181.3002
+Iteration 6 of 50 | Duration = 8.051 | MSE = 177.6721
+Iteration 7 of 50 | Duration = 8.255 | MSE = 175.3140
+Iteration 8 of 50 | Duration = 8.157 | MSE = 173.6876
+Iteration 9 of 50 | Duration = 8.426 | MSE = 172.4522
+Iteration 10 of 50 | Duration = 8.088 | MSE = 171.4407
+Iteration 11 of 50 | Duration = 8.192 | MSE = 170.5530
+Iteration 12 of 50 | Duration = 8.017 | MSE = 169.9043
+Iteration 13 of 50 | Duration = 8.461 | MSE = 169.2459
+Iteration 14 of 50 | Duration = 8.353 | MSE = 168.6027
+Iteration 15 of 50 | Duration = 8.619 | MSE = 168.0413
+Iteration 16 of 50 | Duration = 8.191 | MSE = 167.5854
+
+Running polya filter for radius = 3, bins = 32, delta = 20.
+Initial MSE: 1142.6897
+Iteration 1 of 50 | Duration = 1.509 | MSE = 1140.3195
+Iteration 2 of 50 | Duration = 1.200 | MSE = 1140.3195
+Iteration 3 of 50 | Duration = 1.080 | MSE = 1140.3195
+
+Running polya filter for radius = 3, bins = 32, delta = 40.
+Initial MSE: 1142.6897
+Iteration 1 of 50 | Duration = 1.451 | MSE = 1140.3195
+Iteration 2 of 50 | Duration = 1.061 | MSE = 1140.3195
+Iteration 3 of 50 | Duration = 1.116 | MSE = 593.0664
+Iteration 4 of 50 | Duration = 1.185 | MSE = 316.9743
+Iteration 5 of 50 | Duration = 1.122 | MSE = 198.7339
+Iteration 6 of 50 | Duration = 1.180 | MSE = 170.5950
+Iteration 7 of 50 | Duration = 1.155 | MSE = 163.8267
+Iteration 8 of 50 | Duration = 1.157 | MSE = 161.6182
+Iteration 9 of 50 | Duration = 1.063 | MSE = 160.7888
+Iteration 10 of 50 | Duration = 1.237 | MSE = 160.3720
+New optimal MSE: 160.3720
+
+Running polya filter for radius = 3, bins = 32, delta = 60.
+Initial MSE: 1142.6897
+Iteration 1 of 50 | Duration = 1.467 | MSE = 1140.3195
+Iteration 2 of 50 | Duration = 1.082 | MSE = 534.3458
+Iteration 3 of 50 | Duration = 1.079 | MSE = 215.3145
+Iteration 4 of 50 | Duration = 1.183 | MSE = 168.6204
+Iteration 5 of 50 | Duration = 1.209 | MSE = 163.8949
+Iteration 6 of 50 | Duration = 1.176 | MSE = 161.6543
+Iteration 7 of 50 | Duration = 1.196 | MSE = 161.0711
+Iteration 8 of 50 | Duration = 1.170 | MSE = 160.4697
+Iteration 9 of 50 | Duration = 1.105 | MSE = 160.2102
+New optimal MSE: 160.2102
+
+Running polya filter for radius = 3, bins = 32, delta = 80.
+Initial MSE: 1142.6897
+Iteration 1 of 50 | Duration = 1.513 | MSE = 1140.3195
+Iteration 2 of 50 | Duration = 1.212 | MSE = 543.9291
+Iteration 3 of 50 | Duration = 1.112 | MSE = 216.8999
+Iteration 4 of 50 | Duration = 1.145 | MSE = 167.8827
+Iteration 5 of 50 | Duration = 1.238 | MSE = 163.3823
+Iteration 6 of 50 | Duration = 1.047 | MSE = 161.6774
+Iteration 7 of 50 | Duration = 1.148 | MSE = 161.1568
+Iteration 8 of 50 | Duration = 1.310 | MSE = 160.7357
+
+Running polya filter for radius = 3, bins = 32, delta = 100.
+Initial MSE: 1142.6897
+Iteration 1 of 50 | Duration = 2.500 | MSE = 368.7053
+Iteration 2 of 50 | Duration = 1.618 | MSE = 178.1193
+Iteration 3 of 50 | Duration = 1.189 | MSE = 167.0674
+Iteration 4 of 50 | Duration = 1.245 | MSE = 163.4829
+Iteration 5 of 50 | Duration = 1.138 | MSE = 161.5910
+Iteration 6 of 50 | Duration = 1.119 | MSE = 160.6021
+Iteration 7 of 50 | Duration = 1.157 | MSE = 160.2128
+
+Running polya filter for radius = 3, bins = 32, delta = 120.
+Initial MSE: 1142.6897
+Iteration 1 of 50 | Duration = 1.468 | MSE = 203.0474
+Iteration 2 of 50 | Duration = 1.722 | MSE = 177.9068
+Iteration 3 of 50 | Duration = 1.190 | MSE = 165.9342
+Iteration 4 of 50 | Duration = 1.145 | MSE = 163.3439
+Iteration 5 of 50 | Duration = 1.076 | MSE = 161.8998
+Iteration 6 of 50 | Duration = 1.193 | MSE = 161.3678
+Iteration 7 of 50 | Duration = 1.240 | MSE = 160.8428
+Iteration 8 of 50 | Duration = 1.244 | MSE = 160.6536
+
+Running polya filter for radius = 3, bins = 32, delta = 140.
+Initial MSE: 1142.6897
+Iteration 1 of 50 | Duration = 1.459 | MSE = 203.0474
+Iteration 2 of 50 | Duration = 1.619 | MSE = 177.8628
+Iteration 3 of 50 | Duration = 1.138 | MSE = 165.8969
+Iteration 4 of 50 | Duration = 1.197 | MSE = 163.3507
+Iteration 5 of 50 | Duration = 1.236 | MSE = 161.9034
+Iteration 6 of 50 | Duration = 1.201 | MSE = 161.3133
+Iteration 7 of 50 | Duration = 1.051 | MSE = 160.8684
+
+Running polya filter for radius = 3, bins = 32, delta = 160.
+Initial MSE: 1142.6897
+Iteration 1 of 50 | Duration = 1.451 | MSE = 203.0474
+Iteration 2 of 50 | Duration = 1.575 | MSE = 177.7871
+Iteration 3 of 50 | Duration = 1.386 | MSE = 165.9873
+Iteration 4 of 50 | Duration = 1.275 | MSE = 163.2940
+Iteration 5 of 50 | Duration = 1.133 | MSE = 161.9143
+Iteration 6 of 50 | Duration = 1.140 | MSE = 161.3825
+Iteration 7 of 50 | Duration = 1.133 | MSE = 160.9496
+
+Running polya filter for radius = 3, bins = 32, delta = 180.
+Initial MSE: 1142.6897
+Iteration 1 of 50 | Duration = 1.550 | MSE = 203.0474
+Iteration 2 of 50 | Duration = 1.738 | MSE = 177.3807
+Iteration 3 of 50 | Duration = 1.160 | MSE = 165.6355
+Iteration 4 of 50 | Duration = 1.194 | MSE = 163.2242
+Iteration 5 of 50 | Duration = 1.095 | MSE = 161.9080
+Iteration 6 of 50 | Duration = 1.103 | MSE = 161.4457
+
+Running polya filter for radius = 3, bins = 32, delta = 200.
+Initial MSE: 1142.6897
+Iteration 1 of 50 | Duration = 1.654 | MSE = 203.0474
+Iteration 2 of 50 | Duration = 1.695 | MSE = 177.3826
+Iteration 3 of 50 | Duration = 1.118 | MSE = 165.6285
+Iteration 4 of 50 | Duration = 1.166 | MSE = 163.2146
+Iteration 5 of 50 | Duration = 1.088 | MSE = 161.9268
+Iteration 6 of 50 | Duration = 1.242 | MSE = 161.4817
+
+Running polya filter for radius = 3, bins = 64, delta = 20.
+Initial MSE: 1142.6897
+Iteration 1 of 50 | Duration = 2.332 | MSE = 1134.1404
+Iteration 2 of 50 | Duration = 2.004 | MSE = 1134.1404
+Iteration 3 of 50 | Duration = 2.042 | MSE = 1134.1404
+
+Running polya filter for radius = 3, bins = 64, delta = 40.
+Initial MSE: 1142.6897
+Iteration 1 of 50 | Duration = 2.388 | MSE = 1134.1404
+Iteration 2 of 50 | Duration = 1.974 | MSE = 1134.1404
+Iteration 3 of 50 | Duration = 1.985 | MSE = 719.5331
+Iteration 4 of 50 | Duration = 2.061 | MSE = 419.3017
+Iteration 5 of 50 | Duration = 2.107 | MSE = 261.4994
+Iteration 6 of 50 | Duration = 2.024 | MSE = 193.1887
+Iteration 7 of 50 | Duration = 2.082 | MSE = 170.0412
+Iteration 8 of 50 | Duration = 2.009 | MSE = 162.0600
+Iteration 9 of 50 | Duration = 1.976 | MSE = 159.3527
+Iteration 10 of 50 | Duration = 2.055 | MSE = 158.2916
+Iteration 11 of 50 | Duration = 2.059 | MSE = 157.5981
+Iteration 12 of 50 | Duration = 2.035 | MSE = 157.1645
+New optimal MSE: 157.1645
+
+Running polya filter for radius = 3, bins = 64, delta = 60.
+Initial MSE: 1142.6897
+Iteration 1 of 50 | Duration = 2.245 | MSE = 1134.1404
+Iteration 2 of 50 | Duration = 2.006 | MSE = 653.8900
+Iteration 3 of 50 | Duration = 2.009 | MSE = 288.9571
+Iteration 4 of 50 | Duration = 2.213 | MSE = 181.7806
+Iteration 5 of 50 | Duration = 2.072 | MSE = 163.3348
+Iteration 6 of 50 | Duration = 2.110 | MSE = 159.5966
+Iteration 7 of 50 | Duration = 2.030 | MSE = 158.6336
+Iteration 8 of 50 | Duration = 2.070 | MSE = 157.9598
+Iteration 9 of 50 | Duration = 2.071 | MSE = 157.5335
+
+Running polya filter for radius = 3, bins = 64, delta = 80.
+Initial MSE: 1142.6897
+Iteration 1 of 50 | Duration = 2.279 | MSE = 1134.1404
+Iteration 2 of 50 | Duration = 2.075 | MSE = 661.3557
+Iteration 3 of 50 | Duration = 2.079 | MSE = 294.0164
+Iteration 4 of 50 | Duration = 2.103 | MSE = 180.5534
+Iteration 5 of 50 | Duration = 2.091 | MSE = 163.0022
+Iteration 6 of 50 | Duration = 2.131 | MSE = 159.6994
+Iteration 7 of 50 | Duration = 2.022 | MSE = 158.7259
+Iteration 8 of 50 | Duration = 1.985 | MSE = 158.1347
+Iteration 9 of 50 | Duration = 2.152 | MSE = 157.8248
+
+Running polya filter for radius = 3, bins = 64, delta = 100.
+Initial MSE: 1142.6897
+Iteration 1 of 50 | Duration = 3.609 | MSE = 361.9533
+Iteration 2 of 50 | Duration = 2.563 | MSE = 175.8848
+Iteration 3 of 50 | Duration = 2.362 | MSE = 164.3566
+Iteration 4 of 50 | Duration = 2.099 | MSE = 160.7452
+Iteration 5 of 50 | Duration = 2.023 | MSE = 158.9702
+Iteration 6 of 50 | Duration = 2.038 | MSE = 158.0513
+Iteration 7 of 50 | Duration = 2.235 | MSE = 157.6800
+
+Running polya filter for radius = 3, bins = 64, delta = 120.
+Initial MSE: 1142.6897
+Iteration 1 of 50 | Duration = 2.201 | MSE = 201.0027
+Iteration 2 of 50 | Duration = 2.727 | MSE = 174.4377
+Iteration 3 of 50 | Duration = 2.269 | MSE = 163.4981
+Iteration 4 of 50 | Duration = 2.012 | MSE = 160.4719
+Iteration 5 of 50 | Duration = 2.061 | MSE = 159.3173
+Iteration 6 of 50 | Duration = 2.219 | MSE = 158.6618
+Iteration 7 of 50 | Duration = 2.123 | MSE = 158.1758
+
+Running polya filter for radius = 3, bins = 64, delta = 140.
+Initial MSE: 1142.6897
+Iteration 1 of 50 | Duration = 2.278 | MSE = 201.0027
+Iteration 2 of 50 | Duration = 2.792 | MSE = 174.3719
+Iteration 3 of 50 | Duration = 2.202 | MSE = 163.4738
+Iteration 4 of 50 | Duration = 2.044 | MSE = 160.4426
+Iteration 5 of 50 | Duration = 2.159 | MSE = 159.3376
+Iteration 6 of 50 | Duration = 2.017 | MSE = 158.6461
+Iteration 7 of 50 | Duration = 2.011 | MSE = 158.2005
+
+Running polya filter for radius = 3, bins = 64, delta = 160.
+Initial MSE: 1142.6897
+Iteration 1 of 50 | Duration = 2.477 | MSE = 201.0027
+Iteration 2 of 50 | Duration = 2.807 | MSE = 174.3216
+Iteration 3 of 50 | Duration = 2.215 | MSE = 163.5680
+Iteration 4 of 50 | Duration = 2.156 | MSE = 160.3859
+Iteration 5 of 50 | Duration = 2.019 | MSE = 159.3666
+Iteration 6 of 50 | Duration = 2.207 | MSE = 158.6719
+Iteration 7 of 50 | Duration = 2.082 | MSE = 158.3069
+
+Running polya filter for radius = 3, bins = 64, delta = 180.
+Initial MSE: 1142.6897
+Iteration 1 of 50 | Duration = 2.446 | MSE = 201.0027
+Iteration 2 of 50 | Duration = 2.758 | MSE = 173.8802
+Iteration 3 of 50 | Duration = 2.241 | MSE = 163.2440
+Iteration 4 of 50 | Duration = 2.279 | MSE = 160.3376
+Iteration 5 of 50 | Duration = 2.277 | MSE = 159.2980
+Iteration 6 of 50 | Duration = 2.137 | MSE = 158.6927
+Iteration 7 of 50 | Duration = 2.159 | MSE = 158.4083
+
+Running polya filter for radius = 3, bins = 64, delta = 200.
+Initial MSE: 1142.6897
+Iteration 1 of 50 | Duration = 2.457 | MSE = 201.0027
+Iteration 2 of 50 | Duration = 2.955 | MSE = 173.8712
+Iteration 3 of 50 | Duration = 2.147 | MSE = 163.2474
+Iteration 4 of 50 | Duration = 2.152 | MSE = 160.3303
+Iteration 5 of 50 | Duration = 2.367 | MSE = 159.3123
+Iteration 6 of 50 | Duration = 2.073 | MSE = 158.7210
+Iteration 7 of 50 | Duration = 2.121 | MSE = 158.4285
+
+Running polya filter for radius = 3, bins = 128, delta = 20.
+Initial MSE: 1142.6897
+Iteration 1 of 50 | Duration = 4.931 | MSE = 1133.5217
+Iteration 2 of 50 | Duration = 5.150 | MSE = 1133.5217
+Iteration 3 of 50 | Duration = 5.204 | MSE = 1133.5217
+
+Running polya filter for radius = 3, bins = 128, delta = 40.
+Initial MSE: 1142.6897
+Iteration 1 of 50 | Duration = 5.028 | MSE = 1133.5217
+Iteration 2 of 50 | Duration = 5.292 | MSE = 1133.5217
+Iteration 3 of 50 | Duration = 5.375 | MSE = 801.6978
+Iteration 4 of 50 | Duration = 5.277 | MSE = 511.4644
+Iteration 5 of 50 | Duration = 5.489 | MSE = 335.9691
+Iteration 6 of 50 | Duration = 5.452 | MSE = 237.6920
+Iteration 7 of 50 | Duration = 5.672 | MSE = 192.8582
+Iteration 8 of 50 | Duration = 5.647 | MSE = 173.0769
+Iteration 9 of 50 | Duration = 5.586 | MSE = 164.3650
+Iteration 10 of 50 | Duration = 5.852 | MSE = 160.5592
+Iteration 11 of 50 | Duration = 5.740 | MSE = 158.8475
+Iteration 12 of 50 | Duration = 5.731 | MSE = 157.9647
+Iteration 13 of 50 | Duration = 5.778 | MSE = 157.6865
+
+Running polya filter for radius = 3, bins = 128, delta = 60.
+Initial MSE: 1142.6897
+Iteration 1 of 50 | Duration = 4.955 | MSE = 1133.5217
+Iteration 2 of 50 | Duration = 5.155 | MSE = 734.3853
+Iteration 3 of 50 | Duration = 5.483 | MSE = 367.6552
+Iteration 4 of 50 | Duration = 5.607 | MSE = 213.8977
+Iteration 5 of 50 | Duration = 5.807 | MSE = 171.8348
+Iteration 6 of 50 | Duration = 5.555 | MSE = 162.2405
+Iteration 7 of 50 | Duration = 5.689 | MSE = 159.5133
+Iteration 8 of 50 | Duration = 5.672 | MSE = 158.4484
+Iteration 9 of 50 | Duration = 5.539 | MSE = 157.9543
+
+Running polya filter for radius = 3, bins = 128, delta = 80.
+Initial MSE: 1142.6897
+Iteration 1 of 50 | Duration = 4.645 | MSE = 1133.5217
+Iteration 2 of 50 | Duration = 5.205 | MSE = 738.9999
+Iteration 3 of 50 | Duration = 5.168 | MSE = 375.2487
+Iteration 4 of 50 | Duration = 5.567 | MSE = 211.8392
+Iteration 5 of 50 | Duration = 5.510 | MSE = 171.4227
+Iteration 6 of 50 | Duration = 5.686 | MSE = 161.9563
+Iteration 7 of 50 | Duration = 5.721 | MSE = 159.4154
+Iteration 8 of 50 | Duration = 5.724 | MSE = 158.5447
+Iteration 9 of 50 | Duration = 5.914 | MSE = 158.2148
+
+Running polya filter for radius = 3, bins = 128, delta = 100.
+Initial MSE: 1142.6897
+Iteration 1 of 50 | Duration = 6.645 | MSE = 363.6168
+Iteration 2 of 50 | Duration = 6.289 | MSE = 176.2092
+Iteration 3 of 50 | Duration = 5.838 | MSE = 164.6865
+Iteration 4 of 50 | Duration = 6.439 | MSE = 160.8912
+Iteration 5 of 50 | Duration = 5.990 | MSE = 159.0475
+Iteration 6 of 50 | Duration = 5.751 | MSE = 158.2148
+Iteration 7 of 50 | Duration = 5.628 | MSE = 157.8026
+
+Running polya filter for radius = 3, bins = 128, delta = 120.
+Initial MSE: 1142.6897
+Iteration 1 of 50 | Duration = 4.747 | MSE = 201.5202
+Iteration 2 of 50 | Duration = 6.721 | MSE = 174.4053
+Iteration 3 of 50 | Duration = 5.855 | MSE = 163.8453
+Iteration 4 of 50 | Duration = 5.549 | MSE = 160.8689
+Iteration 5 of 50 | Duration = 5.639 | MSE = 159.6036
+Iteration 6 of 50 | Duration = 5.682 | MSE = 158.9616
+Iteration 7 of 50 | Duration = 5.565 | MSE = 158.5194
+
+Running polya filter for radius = 3, bins = 128, delta = 140.
+Initial MSE: 1142.6897
+Iteration 1 of 50 | Duration = 4.811 | MSE = 201.5202
+Iteration 2 of 50 | Duration = 6.642 | MSE = 174.3371
+Iteration 3 of 50 | Duration = 5.638 | MSE = 163.8111
+Iteration 4 of 50 | Duration = 5.786 | MSE = 160.8075
+Iteration 5 of 50 | Duration = 5.803 | MSE = 159.5993
+Iteration 6 of 50 | Duration = 5.645 | MSE = 158.9413
+Iteration 7 of 50 | Duration = 5.484 | MSE = 158.5451
+
+Running polya filter for radius = 3, bins = 128, delta = 160.
+Initial MSE: 1142.6897
+Iteration 1 of 50 | Duration = 5.030 | MSE = 201.5202
+Iteration 2 of 50 | Duration = 6.459 | MSE = 174.2903
+Iteration 3 of 50 | Duration = 5.758 | MSE = 163.9005
+Iteration 4 of 50 | Duration = 5.301 | MSE = 160.6659
+Iteration 5 of 50 | Duration = 5.553 | MSE = 159.5951
+Iteration 6 of 50 | Duration = 6.024 | MSE = 158.8862
+Iteration 7 of 50 | Duration = 5.885 | MSE = 158.6481
+
+Running polya filter for radius = 3, bins = 128, delta = 180.
+Initial MSE: 1142.6897
+Iteration 1 of 50 | Duration = 4.689 | MSE = 201.5202
+Iteration 2 of 50 | Duration = 6.387 | MSE = 173.8480
+Iteration 3 of 50 | Duration = 5.566 | MSE = 163.5689
+Iteration 4 of 50 | Duration = 5.600 | MSE = 160.6061
+Iteration 5 of 50 | Duration = 5.679 | MSE = 159.5159
+Iteration 6 of 50 | Duration = 5.747 | MSE = 158.9982
+Iteration 7 of 50 | Duration = 5.697 | MSE = 158.7478
+
+Running polya filter for radius = 3, bins = 128, delta = 200.
+Initial MSE: 1142.6897
+Iteration 1 of 50 | Duration = 4.794 | MSE = 201.5202
+Iteration 2 of 50 | Duration = 6.320 | MSE = 173.8417
+Iteration 3 of 50 | Duration = 5.772 | MSE = 163.5670
+Iteration 4 of 50 | Duration = 5.720 | MSE = 160.6119
+Iteration 5 of 50 | Duration = 5.764 | MSE = 159.5357
+Iteration 6 of 50 | Duration = 5.745 | MSE = 159.0229
+Iteration 7 of 50 | Duration = 5.657 | MSE = 158.7645
+
+Running polya filter for radius = 3, bins = 256, delta = 20.
+Initial MSE: 1142.6897
+Iteration 1 of 50 | Duration = 7.714 | MSE = 1142.1212
+Iteration 2 of 50 | Duration = 8.298 | MSE = 1142.1212
+Iteration 3 of 50 | Duration = 9.020 | MSE = 1142.1212
+
+Running polya filter for radius = 3, bins = 256, delta = 40.
+Initial MSE: 1142.6897
+Iteration 1 of 50 | Duration = 7.710 | MSE = 1142.1212
+Iteration 2 of 50 | Duration = 8.770 | MSE = 1142.1212
+Iteration 3 of 50 | Duration = 8.800 | MSE = 852.7868
+Iteration 4 of 50 | Duration = 8.873 | MSE = 575.8948
+Iteration 5 of 50 | Duration = 8.932 | MSE = 394.7666
+Iteration 6 of 50 | Duration = 9.461 | MSE = 278.0153
+Iteration 7 of 50 | Duration = 8.937 | MSE = 216.7932
+Iteration 8 of 50 | Duration = 9.369 | MSE = 185.7785
+Iteration 9 of 50 | Duration = 9.242 | MSE = 169.8793
+Iteration 10 of 50 | Duration = 9.379 | MSE = 162.5446
+Iteration 11 of 50 | Duration = 9.332 | MSE = 159.1072
+Iteration 12 of 50 | Duration = 9.141 | MSE = 157.2172
+Iteration 13 of 50 | Duration = 9.227 | MSE = 156.5703
+Iteration 14 of 50 | Duration = 9.666 | MSE = 156.2668
+New optimal MSE: 156.2668
+
+Running polya filter for radius = 3, bins = 256, delta = 60.
+Initial MSE: 1142.6897
+Iteration 1 of 50 | Duration = 7.843 | MSE = 1142.1212
+Iteration 2 of 50 | Duration = 8.419 | MSE = 784.5367
+Iteration 3 of 50 | Duration = 8.817 | MSE = 426.6557
+Iteration 4 of 50 | Duration = 8.961 | MSE = 244.5596
+Iteration 5 of 50 | Duration = 9.584 | MSE = 182.5817
+Iteration 6 of 50 | Duration = 9.471 | MSE = 164.7404
+Iteration 7 of 50 | Duration = 9.400 | MSE = 159.1049
+Iteration 8 of 50 | Duration = 9.270 | MSE = 157.3788
+Iteration 9 of 50 | Duration = 9.481 | MSE = 156.6312
+Iteration 10 of 50 | Duration = 9.122 | MSE = 156.3278
+
+Running polya filter for radius = 3, bins = 256, delta = 80.
+Initial MSE: 1142.6897
+Iteration 1 of 50 | Duration = 7.935 | MSE = 1142.1212
+Iteration 2 of 50 | Duration = 8.571 | MSE = 787.4693
+Iteration 3 of 50 | Duration = 8.720 | MSE = 435.8264
+Iteration 4 of 50 | Duration = 9.082 | MSE = 240.9632
+Iteration 5 of 50 | Duration = 9.161 | MSE = 181.7378
+Iteration 6 of 50 | Duration = 9.235 | MSE = 164.2545
+Iteration 7 of 50 | Duration = 9.247 | MSE = 158.9530
+Iteration 8 of 50 | Duration = 9.197 | MSE = 157.3631
+Iteration 9 of 50 | Duration = 9.496 | MSE = 156.7930
+Iteration 10 of 50 | Duration = 9.124 | MSE = 156.5436
+
+Running polya filter for radius = 3, bins = 256, delta = 100.
+Initial MSE: 1142.6897
+Iteration 1 of 50 | Duration = 10.222 | MSE = 362.3071
+Iteration 2 of 50 | Duration = 9.999 | MSE = 174.4382
+Iteration 3 of 50 | Duration = 9.502 | MSE = 163.2788
+Iteration 4 of 50 | Duration = 9.490 | MSE = 159.3648
+Iteration 5 of 50 | Duration = 9.430 | MSE = 157.5817
+Iteration 6 of 50 | Duration = 9.764 | MSE = 156.8681
+Iteration 7 of 50 | Duration = 9.245 | MSE = 156.3581
+Iteration 8 of 50 | Duration = 9.362 | MSE = 156.0978
+New optimal MSE: 156.0978
+
+Running polya filter for radius = 3, bins = 256, delta = 120.
+Initial MSE: 1142.6897
+Iteration 1 of 50 | Duration = 7.819 | MSE = 199.5096
+Iteration 2 of 50 | Duration = 10.041 | MSE = 172.7672
+Iteration 3 of 50 | Duration = 9.171 | MSE = 162.1638
+Iteration 4 of 50 | Duration = 9.083 | MSE = 159.3431
+Iteration 5 of 50 | Duration = 9.606 | MSE = 158.0854
+Iteration 6 of 50 | Duration = 9.384 | MSE = 157.3973
+Iteration 7 of 50 | Duration = 9.197 | MSE = 156.9619
+
+Running polya filter for radius = 3, bins = 256, delta = 140.
+Initial MSE: 1142.6897
+Iteration 1 of 50 | Duration = 7.748 | MSE = 199.5096
+Iteration 2 of 50 | Duration = 9.676 | MSE = 172.6961
+Iteration 3 of 50 | Duration = 9.093 | MSE = 162.1441
+Iteration 4 of 50 | Duration = 8.961 | MSE = 159.2574
+Iteration 5 of 50 | Duration = 9.211 | MSE = 158.0951
+Iteration 6 of 50 | Duration = 9.565 | MSE = 157.3918
+Iteration 7 of 50 | Duration = 9.271 | MSE = 157.0044
+
+Running polya filter for radius = 3, bins = 256, delta = 160.
+Initial MSE: 1142.6897
+Iteration 1 of 50 | Duration = 7.977 | MSE = 199.5096
+Iteration 2 of 50 | Duration = 10.061 | MSE = 172.6502
+Iteration 3 of 50 | Duration = 9.396 | MSE = 162.1918
+Iteration 4 of 50 | Duration = 9.292 | MSE = 159.1610
+Iteration 5 of 50 | Duration = 9.050 | MSE = 158.1047
+Iteration 6 of 50 | Duration = 9.450 | MSE = 157.3673
+Iteration 7 of 50 | Duration = 9.511 | MSE = 157.0893
+
+Running polya filter for radius = 3, bins = 256, delta = 180.
+Initial MSE: 1142.6897
+Iteration 1 of 50 | Duration = 7.706 | MSE = 199.5096
+Iteration 2 of 50 | Duration = 9.846 | MSE = 172.2028
+Iteration 3 of 50 | Duration = 9.662 | MSE = 161.8726
+Iteration 4 of 50 | Duration = 9.223 | MSE = 159.1170
+Iteration 5 of 50 | Duration = 9.226 | MSE = 158.0784
+Iteration 6 of 50 | Duration = 9.276 | MSE = 157.5251
+Iteration 7 of 50 | Duration = 9.313 | MSE = 157.2265
+
+Running polya filter for radius = 3, bins = 256, delta = 200.
+Initial MSE: 1142.6897
+Iteration 1 of 50 | Duration = 7.970 | MSE = 199.5096
+Iteration 2 of 50 | Duration = 10.320 | MSE = 172.1908
+Iteration 3 of 50 | Duration = 9.329 | MSE = 161.8703
+Iteration 4 of 50 | Duration = 9.355 | MSE = 159.1221
+Iteration 5 of 50 | Duration = 9.517 | MSE = 158.1014
+Iteration 6 of 50 | Duration = 9.304 | MSE = 157.5366
+Iteration 7 of 50 | Duration = 9.437 | MSE = 157.2401
+
