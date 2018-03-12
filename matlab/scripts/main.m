@@ -6,12 +6,18 @@ clc
 %% Compile C File for Lee Filter
 mex computelee.c
 
+%% Compile C++ File for Polya_Eigen Function
+ipath = ['-I' '../../c_plus_plus/include/'];
+ipath2 = ['-I' '../../c_plus_plus/external/eigen/'];
+polyapath = '../../c_plus_plus/src/polya/polya.cpp';
+mex(ipath, ipath2, "polya_eigen.cpp", polyapath)
+
 %% Load Image in Grayscale or Colour
-% imagepath = '../images/lena512.bmp';
+imagepath = '../images/lena512.bmp';
 % imagepath = '../images/oil_spill.jpg';
 % imagepath = '../images/aerial1.tiff';
 % imagepath = '../images/pentagon.tiff';
-imagepath = '../images/goldengate.tiff';
+% imagepath = '../images/goldengate.tiff';
 
 image = imread(imagepath);
 
@@ -24,6 +30,7 @@ switch(im_info.ColorType)
         prefs.image.type = 'gray';
     case('indexed')
         prefs.image.type = 'bw';
+        prefs.image.type = 'gray';
     otherwise
         disp("Can't detect image type. Need to override prefs.image.type");
 end
@@ -43,7 +50,7 @@ prefs.edges.sigma = 3;
 % Two ships: 0.5
 prefs.edges.thresh = 0.2;
 
-prefs.quant.num_ball_types = 30; % [2 - 256]
+prefs.quant.num_ball_types = 256; % [2 - 256]
 prefs.quant.type = 'unif'; % unif, lloyd
 prefs.quant.inverse = 'mid'; % low, high, mid
 
@@ -68,10 +75,8 @@ noise.bw.gaussian_mean = 0;
 noise.bw.gaussian_confidence_interval = 0.8; % Error rate is 1 - this
 
 % Colour & Greyscale Noise Parameters
-noise.gaussian.sigma = 0.01;
-noise.gaussian.mean = 0;
+noise.speckle.sigma = 0.03;
 
-noise.bursty.type = 'binary'; % 'gaussian' or 'binary'
 noise.bursty.transition_prob = 0.98;
 noise.bursty.error = 0.1; % 0.2 for gaussian, 0.1 for binary
 noise.bursty.mean = 0;
@@ -80,10 +85,11 @@ noise.bursty.sigma = 100;
 noise.gauss_markov.correlation = 0.9; % (-1, 1)
 noise.gauss_markov.mean = 0;
 noise.gauss_markov.sigma = 10;
-
-noise.type = 'gauss-markov'; % 'gaussian' or 'burst' or 'both' or 'none' 
-                     % or 'gauss-markov'
-
+% {'none'} or {'speckle'} or {'binary-erasure'} or {'gauss-markov'} or
+% {'gassian-burst'} or {'speckle','binary-erasure'} or 
+% {'speckle','gauss-markov'} or {'speckle','gaussian-burst'}
+% or any combination of cells, really. Note that order matters.
+noise.type = {'speckle','binary-erasure'};
 
 %% Add Gaussian or Bursty Noise
 rng(0, 'twister');
