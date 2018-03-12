@@ -204,8 +204,6 @@ for r = 1:maxRadius
         end
     end
 end
-fclose(files(i));
-fclose(logs(i));
 
 % Now run the median, lee, and frost filters for this noise type
 % and compute the optimal results
@@ -217,7 +215,6 @@ previousImage = medianed;
 for N = 1 : maxIterations
     medianed = medfilt2(medianed);
     newMse = immse(medianed, image);
-    fprintf('newMse:%.4f\n',newMse);
     % Stop only when we are not improving as much as desired
     % (given we've run it twice at least
     if floor(newMse) > floor(previousMse)
@@ -233,20 +230,26 @@ for N = 1 : maxIterations
     end
     previousMse = newMse;
 end
+fprintf(logs(i), ...
+    'Optimal Median:  N = %d, MSE = %.4f, PSNR = %.4f, SSIM = %.4f\n', ...
+    N, newMse, psnr(medianed, image), ssim(medianed, image));
 % Save the medianed value in the image
 imwrite(medianed, sprintf('./frames/%s_median_%dN%s',fname, N, ext));
+
+files(i) = fclose(files(i));
+logs(i) = fclose(logs(i));
 
 end
 
 % Ensure the files are closed
 for file = files
-    if file ~= -1
+    if file > 0
         fclose(file);
     end
 end
 % Ensure the logs are closed
 for log = logs
-    if log ~= -1
+    if log > 0
         fclose(log);
     end
 end
