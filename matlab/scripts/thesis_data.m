@@ -256,61 +256,64 @@ function noise = generate_noise(i)
     % Create a noise struct for holding parameters
     noise = struct;
     noise.speckle.distribution = 'rayleigh';
-    noise.speckle.sigma = 0.03; % Default low speckle
+    % Single-look of SAR has variance 0.275 in a rayleigh distribution.
+    % Divide by ENL to get the variance for that number of looks
+    noise.speckle.sigma = 0.028; % Default low speckle, ENL = 10
     
     switch(i)
         case 1 % Low speckkle noise
             noise.name = 'speckle_low';
+            noise.speckle.sigma = 0.028; % ENL = 10
             noise.type = {'speckle'};
         case 2 % Medium speckle noise
             noise.name = 'speckle_mid';
-            noise.speckle.sigma = 0.08;
+            noise.speckle.sigma = 0.039; % ENL = 7
             noise.type = {'speckle'};
         case 3 % High speckle noise
             noise.name = 'speckle_high';
-            noise.speckle.sigma = 0.15;
+            noise.speckle.sigma = 0.069; % ENL = 4
             noise.type = {'speckle'};
         case 4 % Low speckle noise and low error binary_erasure
             noise.name = 'speckle_and_binary_erasure_low';
 
             noise.bursty.type = 'binary';
             noise.bursty.transition_prob = 0.98;
-            noise.bursty.error = 0.02;
+            noise.bursty.error = 0.02; % Equivalent to 2% bit error rate
             noise.type = {'speckle','binary-erasure'};
         case 5 % Low speckle noise and mid error binary erasure
             noise.name = 'speckle_and_binary_erasure_mid';
 
             noise.bursty.type = 'binary';
             noise.bursty.transition_prob = 0.98;
-            noise.bursty.error = 0.1;
+            noise.bursty.error = 0.069; % Equivalent to 6% bit error rate
             noise.type = {'speckle','binary-erasure'};
         case 6 % Low speckle noise and high error binary erasure
             noise.name = 'speckle_and_binary_erasure_high';
 
             noise.bursty.type = 'binary';
             noise.bursty.transition_prob = 0.98;
-            noise.bursty.error = 0.4;
+            noise.bursty.error = 0.1; % Equivalent to 10% bit error rate
             noise.type = {'speckle','binary-erasure'}; 
         case 7 % Low speckle noise and low gauss-markov
             noise.name = 'speckle_and_gauss_markov_low';
             
             noise.gauss_markov.correlation = 0.98; % (-1, 1)
             noise.gauss_markov.mean = 0;
-            noise.gauss_markov.sigma = 3;
+            noise.gauss_markov.sigma = 0.37; % Equivalent to 5% bit error
             noise.type = {'speckle', 'gauss-markov'};
         case  8 % Low speckle noise and medium gauss-markov
             noise.name = 'speckle_and_gauss_markov_mid';
             
             noise.gauss_markov.correlation = 0.98; % (-1, 1)
             noise.gauss_markov.mean = 0;
-            noise.gauss_markov.sigma = 6;
+            noise.gauss_markov.sigma = 0.61; % Equivalent to 10% bit error
             noise.type = {'speckle', 'gauss-markov'};
         case 9 % Low speckle noise and high gauss-markov
             noise.name = 'speckle_and_gauss_markov_high';
           
             noise.gauss_markov.correlation = 0.98; % (-1, 1)
             noise.gauss_markov.mean = 0;
-            noise.gauss_markov.sigma = 10;
+            noise.gauss_markov.sigma = 1.5; % Equivalent to 20% bit error
             noise.type = {'speckle', 'gauss-markov'};
     end
 end
