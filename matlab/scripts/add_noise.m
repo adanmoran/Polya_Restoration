@@ -10,6 +10,8 @@
 % Outputs:
 %     noisy_image - the noisified image
 function noisy_image = add_noise(image, prefs, noise)
+    % Reset the random generator so we always have the same noise
+    rng(0, 'twister');
     noisy_image = image;
     
     for type = noise.type       
@@ -24,9 +26,25 @@ function noisy_image = add_noise(image, prefs, noise)
                                 );
 
             else
-                noisy_image = imnoise(noisy_image, ...
-                                      'speckle', ...
-                                      noise.speckle.sigma);
+                if strcmp(noise.speckle.distribution, 'rayleigh')
+                    % Convert the variance into a rayleigh parameter
+                    % according to the function for rayleigh variance
+                    % Var[X] = (4 - pi)/2 * parameter^2
+                    parameter = sqrt(( 2*noise.speckle.sigma) / (4 - pi));
+                    % Create rayleigh noise with the given parameter
+                    rayleigh = raylrnd(parameter, size(noisy_image));
+                    % Shift the rayleigh noise to be mean 1
+                    % Note that the mean of the rayleigh distribution is
+                    % E[X] = sqrt(pi/2) * parameter
+                    rayleigh = rayleigh + (1 - sqrt(pi/2)*parameter);
+                    % Apply multiplicative noise to the image pointwise
+                    noisy_image = uint8(double(noisy_image) .* rayleigh);
+                else
+                    % Apply uniformly-distributed muultiplicative speckle
+                    noisy_image = imnoise(noisy_image, ...
+                                          'speckle', ...
+                                          noise.speckle.sigma);
+                end
             end
 
         elseif strcmp(type, 'binary-erasure')

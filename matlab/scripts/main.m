@@ -76,6 +76,7 @@ noise.bw.gaussian_confidence_interval = 0.8; % Error rate is 1 - this
 
 % Colour & Greyscale Noise Parameters
 noise.speckle.sigma = 0.03;
+noise.speckle.distribution = 'uniform'; % 'uniform' or 'rayleigh'
 
 noise.bursty.transition_prob = 0.98;
 noise.bursty.error = 0.1; % 0.2 for gaussian, 0.1 for binary
