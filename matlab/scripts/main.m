@@ -51,22 +51,27 @@ prefs.edges.sigma = 3;
 prefs.edges.thresh = 0.2;
 
 prefs.quant.num_ball_types = 256; % [2 - 256]
-prefs.quant.type = 'unif'; % unif, lloyd
+prefs.quant.type = 'lloyd'; % unif, lloyd
 prefs.quant.inverse = 'mid'; % low, high, mid
 
-prefs.adj.radius = 3;
+prefs.adj.radius = 2;
 prefs.adj.norm = 2;
 
 prefs.polya.sample_type = 'median'; % 'median', 'random'
 prefs.polya.starting_balls = 100; % Starting balls in each urn
 % Number of balls to add to the urn after each polya step
-prefs.polya.balls_to_add = 60;
-prefs.polya.iterations = 8;
+prefs.polya.balls_to_add = 100;
+prefs.polya.iterations = 6;
 
-prefs.median.iterations = 8;
+prefs.median.iterations = 5;
 
 prefs.lee.kernel = [5 5]; % window size for lee filter
 prefs.lee.iterations = 8;
+
+prefs.video.save_video = false; % Save the output as a video
+prefs.video.folder = './frames/'; % Folder where the video will be saved
+prefs.video.name = 'polyafilt.avi'; % File name for the video
+prefs.video.frame_rate = 2; % Frames per second
 
 % Noise parameters
 % BW Gaussian Noise Parameters
@@ -75,8 +80,8 @@ noise.bw.gaussian_mean = 0;
 noise.bw.gaussian_confidence_interval = 0.8; % Error rate is 1 - this
 
 % Colour & Greyscale Noise Parameters
-noise.speckle.sigma = 0.03;
-noise.speckle.distribution = 'uniform'; % 'uniform' or 'rayleigh'
+noise.speckle.sigma = 0.028;
+noise.speckle.distribution = 'rayleigh'; % 'uniform' or 'rayleigh'
 
 noise.bursty.transition_prob = 0.98;
 noise.bursty.error = 0.1; % 0.2 for gaussian, 0.1 for binary
@@ -90,7 +95,7 @@ noise.gauss_markov.sigma = 10;
 % {'gassian-burst'} or {'speckle','binary-erasure'} or 
 % {'speckle','gauss-markov'} or {'speckle','gaussian-burst'}
 % or any combination of cells, really. Note that order matters.
-noise.type = {'speckle','binary-erasure'};
+noise.type = {'speckle'};
 
 %% Add Gaussian or Bursty Noise
 rng(0, 'twister');

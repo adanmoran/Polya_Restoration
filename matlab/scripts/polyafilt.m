@@ -75,16 +75,32 @@ function output_image = polyafilt(noisy_image, prefs)
                                            prefs.adj.radius);
     end
     %% Iterate the Polya Model
-%     for i = 1:prefs.polya.iterations
-%         tic
-%         fprintf('Iteration %d of %d | Duration: ', ...
-%                 i, ...
-%                 prefs.polya.iterations);
-%         urns = polya(urns, adjacency, Delta, prefs.polya.sample_type);
-%         fprintf('%.3f\n', toc);
-%     end
-
-    urns = polya_eigen(urns, adjacency, Delta, 'median', prefs.polya.iterations);
+    if prefs.video.save_video
+        % Open a video maker
+        location = fullfile( prefs.video.folder, ...
+                             prefs.video.name);
+        fprintf('Saving results to video at %s\n', location);
+        outputVideo = VideoWriter();
+        outputVideo.FrameRate = prefs.video.frame_rate;
+        open(outputVideo);
+        % Loop through the polya process and save each frame
+        for i = 1:prefs.polya.iterations
+            tic
+            fprintf('Iteration %d of %d | Duration: ', ...
+                    i, ...
+                    prefs.polya.iterations);
+            urns = polya(urns, adjacency, Delta, prefs.polya.sample_type);
+            fprintf('%.3f\n', toc);
+            % Create a frame for the video
+            fprintf('------ Generating video frame %d', N);
+            writeVideo(outputVideo, ...
+                       image_from_urns(size(noisy_image), urns));
+        end
+        % Clean up the video buffer and unlock it from memory
+        close(outputVideo);
+    else
+        urns = polya_eigen(urns, adjacency, Delta, 'median', prefs.polya.iterations);
+    end
 
     %% Build the final image
     output_image = image_from_urns(size(noisy_image), urns);
