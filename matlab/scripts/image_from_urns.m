@@ -32,5 +32,4 @@ function image = image_from_urns(image_size, urns)
           end
        end
     end
-    image = uint8(image);
 end
