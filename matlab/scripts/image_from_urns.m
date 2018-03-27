@@ -25,12 +25,10 @@ function image = image_from_urns(image_size, urns)
           % If there is only one colour, this pixel becomes that colour
           if length(mostBallLocations) == 1
               image(i,j) = mostBallLocations;
-          % If theres a tie, take the darkest colour as default. This may
-          % be changed later
+          % If theres a tie, take the median value
           else
               image(i,j) = ceil(median(mostBallLocations));
           end
        end
     end
-    image = uint8(image);
 end

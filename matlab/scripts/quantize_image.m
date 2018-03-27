@@ -22,10 +22,8 @@ function [q_image, partition, codebook] = quantize_image(...
     if islogical(image)
         num_colours = 2;
     else
-        % Get the numerical type of the image
-        classname = class(image); 
-        % Get the max size of that type
-        num_colours = double(intmax(classname));
+        % The maximum greyscale value is 255.
+        num_colours = 255;
     end
     
     % If the number of balls corresponds to no quantization, exit
