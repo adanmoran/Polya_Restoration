@@ -67,12 +67,9 @@ prefs.image.type = 'gray';
 
 % Edge map optimization must use edge map sigma/thresh retrieved from the
 % GUI.
+% Setting use_edges to true will generate edge sigma and thresholds in the
+% parfor loop.
 prefs.edges.use_edges = false;
-prefs.edges.filter = 'canny';
-% The variance of Canny's gaussian filter. Default is sqrt(2)
-prefs.edges.sigma = 3; 
-% Threshold for the Canny method
-prefs.edges.thresh = 0.38;
 
 prefs.polya.sample_type = 'median'; % 'median', 'random'
 
@@ -93,10 +90,28 @@ files = -1 * ones(size(noises));
 % Store file pointers to logs
 logs = -1 * ones(size(noises));
 
+% Read the edge table in case we want to use the edge map
+edgeTable = readtable('./edges.csv');
+
 % Run the loop in parallel to optimize for each noise type
 parfor i = noises
 % Generate a noise for this image and this thread
 noise = generate_noise(i);
+ 
+% Assign a radius variable in case we use edge (which forces maxRadius = 2)
+loopMaxRadius = maxRadius;
+
+% Generate edge map
+edges = [];
+if prefs.edges.use_edges
+   edgePrefs = generate_edges(edgeTable, imagename, noise); 
+   edges = edge(noisy_image, ...
+             'canny', ...
+             edgePrefs.thresh, ...
+             edgePrefs.sigma);
+   % Using edges means our max radius is 2
+   loopMaxRadius = 2;
+end
 
 % Open a file for this noise type
 fname = sprintf('%s_%s_optimal', imagename, noise.name);
@@ -120,10 +135,16 @@ imwrite(noisy_image, sprintf('./frames/%s_%s_noise%s',...
 
 % Optimize radius
 fprintf(logs(i), 'Optimizing for %s\n', fname);
-for r = 1:maxRadius
+for r = 1:loopMaxRadius
     adjacency = get_sparse_adj(size(noisy_image), ...
                                r, ...
                                prefs.adj.norm);
+    % Remove edges if requested
+    if prefs.edges.use_edges
+        adjacency = adjacency_minus_edge_d(adjacency, ...
+                                           edges, ...
+                                           prefs.adj.radius);
+    end
     % Optimize Quantization bins
     for numBins = binsToOptimize
         [quantized_image, partition, codebook] = quantize_image(...
@@ -319,4 +340,26 @@ function noise = generate_noise(i)
             noise.gauss_markov.sigma = 1.5; % Equivalent to 20% bit error
             noise.type = {'speckle', 'gauss-markov'};
     end
+end
+
+%% Generate Canny Edge Map preferences for the given noise.
+function prefs = generate_edges(edgeTable, imagename, noise)
+    % Find the row indices which contain this image name
+    imageRows = edgeTable(ismember(edgeTable.Image, imagename),:);
+    if size(imageRows,1) == 0
+        fprintf('Failed to find Image %s in edge table.',...
+            imagename);
+        exit();
+    end
+    % Now filter that to find the row index of the noise type
+    edgeRow = imageRows(ismember(imageRows.Noise, noise.type),:);
+    if size(edgeRow, 1) == 0
+        fprintf('Failed to find Noise %s for Image %s in edge table.',...
+            noise.type,...
+            imagename);
+        exit();
+    end
+    
+    prefs.thresh = edgeRow.EdgeThresh;
+    prefs.sigma = edgeRow.EdgeSigma;
 end
