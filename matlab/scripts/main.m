@@ -13,11 +13,13 @@ polyapath = '../../c_plus_plus/src/polya/polya.cpp';
 mex(ipath, ipath2, "polya_eigen.cpp", polyapath)
 
 %% Load Image in Grayscale or Colour
-imagepath = '../images/lena512.bmp';
+% imagepath = '../images/simon.png';
+% imagepath = '../images/lena512.bmp';
 % imagepath = '../images/oil_spill.jpg';
 % imagepath = '../images/aerial1.tiff';
 % imagepath = '../images/pentagon.tiff';
 % imagepath = '../images/goldengate.tiff';
+imagepath = '../images/tindall.png';
 
 image = imread(imagepath);
 
@@ -34,6 +36,7 @@ switch(im_info.ColorType)
     otherwise
         disp("Can't detect image type. Need to override prefs.image.type");
 end
+
 % prefs.image.type = 'rgb'; % 'bw', 'gray', 'rgb', 'ycbcr'
 
 % Lena threshold: 0.52
@@ -61,17 +64,17 @@ prefs.polya.sample_type = 'median'; % 'median', 'random'
 prefs.polya.starting_balls = 100; % Starting balls in each urn
 % Number of balls to add to the urn after each polya step
 prefs.polya.balls_to_add = 100;
-prefs.polya.iterations = 6;
+prefs.polya.iterations = 8;
 
 prefs.median.iterations = 5;
 
 prefs.lee.kernel = [5 5]; % window size for lee filter
 prefs.lee.iterations = 8;
 
-prefs.video.save_video = false; % Save the output as a video
+prefs.video.save_video = true; % Save the output as a video
 prefs.video.folder = './frames/'; % Folder where the video will be saved
 prefs.video.name = 'polyafilt.avi'; % File name for the video
-prefs.video.frame_rate = 2; % Frames per second
+prefs.video.frame_rate = 0.5; % Frames per second
 
 % Noise parameters
 % BW Gaussian Noise Parameters
@@ -84,7 +87,7 @@ noise.speckle.sigma = 0.028;
 noise.speckle.distribution = 'rayleigh'; % 'uniform' or 'rayleigh'
 
 noise.bursty.transition_prob = 0.98;
-noise.bursty.error = 0.1; % 0.2 for gaussian, 0.1 for binary
+noise.bursty.error = 0.069; % 0.2 for gaussian, 0.1 for binary
 noise.bursty.mean = 0;
 noise.bursty.sigma = 100;
 
@@ -95,7 +98,7 @@ noise.gauss_markov.sigma = 10;
 % {'gassian-burst'} or {'speckle','binary-erasure'} or 
 % {'speckle','gauss-markov'} or {'speckle','gaussian-burst'}
 % or any combination of cells, really. Note that order matters.
-noise.type = {'speckle'};
+noise.type = {'speckle', 'binary-erasure'};
 
 %% Add Gaussian or Bursty Noise
 rng(0, 'twister');
@@ -129,10 +132,61 @@ if strcmp(prefs.image.type, 'rgb') || strcmp(prefs.image.type, 'ycbcr')
     [med_1, med_2, med_3] = deal(channel_1, channel_2, channel_3);
     [lee_1, lee_2, lee_3] = deal(channel_1, channel_2, channel_3);
     
-    % Run the greyscale polya filter on each channel individually
-    channel_1_p = polyafilt(channel_1, prefs);
-    channel_2_p = polyafilt(channel_2, prefs);
-    channel_3_p = polyafilt(channel_3, prefs);
+    if prefs.video.save_video
+        % Open a video maker
+        location = fullfile( prefs.video.folder, ...
+                             prefs.video.name);
+        fprintf('Saving results to video at %s\n', location);
+        outputVideo = VideoWriter(location);
+        outputVideo.FrameRate = prefs.video.frame_rate;
+        open(outputVideo);
+        
+        channel_1_p = channel_1;
+        channel_2_p = channel_2;
+        channel_3_p = channel_3;
+        
+        % Disable saving each greyscale image generated
+        prefs.video.save_video = false;
+        
+        % Save the loops as a backup because we're running each frame once.
+        N = prefs.polya.iterations;
+        prefs.polya.iterations = 1;
+        % Loop through the polya process and save each frame
+        for i = 1:N
+            channel_1_p = polyafilt(channel_1_p, prefs);
+            channel_2_p = polyafilt(channel_2_p, prefs);
+            channel_3_p = polyafilt(channel_3_p, prefs);
+            % Create a frame for the video with text showing current
+            % iteration number
+            fprintf('------ Generating video frame %d\n', i);
+            frame = insertText(...
+                cat(3, channel_1_p, channel_2_p, channel_3_p), ... %image
+                [0,0], ... %Position of label
+                sprintf('N = %d',i), ... % Contents of label
+                'FontSize', 18, ...
+                'BoxColor', 'white', ...
+                'BoxOpacity', 1.0, ...
+                'TextColor', 'black');
+            writeVideo(outputVideo, frame);
+        end
+        % Write a bunch of the last frame so we can see it for about 5
+        % seconds after.
+        fprintf('Finalizing video creation\n');
+        numExtra = 5 * prefs.video.frame_rate;
+        for i = 1:numExtra
+            writeVideo(outputVideo, frame);
+        end
+        % Clean up the video buffer and unlock it from memory
+        close(outputVideo);
+        % Restore our disabled values
+        prefs.polya.iterations = N;
+        prefs.video.save_video = true;
+        
+    else  % Run the greyscale polya filter on each channel individually
+        channel_1_p = polyafilt(channel_1, prefs);
+        channel_2_p = polyafilt(channel_2, prefs);
+        channel_3_p = polyafilt(channel_3, prefs);
+    end
     
     % Run the median filter on each channel individually
     for i = 1:prefs.median.iterations

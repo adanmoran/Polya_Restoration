@@ -80,7 +80,7 @@ function output_image = polyafilt(noisy_image, prefs)
         location = fullfile( prefs.video.folder, ...
                              prefs.video.name);
         fprintf('Saving results to video at %s\n', location);
-        outputVideo = VideoWriter();
+        outputVideo = VideoWriter(location);
         outputVideo.FrameRate = prefs.video.frame_rate;
         open(outputVideo);
         % Loop through the polya process and save each frame
@@ -92,7 +92,7 @@ function output_image = polyafilt(noisy_image, prefs)
             urns = polya(urns, adjacency, Delta, prefs.polya.sample_type);
             fprintf('%.3f\n', toc);
             % Create a frame for the video
-            fprintf('------ Generating video frame %d', N);
+            fprintf('------ Generating video frame %d\n', i);
             writeVideo(outputVideo, ...
                        image_from_urns(size(noisy_image), urns));
         end
