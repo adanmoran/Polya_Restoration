@@ -18,6 +18,14 @@
 % of looks by getting the noise and computing the variance:
 % -- noise(i,j) = filtered(i,j) ./ original(i,j)
 % -- ENL = 0.275 / var(noise)
+%
+% Example usage:
+% original = imread('../images/aerial1.tiff');
+% polya =
+% imread('./frames/aerial1_2norm_edge/aerial1_speckle_low_optimal.tiff');
+% medianed =
+% imread('./frames/aerial1_2norm_edge/aerial1_speckle_low_optimal_median_2N.tiff');
+% [polya_enl, median_enl] = enl(image, polya, medianed)
 
 function [polya_enl, median_enl] = enl(original, polya, medianed)
     % Get non-zero locations of the original image, as any locations where
