@@ -27,14 +27,14 @@ function [polya_enl, median_enl] = enl(original, polya, medianed)
 
     % Find the noise on the polya image
     polya_diff = double(polya(image_nonzero)) ./ ...
-        double(image(image_nonzero));
+        double(original(image_nonzero));
     % Compute the ENL of the polya image
     polya_sigma = var(polya_diff(:));
     polya_enl = 0.275/polya_sigma;
     
     % Find the noise on the polya image
     median_diff = double(medianed(image_nonzero)) ./ ...
-        double(image(image_nonzero));
+        double(original(image_nonzero));
     % Compute the ENL of the median image
     median_sigma = var(median_diff(:));
     median_enl = 0.275/median_sigma;
