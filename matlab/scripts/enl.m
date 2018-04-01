@@ -28,6 +28,10 @@
 % [polya_enl, median_enl] = enl(image, polya, medianed)
 
 function [polya_enl, median_enl] = enl(original, polya, medianed)
+    % If it's a colour image, convert to grayscale
+    if size(original,3) > 1
+        original = rgb2gray(original);
+    end
     % Get non-zero locations of the original image, as any locations where
     % the image was zero have noise value of zero (and thus can be ignored
     % when computing the noise values)
