@@ -17,7 +17,6 @@
 % Outputs:
 % S = a sparse matrix representing locations where adjacencies should be
 % removed
-
 function S = edge_disconnect(ii, jj, min, max, n, m, direction)
     switch(nargin)
         case 6
@@ -28,17 +27,17 @@ function S = edge_disconnect(ii, jj, min, max, n, m, direction)
                 error('Can only remove edges vertically or horizontally.');
             end
     end
-    % locations of pixels which can be vertically filtered
+    % Locations of pixels which can be vertically filtered
     slice = ii > min & ii < max;
     % Get the "columns" of the pixels which can be vertically filtered
     vertical_j = jj(slice);
     % "rows" of pixels which can be vertically filtered
     vertical_i = ii(slice);
     
-    % pixels above the edge
+    % Pixels above the edge
     one = ones(size(vertical_i));
     one_up = vertical_i - one;
-    % pixels below the edge
+    % Pixels below the edge
     one_down = vertical_i + one;
     
     if strcmp(direction,'horizontal')
@@ -57,4 +56,3 @@ function S = edge_disconnect(ii, jj, min, max, n, m, direction)
     % Must add transpose to fully disconnect these pixels
     S = S + S';
 end
-

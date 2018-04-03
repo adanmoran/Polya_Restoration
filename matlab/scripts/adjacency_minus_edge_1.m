@@ -1,12 +1,16 @@
-%% Remove edges from adjacency
+%% Adjacency Minus Edge For a Distance 1
+% Computes the adjacency matrix without edge connections for a distance 1
+% in an Lp norm. This function only works for a distance d = 1.
+%
 % Inputs:
-% Adjacency - a sparse matrix with adjacencies of radius 1 in the 1-norm
-% Edge - a sparse matrix with 1's where there are edges in the original
+%   - adjacency: a sparse matrix with adjacencies of radius d in an Lp norm
+%   - edges: a sparse matrix with 1's where there are edges in the original
 %        image
 %
-% Returns a new sparse adjacency matrix
+% Output:
+%   - adj: a sparse matrix of adjacencies without the edge connections
+%       provided by edges input
 function adj = adjacency_minus_edge_1(adjacency, edges)
-
     % Compute the indices of the ones in a sparse matrix
     [ii, jj] = find(edges);
     
@@ -18,8 +22,8 @@ function adj = adjacency_minus_edge_1(adjacency, edges)
                         pixel_numbers,      ...
                         pixel_numbers,      ...
                         values,             ...
-                        size(adjacency,1),  ...
-                        size(adjacency,2));
+                        size(adjacency, 1),  ...
+                        size(adjacency, 2));
 
     % Create a sparse identity matrix which has zeros wherever there are
     % edges

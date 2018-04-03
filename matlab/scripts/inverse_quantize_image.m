@@ -21,10 +21,8 @@ function image = inverse_quantize_image(q_image, ...
     if islogical(q_image)
         num_colours = 2;
     else
-        % Get the numerical type of the image
-        classname = class(q_image); 
-        % Get the max size of that type
-        num_colours = double(intmax(classname));
+        % The maximum greyscale value is 255.
+        num_colours = 255;
     end
     
     % If the number of balls corresponds to no quantization, exit
